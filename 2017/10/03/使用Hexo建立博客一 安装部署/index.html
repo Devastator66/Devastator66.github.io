@@ -31,7 +31,7 @@
 <meta property="og:description" content="GitHub + Hexo GitHub Pages有300M免费空间，而且是世界知名门户，用户可稳定使用。 Hexo是基于node.js的静态博客。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-10-03T05:30:05.000Z">
-<meta property="article:modified_time" content="2021-02-09T08:34:54.246Z">
+<meta property="article:modified_time" content="2021-02-11T09:55:07.956Z">
 <meta property="article:author" content="Devastator">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -358,7 +358,8 @@
 <blockquote>
 <p>每行前必须有个tab，冒号后必须有个空格。</p>
 </blockquote>
-<p>二、安装hexo-deployer-git插件：<code>$npm install hexo-deployer-git --save</code>。</p>
+<p>二、安装hexo-deployer-git插件：<code>$npm install hexo-deployer-git --save</code>。<br>这个工具用于将本地博客上传到Github，安装有可能失败，导致不能上传。可以先卸载再从master分支安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$npm</span> un hexo-deployer-git</span><br><span class="line"><span class="variable">$npm</span> i hexojs/hexo-deployer-git</span><br></pre></td></tr></table></figure>
 <p>三、部署到Github</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> clean     <span class="comment">#清除缓存 网页正常情况下可以忽略此条命令</span></span><br><span class="line"><span class="variable">$hexo</span> generate  <span class="comment">#生成静态页面至public目录</span></span><br><span class="line"><span class="variable">$hexo</span> deploy    <span class="comment">#将.deploy目录部署到GitHub</span></span><br></pre></td></tr></table></figure>
 <p>如果最后一行打印出INFO Deploy done: git，则表示部署成功。</p>
