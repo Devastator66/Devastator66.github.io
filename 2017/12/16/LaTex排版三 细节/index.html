@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="文字字符1234567891011121314\text&amp;#123;文字&amp;#125;\textbf&amp;#123;加粗&amp;#125;\emph&amp;#123;强调&amp;#125;\underline&amp;#123;下划线&amp;#125;\footnote&amp;#123;脚注内容&amp;#125;\copyright            %版权符号\songti&amp;#123;宋体&amp;#125;         %ctex提供的中文字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTex排版三 细节">
+<meta property="og:url" content="https://devastator66.github.io/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="文字字符1234567891011121314\text&amp;#123;文字&amp;#125;\textbf&amp;#123;加粗&amp;#125;\emph&amp;#123;强调&amp;#125;\underline&amp;#123;下划线&amp;#125;\footnote&amp;#123;脚注内容&amp;#125;\copyright            %版权符号\songti&amp;#123;宋体&amp;#125;         %ctex提供的中文字">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2019/12/20/EVwstqQneN4CbzB.png">
+<meta property="article:published_time" content="2017-12-16T02:55:45.000Z">
+<meta property="article:modified_time" content="2021-02-11T01:14:34.612Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="LaTex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/20/EVwstqQneN4CbzB.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>LaTex排版三 细节 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E5%AD%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">文字字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">数学表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">插图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E7%9B%AE"><span class="nav-number">6.</span> <span class="nav-text">条目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">7.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="nav-number">8.</span> <span class="nav-text">代码高亮</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LaTex排版三 细节
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-12-16 10:55:45" itemprop="dateCreated datePublished" datetime="2017-12-16T10:55:45+08:00">2017-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LaTex/" itemprop="url" rel="index"><span itemprop="name">LaTex</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="文字字符"><a href="#文字字符" class="headerlink" title="文字字符"></a>文字字符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;文字&#125;</span><br><span class="line"><span class="keyword">\textbf</span>&#123;加粗&#125;</span><br><span class="line"><span class="keyword">\emph</span>&#123;强调&#125;</span><br><span class="line"><span class="keyword">\underline</span>&#123;下划线&#125;</span><br><span class="line"><span class="keyword">\footnote</span>&#123;脚注内容&#125;</span><br><span class="line"><span class="keyword">\copyright</span>            <span class="comment">%版权符号</span></span><br><span class="line"><span class="keyword">\songti</span>&#123;宋体&#125;         <span class="comment">%ctex提供的中文字体</span></span><br><span class="line"><span class="keyword">\heiti</span>&#123;黑体&#125;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;楷书&#125;</span><br><span class="line"><span class="keyword">\ </span>                    <span class="comment">%空格</span></span><br><span class="line"><span class="keyword">\quad</span>                 <span class="comment">%一m宽度空白</span></span><br><span class="line"><span class="keyword">\qquad</span>                <span class="comment">%二m宽度空白</span></span><br><span class="line"><span class="keyword">\#</span> <span class="keyword">\$</span> <span class="keyword">\%</span> <span class="keyword">\&amp;</span> <span class="keyword">\&#123;</span> <span class="keyword">\&#125;</span> <span class="keyword">\_</span>  <span class="comment">%不能直接显示的符号，在前面加上转义字符\</span></span><br><span class="line"><span class="keyword">\backslash</span>            <span class="comment">%反斜杠</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">  <span class="keyword">\zihao</span>&#123;-5&#125;<span class="keyword">\kaishu</span> 引用的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;quote&#125;</span><br></pre></td></tr></table></figure>
+<p>1.<code>\zihao&#123;-5&#125;\kaishu</code>调整字号为小五号，字体为楷书，后面要接一个空格再写正文。<br>2.这段文字将在它的放置处单独分行，增加缩进和上下间距排印，以突出引用部门。</p>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>先要在导言区定义定理，通过<code>\newtheorem&#123;环境名&#125;&#123;标题名&#125;[章节]</code>，然后在文章中插入定理：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理1的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理2的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br></pre></td></tr></table></figure>
+<p>1.[环境名]是统一的，每次引用都只是这一个名字。<br>2.[标题名]是在定理开头显示的文字，通常为“定理”或“引理”。<br>3.同一环境名下的定理会自动顺延编号，所以“标题名”和“定理名”不要带编号。<br>4.[章节]是可选的，可以为chapter、section分别对应按章或节自动编号。<br>5.[定理名]是可选的。</p>
+<h4 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h4><p>一、在行内插入数学公式：<code>$ 算式 $</code>。</p>
+<p>二、独立行显示数学公式：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span> 公式 <span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>三、数据符号</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\frac</span>&#123;a&#125;&#123;b&#125;                   <span class="comment">%分数</span></span><br><span class="line"><span class="keyword">\log</span><span class="built_in">_</span>a b                      <span class="comment">%对数</span></span><br><span class="line"><span class="keyword">\ln</span> a</span><br><span class="line"><span class="keyword">\lg</span> b</span><br><span class="line">a<span class="built_in">^</span>b                           <span class="comment">%指数</span></span><br><span class="line"><span class="keyword">\sqrt</span>&#123;x&#125;                      <span class="comment">%平方根</span></span><br><span class="line"><span class="keyword">\sqrt</span>[n]&#123;x&#125;                   <span class="comment">%n次方根</span></span><br><span class="line"><span class="keyword">\overline</span>&#123;m+n&#125;                <span class="comment">%上水平线</span></span><br><span class="line"><span class="keyword">\underline</span>&#123;m+n&#125;               <span class="comment">%下水平线</span></span><br><span class="line"><span class="keyword">\cdots</span>                        <span class="comment">%省略号...</span></span><br><span class="line"><span class="keyword">\underbrace</span>&#123;a+b+<span class="keyword">\cdots</span>+z&#125;<span class="built_in">_</span>26  <span class="comment">%下大括号</span></span><br><span class="line"><span class="keyword">\overbrace</span>&#123;a+b&#125;<span class="built_in">^</span>2             <span class="comment">%上大括号</span></span><br><span class="line"><span class="keyword">\vec</span> a                        <span class="comment">%单个字符向量</span></span><br><span class="line"><span class="keyword">\overrightarrow</span>&#123;AB&#125;           <span class="comment">%右向量</span></span><br><span class="line"><span class="keyword">\overleftarrow</span>&#123;CD&#125;            <span class="comment">%左向量</span></span><br><span class="line"><span class="keyword">\angle</span> a                      <span class="comment">%角</span></span><br><span class="line">30<span class="built_in">^</span><span class="keyword">\circ</span>                      <span class="comment">%度</span></span><br><span class="line"><span class="keyword">\pi</span>                           <span class="comment">% π</span></span><br></pre></td></tr></table></figure>
+<p>通常下标用_，上标用^，上下标的组合式用{}括起。两个减号可以输出一条横线，表示数字的范围。</p>
+<p>四、希腊字母<br><img src="https://i.loli.net/2019/12/20/EVwstqQneN4CbzB.png" alt="罗马字母.png"></p>
+<p>五、数学运算</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+ - <span class="keyword">\times</span> <span class="keyword">\div</span>               <span class="comment">%加减乘除</span></span><br><span class="line"><span class="keyword">\pm</span> <span class="keyword">\mp</span>                       <span class="comment">%加减、减加</span></span><br><span class="line"><span class="keyword">\cdot</span>                         <span class="comment">%点乘</span></span><br><span class="line"><span class="keyword">\cup</span>  <span class="keyword">\vee</span>                    <span class="comment">%并集（圆、尖）</span></span><br><span class="line"><span class="keyword">\cap</span>  <span class="keyword">\wedge</span>                  <span class="comment">%交集（圆、尖）</span></span><br><span class="line"><span class="keyword">\oplus</span> <span class="keyword">\ominus</span> <span class="keyword">\otimes</span>        <span class="comment">%圆加、圆减、圆乘</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>&#123;n&#125;                <span class="comment">%求和</span></span><br><span class="line"><span class="keyword">\prod</span><span class="built_in">_</span>&#123;a&#125;<span class="built_in">^</span>&#123;b&#125;                 <span class="comment">%求积</span></span><br><span class="line"><span class="keyword">\int</span><span class="built_in">_</span>&#123;0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\pi</span>&#125;                <span class="comment">%积分</span></span><br><span class="line"><span class="keyword">\lim</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> <span class="keyword">\infty</span>&#125;x<span class="built_in">_</span>n        <span class="comment">%求极限，条件放在右侧</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> 1&#125;x<span class="built_in">_</span>n      <span class="comment">%求极限，条件放在下面</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;<span class="keyword">\substack</span>&#123;x <span class="keyword">\to</span> +<span class="keyword">\infty</span><span class="keyword">\\</span> y<span class="keyword">\to</span> -<span class="keyword">\infty</span>&#125;&#125;x<span class="built_in">_</span>n <span class="comment">%求二重极限</span></span><br></pre></td></tr></table></figure>
+<p>六、关系</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt; &gt; =                         <span class="comment">%小于、大于、等于</span></span><br><span class="line"><span class="keyword">\le</span> <span class="keyword">\ge</span> <span class="keyword">\ll</span> <span class="keyword">\gg</span>               <span class="comment">%小于等于、大于等于、远小于、远大于</span></span><br><span class="line"><span class="keyword">\equiv</span> <span class="keyword">\ne</span> <span class="keyword">\doteq</span>             <span class="comment">%恒等、不等、点等</span></span><br><span class="line"><span class="keyword">\sim</span> <span class="keyword">\cong</span>                    <span class="comment">%波浪 约等于</span></span><br><span class="line"><span class="keyword">\subset</span> <span class="keyword">\subseteq</span>             <span class="comment">%子集</span></span><br><span class="line"><span class="keyword">\supset</span> <span class="keyword">\supseteq</span>             <span class="comment">%超集</span></span><br><span class="line"><span class="keyword">\in</span> <span class="keyword">\ni</span> <span class="keyword">\notin</span>                <span class="comment">%属于（左、右）、不属于</span></span><br></pre></td></tr></table></figure>
+<p>七、箭头、定界符及其他</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\leftarrow</span> <span class="keyword">\rightarrow</span>        <span class="comment">%左右箭头</span></span><br><span class="line"><span class="keyword">\uparrow</span> <span class="keyword">\downarrow</span>           <span class="comment">%上下箭头</span></span><br><span class="line"><span class="keyword">\leftrightarrow</span>               <span class="comment">%双向箭头</span></span><br><span class="line"><span class="keyword">\Leftarrow</span> <span class="keyword">\Rightarrow</span>        <span class="comment">%左右粗箭头</span></span><br><span class="line"><span class="keyword">\Uparrow</span> <span class="keyword">\Downarrow</span>           <span class="comment">%上下粗箭头</span></span><br><span class="line"><span class="keyword">\Leftrightarrow</span>               <span class="comment">%双向粗箭头</span></span><br><span class="line"><span class="keyword">\langle</span> <span class="keyword">\rangle</span>               <span class="comment">%尖括号</span></span><br><span class="line"><span class="keyword">\lfloor</span> <span class="keyword">\rfloor</span>               <span class="comment">%下限（左右）</span></span><br><span class="line"><span class="keyword">\lceil</span> <span class="keyword">\rceil</span>                 <span class="comment">%上限（左右）</span></span><br><span class="line"><span class="keyword">\forall</span>                       <span class="comment">%对于所有</span></span><br><span class="line"><span class="keyword">\exists</span>                       <span class="comment">%存在</span></span><br></pre></td></tr></table></figure>
+<p>八、大括号公式</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;cases&#125;</span><br></pre></td></tr></table></figure>
+<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>。显示中文需要用<code>\text&#123;&#125;</code>括起。<br>2.整体应包裹在$之内，每一行公式用\\分隔。<br>3.用&amp;分隔一条公式的值和条件。</p>
+<p>九、矩阵</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;matrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;matrix&#125;   <span class="comment">%无包裹</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;pmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;pmatrix&#125; <span class="comment">%圆括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Bmatrix&#125; <span class="comment">%花括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;bmatrix&#125; <span class="comment">%方括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;vmatrix&#125; <span class="comment">%竖线</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Vmatrix&#125; <span class="comment">%双竖线</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>，整体应包裹在$之内。<br>2.中间不能有空行，中文须用<code>\text&#123;&#125;</code>包裹，\\为换行。<br>3.每个数据之间用&amp;分隔。</p>
+<p>例如：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">A[i][j] =</span><br><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>十、综合<br>1.给公式加一个框</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\boxed</span>&#123;a+b=c&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>2.将各种公式组合到一起</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;gather*&#125;</span><br><span class="line">  A[i][j] = </span><br><span class="line">  <span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">      0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">      1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line">  <span class="keyword">\end</span>&#123;cases&#125;<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\text</span>&#123;矩阵表示：&#125;A[i][j] = </span><br><span class="line">      <span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line">      <span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;gather*&#125;</span><br></pre></td></tr></table></figure>
+<p>3.多行公式，&amp;符号用于对齐</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align*&#125;</span><br><span class="line">  A <span class="built_in">&amp;</span>= B+C<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= D*E<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= F-G</span><br><span class="line"><span class="keyword">\end</span>&#123;align*&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插图"><a href="#插图" class="headerlink" title="插图"></a>插图</h4><p>一、xelatex支持的图像格式有pdf、png、jpg、eps等。<br>二、需要在导言区引入graphicx宏包：<code>\usepackage&#123;graphicx&#125;</code>。<br>三、在行内插入图片：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>路径中不要使用中文，否则报错。可以使用相对路径。</p>
+</blockquote>
+<p>四、独立显示一幅浮动图片：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[ht]</span><br><span class="line">  <span class="keyword">\centering</span></span><br><span class="line">  <span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br><span class="line">  <span class="keyword">\caption</span>&#123;图的说明文字&#125;</span><br><span class="line">  <span class="keyword">\label</span>&#123;标签名&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>figure表示浮动体，ht表示图片在当前处或一页的上部。centering表示后面的内容居中。caption添加说明和自动编号。label定义一个标签，在文章其他部分可通过\ref{标签名}引用此图。</p>
+</blockquote>
+<h4 id="条目"><a href="#条目" class="headerlink" title="条目"></a>条目</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">  <span class="keyword">\item</span>[1]第一条</span><br><span class="line">  <span class="keyword">\item</span>[2]第二条</span><br><span class="line">  <span class="keyword">\item</span>[3]第三条</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;对齐方式&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    表头1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 表头n <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    内容1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 内容n <span class="keyword">\\</span></span><br><span class="line">          ......       <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一行之内不同列之间用&amp;分隔，每行用\\分隔。</li>
+<li>表格中的横线、竖线、表头、实际内容都要按照预想的样式键入字符设置。如上所示，先用\hline显示一条横线，然后是一行表头，接着又是一条横线，之后就是若干行具体内容了，最后由一条横线收尾。表头和内容之间即使没有竖线分隔，也会自动按照格式摆放。</li>
+<li>对齐方式有三种，分别为l，c，r，每个字母代表一列，竖线也是在“对齐方式”中设置的。例如|ccc|表示有三列，都是中对齐，只有两侧有边线。</li>
+</ul>
+<p>整体示例：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;|r|cccc|l|&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">  序号 <span class="built_in">&amp;</span> 部门 <span class="built_in">&amp;</span> 姓名 <span class="built_in">&amp;</span> 性别 <span class="built_in">&amp;</span> 年龄 <span class="built_in">&amp;</span> 工资<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    1 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 张三 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 36 <span class="built_in">&amp;</span> 10<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    2 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 李四 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 25 <span class="built_in">&amp;</span> 8<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    3 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 王五 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 33 <span class="built_in">&amp;</span> 9<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>整个tabular块放在了center块中，可使表格居中显示。</p>
+</blockquote>
+<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><p>导入<code>\usepackage&#123;listings&#125;</code>包。然后在导言区添加如下代码：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\lstset</span>&#123;</span><br><span class="line">    columns=fixed,</span><br><span class="line">    numbers=left,                                        <span class="comment">% 在左侧显示行号</span></span><br><span class="line">    numberstyle=<span class="keyword">\scriptsize</span><span class="keyword">\color</span>&#123;darkgray&#125;,             <span class="comment">% 设定行号格式</span></span><br><span class="line">    frame=single,                                        <span class="comment">% 不显示背景边框</span></span><br><span class="line">    tabsize=4,                                           <span class="comment">% 设置tab空格数</span></span><br><span class="line">    breaklines,                                          <span class="comment">% 自动折行  </span></span><br><span class="line">    basicstyle=<span class="keyword">\scriptsize</span>,                              <span class="comment">% 代码字体尺寸</span></span><br><span class="line">    xleftmargin=3em,xrightmargin=1em, aboveskip=1em,     <span class="comment">% 显示位置</span></span><br><span class="line">    backgroundcolor=<span class="keyword">\color</span>[RGB]&#123;245,245,244&#125;,            <span class="comment">% 设定背景颜色</span></span><br><span class="line">    keywordstyle=<span class="keyword">\color</span>[RGB]&#123;40,40,255&#125;,                 <span class="comment">% 设定关键字颜色</span></span><br><span class="line">    commentstyle=<span class="keyword">\it</span><span class="keyword">\color</span>[RGB]&#123;0,96,96&#125;,                <span class="comment">% 设置注释颜色</span></span><br><span class="line">    stringstyle=<span class="keyword">\rmfamily</span><span class="keyword">\slshape</span><span class="keyword">\color</span>[RGB]&#123;128,0,0&#125;,   <span class="comment">% 设置字符串</span></span><br><span class="line">    showstringspaces=false,                              <span class="comment">% 不显示字符串中的空格</span></span><br><span class="line">    language=c++,                                        <span class="comment">% 设置语言</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接在文章中插入代码示例：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;lstlisting&#125;</span><br><span class="line">    <span class="params">#</span>include &lt;stdio.h&gt;</span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;hello,world!&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;lstlisting&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>\setmainfont</code>用于设置代码显示的字体</p>
+</blockquote>
+<p>引用源代码文件示例：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"> <span class="keyword">\lstinputlisting</span>[firstline=1, lastline=6]&#123;./path/filename.*&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>firstline为要显示的首行号，lastline为要显示的末行号。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/LaTex/" rel="tag"># LaTex</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/11/18/%E5%8F%98%E5%BD%A2%E9%87%91%E5%88%9A%E7%8E%A9%E5%85%B7/" rel="prev" title="变形金刚玩具">
+                  <i class="fa fa-chevron-left"></i> 变形金刚玩具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/09/21/%E6%88%BF%E4%BB%B7%E4%B8%8A%E5%A4%A9%E7%9A%84%E8%B5%B7%E7%82%B9/" rel="next" title="房价上天的起点">
+                  房价上天的起点 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="STC89C52输入输出端口共有4个，分别为P1~P4，每个端口8位，可用于接收或发送信号。信号只有两种：高电平和低电平，反映到编程层面就是0和1。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习51单片机二 I&#x2F;O端口">
+<meta property="og:url" content="https://devastator66.github.io/2011/09/28/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%8C%20IO%E7%AB%AF%E5%8F%A3/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="STC89C52输入输出端口共有4个，分别为P1~P4，每个端口8位，可用于接收或发送信号。信号只有两种：高电平和低电平，反映到编程层面就是0和1。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/qsJlpHiBvtyr6Su.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/lpameo9bjZ4O1Df.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/PO3Zy5pJFaXvMxk.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/ESxg28HpURBrc6i.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/cCa5iV8Rx43uken.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/FWgsSqHh9xmMjN6.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/20/8KE2qDmi5rwTtxg.png">
+<meta property="article:published_time" content="2011-09-28T14:58:41.000Z">
+<meta property="article:modified_time" content="2021-02-11T03:04:20.143Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="51Chip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/20/qsJlpHiBvtyr6Su.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2011/09/28/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%8C%20IO%E7%AB%AF%E5%8F%A3/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习51单片机二 I/O端口 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%81%AF"><span class="nav-number">1.</span> <span class="nav-text">流水灯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9C%82%E9%B8%A3%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">蜂鸣器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%A0%81%E7%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">数码管</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%AE%E7%9B%98"><span class="nav-number">4.</span> <span class="nav-text">键盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">经验总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2011/09/28/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%8C%20IO%E7%AB%AF%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习51单片机二 I/O端口
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-09-28 22:58:41" itemprop="dateCreated datePublished" datetime="2011-09-28T22:58:41+08:00">2011-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/51Chip/" itemprop="url" rel="index"><span itemprop="name">51Chip</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>STC89C52输入输出端口共有4个，分别为P1~P4，每个端口8位，可用于接收或发送信号。信号只有两种：高电平和低电平，反映到编程层面就是0和1。</p>
+<a id="more"></a>
+
+<h4 id="流水灯"><a href="#流水灯" class="headerlink" title="流水灯"></a>流水灯</h4><p>流水灯是最基本的I/O端口控制实验。上一节的示例程序就是通过对P1进行赋值来控制P1.0~P1.7管脚的电平，使得对应连接的二极管亮灯。</p>
+<p>P1共有8个管脚，一个两位十六进制数即可表示，例如0x77。我们也可以通过sbit P1_6 = P1^6;的方式独立控制P1的每一位。如此，我们的设计就很清楚了——用八个发光二极管连接到P1的每个管脚，如下：</p>
+<p><img src="https://i.loli.net/2020/08/20/qsJlpHiBvtyr6Su.png" alt="1二极管.PNG"></p>
+<p>上图中在单片机和二极管之间连接了一个锁存器74HC573。这是个数字芯片，真值表如下：</p>
+<p><img src="https://i.loli.net/2020/08/20/lpameo9bjZ4O1Df.png" alt="2锁存器.PNG"></p>
+<p>这个表说明了它的使用方式：</p>
+<ol>
+<li>$\overline{OE}$为H，输出必为高阻态，类似于绝缘体。</li>
+<li>$\overline{OE}$为L，LE为H，输入什么，输出什么，类似于导线。</li>
+<li>$\overline{OE}$为L，LE为L，无论输入什么，输出都是上一次的输入，这就是所谓的锁存。</li>
+</ol>
+<p>在这个实验，我们对锁存器的设置是基于2，就是把它当作一条导线，没有使用锁存功能。连接它的原因是开发板复用了P1口，使用它起到隔离功能的作用。</p>
+<p>除此之外还连接了一个排阻用于分压。这里假设发光二极管是没有电阻的，要想保证二极管不烧毁，需要控制电流在二极管额定电流（3.5mA）以内。单片机每个管脚5v，通过欧姆定律，得到每个二极管需串联电阻大小为5÷0.0035≈1430。</p>
+<blockquote>
+<p>一般情况下都会假设电阻之外的器件是无电阻的。</p>
+</blockquote>
+<p>例：静态示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    P1 = <span class="number">0x55</span>;  <span class="comment">//01010101</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>单片机只要上电、连接晶振就会不停的获取下一条指令。为了严格控制单片机的执行，清楚的知道单片机到底运行在哪条指令之上，故而用一个死循环来结束程序。</p>
+</blockquote>
+<p>如果想要让灯动起来，需要不停的设置P1的8个管脚，这让我们想到C语言的循环。</p>
+<p>例：动态示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        P1 = <span class="number">0x55</span>;              <span class="comment">//01010101</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">1000</span>; i++)  <span class="comment">//延时，控制转换的频率</span></span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">100</span>; j++);</span><br><span class="line">        P1 = <span class="number">0xAA</span>;              <span class="comment">//10101010</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">1000</span>; i++)  <span class="comment">//不能在for内部定义i，j</span></span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">100</span>; j++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中间的for循环等同于空转，这叫延时，翻译成汇编语言就是一串nop（1个CPU周期）。使用两层for循环是为了精确控制延时的长短，因为两层for循环执行的次数是乘法关系，方便粗调和精调。</p>
+</blockquote>
+<p>例：流水灯</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;intrins.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> d = <span class="number">0xFE</span>; <span class="comment">//管脚为0，灯亮</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        P1 = d;</span><br><span class="line">        delay();            <span class="comment">//循环左移1位，相对的有d=_cror_(d,1);循环右移</span></span><br><span class="line">        d = _crol_(d,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">1150</span>; i++)  <span class="comment">//不能在for内部定义i，j</span></span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">100</span>; j++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接使用&gt;&gt;和&lt;&lt;运算符，不能实现流水灯。因为它们只是右移和左移，被移出的位进入了CY，缺失的位补0。</p>
+</blockquote>
+<p>相对准确的计算延时方法：进入调试模式（点击工具栏中“放大镜中有个d”的图标），关注左侧sec（秒）。运用单步执行，求执行“延时循环”前后的sec值之差，既是延时时长。</p>
+<p><img src="https://i.loli.net/2020/08/20/PO3Zy5pJFaXvMxk.png" alt="3计算延时.PNG"></p>
+<blockquote>
+<p>一些调试窗口可以在菜单view中调出，点击菜单Peripherals-&gt;I/O-Ports可看到I/O口信息。</p>
+</blockquote>
+<h4 id="蜂鸣器"><a href="#蜂鸣器" class="headerlink" title="蜂鸣器"></a>蜂鸣器</h4><p><img src="https://i.loli.net/2020/08/20/ESxg28HpURBrc6i.png" alt="4蜂鸣器.PNG"></p>
+<p>如上图，蜂鸣器一脚接Vcc，另一脚接三极管。三极管在这里的作用是开关，当接受P2_3为低电平时，蜂鸣器导通。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line">sbit beep = P2^<span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)    <span class="comment">//响一秒，停一秒</span></span><br><span class="line">    &#123;</span><br><span class="line">        beep = <span class="number">0</span>;<span class="comment">//响铃</span></span><br><span class="line">        delay();</span><br><span class="line">        beep = <span class="number">1</span>;<span class="comment">//停止</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//delay代码与“流水灯”一致</span></span><br></pre></td></tr></table></figure>
+<h4 id="数码管"><a href="#数码管" class="headerlink" title="数码管"></a>数码管</h4><p>这里讨论的都是8段数码管，正好对应一个I/O端口的8个管脚。数码管还有一个公共端，须接地的是共阴极数码管，须接电压源的是共阳极数码管。开发板上的数码管都是共阴极的。</p>
+<p>这里用一个锁存器的输出端连接所有数码管的8段，称为段选。用另一个锁存器的输出端连接所有数码管的位选。所谓位选，就是单个数码管的共阴极。两个锁存器的输入端连接单片机的P0口。</p>
+<p><img src="https://i.loli.net/2020/08/20/cCa5iV8Rx43uken.png" alt="5数码管连线.PNG"></p>
+<p>这种复用I/O端口的接法，节约了硬件，增加了软件负担。控制这个电路的基本思想是，在每次设置PO口进行段选或位选之后，都应进行锁存，然后再进行下一步段选或位选。以此来保证前后两次的选择不会相互干扰。</p>
+<p>这里就需要利用到锁存器的第三种使用方式。</p>
+<p>例：静态示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duan = <span class="number">1</span>;   <span class="comment">//保持段锁存器畅通</span></span><br><span class="line">    P0 = <span class="number">0x66</span>;  <span class="comment">//显示4</span></span><br><span class="line">    duan = <span class="number">0</span>;   <span class="comment">//锁存</span></span><br><span class="line">    wei = <span class="number">1</span>;    <span class="comment">//保持位锁存器畅通</span></span><br><span class="line">    P0 = <span class="number">0xfe</span>;  <span class="comment">//选中第1位</span></span><br><span class="line">    wei = <span class="number">0</span>;    <span class="comment">//锁存</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果先进行位选，初始可能先显示乱码，然后才正常显示。这是因为默认段选是打开的，位选对P0口的设置，影响了数码管的显示。</p>
+</blockquote>
+<p>例：动态示例（单个数码管）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)       <span class="comment">//循环显示0-15</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            duan = <span class="number">1</span>;        <span class="comment">//保持段锁存器畅通</span></span><br><span class="line">            P0 = table[i];   <span class="comment">//显示数字</span></span><br><span class="line">            duan = <span class="number">0</span>;        <span class="comment">//锁存</span></span><br><span class="line">            wei = <span class="number">1</span>;         <span class="comment">//保持位锁存器畅通</span></span><br><span class="line">            P0 = <span class="number">0xfe</span>;       <span class="comment">//选中第1位，可选中多位</span></span><br><span class="line">            wei = <span class="number">0</span>;         <span class="comment">//锁存</span></span><br><span class="line">            delay();         <span class="comment">//延时</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//delay代码与“流水灯”一致</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>凡是动态显示，都要使用延时。</p>
+</blockquote>
+<h4 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h4><p>流水灯和数码管的操作属于I/O输出，而键盘操作属于I/O输入。最简单的连接按键方式如下：</p>
+<p><img src="https://i.loli.net/2020/08/20/FWgsSqHh9xmMjN6.png" alt="6独立键盘.png"></p>
+<p>如图，按键的一端接地，另一端连接某I/O管脚。当按键被按下时，会将对应I/O管脚置为0（默认启动时为1），松手后此管脚重新置为1。</p>
+<p>因此，我们可以编程对此管脚进行检测，并以此进行某些动作。特别需要注意的是<strong>抖动</strong>。一个按键被按下和释放的瞬间会有抖动现象，输入的电压呈锯齿状，程序在判断时会出错。</p>
+<p>抖动时间的长短和按键的机械特性有关，一般为5~10ms。最好通过硬件解决抖动，如果要求不是很高，通过编程延时略过抖动也能解决问题。要注意，延时时间不宜过长，因为人按下按键并释放的时间很短，一般稳定闭合时间在20ms左右。</p>
+<p>例：数码管显示20以内加减</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line">sbit key1 = P3^<span class="number">4</span>;   <span class="comment">//按键1</span></span><br><span class="line">sbit key2 = P3^<span class="number">5</span>;   <span class="comment">//按键2</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar)</span></span>;  <span class="comment">//延时ms</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">keyscan</span><span class="params">()</span></span>;     <span class="comment">//键盘扫描</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">//数码管显示</span></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;        <span class="comment">//必须是有符号int</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        keyscan();</span><br><span class="line">        display(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">keyscan</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (key1 == <span class="number">0</span>)   <span class="comment">//加法</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);   <span class="comment">//消除抖动</span></span><br><span class="line">        <span class="keyword">if</span> (key1 == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">20</span>)</span><br><span class="line">                num = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (!key1);<span class="comment">//按键释放</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (key2 == <span class="number">0</span>)   <span class="comment">//减法</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">if</span> (key2 == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            num--;</span><br><span class="line">            <span class="keyword">if</span> (num &lt; <span class="number">0</span>)<span class="comment">//如果是uint则无法判断负数</span></span><br><span class="line">                num = <span class="number">20</span>;</span><br><span class="line">            <span class="keyword">while</span> (!key2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> n)</span>      <span class="comment">//显示两个数码管</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;    <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = n / <span class="number">10</span>;    <span class="comment">//得到十位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];       <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfd</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);            <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];       <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfe</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);            <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>display先后显示了两个数码管，因为在main中是循环显示，速度非常快形成视觉暂留，故而让人觉得是两位同时显示。</p>
+<p>keyscan消除抖动的方式是，检测到有按键按下后延时10ms，再次进行检测。每个按键处理的最后一条语句应是按键释放检测。</p>
+<p>每个<strong>独立按键</strong>独自占用一个I/O管脚，另一端接地，测试起来比较容易。如果是多个按键，通常都是采用复用的方法，组成<strong>矩阵键盘</strong>。矩阵键盘的每个按键两端均接I/O管脚，比如4*4键盘：</p>
+<p><img src="https://i.loli.net/2020/08/20/8KE2qDmi5rwTtxg.png" alt="7矩阵键盘.png"></p>
+<p>如图，P3.0~P3.3连接每行按键的左端，P3.4~P3.7连接每列按键的右端。测试方法是以行为单位，先将第一行设置为0，其余行默认为1，然后测试P3.4~P3.7的值（默认为1），如果某个按键按下，对应的管脚（P3.4~P3.7）会置0。如此一行按键的检测完毕。以此类推，即可完成4行的检测。当然，以列为单位，扫描连接行的管脚也能完成所有按键的检测。</p>
+<p>上述检测方法，其实仍旧是独立键盘的检测思路，只不过硬件接地变成了软设置行I/O管脚为0，然后测试后4位管脚的值，以判断一行的按键情况。这个过程重复4次，完成对每行的测试。</p>
+<p>例：矩阵键盘显示0~F</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MatrixScan</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">Onkey</span><span class="params">(<span class="keyword">int</span> line,uchar temp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x0</span>;    <span class="comment">//初始什么都不显示</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    wei = <span class="number">1</span>;     <span class="comment">//直接选择第二位</span></span><br><span class="line">    P0 = <span class="number">0xfd</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        MatrixScan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[num];</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MatrixScan</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar temp,key;</span><br><span class="line"></span><br><span class="line">    P3 = <span class="number">0xfe</span>;            <span class="comment">//第一行置0，低4位为1110</span></span><br><span class="line">    temp = P3;</span><br><span class="line">    temp = temp &amp; <span class="number">0xf0</span>;   <span class="comment">//消去第4位</span></span><br><span class="line">    <span class="keyword">if</span> (temp != <span class="number">0xf0</span>)     <span class="comment">//第一行有按键按下（高4位有变化）</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);        <span class="comment">//延时消抖</span></span><br><span class="line">        temp = P3;        <span class="comment">//再次获取高4位</span></span><br><span class="line">        temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">        <span class="keyword">if</span> (temp != <span class="number">0xf0</span>) <span class="comment">//证明确实有按键按下</span></span><br><span class="line">        &#123;</span><br><span class="line">            key = Onkey(<span class="number">1</span>,temp);<span class="comment">//得到key</span></span><br><span class="line">            <span class="keyword">while</span> (temp != <span class="number">0xf0</span>)<span class="comment">//释放检测</span></span><br><span class="line">            &#123;</span><br><span class="line">                temp = P3;      <span class="comment">//反复获取P3</span></span><br><span class="line">                temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            display(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    P3 = <span class="number">0xfd</span>;            <span class="comment">//第二行置0，低4位为1101</span></span><br><span class="line">    temp = P3;</span><br><span class="line">    temp = temp &amp; <span class="number">0xf0</span>;   <span class="comment">//消去第4位</span></span><br><span class="line">    <span class="keyword">if</span> (temp != <span class="number">0xf0</span>)     <span class="comment">//第二行有按键按下（高4位有变化）</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);        <span class="comment">//延时消抖</span></span><br><span class="line">        temp = P3;        <span class="comment">//再次获取高4位</span></span><br><span class="line">        temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">        <span class="keyword">if</span> (temp != <span class="number">0xf0</span>) <span class="comment">//证明确实有按键按下</span></span><br><span class="line">        &#123;</span><br><span class="line">            key = Onkey(<span class="number">2</span>,temp);<span class="comment">//得到key</span></span><br><span class="line">            <span class="keyword">while</span> (temp != <span class="number">0xf0</span>)<span class="comment">//释放检测</span></span><br><span class="line">            &#123;</span><br><span class="line">                temp = P3;      <span class="comment">//反复获取P3</span></span><br><span class="line">                temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            display(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    P3 = <span class="number">0xfb</span>;            <span class="comment">//第三行置0，低4位为1011</span></span><br><span class="line">    temp = P3;</span><br><span class="line">    temp = temp &amp; <span class="number">0xf0</span>;   <span class="comment">//消去第4位</span></span><br><span class="line">    <span class="keyword">if</span> (temp != <span class="number">0xf0</span>)     <span class="comment">//第三行有按键按下（高4位有变化）</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);        <span class="comment">//延时消抖</span></span><br><span class="line">        temp = P3;        <span class="comment">//再次获取高4位</span></span><br><span class="line">        temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">        <span class="keyword">if</span> (temp != <span class="number">0xf0</span>) <span class="comment">//证明确实有按键按下</span></span><br><span class="line">        &#123;</span><br><span class="line">            key = Onkey(<span class="number">3</span>,temp);<span class="comment">//得到key</span></span><br><span class="line">            <span class="keyword">while</span> (temp != <span class="number">0xf0</span>)<span class="comment">//释放检测</span></span><br><span class="line">            &#123;</span><br><span class="line">                temp = P3;      <span class="comment">//反复获取P3</span></span><br><span class="line">                temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            display(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    P3 = <span class="number">0xf7</span>;            <span class="comment">//第四行置0，低4位为0111</span></span><br><span class="line">    temp = P3;</span><br><span class="line">    temp = temp &amp; <span class="number">0xf0</span>;   <span class="comment">//消去第4位</span></span><br><span class="line">    <span class="keyword">if</span> (temp != <span class="number">0xf0</span>)     <span class="comment">//第四行有按键按下（高4位有变化）</span></span><br><span class="line">    &#123;</span><br><span class="line">        delay(<span class="number">10</span>);        <span class="comment">//延时消抖</span></span><br><span class="line">        temp = P3;        <span class="comment">//再次获取高4位</span></span><br><span class="line">        temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">        <span class="keyword">if</span> (temp != <span class="number">0xf0</span>) <span class="comment">//证明确实有按键按下</span></span><br><span class="line">        &#123;</span><br><span class="line">            key = Onkey(<span class="number">4</span>,temp);<span class="comment">//得到key</span></span><br><span class="line">            <span class="keyword">while</span> (temp != <span class="number">0xf0</span>)<span class="comment">//释放检测</span></span><br><span class="line">            &#123;</span><br><span class="line">                temp = P3;      <span class="comment">//反复获取P3</span></span><br><span class="line">                temp = temp &amp; <span class="number">0xf0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            display(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">Onkey</span><span class="params">(<span class="keyword">int</span> line,uchar temp)</span><span class="comment">//根据line，得到key</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">-1</span>;    <span class="comment">//基数</span></span><br><span class="line">    uchar key;</span><br><span class="line">    <span class="keyword">switch</span> (line)  <span class="comment">//1、2、3、4</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:        <span class="comment">//第一行从0按键开始</span></span><br><span class="line">        i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:        <span class="comment">//第二行从4按键开始</span></span><br><span class="line">        i = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        i = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        i = <span class="number">12</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (temp)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0xe0</span>:        <span class="comment">//当前行第一个按钮被按下</span></span><br><span class="line">        key = i + <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0xd0</span>:        <span class="comment">//当前行第二个按钮被按下</span></span><br><span class="line">        key = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0xb0</span>:</span><br><span class="line">        key = i + <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0x70</span>:</span><br><span class="line">        key = i + <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> key;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li><p>单片机的I/O端口的作用就是信号接收/发送。在编程层面上，其处理的数据只有0和1。这种可灵活控制I/O管脚的特性使得单片机能编程模拟众多数字芯片。</p>
+</li>
+<li><p>所有设备的输入输出在实际编程时，都是有先后顺序的。但由于单片机执行速度非常快，程序主体又是死循环执行，故而让人觉得是在同时执行。</p>
+</li>
+<li><p>蜂鸣器和二极管是很好的调试工具，我们可以搭建并编写单一功能的代码，使用它们测试结果。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/51Chip/" rel="tag"># 51Chip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2011/09/26/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%80%20%E8%B5%B7%E7%82%B9/" rel="prev" title="学习51单片机一 起点">
+                  <i class="fa fa-chevron-left"></i> 学习51单片机一 起点
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2011/09/30/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%89%20%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E5%92%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD/" rel="next" title="学习51单片机三 外部中断和定时器中断">
+                  学习51单片机三 外部中断和定时器中断 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

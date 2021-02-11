@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="基本特性$I^2C$总线（Inter IC Bus）是由PHILIPS公司制定的一种总线标准，是同步通信的一种方式，具有控制简单、器件封装小、通信速率较高等优点。 $I^2C$总线由数据线SDA和时钟线SCL组成，可在CPU和IC之间、IC和IC之间进行双向通信，最高传送速率为400Kbps。各种器件并联在总线上，通过唯一硬件地址寻址。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习51单片机七 IIC总线">
+<meta property="og:url" content="https://devastator66.github.io/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="基本特性$I^2C$总线（Inter IC Bus）是由PHILIPS公司制定的一种总线标准，是同步通信的一种方式，具有控制简单、器件封装小、通信速率较高等优点。 $I^2C$总线由数据线SDA和时钟线SCL组成，可在CPU和IC之间、IC和IC之间进行双向通信，最高传送速率为400Kbps。各种器件并联在总线上，通过唯一硬件地址寻址。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/Z1JKb2D45OjNqUk.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/GWpjmgykA7xFEsM.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/AnRseor3Gam5Tu9.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/Jt3MODdjFbs7IgX.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/SzyF3NUtVRvIWqw.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/He6oXmlbEgvfsai.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/B7btceWovgdPhIT.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/WnveyoaPU5fdJDk.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/QeTy5hrnJUcl8fu.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/kINVmu9dsQELgYK.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/22/w8d2Cj6LGpi1WR9.png">
+<meta property="article:published_time" content="2011-10-15T15:56:48.000Z">
+<meta property="article:modified_time" content="2021-02-06T02:13:52.695Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="51Chip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/22/Z1JKb2D45OjNqUk.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习51单片机七 IIC总线 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">基本特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IIC%E9%80%9A%E4%BF%A1%E4%B8%8E%E6%A8%A1%E6%8B%9F"><span class="nav-number">2.</span> <span class="nav-text">IIC通信与模拟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8IIC%E4%B8%8EEEPROM%E9%80%9A%E4%BF%A1"><span class="nav-number">3.</span> <span class="nav-text">使用IIC与EEPROM通信</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习51单片机七 IIC总线
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-15 23:56:48" itemprop="dateCreated datePublished" datetime="2011-10-15T23:56:48+08:00">2011-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/51Chip/" itemprop="url" rel="index"><span itemprop="name">51Chip</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>$I^2C$总线（Inter IC Bus）是由PHILIPS公司制定的一种总线标准，是同步通信的一种方式，具有控制简单、器件封装小、通信速率较高等优点。</p>
+<p>$I^2C$总线由数据线SDA和时钟线SCL组成，可在CPU和IC之间、IC和IC之间进行双向通信，最高传送速率为400Kbps。各种器件并联在总线上，通过唯一硬件地址寻址。</p>
+<a id="more"></a>
+
+<p>$I^2C$总线的一般连接逻辑如图：</p>
+<p><img src="https://i.loli.net/2020/09/22/Z1JKb2D45OjNqUk.png" alt="1基本结构.png"></p>
+<p>如图，SDA和SCL接10K上拉电阻。当总线空闲时，两根线均为高电平。连接到总线上的任一器件输出低电平，都将使总线的信号变低，即各器件都是线“与”关系。</p>
+<p>$I^2C$总线支持多主机方式和主从方式。多主机方式需要总线仲裁，以决定由哪个主机控制总线。主从方式就是主机通过总线控制从机，开发板采用的就是这一方式。</p>
+<p><img src="https://i.loli.net/2020/09/22/GWpjmgykA7xFEsM.png" alt="2EEPROM电路.PNG"></p>
+<p>STC80C52本身没有$I^2C$总线，开发板使用I/O管脚P2.0作为SDA，P2.1作为SCL，然后通过编程控制管脚的值来模拟$I^2C$总线的时序。</p>
+<h4 id="IIC通信与模拟"><a href="#IIC通信与模拟" class="headerlink" title="IIC通信与模拟"></a>IIC通信与模拟</h4><p>所谓模拟，就是通过编程控制作为SDA和SCL的管脚来模拟总线时序，以此控制$I^2C$设备。</p>
+<p>当总线空闲时，两根线均为高电平，用C语言模拟如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当有数据传输时，时钟线SCL以固定周期输出高低电平。我们主要考虑如何通过对数据线SDA的操作来顺应SCL周期变化来传输数据。</p>
+<p>一、起始终止信号<br>SCL在高电平期间，SDA由高转低表示起始，SDA由低转高表示终止。</p>
+<p><img src="https://i.loli.net/2020/09/22/AnRseor3Gam5Tu9.png" alt="3起始结束.png"></p>
+<p>如图，所有延时的时间应大于4us。使用代码模拟这种时序如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>SDA应该在SCL前赋值。因为在SCL为1时，SDA应该保持稳定。另外，对于start函数，如果先将SCL赋值为1，再将SDA赋值为1，可能会导致一个上升沿，因为之前SDA可能为0。同理stop函数。</p>
+</blockquote>
+<p>二、读写数据与应答<br>在$I^2C$总线传送有效数据时，SDL为高电平，SDA必须保持稳定，SDL为低电平，SDA才允许变化。</p>
+<p><img src="https://i.loli.net/2020/09/22/Jt3MODdjFbs7IgX.png" alt="4数据传输与应答.png"></p>
+<p>地址有7位和10位两种。7位从机地址加上1位方向位构成一个字节有效数据。从机地址由固定部分和可编程部分组成，可编程部分决定了同一种器件可接入数目。方向位为0表示主机对从机进行写操作；方向位为1表示主机对从机进行读操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每传送一个字节有效数据，都要有一个应答信号，以确定数据被对方收到。应答信号就是在SCL为高电平时，由接收设备将SDA置为低电平。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();    <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面代码融合了应答和非应答。</p>
+</blockquote>
+<h4 id="使用IIC与EEPROM通信"><a href="#使用IIC与EEPROM通信" class="headerlink" title="使用IIC与EEPROM通信"></a>使用IIC与EEPROM通信</h4><p>开发板上安装的EEPROM是ATMEL公司的AT24C02，具有2K容量，能保存数据100年，擦写次数可达10万次以上。</p>
+<p><img src="https://i.loli.net/2020/09/22/SzyF3NUtVRvIWqw.png" alt="5AT24C02A.PNG"></p>
+<ol>
+<li>A0、A1、A2可编程地址输入端。</li>
+<li>GND电源地，Vcc电源。</li>
+<li>SDA串行数据输入/输出端；SCL串行时钟输入端。</li>
+<li>WP写保护输入端，低电平正常读写，高电平只读。</li>
+</ol>
+<p>AT24C02的硬件地址：</p>
+<p><img src="https://i.loli.net/2020/09/22/He6oXmlbEgvfsai.png" alt="6硬件地址.PNG"></p>
+<p>AT24C02容量为2K，如图硬件地址固定部分为1010，后三位A2A1A0为可编程部分，$R/\overline{W}$为方向位。按照当前开发板接法，后三位皆为0。方向位为0，表示对从机写操作，为1表示对从机读操作。</p>
+<p>串行EEPROM一般有两种写入方式：字节写入方式和页写入方式。AT24C系列芯片在页写入方式下，接收到每一个字节数据后地址自动加1。如果写到页内最后一个字节，主机继续发送数据，数据将重新从该页首地址写入（上卷）。解决方法是在第8个数据后，将地址强制加1。下面是AT24C系列芯片的读写时序：</p>
+<p>一、主机向从机写入一个字节</p>
+<p><img src="https://i.loli.net/2020/09/22/B7btceWovgdPhIT.png" alt="7字节写.PNG"></p>
+<p>利用模拟函数，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二、主机向从机写入多个字节</p>
+<p><img src="https://i.loli.net/2020/09/22/WnveyoaPU5fdJDk.png" alt="8页写.PNG"></p>
+<p>三、主机向从机读取当前地址数据</p>
+<p><img src="https://i.loli.net/2020/09/22/QeTy5hrnJUcl8fu.png" alt="9当前读.PNG"></p>
+<p>四、主机向从机读取随机地址数据</p>
+<p><img src="https://i.loli.net/2020/09/22/kINVmu9dsQELgYK.png" alt="10随机读.PNG"></p>
+<p>利用模拟函数，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>五、主机向从机连续读取数据</p>
+<p><img src="https://i.loli.net/2020/09/22/w8d2Cj6LGpi1WR9.png" alt="11连续读.PNG"></p>
+<p>例：保存秒数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">sbit SDA = P2^<span class="number">0</span>;</span><br><span class="line">sbit SCL = P2^<span class="number">1</span>;</span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line">uchar code table[]=&#123;</span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span> </span>&#123;;;&#125;   <span class="comment">//4us-5us延时</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respons</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span>;</span><br><span class="line">uchar write=<span class="number">0</span>, sec=<span class="number">0</span>, t=<span class="number">0</span>;  <span class="comment">//存储标志，秒，计数器</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    sec = read_date(<span class="number">6</span>); <span class="comment">//首次运行先读取sec存储区</span></span><br><span class="line">    <span class="keyword">if</span> (sec &gt; <span class="number">100</span>)      <span class="comment">//保存在地址6处</span></span><br><span class="line">        sec = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    EA = <span class="number">1</span>;             <span class="comment">//启动定时器0中断</span></span><br><span class="line">    ET0 = <span class="number">1</span>;</span><br><span class="line">    TMOD = <span class="number">0x01</span>;        <span class="comment">//方式1</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)/<span class="number">256</span>;    <span class="comment">//50ms</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    TR0 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        display(sec);   <span class="comment">//以两位显示秒</span></span><br><span class="line">        <span class="keyword">if</span> (write == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            write = <span class="number">0</span>;  <span class="comment">//标志清0</span></span><br><span class="line">            write_date(<span class="number">6</span>,sec);<span class="comment">//保存当前秒</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">time0</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TH0 = (<span class="number">65536</span><span class="number">-50000</span>)/<span class="number">256</span>;</span><br><span class="line">    TL0 = (<span class="number">65536</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    t++;</span><br><span class="line">    <span class="keyword">if</span> (t == <span class="number">20</span>)    <span class="comment">//1s</span></span><br><span class="line">    &#123;</span><br><span class="line">        t = <span class="number">0</span>;</span><br><span class="line">        sec++;      <span class="comment">//累积秒</span></span><br><span class="line">        write = <span class="number">1</span>;  <span class="comment">//显示并保存秒</span></span><br><span class="line">        <span class="keyword">if</span> (sec == <span class="number">100</span>)</span><br><span class="line">            sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();        <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;    <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = n / <span class="number">10</span>;    <span class="comment">//得到十位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];       <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfd</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];       <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfe</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/51Chip/" rel="tag"># 51Chip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2011/10/08/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AD%201602%E6%B6%B2%E6%99%B6%E5%B1%8F/" rel="prev" title="学习51单片机六 1602液晶屏">
+                  <i class="fa fa-chevron-left"></i> 学习51单片机六 1602液晶屏
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2011/10/18/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AB%20%E6%B8%A9%E6%8E%A7%E7%B3%BB%E7%BB%9F/" rel="next" title="学习51单片机八 温控系统">
+                  学习51单片机八 温控系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

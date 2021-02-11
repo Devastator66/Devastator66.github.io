@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="对话框框架是最基本的框架模版，通常的个人项目都选择这个。需要注意的是，在向导中最好不要勾选“使用Unicode库”，否则处理字符类型会很麻烦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 对话框框架">
+<meta property="og:url" content="https://devastator66.github.io/2015/07/28/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="对话框框架是最基本的框架模版，通常的个人项目都选择这个。需要注意的是，在向导中最好不要勾选“使用Unicode库”，否则处理字符类型会很麻烦。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-07-28T09:08:12.000Z">
+<meta property="article:modified_time" content="2021-02-10T09:03:43.100Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2015/07/28/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A1%86%E6%9E%B6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 对话框框架 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">框架结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E7%AB%AF%E6%98%BE%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">顶端显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%85%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">仅运行一个实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="nav-number">4.</span> <span class="nav-text">放置背景图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%8F%E8%94%BDEsc%E3%80%81Enter%E9%80%80%E5%87%BA"><span class="nav-number">5.</span> <span class="nav-text">屏蔽Esc、Enter退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%8F%E8%94%BDAlt-F4"><span class="nav-number">6.</span> <span class="nav-text">屏蔽Alt+F4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%9A%90%E8%97%8F%E7%AA%97%E5%8F%A3"><span class="nav-number">7.</span> <span class="nav-text">启动隐藏窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="nav-number">8.</span> <span class="nav-text">关闭对话框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%8F%9C%E5%8D%95"><span class="nav-number">9.</span> <span class="nav-text">添加菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">10.</span> <span class="nav-text">添加右键菜单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%B7%A5%E5%85%B7%E6%A0%8F"><span class="nav-number">11.</span> <span class="nav-text">添加工具栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%8A%B6%E6%80%81%E6%A0%8F"><span class="nav-number">12.</span> <span class="nav-text">添加状态栏</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2015/07/28/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 对话框框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-07-28 17:08:12" itemprop="dateCreated datePublished" datetime="2015-07-28T17:08:12+08:00">2015-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>对话框框架是最基本的框架模版，通常的个人项目都选择这个。需要注意的是，在向导中最好不要勾选“使用Unicode库”，否则处理字符类型会很麻烦。</p>
+<a id="more"></a>
+
+<p>新创建的对话框程序默认有三个类：CNameDlg、CNameApp、CAboutDlg。其中标黑的Name为工程名。每个类对应两个文件，例如：</p>
+<ul>
+<li>C<strong>Name</strong>Dlg对应于<strong>Name</strong>Dlg.h和<strong>Name</strong>Dlg.cpp；</li>
+<li>C<strong>Name</strong>App对应于<strong>Name</strong>.h和<strong>Name</strong>.cpp。</li>
+</ul>
+<h4 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h4><p>一、运行机制</p>
+<ol>
+<li>C<strong>Name</strong>App类中会定义全局对象theApp。theApp代表当前建立的应用程序。</li>
+<li>C<strong>Name</strong>App类的构造函数被调用，但在此之前，它的父类CWinApp的构造函数先被执行。</li>
+<li>C<strong>Name</strong>App类的InitInstance()进行对话框创建前的初始化工作，在其中会定义C<strong>Name</strong>Dlg对象来建立对话框。</li>
+</ol>
+<p>二、成员函数<br>1.CNameApp是CWinApp类的派生类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InitInstance()    <span class="comment">//初始化程序，可以将某些初始化代码放在此处。</span></span><br></pre></td></tr></table></figure>
+<p>2.CNameDlg是CDialog类的派生类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DoDataExchange(CDataExchange* pDX)<span class="comment">//控件与变量之间的数据交换。</span></span><br><span class="line">OnInitDialog()    <span class="comment">//初始化对话框。</span></span><br><span class="line">OnPaint()         <span class="comment">//重绘处理，响应WM_PAINT消息。</span></span><br><span class="line">OnSysCommand(UINT nID, LPARAM lParam)<span class="comment">//WM_SYSCOMMAND消息的响应。</span></span><br><span class="line">DECLARE_MESSAGE_MAP()    <span class="comment">//处理消息映射</span></span><br></pre></td></tr></table></figure>
+<h4 id="顶端显示"><a href="#顶端显示" class="headerlink" title="顶端显示"></a>顶端显示</h4><p>在C<strong>Name</strong>Dlg类的OnInitDialog()中添加下面代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CRect rect;</span><br><span class="line">GetClientRect(&amp;rect);</span><br><span class="line">::SetWindowPos(AfxGetMainWnd()-&gt;m_hWnd,HWND_TOPMOST,rect.left,rect.top,</span><br><span class="line">        rect.right,rect.bottom,SWP_NOMOVE);</span><br></pre></td></tr></table></figure>
+<h4 id="仅运行一个实例"><a href="#仅运行一个实例" class="headerlink" title="仅运行一个实例"></a>仅运行一个实例</h4><p>在C<strong>Name</strong>App类的InitInstance()最开始处下面代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">::CreateMutex(<span class="literal">NULL</span>,TRUE,<span class="string">&quot;CHECK&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (GetLastError() == ERROR_ALREADY_EXISTS)</span><br><span class="line">&#123;</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;本软件已经运行！&quot;</span>);<span class="comment">//弹出对话框确认不能运行第二个实例。</span></span><br><span class="line">    <span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="放置背景图片"><a href="#放置背景图片" class="headerlink" title="放置背景图片"></a>放置背景图片</h4><p>找一张bmp图片，然后在资源视图中右键导入。然后响应WM_CTLCOLOR消息，在处理函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Change any attributes of the DC here</span></span><br><span class="line"><span class="keyword">if</span> (nCtlColor==CTLCOLOR_STATIC)<span class="comment">//静态文本显示</span></span><br><span class="line">&#123;</span><br><span class="line">    pDC-&gt;SetBkColor(RGB(<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>));<span class="comment">//黄底</span></span><br><span class="line">    pDC-&gt;SetTextColor(RGB(<span class="number">255</span>,<span class="number">0</span>,<span class="number">255</span>));<span class="comment">//粉字</span></span><br><span class="line">&#125;</span><br><span class="line">CBitmap m_groud;</span><br><span class="line">m_groud.LoadBitmap(IDB_BITMAP1);<span class="comment">//背景bmp的ID</span></span><br><span class="line"><span class="keyword">if</span> (nCtlColor==CTLCOLOR_DLG)	<span class="comment">//对话框背景</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">CBrush <span class="title">m_Brush</span><span class="params">(&amp;m_groud)</span></span>;</span><br><span class="line">    CRect rect;</span><br><span class="line">    GetClientRect(rect);</span><br><span class="line">    pDC-&gt;SelectObject(&amp;m_Brush);</span><br><span class="line">    pDC-&gt;FillRect(rect,&amp;m_Brush);</span><br><span class="line">    <span class="keyword">return</span> m_Brush;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Return a different brush if the default is not desired</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h4 id="屏蔽Esc、Enter退出"><a href="#屏蔽Esc、Enter退出" class="headerlink" title="屏蔽Esc、Enter退出"></a>屏蔽Esc、Enter退出</h4><p>在<strong>Name</strong>Dlg.h中重载如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> BOOL <span class="title">PreTranslateMessage</span><span class="params">(MSG* pMsg)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>在<strong>Name</strong>Dlg.cpp中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">CNameDlg::PreTranslateMessage</span><span class="params">(MSG* pMsg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加专用代码和/或调用基类</span></span><br><span class="line">    <span class="keyword">if</span>(pMsg-&gt;message==WM_KEYDOWN &amp;&amp; pMsg-&gt;wParam==VK_ESCAPE)</span><br><span class="line">    &#123;   <span class="comment">//屏蔽esc</span></span><br><span class="line">        <span class="keyword">return</span> TRUE;    <span class="comment">//不作任何操作</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (pMsg-&gt;message==WM_KEYDOWN &amp;&amp; pMsg-&gt;wParam==VK_RETURN)</span><br><span class="line">    &#123;   <span class="comment">//屏蔽enter</span></span><br><span class="line">        <span class="keyword">return</span> TRUE;    <span class="comment">//不作任何处理</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> CDialog::PreTranslateMessage(pMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="屏蔽Alt-F4"><a href="#屏蔽Alt-F4" class="headerlink" title="屏蔽Alt+F4"></a>屏蔽Alt+F4</h4><p>在C<strong>Name</strong>Dlg的OnSysCommand的else分支中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CNameDlg::OnSysCommand</span><span class="params">(UINT nID, LPARAM lParam)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ......</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="keyword">if</span>( SC_CLOSE == nID || SC_MOVE == nID ) <span class="comment">//屏蔽系统菜单“关闭”和“移动” </span></span><br><span class="line">            <span class="keyword">return</span>; </span><br><span class="line">        CDialog::OnSysCommand(nID, lParam); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="启动隐藏窗口"><a href="#启动隐藏窗口" class="headerlink" title="启动隐藏窗口"></a>启动隐藏窗口</h4><p>在C<strong>Name</strong>Dlg类的OnInitDialog()中添加：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetTimer(<span class="number">1</span>,<span class="number">1</span>,<span class="literal">NULL</span>);  <span class="comment">//设置定时器</span></span><br></pre></td></tr></table></figure>
+<p>响应WM_TIMER消息，在处理函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(nIDEvent == <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    KillTimer(<span class="number">1</span>);    <span class="comment">//关闭定时器</span></span><br><span class="line">    ShowWindow(SW_HIDE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ShowWindow的参数：</p>
+<ul>
+<li>SW_SHOWMAXIMIZED 激活并最大化</li>
+<li>SW_SHOWMINIMIZED 激活并最小化</li>
+<li>SW_RESTORE 激活并恢复原大小</li>
+<li>SW_SHOW 显示窗口</li>
+<li>SW_HIDE 隐藏窗口</li>
+</ul>
+<p>隐藏状态栏</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ModifyStyleEx(WS_EX_APPWINDOW, WS_EX_TOOLWINDOW);<span class="comment">//隐藏状态栏</span></span><br></pre></td></tr></table></figure>
+<h4 id="关闭对话框"><a href="#关闭对话框" class="headerlink" title="关闭对话框"></a>关闭对话框</h4><p>直接调用OnOK();或OnCancel();即可，但它们的返回值不同，分别返回IDOK和IDCANCEL。</p>
+<h4 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h4><p>在资源视图下，右键资源顶层目录-&gt;添加资源-&gt;Menu，即可插入菜单资源。菜单项的属性项Popup，用来设置是否可以弹出菜单。将菜单加载到对话框框架有两种方法：</p>
+<ol>
+<li>修改对话框资源的Menu属性项，选择刚建立的菜单资源ID。</li>
+<li>为对话框添加CMenu成员变量，然后在对话框初始化函数中输入如下代码：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m_Menu = <span class="keyword">new</span> CMenu();</span><br><span class="line">m_Menu-&gt;LoadMenu(IDR_MENU1);</span><br><span class="line"><span class="keyword">this</span>-&gt;SetMenu(m_Menu);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>在菜单资源中，可以直接写入文本插入菜单项，输入“-”可以显示横杠，输入“&amp;字母”可以显示快捷键。更多的设置通过代码完成，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GetMenu()-&gt;GetSubMenu(<span class="number">0</span>)-&gt;CheckMenuItem(<span class="number">0</span>,MF_BYPOSITION|MF_CHECKED);</span><br><span class="line">GetMenu()-&gt;GetSubMenu(<span class="number">1</span>)-&gt;SetDefaultItem(<span class="number">0</span>,TRUE);  <span class="comment">//默认菜单项，0为项号。</span></span><br><span class="line">GetMenu()-&gt;GetSubMenu(<span class="number">1</span>)-&gt;EnableMenuItem(ID_MENU_COLOR,MF_BYCOMMAND|MF_GRAYED);<span class="comment">//灰化菜单项</span></span><br></pre></td></tr></table></figure>
+<p>每个顶层菜单项及其子菜单项称为一个菜单。例如通常所使用的程序，“文件”顶层菜单项及其下的“打开”、“保存”等菜单项构成一个菜单。“编辑”顶层菜单项及其子菜单项构成另一个菜单。</p>
+<p>上面第一行代码，通过CWnd类成员GetMenu获得菜单资源指针。然后，调用CMenu类成员GetSubMenu获取每个菜单的指针，其参数为菜单编号，从0计数。最后，调用CMenu类成员CheckMenuItem，根据菜单内子项号（从0计数），对菜单项进行设置：</p>
+<ul>
+<li>MF_BYCOMMAND</li>
+<li>MF_BYPOSITION</li>
+<li>MF_CHECKED 添加选中标记</li>
+<li>MF_UNCHECKED 去掉选中标记</li>
+</ul>
+<p>要让菜单有所动作，需要让菜单项响应COMMAND消息。在类向导中，选择对话框类，找到菜单项ID，添加COMMAND消息处理函数。菜单项ID在资源建立时默认是一窜数字，最好修改为有意义的字符。</p>
+<h4 id="添加右键菜单"><a href="#添加右键菜单" class="headerlink" title="添加右键菜单"></a>添加右键菜单</h4><p>在资源视图下插入一个Menu资源，只需编辑首个菜单即可，顶层菜单项文字随意。打开类向导，选择对话框类，响应WM_RBUTTONDOWN消息。在响应函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CMenu menu;</span><br><span class="line">menu.LoadMenu(IDR_MENU2);            <span class="comment">//加载新建的菜单</span></span><br><span class="line">CMenu* Popup = menu.GetSubMenu(<span class="number">0</span>);   <span class="comment">//右键菜单只有首个菜单</span></span><br><span class="line">ClientToScreen(&amp;point);              <span class="comment">//将客户区坐标转换为屏幕坐标</span></span><br><span class="line">Popup-&gt;TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point.x,point.y,<span class="keyword">this</span>);<span class="comment">//显示右键菜单</span></span><br></pre></td></tr></table></figure>
+<h4 id="添加工具栏"><a href="#添加工具栏" class="headerlink" title="添加工具栏"></a>添加工具栏</h4><p>在对话框中添加工具栏有三种方法：</p>
+<p>一、在资源视图下，插入ToolBar资源，其中的每个按钮需要自行绘画。如果要删除某个按钮，选中后拖出工具栏。每个按钮都有ID，可以将其设置为对应的菜单项ID，使得响应命令一致。</p>
+<p>在对话框类头文件中添加CToolBar类型成员变量，然后在初始化函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m_ToolBar.CreateEx(<span class="keyword">this</span>,TBSTYLE_FLAT,WS_CHILD|WS_VISIBLE|CBRS_TOP|CBRS_GRIPPER|CBRS_TOOLTIPS|CBRS_SIZE_DYNAMIC|CBRS_BORDER_TOP);</span><br><span class="line">m_ToolBar.LoadToolBar(IDR_TOOLBAR1);</span><br><span class="line">m_ToolBar.GetToolBarCtrl().SetBitmapSize(CSize(<span class="number">16</span>,<span class="number">16</span>));</span><br><span class="line">m_ToolBar.GetToolBarCtrl().SetButtonSize(CSize(<span class="number">24</span>,<span class="number">24</span>));</span><br><span class="line">RepositionBars(AFX_IDW_CONTROLBAR_FIRST,AFX_IDW_CONTROLBAR_LAST,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>其中，CreateEx最重要的是第一个参数，应该指定当前对话框类为父窗口，其他参数可以缺省。GetToolBarCtrl返回一个CToolBarCtrl类引用，然后通过它调用SetBitmapSize和SetButtonSize设置位图与按钮的尺寸。按钮尺寸必须大于位图尺寸。</p>
+<p>二、在资源视图下，插入现成的bmp工具条。同样在对话框类头文件中添加CToolBar类型成员变量，然后在初始化函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">UINT cell[<span class="number">11</span>];                  <span class="comment">//用于保存按钮ID</span></span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">1</span>; i++)             <span class="comment">//初始化ID</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">3</span>||i==<span class="number">7</span>||i==<span class="number">9</span>)        <span class="comment">//4，8，10为分割线</span></span><br><span class="line">        cell[i] = ID_SEPARATOR;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cell[i] = i+<span class="number">1001</span>;       <span class="comment">//这个ID赋值可以参考菜单ID</span></span><br><span class="line">&#125;</span><br><span class="line">m_ToolBar.Create(<span class="keyword">this</span>);</span><br><span class="line">m_ToolBar.SetButtons(cell,<span class="number">11</span>);  <span class="comment">//设置工具栏按钮ID</span></span><br><span class="line">m_ToolBar.LoadBitmap(IDB_BITMAP1);</span><br><span class="line">m_ToolBar.SetSizes(CSize(<span class="number">24</span>,<span class="number">24</span>),CSize(<span class="number">16</span>,<span class="number">16</span>));<span class="comment">//按钮尺寸、位图尺寸</span></span><br><span class="line">RepositionBars(AFX_IDW_CONTROLBAR_FIRST,AFX_IDW_CONTROLBAR_LAST,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>三、在资源视图下，插入零散的ico图标。在对话框类头文件中添加CToolBar和CImageList成员变量，然后在初始化函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">m_ImageList.Create(<span class="number">32</span>,<span class="number">32</span>,ILC_COLOR24|ILC_MASK,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON1));<span class="comment">//向图像列表中添加图标</span></span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON2));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON3));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON4));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON5));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON6));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON7));</span><br><span class="line">m_ImageList.Add(AfxGetApp()-&gt;LoadIconW(IDI_ICON8));</span><br><span class="line">UINT cell[<span class="number">11</span>];</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">11</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">3</span>||i==<span class="number">7</span>||i==<span class="number">9</span>)</span><br><span class="line">        cell[i] = ID_SEPARATOR;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cell[i] = i+<span class="number">1001</span>;</span><br><span class="line">&#125;</span><br><span class="line">m_ToolBar.Create(<span class="keyword">this</span>);</span><br><span class="line">m_ToolBar.SetButtons(cell,<span class="number">11</span>);</span><br><span class="line">m_ToolBar.GetToolBarCtrl().SetImageList(&amp;m_ImageList);<span class="comment">//关联图像列表</span></span><br><span class="line">m_ToolBar.SetSizes(CSize(<span class="number">40</span>,<span class="number">40</span>),CSize(<span class="number">32</span>,<span class="number">32</span>));</span><br><span class="line">RepositionBars(AFX_IDW_CONTROLBAR_FIRST,AFX_IDW_CONTROLBAR_LAST,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="添加状态栏"><a href="#添加状态栏" class="headerlink" title="添加状态栏"></a>添加状态栏</h4><p>在对话框类头文件中添加CStatusBar类型成员变量，并在初始化函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">UINT col[<span class="number">5</span>];            <span class="comment">//状态栏被定义为4格</span></span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)</span><br><span class="line">    col[i] = <span class="number">1011</span> + i;  <span class="comment">//状态栏每一格的ID</span></span><br><span class="line">m_StatusBar.Create(<span class="keyword">this</span>);</span><br><span class="line">m_StatusBar.SetIndicators(col,<span class="keyword">sizeof</span>(col)/<span class="keyword">sizeof</span>(UINT));<span class="comment">//为状态栏每一格设置ID</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)</span><br><span class="line">    m_StatusBar.SetPaneInfo(i,col[i],<span class="number">0</span>,<span class="number">100</span>);    <span class="comment">//设置每格尺寸</span></span><br><span class="line">CTime time = CTime::GetCurrentTime();           <span class="comment">//获得当前时间</span></span><br><span class="line">m_StatusBar.SetPaneText(<span class="number">0</span>,<span class="string">&quot;当前用户：&quot;</span>);         <span class="comment">//每部分的显示的内容</span></span><br><span class="line">m_StatusBar.SetPaneText(<span class="number">1</span>,<span class="string">&quot;TM&quot;</span>);</span><br><span class="line">m_StatusBar.SetPaneText(<span class="number">2</span>,<span class="string">&quot;当前日期：&quot;</span>);</span><br><span class="line">m_StatusBar.SetPaneText(<span class="number">3</span>,time.Format(<span class="string">&quot;%Y-%m-%d&quot;</span>));</span><br><span class="line">RepositionBars(AFX_IDW_CONTROLBAR_FIRST,AFX_IDW_CONTROLBAR_LAST,<span class="number">0</span>);<span class="comment">//不能放末尾</span></span><br><span class="line">CRect rect;</span><br><span class="line">m_StatusBar.GetItemRect(<span class="number">4</span>,&amp;rect);    <span class="comment">//获取状态栏的某一块区域</span></span><br><span class="line">m_Progress.SetParent(&amp;m_StatusBar);  <span class="comment">//进度条的父窗口设置为状态栏</span></span><br><span class="line">m_Progress.MoveWindow(&amp;rect);        <span class="comment">//把进度条移动到状态栏</span></span><br><span class="line">m_Progress.ShowWindow(SW_SHOW);      <span class="comment">//显示进度条</span></span><br><span class="line">m_Progress.SetRange(<span class="number">0</span>,<span class="number">30</span>);</span><br><span class="line">m_Progress.SetPos(<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>状态栏最后一格内显示了一个进度条，这需要先在对话框资源上添加进度条，再关联CProgressCtrl类型变量。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/07/24/VC%E7%BC%96%E7%A8%8B%20%E7%BB%BC%E8%BF%B0/" rel="prev" title="VC编程 综述">
+                  <i class="fa fa-chevron-left"></i> VC编程 综述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/07/31/VC%E7%BC%96%E7%A8%8B%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/" rel="next" title="VC编程 常用控件">
+                  VC编程 常用控件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

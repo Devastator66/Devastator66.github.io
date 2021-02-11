@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="像液晶屏这种集成电路，通常会被当作一个整体应用到实际项目中。掌握1602液晶屏的使用方法，仍旧像使用芯片那样，学习其PDF说明书，掌握其典型连接方法和操作方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习51单片机六 1602液晶屏">
+<meta property="og:url" content="https://devastator66.github.io/2011/10/08/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AD%201602%E6%B6%B2%E6%99%B6%E5%B1%8F/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="像液晶屏这种集成电路，通常会被当作一个整体应用到实际项目中。掌握1602液晶屏的使用方法，仍旧像使用芯片那样，学习其PDF说明书，掌握其典型连接方法和操作方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/JyYRStaFZI319o7.png">
+<meta property="article:published_time" content="2011-10-08T06:45:03.000Z">
+<meta property="article:modified_time" content="2021-02-11T07:50:01.314Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="51Chip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/11/JyYRStaFZI319o7.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2011/10/08/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AD%201602%E6%B6%B2%E6%99%B6%E5%B1%8F/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习51单片机六 1602液晶屏 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">基础特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8E1602%E6%B6%B2%E6%99%B6%E5%B1%8F%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">单片机与1602液晶屏的连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">编程操作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2011/10/08/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AD%201602%E6%B6%B2%E6%99%B6%E5%B1%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习51单片机六 1602液晶屏
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-08 14:45:03" itemprop="dateCreated datePublished" datetime="2011-10-08T14:45:03+08:00">2011-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/51Chip/" itemprop="url" rel="index"><span itemprop="name">51Chip</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>像液晶屏这种集成电路，通常会被当作一个整体应用到实际项目中。掌握1602液晶屏的使用方法，仍旧像使用芯片那样，学习其PDF说明书，掌握其典型连接方法和操作方法。</p>
+<a id="more"></a>
+
+<h4 id="基础特性"><a href="#基础特性" class="headerlink" title="基础特性"></a>基础特性</h4><p>1602液晶屏为5V电压驱动，带背光，可显示两行，每行16个字符，不能显示汉字，内置128个字符的ASCII字库，只有并行接口，无串行接口。其接口说明如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">编号</th>
+<th align="center">符号</th>
+<th align="left">说明</th>
+<th align="center">编号</th>
+<th align="center">符号</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">$V_{SS}$</td>
+<td align="left">电源地</td>
+<td align="center">9</td>
+<td align="center">D2</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">$V_{DD}$</td>
+<td align="left">电源正极</td>
+<td align="center">10</td>
+<td align="center">D3</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">VO</td>
+<td align="left">液晶显示对比度调节端</td>
+<td align="center">11</td>
+<td align="center">D4</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">RS</td>
+<td align="left">数据/命令选择端（H/L）</td>
+<td align="center">12</td>
+<td align="center">D5</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">$R/\overline{W}$</td>
+<td align="left">读写选择端（H/L）</td>
+<td align="center">13</td>
+<td align="center">D6</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">E</td>
+<td align="left">使能信号</td>
+<td align="center">14</td>
+<td align="center">D7</td>
+<td align="left">数据口</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">D0</td>
+<td align="left">数据口</td>
+<td align="center">15</td>
+<td align="center">BLA</td>
+<td align="left">背光电源正极</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">D1</td>
+<td align="left">数据口</td>
+<td align="center">16</td>
+<td align="center">BLK</td>
+<td align="left">背光电源负极</td>
+</tr>
+</tbody></table>
+<p>液晶屏的编号是按照行列数命名的，比如1602就是每行16个字符，共2行；12232就是每行122列，共32行。液晶的好处是功耗低、显示操作简单，缺点是使用温度范围窄。</p>
+<h4 id="单片机与1602液晶屏的连接"><a href="#单片机与1602液晶屏的连接" class="headerlink" title="单片机与1602液晶屏的连接"></a>单片机与1602液晶屏的连接</h4><p>按照上述接口的特性，连接单片机如下：</p>
+<p><img src="https://i.loli.net/2020/09/11/JyYRStaFZI319o7.png" alt="1602液晶屏.PNG"></p>
+<p>液晶屏第4端口RS连接P3.5用于控制写命令/写数据。第6端口E连接P3.4用于控制命令/数据使能。第5端口$R/\overline{W}$连接P3.6用于控制读/写，由于液晶屏主要用于显示，一般只写不读，因此接GND。</p>
+<p>另外，第3端口连接一个10k电位器来调节对比度。第15端口串接一个10欧电阻用于限流，以防止5V电压烧坏背光灯。</p>
+<h4 id="编程操作"><a href="#编程操作" class="headerlink" title="编程操作"></a>编程操作</h4><p>1602液晶屏的操作时序如下：<br>读状态：RS=L，$R/\overline{W}$=H，E=H<br>读数据：RS=H，$R/\overline{W}$=H，E=H<br>写指令：RS=L，$R/\overline{W}$=L，D0~D7=指令码，E=高脉冲<br>写数据：RS=H，$R/\overline{W}$=L，D0~D7=数据，E=高脉冲</p>
+<blockquote>
+<p>大多数液晶屏的响应都是纳秒级的，单片机操作最小单位为微秒级，因此可以不做延时或做简短延时。</p>
+</blockquote>
+<p>1602液晶屏可接受的指令：<br>一、写数据指令：第一行写入指令0x80，第二行写入指令0xC0。<br>屏幕内置80B的RAM缓冲区，用于存放显示的数据。00~0F、40~4F地址中的任一处写入数据后，液晶都可立即显示；当写入10~27、50~67地址处时，只能通过移屏指令将它们移入可显示区域。</p>
+<p>二、显示模式设置指令0x38，设置为16×2显示，5×7点阵，8位数据接口。</p>
+<p>三、显示开关及光标</p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">00001DCB</td>
+<td align="left">D=1开显示，D=0关显示；C=1显示光标，C=0不显示光标；B=1光标闪烁，B=0光标不显示</td>
+</tr>
+<tr>
+<td align="center">000001NS</td>
+<td align="left">N=1读写1个字符后指针加1，光标加1；N=0读写1个字符后指针减1，光标减1；S=1写1个字符时，整屏左移（N=1）或右移（N=0）；S=0写1个字符时整屏不移动</td>
+</tr>
+<tr>
+<td align="center">00010000</td>
+<td align="left">光标左移</td>
+</tr>
+<tr>
+<td align="center">00010100</td>
+<td align="left">光标右移</td>
+</tr>
+<tr>
+<td align="center">00011000</td>
+<td align="left">整屏左移，同时光标跟随移动</td>
+</tr>
+<tr>
+<td align="center">00011100</td>
+<td align="left">整屏右移，同时光标跟随移动</td>
+</tr>
+</tbody></table>
+<p>例：滚屏显示文本</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">uchar code Line0[] = <span class="string">&quot;First line.&quot;</span>;</span><br><span class="line">uchar code Line1[] = <span class="string">&quot;Second line.&quot;</span>;</span><br><span class="line">sbit e = P3^<span class="number">4</span>;      <span class="comment">//使能</span></span><br><span class="line">sbit rs = P3^<span class="number">5</span>;     <span class="comment">//写命令/写数据</span></span><br><span class="line">sbit du = P2^<span class="number">6</span>;     <span class="comment">//为了关闭数码管</span></span><br><span class="line">sbit we = P2^<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>,uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    init();</span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x80</span>+<span class="number">0x10</span>);    <span class="comment">//在第一行写入</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">11</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="string">&#x27;s&#x27;</span>,Line0[i]); <span class="comment">//写数据</span></span><br><span class="line">        delay(<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x80</span>+<span class="number">0x50</span>);    <span class="comment">//在第二行写入</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">12</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="string">&#x27;s&#x27;</span>,Line1[i]);</span><br><span class="line">        delay(<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)    <span class="comment">//整屏左移16个地址</span></span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x18</span>);</span><br><span class="line">        delay(<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    du = <span class="number">0</span>; <span class="comment">//锁定数码管关闭状态</span></span><br><span class="line">    we = <span class="number">0</span>;</span><br><span class="line">    e = <span class="number">0</span>;</span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x38</span>);    <span class="comment">//16*2显示</span></span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x0c</span>);    <span class="comment">//设置开显示，不显示光标</span></span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x06</span>);    <span class="comment">//写一个字符后地址指针加1</span></span><br><span class="line">    write(<span class="string">&#x27;c&#x27;</span>,<span class="number">0x01</span>);    <span class="comment">//显示清0，数据指针清0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span> ch,uchar x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ch == <span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">        rs = <span class="number">0</span>;     <span class="comment">//RS=L，写命令</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        rs = <span class="number">1</span>;     <span class="comment">//RS=H，写数据</span></span><br><span class="line">    P0 = x;</span><br><span class="line">    delay(<span class="number">5</span>);</span><br><span class="line">    e = <span class="number">1</span>;          <span class="comment">//e高脉冲</span></span><br><span class="line">    delay(<span class="number">5</span>);</span><br><span class="line">    e = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>P0复用于数码管，为了防止数码管乱显示，锁定它们在关闭状态。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/51Chip/" rel="tag"># 51Chip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/" rel="prev" title="学习51单片机五 模数转换">
+                  <i class="fa fa-chevron-left"></i> 学习51单片机五 模数转换
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/" rel="next" title="学习51单片机七 IIC总线">
+                  学习51单片机七 IIC总线 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

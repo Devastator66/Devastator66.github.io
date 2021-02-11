@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="记录在这里的是VC2010下的MFC编程，其它版本的使用与此类似。控制台和win32结构清晰，但一般只在学习中使用，所以不在此赘述。 MFC近十余年来在各个版本的Visual Studio中没有什么本质变化。像VC、VB这种PC端可执行程序开发工具在当前中国呈明显衰落趋势，更可悲的是它们在中国软件行业从来也没有像web开发那样强势的发展过。这与国情有一定关系，软件厂商要想靠市场活下去，就不能广泛存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 综述">
+<meta property="og:url" content="https://devastator66.github.io/2015/07/24/VC%E7%BC%96%E7%A8%8B%20%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="记录在这里的是VC2010下的MFC编程，其它版本的使用与此类似。控制台和win32结构清晰，但一般只在学习中使用，所以不在此赘述。 MFC近十余年来在各个版本的Visual Studio中没有什么本质变化。像VC、VB这种PC端可执行程序开发工具在当前中国呈明显衰落趋势，更可悲的是它们在中国软件行业从来也没有像web开发那样强势的发展过。这与国情有一定关系，软件厂商要想靠市场活下去，就不能广泛存">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-07-24T01:55:45.000Z">
+<meta property="article:modified_time" content="2021-02-10T09:59:25.662Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2015/07/24/VC%E7%BC%96%E7%A8%8B%20%E7%BB%BC%E8%BF%B0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 综述 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">开发环境设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MFC%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">MFC基本框架</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2015/07/24/VC%E7%BC%96%E7%A8%8B%20%E7%BB%BC%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 综述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-07-24 09:55:45" itemprop="dateCreated datePublished" datetime="2015-07-24T09:55:45+08:00">2015-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>记录在这里的是VC2010下的MFC编程，其它版本的使用与此类似。控制台和win32结构清晰，但一般只在学习中使用，所以不在此赘述。</p>
+<p>MFC近十余年来在各个版本的Visual Studio中没有什么本质变化。像VC、VB这种PC端可执行程序开发工具在当前中国呈明显衰落趋势，更可悲的是它们在中国软件行业从来也没有像web开发那样强势的发展过。这与国情有一定关系，软件厂商要想靠市场活下去，就不能广泛存在盗版，而天然具备反盗版特性的软件行业当前只有两个：</p>
+<a id="more"></a>
+
+<ol>
+<li>主要程序在服务端的web开发行业，面向的用户都是企业，而且开发后的程序经常需要更新，随着当前电商的极大发展，web行业吸纳了大量程序员。</li>
+<li>依赖硬件的嵌入式开发行业。这个行业通常都是电子厂，以机械、电子专业人员居多。当然，这里没包括那些在移动智能设备上开发应用的企业，因为它们跟在PC端开发程序的企业面临的问题一样。</li>
+</ol>
+<p>像使用MFC这类工具，开发端可执行程序的企业要想在市场中活下去，一般要具备如下两种特性之一：</p>
+<ol>
+<li>拥有强大的专业实力，比如Microsoft、Adobe。当前基本都是欧美企业。</li>
+<li>软件给用户免费用，靠服务挣钱，比如各种网游。</li>
+</ol>
+<p>总的来说在当前中国，学习MFC开发的职业前景较窄，但没人否认，MFC仍旧是windows下可执行程序开发的主要选择。作为个人，学习一些这方面的技能可提高工作效率。</p>
+<p>学习MFC编程，最重要的资料就是MSDN，可通过登录<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/?view=vs-2019">https://docs.microsoft.com/zh-cn/?view=vs-2019</a>查询各种API函数和Class的信息。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>一、跟随Visual Studio向导一步一步安装即可，中间可选择不安装VB、C#等工具。</p>
+<blockquote>
+<p>与VS2010配套的数据库是SQL server 2008 R2。如果想要安装数据库，最好在安装VS2010之前先安装它。</p>
+</blockquote>
+<p>二、安装配套的MSDN<br>VS2010不再有单独的MSDN Library安装选项，在其安装光盘中包含MSDN Library，安装方法为，打开VS2010，选择帮助菜单，点击“管理帮助设置”进入向导：</p>
+<ul>
+<li>第一次打开时会让你选择一个路径，用来保存MSDN Library的内容。</li>
+<li>点击“选择联机帮助或本地帮助”，然后选择“我要使用本地帮助”</li>
+<li>点击“从磁盘安装内容”，然后添加VS2010安装光盘下的ProductDocumentation\HelpContentSetup.msha。挑选想要安装的MSDN内容，确定后开始安装。</li>
+<li>通过“联机检查更新”可以在线更新本地MSDN Library文档。</li>
+<li>在VS2010里按F1，即可打开安装的文档。第一次打开时会额外运行一个Help Library Agent进程，它会调用默认浏览器显示Help Library。</li>
+</ul>
+<blockquote>
+<p>这样安装的MSDN，内容可能不是很全。</p>
+</blockquote>
+<p>三、安装Visual Assist辅助软件<br>按照向导安装即可。初始会开启拼写检查，关闭方法：去掉勾选Underlines中的“Underline spelling errors in comments and strings”。</p>
+<h4 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h4><p>一、error LNK1123: failure during conversion to COFF: file invalid or corrupt<br>原因是当前系统存在两个版本不同的cvtres.exe。解决方法：重命名或删除（VS2010安装的位置）Microsoft Visual Studio 10.0\VC\bin\cvtres.exe。这样C:\Windows\Microsoft.NET\Framework\v4.0.30319 (.NET 4.5)中的cvtres.exe就可以被VS2010使用了。</p>
+<p>二、VSTS for Database Professionals Sql Server Data-tier Application’包”<br>方法1：C:\Users\lenovo\AppData\Roaming\Microsoft下的visualstdio文件删掉。<br>方法2：开始 -&gt; 所有程序 -&gt; Microsoft visual studio 2010 -&gt; visual studio tools -&gt; visual studio 2010命令提示，输入devenv /resetskippkgs回车即可。</p>
+<p>三、资源在另一个编辑器中打开<br>点击菜单“窗口” -&gt; “关闭所有文档”即可。</p>
+<h4 id="开发环境设置"><a href="#开发环境设置" class="headerlink" title="开发环境设置"></a>开发环境设置</h4><p>一、暗色主题<br>在微软官网下载名为ThemeManagerPackage.vsix的插件。安装后，便可在菜单栏看到Theme。</p>
+<p>选择Theme -&gt; Customize Colors -&gt; New Theme，弹出新建主题对话框：Name可以随便取，Based On选择“Default”，点击”Create”便建立了一个新的主题。</p>
+<p>选中刚才建立的主题的Name，然后”Ctrl+A”全选右侧颜色列表，点击对话框上面的“Modify Huse/Saturation/Lightness”按钮，把“S”条拖到最小“-100”，“Apply”确认。</p>
+<p>网站Studio Styles上有很多别人做好的样式，下载Son of Obsidian。工具 -&gt; 导入和导出设置 -&gt; 导入选定的环境设置 -&gt; 否,仅导入新设置… -&gt; 浏览，选中刚才下载的son-of-obsidian样式文件，确认即可。</p>
+<p>VAssistX -&gt; Visual Assist X Options… -&gt; Advanced-&gt;Fonts and Colors -&gt; Enabled Enhanced Syntax Coloring，点击“Use Defaults”按钮，这时左边的颜色框会变成样式相应的颜色，“Apply Coloring to”复选框中只勾选“Text Editors”，不然会导致其它地方颜色太浅。“Advanced-&gt;Display”，把第一个颜色项设置为天蓝色。</p>
+<p>在VS的“工具 -&gt; 选项 -&gt; 环境 -&gt; 字体和颜色”中，把“选中的文本”的项背景色设成“紫色”；“指示器边距”的项背景色设为“银色”；“VA X Find Reference”和“VA X Find Reference(Modified)”的项前景色设为“蓝色”，项背景色设为“默认值”。另外还有“XML属性引号”，这个“项前景色”要调成“银色”，以在XML文件中清楚地显示引号。</p>
+<p>二、设置字体<br>点击VS菜单，工具 -&gt; 选项 -&gt; 环境 -&gt; 字体和颜色，在“字体”下拉框中选择字体。</p>
+<p>三、显示行号<br>工具 -&gt; 选项，文本编辑器 -&gt; C/C++ -&gt; 常规，勾选行号即可。设置制表符也在这里，在C/C++下选择“制表符”，可设置其大小。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>一、转换文件编码<br>中文VC2010默认保存文本文件的编码是GBK。这种编码可能在某些情况下会出现乱码，所以最好转换为UTF8编码。方法为：“文件”菜单 -&gt; 高级保存选项，在编码下拉列表中选择“Unicode(UTF-8带签名）-代码页65001”，点击确定。然后，照常保存文件即可。</p>
+<p>二、快捷注释<br>选中一块代码按/，即可批量注释；相反，选中后再按/就取消了注释。</p>
+<p>三、设置程序以管理员身份运行<br>右键“当前项目名称” -&gt; 属性 -&gt; 链接器 -&gt; 清单文件 -&gt; UAC执行级别，选择requireAdministrator，确定后重新编译即可。</p>
+<p>四、调整代码格式<br>选中凌乱的代码，按下Alt+F8，即可整理代码格式。</p>
+<p>五、调整控件的Tab序和显示层次<br>在资源视图，按CTRL+D会显示Tab序，用鼠标点击可调整Tab序。Tab号越小越底层。</p>
+<p>六、让VC2010编译出64位程序<br>在工具栏中“解决方案平台”下拉列表中选择“配置管理器”。在弹出的对话框右上角“活动解决方案平台”下拉列表中选择“新建”。在“键入或选择新平台”下拉列表中选择x64即可。当这个由新建选项编译出的程序运行时，在任务管理器中会看到没有*32。</p>
+<p>七、改变程序的图标<br>在网上找一个256*256的ico图标，使用ArtIcon软件打开，然后选择“新建图像格式”，分别建立48*48、32*32、24*24、16*16，均选择256色，256*256可以选择真彩色。</p>
+<p>在VC2010中插入新建的图标，删除原图标IDR_MAINFRAME，再把刚插入的图标ID改成这个ID即可。</p>
+<blockquote>
+<p>还有一种更简单的方法就是把原*.ico文件替换成想要的图标即可。</p>
+</blockquote>
+<h4 id="MFC基本框架"><a href="#MFC基本框架" class="headerlink" title="MFC基本框架"></a>MFC基本框架</h4><p>MFC程序有三个框架：多文档、单文档、对话框。作为个人开发者，最常用的就是对话框。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2013/08/03/%E7%BB%84%E7%BD%91%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF/" rel="prev" title="组网基本思路">
+                  <i class="fa fa-chevron-left"></i> 组网基本思路
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/07/28/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A1%86%E6%9E%B6/" rel="next" title="VC编程 对话框框架">
+                  VC编程 对话框框架 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

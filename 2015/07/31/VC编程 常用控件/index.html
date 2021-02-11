@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="通常，程序需要与用户交互，对于程序来说就是数据的输入输出。控件就是MFC程序输入输出的媒介，用户通过控件输入信息，程序通过控件关联的代码获取数据、处理数据、输出结果。 对话框是所有控件的载体。在资源视图中，点击右侧工具箱中的控件，再在对话框中将其画出。选中控件，在右边栏属性框中可以对控件资源样式进行设置。 立即编译即可看到控件的样子。此时控件是无效的，我们需要根据目标功能，绑定控件资源到特定类、函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 常用控件">
+<meta property="og:url" content="https://devastator66.github.io/2015/07/31/VC%E7%BC%96%E7%A8%8B%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="通常，程序需要与用户交互，对于程序来说就是数据的输入输出。控件就是MFC程序输入输出的媒介，用户通过控件输入信息，程序通过控件关联的代码获取数据、处理数据、输出结果。 对话框是所有控件的载体。在资源视图中，点击右侧工具箱中的控件，再在对话框中将其画出。选中控件，在右边栏属性框中可以对控件资源样式进行设置。 立即编译即可看到控件的样子。此时控件是无效的，我们需要根据目标功能，绑定控件资源到特定类、函">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-07-31T08:28:10.000Z">
+<meta property="article:modified_time" content="2021-02-10T08:44:39.380Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2015/07/31/VC%E7%BC%96%E7%A8%8B%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 常用控件 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E9%92%AE%EF%BC%88Button%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">按钮（Button）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%8E%A7%E4%BB%B6%EF%BC%88Static-Text%EF%BC%89%E5%92%8C%E7%BB%84%E6%A1%86%EF%BC%88Group-box%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">静态控件（Static Text）和组框（Group box）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%A1%86%EF%BC%88Edit-Control%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">编辑框（Edit Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%EF%BC%88Radio-Button%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">单选按钮（Radio Button）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86%EF%BC%88Check-Box%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">复选框（Check Box）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%A1%86%EF%BC%88List-box%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">列表框（List box）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%A1%86%EF%BC%88Combo-box%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">组合框（Combo box）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%88Progress-Control%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">进度条（Progress Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BB%91%E5%9D%97%EF%BC%88Slider-Control%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">滑块（Slider Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IP%E6%8E%A7%E4%BB%B6%EF%BC%88IP-Address-Control%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">IP控件（IP Address Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%8E%A7%E4%BB%B6%EF%BC%88List-Control%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">列表控件（List Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E6%8E%A7%E4%BB%B6%EF%BC%88Tree-Control%EF%BC%89"><span class="nav-number">12.</span> <span class="nav-text">树形控件（Tree Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E6%8E%A7%E4%BB%B6-Tab-Control"><span class="nav-number">13.</span> <span class="nav-text">标签控件(Tab Control)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">14.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2015/07/31/VC%E7%BC%96%E7%A8%8B%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 常用控件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-07-31 16:28:10" itemprop="dateCreated datePublished" datetime="2015-07-31T16:28:10+08:00">2015-07-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>通常，程序需要与用户交互，对于程序来说就是数据的输入输出。控件就是MFC程序输入输出的媒介，用户通过控件输入信息，程序通过控件关联的代码获取数据、处理数据、输出结果。</p>
+<p>对话框是所有控件的载体。在资源视图中，点击右侧工具箱中的控件，再在对话框中将其画出。选中控件，在右边栏属性框中可以对控件资源样式进行设置。</p>
+<p>立即编译即可看到控件的样子。此时控件是无效的，我们需要根据目标功能，绑定控件资源到特定类、函数、变量，然后对这些数据进行处理以实现目标功能。MFC编程的主要工作就在于此。</p>
+<a id="more"></a>
+
+<h4 id="按钮（Button）"><a href="#按钮（Button）" class="headerlink" title="按钮（Button）"></a>按钮（Button）</h4><p>在直觉上按钮的作用就是执行某些命令，通常对其添加响应函数。这个响应函数响应的是BN_CLICKED消息。我们用鼠标双击按钮控件即可添加函数，并立即跳到响应函数代码处。也可以在类向导中添加响应函数，选择对话框类，找到按钮的ID，选择BN_CLICKED消息，点击添加处理程序按钮。</p>
+<blockquote>
+<p>添加按钮资源后，可以修改其ID，以区分不同按钮。通常，其他控件的ID也应该修改为有实际意义的名字。</p>
+</blockquote>
+<p>如果想要对按钮控件本身进行设置，需要为其关联一个CButton对象。对这个对象的任何操作就是对按钮的操作。</p>
+<blockquote>
+<p>在右边栏的属性框中，Default button项选择True，当用户回车时默认点击此按钮。</p>
+</blockquote>
+<p>因为CButton是CWnd的派生类，因此使用CButton对象可以访问CWnd的成员函数，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m_Button.EnableWindow(FALSE); <span class="comment">//TRUE显示按钮，FALSE灰化按钮。</span></span><br></pre></td></tr></table></figure>
+<h4 id="静态控件（Static-Text）和组框（Group-box）"><a href="#静态控件（Static-Text）和组框（Group-box）" class="headerlink" title="静态控件（Static Text）和组框（Group box）"></a>静态控件（Static Text）和组框（Group box）</h4><p>这两个控件主要用于在对话框中显示文本，很少遇到操作它们的情况，所以它们的默认ID同为IDC_STATIC。</p>
+<p>静态控件的属性项Simple选择False，才能多行显示文本。当Simple为False时，再设置No Wrap项为False，文本将根据Static控件范围自动多行显示。</p>
+<p>如果想让静态控件响应消息，可以更改其ID，将属性项Notify设置为True。然后，在类向导中选中ID，在右侧就可以看到能够响应的消息。</p>
+<h4 id="编辑框（Edit-Control）"><a href="#编辑框（Edit-Control）" class="headerlink" title="编辑框（Edit Control）"></a>编辑框（Edit Control）</h4><p>编辑框可以接收用户的文本输入，也可以显示计算的结果。比较有用的属性项：Multiline、Want return、Password、Read-only、Horizontal scroll、Vertical scroll。</p>
+<p>编辑框可以关联两种类型的变量，分别为CString和CEdit。如果侧重于处理数据，关联CString变量较为方便；如果侧重于控件设置，关联CEdit较为方便。</p>
+<p>CString变量与编辑框的数据交换：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UpdateData(TRUE);   <span class="comment">//控件-&gt;变量</span></span><br><span class="line">UpdateData(FALSE);  <span class="comment">//变量-&gt;控件</span></span><br></pre></td></tr></table></figure>
+<p>CEdit变量与编辑框的数据交换：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m_Edit.GetWindowText(CString);  <span class="comment">//获得编辑框文本</span></span><br><span class="line">m_Edit.SetWindowText(CString);  <span class="comment">//设置编辑框文本</span></span><br></pre></td></tr></table></figure>
+<h4 id="单选按钮（Radio-Button）"><a href="#单选按钮（Radio-Button）" class="headerlink" title="单选按钮（Radio Button）"></a>单选按钮（Radio Button）</h4><p>同一个对话框中，添加的所有单选按钮默认是互斥的。如果想要建立多组互斥，需要保证每组Tab号连续，并将每组Tab序第一的单选按钮的属性Group置为True。</p>
+<blockquote>
+<p>Tab号从1计数，显示方法：在资源视图下，选中对话框，按下Ctrl+D。Tab号可以通过点击控件左上角数字的先后来更改。</p>
+</blockquote>
+<p>操作单选按钮可以直接通过其ID，而不关联任何变量：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化部分</span></span><br><span class="line">CheckRadioButton(IDC_RADIO1,IDC_RADIO3,IDC_RADIO1);    <span class="comment">//参数1、2为首尾ID，参数3为默认选中</span></span><br><span class="line"><span class="comment">//操作部分</span></span><br><span class="line"><span class="keyword">int</span> i = GetCheckedRadioButton(IDC_RADIO1,IDC_RADIO3);  <span class="comment">//参数为首尾ID</span></span><br><span class="line"><span class="keyword">switch</span> (i)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> IDC_RADIO1:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第一&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> IDC_RADIO2:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第二&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> IDC_RADIO3:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第三&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自然还可以通过关联变量的方法来操作一组单选按钮。只有Group设置为True的单选按钮才能正常关联两种类型的变量，分别为Bool、int和CButton。</p>
+<p>一、将组中第一个单选按钮关联int变量。这个变量会自动在对话框构造函数中被初始化为0，这表示第一个按钮被选中。为1表示第二个单选按钮被选中，以此类推（为-1表示都不选中）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">UpdateData(TRUE);</span><br><span class="line"><span class="keyword">switch</span> (m_radio1)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第一&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第二&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;第三&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">m_radio1 = <span class="number">0</span>;	<span class="comment">//复位到第一个控件</span></span><br><span class="line">UpdateData(FALSE);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将控件关联Value型变量都可以使用UpdateData进行数据交换。</p>
+</blockquote>
+<p>二、将每个单选按钮的Group都置为True，然后都关联CButton变量。通过变量调用如下两个成员函数来设置、获取单选控件的状态：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetCheck</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">//BST_UNCHECKED未选中状态，BST_CHECKED选中状态</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetCheck</span><span class="params">()</span></span>;     <span class="comment">//返回上述两个状态之一</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>无论采用哪种方法，在一个对话框中设置多组单选按钮，都需要将每组第一个单选控件的Group置为True。</p>
+</blockquote>
+<h4 id="复选框（Check-Box）"><a href="#复选框（Check-Box）" class="headerlink" title="复选框（Check Box）"></a>复选框（Check Box）</h4><p>复选框可以关联两种类型变量，分别为BOOL和CButton。对应于关联的变量类型有两种操作方法：<br>一、每个复选框都关联BOOL变量，用UpdateData获取状态。如果关联的变量值为TRUE，说明此复选框被勾选，否则相反。<br>二、每个复选框都关联CButton变量，用SetCheck和GetCheck来设置获取状态。</p>
+<p>例如，将m_tianjin和m_beijing关联BOOL变量，m_shanghai关联CButton变量，操作代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Updatedata(TRUE);</span><br><span class="line">CString str;</span><br><span class="line"><span class="keyword">if</span> (m_tianjin == TRUE)</span><br><span class="line">    str += <span class="string">&quot;天津&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (m_beijing == TRUE)</span><br><span class="line">    str += <span class="string">&quot;北京&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (m_shanghai.GetCheck() == BST_CHECKED)</span><br><span class="line">    str += <span class="string">&quot;上海&quot;</span>;</span><br><span class="line">AfxMessageBox(str);</span><br></pre></td></tr></table></figure>
+<h4 id="列表框（List-box）"><a href="#列表框（List-box）" class="headerlink" title="列表框（List box）"></a>列表框（List box）</h4><p>列表框显示一个字符串列表，用户可以选中其中的某行字符。列表框比较有用的属性项：Sort自动排序、Notify响应消息、Vertical Scroll垂直滚动条、Horizontal Scroll水平滚动条。</p>
+<p>列表框可以关联两种类型变量，分别为CString和CListBox。通常关联CListBox变量来操作列表框，可以调用的函数如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AddString(CString);         <span class="comment">//添加字符串到列表框</span></span><br><span class="line">InsertString(n,CString);    <span class="comment">//在索引n处插入，-1表示在末尾</span></span><br><span class="line">DeleteString(n);            <span class="comment">//删除索引n处的字符串</span></span><br><span class="line">GetCurSel();                <span class="comment">//得到选中字符串的索引，如果没有选中的项返回LB_ERR</span></span><br><span class="line">GetText(n,CString);         <span class="comment">//把索引为n的字符串复制到CString</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>列表框索引从0开始</p>
+</blockquote>
+<p>如果需要在列表框中选择多项，可以把关联的变量类型手动更改为CCheckListBox。它派生于CListBox，使用CCheckListBox对象添加的条目前会有一个复选框。</p>
+<h4 id="组合框（Combo-box）"><a href="#组合框（Combo-box）" class="headerlink" title="组合框（Combo box）"></a>组合框（Combo box）</h4><p>组合框组合了编辑框、下拉、列表框的功能。组合框的Type属性项可以选择：DropDown（默认）可编辑，下拉列表；DropList不可编辑，下拉列表；Simple可编辑，列表部分总可见。在Data属性项中，可以输入初始化列表项，多行用分号分隔。</p>
+<blockquote>
+<p>组合框的尺寸比较特殊，显示与实际占用大小不同。调整方法也很特殊：选择控件，单击组合框的三角箭头，然后拖动虚边框下边的黑块。</p>
+</blockquote>
+<p>组合框可以关联三种类型变量，分别为int、CString和CComboBox。通常关联CComboBox变量来操作组合框，可以调用函数如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">AddString(CString);        <span class="comment">//添加列表项到组合框，添加到data属性内容之后。</span></span><br><span class="line">InsertString(n,CString);   <span class="comment">//向下拉列表中指定位置插入元素，从0开始。</span></span><br><span class="line">DeleteString(n);           <span class="comment">//删除n处的列表项，从0计数。</span></span><br><span class="line">GetCout();                 <span class="comment">//返回列表项总数</span></span><br><span class="line">GetCurSel();               <span class="comment">//返回当前选中列表项的索引值，不选为-1。</span></span><br><span class="line">SetCurSel(n);              <span class="comment">//设置n项显示在编辑框中</span></span><br><span class="line">FindString(n,CString);     <span class="comment">//从第n项开始在列表中查找指定字符返回索引，查找失败返回CB_ERR。</span></span><br><span class="line">GetLBText(n,&amp;CString);     <span class="comment">//获得第n项文本到&amp;CString</span></span><br><span class="line">GetLBTextLen(n);           <span class="comment">//返回第n项文本长度</span></span><br></pre></td></tr></table></figure>
+<p>获取指定项的文本有点麻烦，记录如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CString str;</span><br><span class="line"><span class="keyword">int</span> i = m_Combo.GetLBTextLen(<span class="number">0</span>);        <span class="comment">//获取第0项的文本长度</span></span><br><span class="line">m_Combo.GetLBText(<span class="number">0</span>,str.GetBuffer(i));  <span class="comment">//获取第0项文本到str</span></span><br><span class="line">str.ReleaseBuffer();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>组合框的操作函数与列表框类似</p>
+</blockquote>
+<h4 id="进度条（Progress-Control）"><a href="#进度条（Progress-Control）" class="headerlink" title="进度条（Progress Control）"></a>进度条（Progress Control）</h4><p>进度条通常用来显示时间进度。通过设置Smooth属性项，可以将进度平滑显示。进度条只能关联控件变量，类型为CProgressCtrl。通过关联的变量可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SetRange(Lower,Upper);    <span class="comment">//设置进度条范围</span></span><br><span class="line">SetPos(n);                <span class="comment">//设置当前进度条位置</span></span><br><span class="line">SetStep(n);               <span class="comment">//设置进度条前进步长，返回原步长</span></span><br><span class="line">StepIt();                 <span class="comment">//按SetStep设定的步长增1</span></span><br><span class="line">OffsetPos(n);             <span class="comment">//以n作为步长增1</span></span><br></pre></td></tr></table></figure>
+<p>范围、起点、步长在初始化时设定，实际增量进度条使用StepIt和OffsetPos，每运行一次，进度条按照设定的步长增1。在实际项目中，可根据实际情况获得范围，设定步长，并按照实际情况运行步进函数。</p>
+<h4 id="滑块（Slider-Control）"><a href="#滑块（Slider-Control）" class="headerlink" title="滑块（Slider Control）"></a>滑块（Slider Control）</h4><p>滑块给用户提供了一个调整连续状态的直接感受。通过属性项point，可以设置滑块的形状。如果要显示刻度，需要将属性项Auto Ticks和Tick Marks设置为True。</p>
+<p>滑块可以关联两种类型变量，分别为int和CSliderCtrl。通过关联的控件变量可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SetRange(min,max,<span class="keyword">bool</span>); <span class="comment">//滑块范围min-max，bool默认为false。</span></span><br><span class="line">SetTicFreq(n);          <span class="comment">//设置刻度</span></span><br><span class="line">GetPos();               <span class="comment">//返回滑块当前位置</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>滑块移动的实际粒度是1</p>
+</blockquote>
+<p>范围、刻度在初始化时设定，然后让滑块控件响应NM_CUSTOMDRAW消息。在消息处理函数中通过GetPos获得滑块位置代表的数值。</p>
+<h4 id="IP控件（IP-Address-Control）"><a href="#IP控件（IP-Address-Control）" class="headerlink" title="IP控件（IP Address Control）"></a>IP控件（IP Address Control）</h4><p>IP控件用于接收用户输入的IP地址。IP控件可以关联两种类型变量，分别为DWORD和CIPAddressCtrl。通过关联的控件变量可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IsBlank();                    <span class="comment">//如果4个域都为空，返回非零</span></span><br><span class="line">SetAddress(n0,n1,n2,n3);      <span class="comment">//4个参数类型为BTYE，设置IP控件4个域的值</span></span><br><span class="line">SetFieldRange(n,Lower,Upper); <span class="comment">//设置n域的范围Lower-Upper（BTYE）</span></span><br><span class="line">GetAddress(&amp;n0,&amp;n1,&amp;n2,&amp;n3);  <span class="comment">//获得4个域的值，返回非空域的数量</span></span><br></pre></td></tr></table></figure>
+<p>设置IP与获取IP</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">BYTE a1, a2, a3, a4;</span><br><span class="line">CString IP;</span><br><span class="line"><span class="keyword">if</span> (m_IPAddress.IsBlank() == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    m_IPAddress.GetAddress(a1,a2,a3,a4);</span><br><span class="line">    IP.Format(<span class="string">&quot;%d.%d.%d.%d&quot;</span>,a1,a2,a3,a4);</span><br><span class="line">    AfxMessageBox(IP);</span><br><span class="line">&#125;</span><br><span class="line">a1 = <span class="number">192</span>;</span><br><span class="line">a2 = <span class="number">168</span>;</span><br><span class="line">a3 = <span class="number">1</span>;</span><br><span class="line">a4 = <span class="number">1</span>;</span><br><span class="line">m_IPAddress.SetAddress(a1,a2,a3,a4);</span><br></pre></td></tr></table></figure>
+<h4 id="列表控件（List-Control）"><a href="#列表控件（List-Control）" class="headerlink" title="列表控件（List Control）"></a>列表控件（List Control）</h4><p>列表控件比较复杂，不像之前那些用于接收用户输入的控件，它主要用于输出，以“表”的形式显示结果。属性项View有四种样式：Icon、Small Icon、List、Report，其中的Report最适合显示表结构。列表控件只能关联CListCtrl变量，可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GetItemCount();                    <span class="comment">//得到项数</span></span><br><span class="line">SetExtendedStyle(styles);          <span class="comment">//设置样式</span></span><br><span class="line">InsertColumn(no,name,model,width); <span class="comment">//设置一列的列头，从0计数，width缺省为-1</span></span><br><span class="line">InsertItem(row,CString);           <span class="comment">//在第row行第一个字段插入字符</span></span><br><span class="line">SetItemText(row,n,CString);        <span class="comment">//在第row行第n个字段插入字符</span></span><br><span class="line">GetNextItem(<span class="number">-1</span>,nflag);             <span class="comment">//返回具有nflag属性的行号</span></span><br><span class="line">DeleteItem(n);                     <span class="comment">//删除第n行</span></span><br></pre></td></tr></table></figure>
+<p>styles可以取值：</p>
+<ul>
+<li>LVS_EX_GRIDLINES 显示网格线</li>
+<li>LVS_EX_FULLROWSELECT 列选择</li>
+</ul>
+<p>model可以取值：</p>
+<ul>
+<li>LVCFMT_LEFT</li>
+<li>LVCFMT_CENTER</li>
+<li>LVCFMT_RIGHT</li>
+</ul>
+<p>初始化列头和样式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m_ListCtrl.SetExtendedStyle(LVS_EX_GRIDLINES|LVS_EX_FULLROWSELECT);</span><br><span class="line">m_ListCtrl.InsertColumn(<span class="number">0</span>,<span class="string">&quot;学号&quot;</span>,LVCFMT_CENTER,<span class="number">80</span>); <span class="comment">//设置表头</span></span><br><span class="line">m_ListCtrl.InsertColumn(<span class="number">1</span>,<span class="string">&quot;姓名&quot;</span>,LVCFMT_CENTER,<span class="number">80</span>);</span><br><span class="line">m_ListCtrl.InsertColumn(<span class="number">2</span>,<span class="string">&quot;性别&quot;</span>,LVCFMT_CENTER,<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后的宽度可以省略，之后通过SetColumnWidth(no,width)进行设置。</p>
+</blockquote>
+<p>插入一行数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = m_ListCtrl.GetItemCount();    <span class="comment">//总行数</span></span><br><span class="line">m_ListCtrl.InsertItem(n,<span class="string">&quot;DS001&quot;</span>);     <span class="comment">//在第n行第一个字段插入字符</span></span><br><span class="line">m_ListCtrl.SetItemText(n,<span class="number">1</span>,<span class="string">&quot;科加斯&quot;</span>); <span class="comment">//在第n行第二个字段插入字符</span></span><br><span class="line">m_ListCtrl.SetItemText(n,<span class="number">2</span>,<span class="string">&quot;雄&quot;</span>);     <span class="comment">//在第n行第三个字段插入字符</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一个字段要用InsertItem，后面的字段用SetItemText。</p>
+</blockquote>
+<p>删除选中的一行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = m_ListCtrl.GetNextItem(<span class="number">-1</span>,LVNI_SELECTED); <span class="comment">//得到所选行的索引值</span></span><br><span class="line">m_ListCtrl.DeleteItem(i);</span><br></pre></td></tr></table></figure>
+<h4 id="树形控件（Tree-Control）"><a href="#树形控件（Tree-Control）" class="headerlink" title="树形控件（Tree Control）"></a>树形控件（Tree Control）</h4><p>树形控件也是一个输出控件，用来显示具有层次结构的数据，通常当作目录使用。一般会将属性项Has Buttons、Has Lines、Lines At Root设置为True。树形控件只能关联CTreeCtrl变量，可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GetCount();                 <span class="comment">//总项数，包括根</span></span><br><span class="line">GetRootItem();              <span class="comment">//返回根项的句柄</span></span><br><span class="line">GetItemText(HTREEITEM);     <span class="comment">//返回指定项文本</span></span><br><span class="line">GetSelectedItem();          <span class="comment">//返回选中项的句柄</span></span><br><span class="line">GetNextItem(HTREEITEM,code);<span class="comment">//以当前项为基础，按照code指定关系检索，返回检索到的句柄			</span></span><br><span class="line">InSertItem(str,hParent);    <span class="comment">//在母项下插入str，缺省的母项是根项</span></span><br><span class="line">ItemHasChildren(HTREEITEM); <span class="comment">//如有子项返回非0，否则返回0</span></span><br><span class="line">Expand(HTREEITEM,code);     <span class="comment">//TVE_EXPAND展开，TVE_COLLAPSE收缩</span></span><br><span class="line">DeleteItem(HTREEITEM);      <span class="comment">//删除指定项</span></span><br><span class="line">DeleteAllItems();           <span class="comment">//删除所有项，返回非0成功</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>每一项都对应一个HTREEITEM类型的句柄，所有对这项的操作依赖于它。</p>
+</blockquote>
+<p>GetNextItem的参数code可以指定：</p>
+<ul>
+<li>TVGN_CARET：检索当前选中的项</li>
+<li>TVGN_CHILD：检索首个孩子</li>
+<li>TVGN_NEXT：检索下一项</li>
+<li>TVGN_PREVIOUS:检索上一项</li>
+<li>TVGN_PARENT：检索母项</li>
+</ul>
+<p>初始化树</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTREEITEM hRoot,hItem;</span><br><span class="line">hRoot = m_TreeCtrl.InsertItem(<span class="string">&quot;英雄联盟&quot;</span>);    <span class="comment">//根目录</span></span><br><span class="line">hItem = m_TreeCtrl.InsertItem(<span class="string">&quot;中单&quot;</span>,hRoot);  <span class="comment">//第二级目录，1</span></span><br><span class="line">m_TreeCtrl.InsertItem(<span class="string">&quot;科加斯&quot;</span>,hItem);        <span class="comment">//第三级，挂在“中单”下</span></span><br><span class="line">m_TreeCtrl.InsertItem(<span class="string">&quot;斯维因&quot;</span>,hItem);        <span class="comment">//第三级，挂在“中单”下</span></span><br><span class="line">m_TreeCtrl.Expand(hItem,TVE_EXPAND);          <span class="comment">//展开二级条目1</span></span><br><span class="line">hItem = m_TreeCtrl.InsertItem(<span class="string">&quot;射手&quot;</span>,hRoot);  <span class="comment">//第二级目录，2</span></span><br><span class="line">m_TreeCtrl.InsertItem(<span class="string">&quot;金克丝&quot;</span>,hItem);</span><br><span class="line">m_TreeCtrl.InsertItem(<span class="string">&quot;克格莫&quot;</span>,hItem);</span><br><span class="line">m_TreeCtrl.Expand(hItem,TVE_EXPAND);         <span class="comment">//展开二级条目2</span></span><br><span class="line">m_TreeCtrl.Expand(hRoot,TVE_EXPAND);         <span class="comment">//展开根目录</span></span><br></pre></td></tr></table></figure>
+<p>返回项内容</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CString s;</span><br><span class="line"><span class="keyword">int</span> n = m_TreeCtrl.GetCount();</span><br><span class="line">s.Format(<span class="string">&quot;%d&quot;</span>,n);</span><br><span class="line">s = m_TreeCtrl.GetItemText(m_TreeCtrl.GetRootItem());</span><br><span class="line">HTREEITEM t = m_TreeCtrl.GetSelectedItem();</span><br><span class="line">s = m_TreeCtrl.GetItemText(m_TreeCtrl.GetNextItem(t,TVGN_PARENT));</span><br><span class="line">AfxMessageBox(s);</span><br></pre></td></tr></table></figure>
+<h4 id="标签控件-Tab-Control"><a href="#标签控件-Tab-Control" class="headerlink" title="标签控件(Tab Control)"></a>标签控件(Tab Control)</h4><p>标签控件提高了对话框的利用率，每个标签对应一个对话框，多个对话框可通过标签控件集中在一个对话框程序中。属性项Bottom可将上标签改为下标签。标签控件只能关联CTabCtrl变量，可以调用如下函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GetCurSel();        <span class="comment">//得到当前选中的标签号，从0计数，返回-1表示没有选中</span></span><br><span class="line">InsertItem(n,str);  <span class="comment">//在指定编号n处插入标签，标签名为str</span></span><br><span class="line">SetCurSel(n);       <span class="comment">//设置标签n为选中状态</span></span><br></pre></td></tr></table></figure>
+<p>有多少个标签，就需要有多少个对话框。先在资源视图下插入Dialog资源，按照标签控件的尺寸（VC状态栏右下方），调整对话框的尺寸。然后，将属性项Style设置为Child，Border设置为none，再为Dialog资源关联CDialog子类。</p>
+<p>在主对话框类头文件中，include新建的对话框类定义，并建立类对象。在初始化函数中键入：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">m_TabCtrl.InsertItem(<span class="number">0</span>,<span class="string">&quot;上单&quot;</span>); <span class="comment">//插入标签头</span></span><br><span class="line">m_TabCtrl.InsertItem(<span class="number">1</span>,<span class="string">&quot;中单&quot;</span>);</span><br><span class="line">m_TabCtrl.InsertItem(<span class="number">2</span>,<span class="string">&quot;打野&quot;</span>);</span><br><span class="line">d1.Create(IDD_DIALOG1,GetDlgItem(IDC_TAB1));<span class="comment">//创建对话框，将对话框作为标签控件的子类</span></span><br><span class="line">d2.Create(IDD_DIALOG2,GetDlgItem(IDC_TAB1));</span><br><span class="line">d3.Create(IDD_DIALOG3,GetDlgItem(IDC_TAB1));</span><br><span class="line">CRect rs;</span><br><span class="line">m_TabCtrl.GetClientRect(&amp;rs);   <span class="comment">//获得Tab占用的区域（包含标签头）</span></span><br><span class="line">rs.top += <span class="number">25</span>;                   <span class="comment">//空出标签头</span></span><br><span class="line">rs.bottom -= <span class="number">1</span>;</span><br><span class="line">rs.left += <span class="number">1</span>;</span><br><span class="line">rs.right -= <span class="number">2</span>;</span><br><span class="line">d1.MoveWindow(&amp;rs);             <span class="comment">//将对话框移入标签控件</span></span><br><span class="line">d2.MoveWindow(&amp;rs);</span><br><span class="line">d3.MoveWindow(&amp;rs);</span><br><span class="line">d1.ShowWindow(<span class="literal">true</span>);            <span class="comment">//显示对话框</span></span><br><span class="line">d2.ShowWindow(<span class="literal">false</span>);           <span class="comment">//不能同时显示，否则覆盖</span></span><br><span class="line">d3.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">m_TabCtrl.SetCurSel(<span class="number">0</span>);         <span class="comment">//第一个标签为初始标签</span></span><br></pre></td></tr></table></figure>
+<p>让标签控件响应TCN_SELCHANGE消息，添加代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cur = m_TabCtrl.GetCurSel();</span><br><span class="line"><span class="keyword">switch</span> (cur)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    d1.ShowWindow(<span class="literal">true</span>);</span><br><span class="line">    d2.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    d3.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    d1.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    d2.ShowWindow(<span class="literal">true</span>);</span><br><span class="line">    d3.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    d1.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    d2.ShowWindow(<span class="literal">false</span>);</span><br><span class="line">    d3.ShowWindow(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>所有的控件类都是由CWnd派生的，都算是一个窗口。</li>
+<li>通过DoDataExchange函数可以看到，控件通过资源ID与变量建立联系。所关联的变量类型，即为操作控件的关键，可以通过查阅MSDN获得类成员函数的详细信息。</li>
+<li>控件的主要用途是与用户建立交互，获取数据或是显示数据，所以变量类型中的成员函数都是一些接口函数。</li>
+<li>如果控件关联的是Value类型的变量，那么调用UpdateData函数会导致对话框内所有的Value控件的数据转移：UpdateData(TRUE)控件-&gt;变量，UpdateData(FALSE)变量-&gt;控件。</li>
+<li>控件之间的层次关系是按照tab键顺序的，按Ctrl+D可以看到这个顺序，号越小，越在下面。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/07/28/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%A1%86%E6%9E%B6/" rel="prev" title="VC编程 对话框框架">
+                  <i class="fa fa-chevron-left"></i> VC编程 对话框框架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/08/15/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86/" rel="next" title="VC编程 对话框">
+                  VC编程 对话框 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

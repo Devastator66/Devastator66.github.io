@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="在任何编程过程中，字符串操作即广泛又重要。对于MFC，最通用的字符串类型就是CString，很多操作都要将数据转换为CString类型，以方便处理、共享、传递。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 字符串">
+<meta property="og:url" content="https://devastator66.github.io/2016/03/11/VC%E7%BC%96%E7%A8%8B%20%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="在任何编程过程中，字符串操作即广泛又重要。对于MFC，最通用的字符串类型就是CString，很多操作都要将数据转换为CString类型，以方便处理、共享、传递。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-11T04:04:45.000Z">
+<meta property="article:modified_time" content="2021-02-10T05:08:04.095Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2016/03/11/VC%E7%BC%96%E7%A8%8B%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 字符串 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows%E4%B8%8B%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.</span> <span class="nav-text">Windows下处理字符的一些注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">重载操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CStringT%E7%BB%A7%E6%89%BFCSimpleStringT%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">CStringT继承CSimpleStringT的一些有用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">5.</span> <span class="nav-text">格式化字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8ETCHAR%E6%95%B0%E7%BB%84%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">6.</span> <span class="nav-text">与TCHAR数组的转换</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2016/03/11/VC%E7%BC%96%E7%A8%8B%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 字符串
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-11 12:04:45" itemprop="dateCreated datePublished" datetime="2016-03-11T12:04:45+08:00">2016-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在任何编程过程中，字符串操作即广泛又重要。对于MFC，最通用的字符串类型就是CString，很多操作都要将数据转换为CString类型，以方便处理、共享、传递。</p>
+<a id="more"></a>
+
+<p>我们通常使用的CString，其实只是模版类CStringT的一个实例类，可以使用_T宏包裹一个字符串：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_T(<span class="string">&quot;abc&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>CStringT会根据实际需要使用UNICODE或是ANSII字符。</p>
+<h4 id="Windows下处理字符的一些注意事项"><a href="#Windows下处理字符的一些注意事项" class="headerlink" title="Windows下处理字符的一些注意事项"></a>Windows下处理字符的一些注意事项</h4><ol>
+<li>我们在建立MFC程序时，可以去掉“使用Unicode库”前面的勾，来简化字符处理（强烈推荐）。如果勾选了那个选项，在每次使用字符串常量时，应在前面加上L，例如<code>L”abcdef”</code>。</li>
+<li>勾选了“使用Unicode库”的情况下，字符数组char a[]转换为CString需要强制转换，例如<code>(CStringW)a</code>；如果未勾选，则可以直接赋值给CString对象，例如<code>CString str = a</code>。</li>
+<li>每个汉字占两个字符。</li>
+<li>Windows的一个回车等价于\r\n，无论从文件获取一行，还是写入文件一行，都要注意这一点。</li>
+<li>Windows的文件路径用反斜杠\分隔，在代码中需要转义，例如<code>CString path = “C:\\Windows\\system32”</code>。</li>
+</ol>
+<h4 id="重载操作符"><a href="#重载操作符" class="headerlink" title="重载操作符"></a>重载操作符</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CStringT::<span class="keyword">operator</span> =	<span class="comment">//给CString对象赋一个字符串。</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> +	<span class="comment">//连接两个字符串。</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> +=	<span class="comment">//将新字符串连接到现有字符串的末尾。</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> ==	<span class="comment">//确定两个字符串是否逻辑上相等。</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> !=	<span class="comment">//确定两个字符串是否逻辑上不相等。</span></span><br><span class="line"><span class="comment">/* 判断字符串大小的标准 */</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> &lt;	<span class="comment">//如果找到两个不相等的相应字符，</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> &gt;	<span class="comment">//则将比较结果作为字符串之间比较的结果。</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> &lt;=	<span class="comment">//如果找到的所有字符完全相同，</span></span><br><span class="line">CStringT::<span class="keyword">operator</span> &gt;=	<span class="comment">//字符多的判断为大。</span></span><br></pre></td></tr></table></figure>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CStringT::Delete(<span class="keyword">int</span> Index, <span class="keyword">int</span> Count = <span class="number">1</span>)      <span class="comment">//从Index（基于0）起，删除Count个字符。</span></span><br><span class="line">CStringT::Insert(<span class="keyword">int</span> Index, PCXSTR psz)         <span class="comment">//在Index处，插入字符串psz，剩下的字符接在psz的末尾。</span></span><br><span class="line">CStringT::Replace(PCXSTR pszOld, PCXSTR pszNew) <span class="comment">//用字符串pszNew取代字符串pszOld。pszNew可以比pszOld更长。</span></span><br><span class="line">CStringT::Find(PCXSTR pszSub, <span class="keyword">int</span> iStart = <span class="number">0</span>)   <span class="comment">//返回字符串pszSub在主串中的位置，默认从主串索引0开始搜索。</span></span><br><span class="line">CStringT::ReverseFind(XCHAR ch) <span class="comment">//从末尾开始在主串中查找字符ch，返回ch在主串中的正向位置。</span></span><br><span class="line">CStringT::Right(<span class="keyword">int</span> nCount)     <span class="comment">//返回从最右端提取的nCount个字符。</span></span><br><span class="line">CStringT::Left(<span class="keyword">int</span> nCount)      <span class="comment">//返回从最左端提取的nCount个字符。</span></span><br><span class="line">CStringT::Mid(<span class="keyword">int</span> iFirst, <span class="keyword">int</span> nCount)   <span class="comment">//从iFirst起，返回nCount个字符。</span></span><br><span class="line">CStringT::Mid(<span class="keyword">int</span> iFirst)       <span class="comment">//返回从iFirst起直到末尾的字符。</span></span><br><span class="line">CStringT::MakeLower()           <span class="comment">//将此字符串中的所有字符转换为小写字符。</span></span><br><span class="line">CStringT::MakeUpper()           <span class="comment">//将此字符串中的所有字符都转换为大写字符。</span></span><br><span class="line">CStringT::MakeReverse()         <span class="comment">//反转字符串。</span></span><br></pre></td></tr></table></figure>
+<p>上述函数形参中的PCXSTR类型，可以直接使用字符串常量或CString对象作为实参。Delete、Insert、Replace、Find都重载了字符版本，就是形参中的PCXSTR类型变成了XCHAR类型。</p>
+<h4 id="CStringT继承CSimpleStringT的一些有用函数"><a href="#CStringT继承CSimpleStringT的一些有用函数" class="headerlink" title="CStringT继承CSimpleStringT的一些有用函数"></a>CStringT继承CSimpleStringT的一些有用函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CSimpleStringT::Empty()                    <span class="comment">//将当前CString变量清空，字符长度为零。</span></span><br><span class="line">CSimpleStringT::IsEmpty()                  <span class="comment">//测试是否为空。</span></span><br><span class="line">CSimpleStringT::GetAt(<span class="keyword">int</span> iChar)           <span class="comment">//返回iChar位置的字符。</span></span><br><span class="line">CSimpleStringT::SetAt(<span class="keyword">int</span> iChar, XCHAR ch) <span class="comment">//将iChar位置的字符设置为ch。</span></span><br><span class="line">CSimpleStringT::GetBuffer()                <span class="comment">//返回字符缓冲区指针。</span></span><br><span class="line">CSimpleStringT::GetLength()                <span class="comment">//返回字符数。</span></span><br></pre></td></tr></table></figure>
+<h4 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CStringT::Format(PCXSTR pszFormat, [, argument] ...)   <span class="comment">//按照pszFormat格式化字符串，后面的argument为pszFormat提供各种类型的数据。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>%d 十进制整数(int)</li>
+<li>%u 无符号十进制数</li>
+<li>%f 十进制浮点数(float)</li>
+<li>%o 八进制数</li>
+<li>%x 十六进制数</li>
+<li>%c 单个字符</li>
+<li>%s 字符串</li>
+</ul>
+<p>由此看出，使用Format主要是用来将数字转换为CString。例如，获取当前系统时间：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CTime t = CTime::GetCurrentTime();</span><br><span class="line">CString m_strTime;</span><br><span class="line">m_strTime.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">	t.GetYear(),t.GetMonth(),t.GetDay(),</span><br><span class="line">	t.GetHour(),t.GetMinute(),t.GetSecond());</span><br></pre></td></tr></table></figure>
+<h4 id="与TCHAR数组的转换"><a href="#与TCHAR数组的转换" class="headerlink" title="与TCHAR数组的转换"></a>与TCHAR数组的转换</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CString edt2 = <span class="string">&quot;abcdef&quot;</span>;                <span class="comment">//CString -&gt; TCHAR</span></span><br><span class="line">TCHAR *str = <span class="keyword">new</span> TCHAR(<span class="number">10</span>);</span><br><span class="line">str = edt2.GetBuffer(edt2.GetLength());</span><br><span class="line"></span><br><span class="line">CString edt3 = str;                    <span class="comment">//TCHAR -&gt; CString</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/" rel="prev" title="程序员感悟">
+                  <i class="fa fa-chevron-left"></i> 程序员感悟
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/" rel="next" title="VC编程 文件">
+                  VC编程 文件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

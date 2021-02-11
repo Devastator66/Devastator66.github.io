@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="消息传递、处理机制是图形化程序的基础。图形化程序为用户提供了便利，但也使得程序的实际运行变得非线性。所有的消息都是由用户触发的，我们只能根据系统提供的消息类型，选择需要处理的消息编写处理代码。 Windows消息分为三类：标准消息、命令消息和通告消息。像工具栏、菜单项发出的消息属于命令消息；按钮、列表框控件发出的消息属于通告消息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 消息响应">
+<meta property="og:url" content="https://devastator66.github.io/2015/08/17/VC%E7%BC%96%E7%A8%8B%20%E6%B6%88%E6%81%AF%E5%93%8D%E5%BA%94/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="消息传递、处理机制是图形化程序的基础。图形化程序为用户提供了便利，但也使得程序的实际运行变得非线性。所有的消息都是由用户触发的，我们只能根据系统提供的消息类型，选择需要处理的消息编写处理代码。 Windows消息分为三类：标准消息、命令消息和通告消息。像工具栏、菜单项发出的消息属于命令消息；按钮、列表框控件发出的消息属于通告消息。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-08-17T01:48:08.000Z">
+<meta property="article:modified_time" content="2021-02-10T05:22:11.030Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2015/08/17/VC%E7%BC%96%E7%A8%8B%20%E6%B6%88%E6%81%AF%E5%93%8D%E5%BA%94/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 消息响应 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">消息处理机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">自定义消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E6%B6%88%E6%81%AF"><span class="nav-number">3.</span> <span class="nav-text">键盘消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E6%B6%88%E6%81%AF"><span class="nav-number">4.</span> <span class="nav-text">鼠标消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WM-DEVICECHANGE"><span class="nav-number">5.</span> <span class="nav-text">WM_DEVICECHANGE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2015/08/17/VC%E7%BC%96%E7%A8%8B%20%E6%B6%88%E6%81%AF%E5%93%8D%E5%BA%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 消息响应
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-08-17 09:48:08" itemprop="dateCreated datePublished" datetime="2015-08-17T09:48:08+08:00">2015-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>消息传递、处理机制是图形化程序的基础。图形化程序为用户提供了便利，但也使得程序的实际运行变得非线性。所有的消息都是由用户触发的，我们只能根据系统提供的消息类型，选择需要处理的消息编写处理代码。</p>
+<p>Windows消息分为三类：标准消息、命令消息和通告消息。像工具栏、菜单项发出的消息属于命令消息；按钮、列表框控件发出的消息属于通告消息。</p>
+<a id="more"></a>
+
+<h4 id="消息处理机制"><a href="#消息处理机制" class="headerlink" title="消息处理机制"></a>消息处理机制</h4><p>我们可以让某个类或某个控件ID响应消息。在类向导中，选择想要响应消息的类和控件ID，再在“消息”标签下选择所要响应的消息。确认后MFC会自动添加三块代码：</p>
+<p>一、类头文件中的消息响应函数声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">afx_msg <span class="keyword">void</span> <span class="title">OnMenuPrint</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">afx_msg <span class="keyword">void</span> <span class="title">OnRButtonDown</span><span class="params">(UINT nFlags, CPoint point)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>二、类函数定义文件中的消息映射</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BEGIN_MESSAGE_MAP(CGeraDlgDlg, CDialogEx)</span><br><span class="line">    ON_WM_SYSCOMMAND()           <span class="comment">//框架自带</span></span><br><span class="line">    ON_WM_PAINT()                <span class="comment">//框架自带</span></span><br><span class="line">    ON_WM_QUERYDRAGICON()        <span class="comment">//框架自带</span></span><br><span class="line">    ON_COMMAND(ID_MENU_PRINT, &amp;CGeraDlgDlg::OnMenuPrint)  <span class="comment">//点击菜单</span></span><br><span class="line">    ON_WM_RBUTTONDOWN()          <span class="comment">//右键菜单</span></span><br><span class="line">END_MESSAGE_MAP()</span><br></pre></td></tr></table></figure>
+<p>三、类函数定义文件中的消息响应函数定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CGeraDlgDlg::OnMenuPrint</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加命令处理程序代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CGeraDlgDlg::OnRButtonDown</span><span class="params">(UINT nFlags, CPoint point)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加消息处理程序代码和/或调用默认值</span></span><br><span class="line">    CDialogEx::OnRButtonDown(nFlags, point);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义消息"><a href="#自定义消息" class="headerlink" title="自定义消息"></a>自定义消息</h4><ol>
+<li>在类向导中，选择待响应消息的类，在消息属性页下方点击“添加自定义消息”按钮，在弹出的对话框中输入消息名和响应函数名。</li>
+<li>在类函数定义文件中，添加#define WM_MYMESSAGE WM_USER+1。</li>
+<li>在响应函数中写入代码。</li>
+</ol>
+<p>例：系统托盘菜单<br>一、添加NOTIFYICONDATA类型成员变量nid，在初始化函数中设置NOTIFYICONDATA结构。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nid.cbSize = (DWORD)<span class="keyword">sizeof</span>(NOTIFYICONDATA); </span><br><span class="line">nid.hWnd = <span class="keyword">this</span>-&gt;m_hWnd; </span><br><span class="line">nid.uID = IDR_MAINFRAME; </span><br><span class="line">nid.uFlags = NIF_ICON|NIF_MESSAGE|NIF_TIP; </span><br><span class="line">nid.uCallbackMessage = WM_SYSTRAY;  <span class="comment">//自定义的消息名称 </span></span><br><span class="line">nid.hIcon = LoadIcon(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDR_MAINFRAME)); </span><br><span class="line"><span class="built_in">strcpy</span>(nid.szTip,<span class="string">&quot;管理&quot;</span>);           <span class="comment">//信息提示内容 </span></span><br><span class="line"></span><br><span class="line">Shell_NotifyIcon(NIM_ADD,&amp;nid);     <span class="comment">//在托盘区添加图标，NIM_DELETE为删托盘。</span></span><br></pre></td></tr></table></figure>
+<p>二、在类向导中，添加自定义消息相关信息，并在响应函数文件内添加#define WM_MYMESSAGE WM_USER+1。然后，在响应函数中键入如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">afx_msg LRESULT <span class="title">CNameDlg::OnSystray</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(wParam != IDR_MAINFRAME) </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">switch</span>(lParam)</span><br><span class="line">    &#123; </span><br><span class="line">    <span class="keyword">case</span> WM_RBUTTONUP:    <span class="comment">//右键起来时弹出快捷菜单 </span></span><br><span class="line">        &#123;</span><br><span class="line">            LPPOINT lpoint = <span class="keyword">new</span> tagPOINT; </span><br><span class="line">            ::GetCursorPos(lpoint);<span class="comment">//得到鼠标位置</span></span><br><span class="line">            CMenu menu; </span><br><span class="line">            menu.CreatePopupMenu();<span class="comment">//声明一个弹出式菜单</span></span><br><span class="line">            menu.AppendMenu(MF_STRING,ID_OFFLINE,<span class="string">&quot;下线&quot;</span>);<span class="comment">//添加自定义菜单项</span></span><br><span class="line">            menu.AppendMenu(MF_STRING,ID_ABOUT,<span class="string">&quot;关于&quot;</span>);</span><br><span class="line">            menu.TrackPopupMenu(TPM_LEFTALIGN,lpoint-&gt;x,lpoint-&gt;y,<span class="keyword">this</span>);<span class="comment">//确定弹出式菜单的位置 </span></span><br><span class="line">            HMENU hmenu = menu.Detach();<span class="comment">//资源回收 </span></span><br><span class="line">            menu.DestroyMenu(); </span><br><span class="line">            <span class="keyword">delete</span> lpoint;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三、为添加的菜单项添加响应函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在Resource.h中添加：</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ID_CLOSE    32001</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ID_OPEN     32002</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ID_ABOUT    32003</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在主对话框类头文件中添加响应函数声明：</span></span><br><span class="line"><span class="function">afx_msg <span class="keyword">void</span> <span class="title">OnOpen</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">afx_msg <span class="keyword">void</span> <span class="title">OnAbout</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">afx_msg <span class="keyword">void</span> <span class="title">OnClose</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在消息映射中添加：</span></span><br><span class="line">BEGIN_MESSAGE_MAP(CWebEnterDlg, CDialogEx)</span><br><span class="line">    ON_COMMAND(ID_OPEN, &amp;CUsbcheckDlg::OnUSBSerial)</span><br><span class="line">    ON_COMMAND(ID_ABOUT, &amp;CUsbcheckDlg::OnAbout)</span><br><span class="line">    ON_COMMAND(ID_CLOSE, &amp;CUsbcheckDlg::OnClose)</span><br><span class="line">END_MESSAGE_MAP()</span><br><span class="line"></span><br><span class="line"><span class="comment">//在主对话框类函数定义文件中添加响应函数定义：</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CNameDlg::OnOpen</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CNameDlg::OnAbout</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CNameDlg::OnClose</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="键盘消息"><a href="#键盘消息" class="headerlink" title="键盘消息"></a>键盘消息</h4><p>键盘上的每一个键都对应一个唯一扫描码，并在按下和释放时产生通知。有4种基本键盘消息：</p>
+<ul>
+<li>WM_KEYDOWN 按下非系统键产生的消息</li>
+<li>WM_KEYUP 释放非系统键产生的消息</li>
+<li>WM_SYSKEYDOWN 按下系统键产生的消息</li>
+<li>WM_SYSKEYUP 释放系统键产生的消息</li>
+</ul>
+<p>让基于对话框框架的程序响应按键消息，直接让主对话框类响应上述消息是无效的，可以采用重载虚函数PreTranslateMessage的方法。打开类向导，选择主对话框类，在虚函数页内找到PreTranslateMessage，添加函数。然后，在这个函数定义中键入如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (pMsg-&gt;message)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> WM_KEYDOWN:             <span class="comment">//响应进程内按键消息</span></span><br><span class="line">    <span class="keyword">switch</span> (pMsg-&gt;wParam)    <span class="comment">//获得按键</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span>:                <span class="comment">//小写字符a无法接收到</span></span><br><span class="line">        m_Radio1.SetCheck(BST_CHECKED);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">        m_Radio2.SetCheck(BST_CHECKED);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_HOTKEY:              <span class="comment">//响应全局按键消息</span></span><br><span class="line">    <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> HOTKEY_UP:</span><br><span class="line">        m_Radio1.SetCheck(BST_UNCHECKED);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> HOTKEY_DOWN:</span><br><span class="line">        m_Radio2.SetCheck(BST_UNCHECKED);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>响应进程内按键，只需要上述代码即可，如果要响应全局按键，需要定义并注册热键：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主对话框cpp文件开头</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HOTKEY_UP       1001</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HOTKEY_DOWN     1002</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化函数</span></span><br><span class="line">RegisterHotKey(m_hWnd,HOTKEY_UP,<span class="number">0</span>,VK_UP);</span><br><span class="line">RegisterHotKey(m_hWnd,HOTKEY_DOWN,<span class="number">0</span>,VK_DOWN);</span><br></pre></td></tr></table></figure>
+<p>RegisterHotKey函数的说明如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">RegisterHotKey</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    HWND hWnd,           <span class="comment">//接收WM_HOTKEY消息的窗体句柄</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">int</span> id,              <span class="comment">//快捷键ID</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT fsModifiers,    <span class="comment">//组合键</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT vk              <span class="comment">//虚拟键</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span></span><br></pre></td></tr></table></figure>
+<p>fsModifiers：MOD_ALT、MOD_CONTROL、MOD_SHIFT、MOD_WIN，设置了哪个组合键，将来使用快捷键时必须同时按下那个组合键。虚拟键值表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="center">虚拟键</th>
+<th align="center">按键</th>
+<th align="center">虚拟键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">←</td>
+<td align="center">VK_LEFT</td>
+<td align="center">退格</td>
+<td align="center">VK_BACK</td>
+</tr>
+<tr>
+<td align="center">→</td>
+<td align="center">VK_RIGHT</td>
+<td align="center">制表符</td>
+<td align="center">VK_TAB</td>
+</tr>
+<tr>
+<td align="center">↑</td>
+<td align="center">VK_UP</td>
+<td align="center">回车</td>
+<td align="center">VK_RETURN</td>
+</tr>
+<tr>
+<td align="center">↓</td>
+<td align="center">VK_DOWN</td>
+<td align="center">Ctrl</td>
+<td align="center">VK_CONTORL</td>
+</tr>
+<tr>
+<td align="center">Shift</td>
+<td align="center">VK_SHIFT</td>
+<td align="center">Pause</td>
+<td align="center">VK_PAUSE</td>
+</tr>
+<tr>
+<td align="center">Alt</td>
+<td align="center">VK_MENU</td>
+<td align="center">Esc</td>
+<td align="center">VK_ESCAPE</td>
+</tr>
+<tr>
+<td align="center">Caps Lock</td>
+<td align="center">VK_CAPITAL</td>
+<td align="center">Home</td>
+<td align="center">VK_HOME</td>
+</tr>
+<tr>
+<td align="center">左系统键</td>
+<td align="center">VK_LWIN</td>
+<td align="center">右系统键</td>
+<td align="center">VK_RWIN</td>
+</tr>
+<tr>
+<td align="center">数字0~9</td>
+<td align="center">VK_0~VK_9</td>
+<td align="center">字母A~Z</td>
+<td align="center">VK_A~VK_Z</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>数字和字母的虚拟键好像未定义</p>
+</blockquote>
+<p><strong>模拟按键</strong><br>一、使用keybd_event模拟按键</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">keybd_event</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    BYTE bVk,         <span class="comment">//虚拟键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    BYTE bScan,       <span class="comment">//未使用</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags,    <span class="comment">//功能选项</span></span></span></span><br><span class="line"><span class="function"><span class="params">    PTR dwExtraInfo   <span class="comment">//附加信息</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span></span><br></pre></td></tr></table></figure>
+<p>在对话框资源上添加两个按钮，并添加响应函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CkeyboardDlg::OnBnClickedButton1</span><span class="params">()</span> <span class="comment">//Win+R</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加控件通知处理程序代码</span></span><br><span class="line">    keybd_event(VK_LWIN,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);         <span class="comment">//按压win</span></span><br><span class="line">    keybd_event(<span class="string">&#x27;R&#x27;</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);             <span class="comment">//按压R</span></span><br><span class="line">    keybd_event(<span class="string">&#x27;R&#x27;</span>,<span class="number">0</span>,KEYEVENTF_KEYUP,<span class="number">0</span>);        <span class="comment">//释放R</span></span><br><span class="line">    keybd_event(VK_LWIN,<span class="number">0</span>,KEYEVENTF_KEYUP,<span class="number">0</span>);    <span class="comment">//释放win</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CkeyboardDlg::OnBnClickedButton2</span><span class="params">()</span> <span class="comment">//Ctrl+Shift</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加控件通知处理程序代码</span></span><br><span class="line">    keybd_event(VK_CONTROL, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    keybd_event(VK_SHIFT, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    keybd_event(VK_SHIFT, <span class="number">0</span>, KEYEVENTF_KEYUP, <span class="number">0</span>);</span><br><span class="line">    keybd_event(VK_CONTROL, <span class="number">0</span>, KEYEVENTF_KEYUP, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用keybd_event模拟键盘消息，每个按键必须成对使用。keybd_event只是用于产生键盘事件，并不关心由谁处理。系统捕捉到键盘事件后，会转化为键盘消息并派发给当前系统中拥有键盘输入焦点的应用程序。</p>
+<p>二、使用PostMessage发送按键消息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">PostMessage</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    HWND hWnd,        <span class="comment">//目标窗体或控件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT Msg,         <span class="comment">//消息标识</span></span></span></span><br><span class="line"><span class="function"><span class="params">    WPARAM wParam,</span></span></span><br><span class="line"><span class="function"><span class="params">    LPARAM lParam</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span></span><br></pre></td></tr></table></figure>
+<p>在对话框上添加一个按钮，并添加响应函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CkeyboardDlg::OnBnClickedButton3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加控件通知处理程序代码</span></span><br><span class="line">    PostMessage(WM_KEYDOWN,VK_RIGHT,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在PreTranslateMessage中，添加响应VK_RIGHT的分支：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (pMsg-&gt;message)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> WM_KEYDOWN:            <span class="comment">//响应进程内按键消息</span></span><br><span class="line">    <span class="keyword">switch</span> (pMsg-&gt;wParam)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="comment">//其他按键响应</span></span><br><span class="line">    <span class="keyword">case</span> VK_RIGHT:          <span class="comment">//响应右箭头</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;按压了右键头&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<p>PostMessage把消息发送到指定句柄所在线程的消息队列，再由线程派发；SendMessage直接把消息发送到指定句柄的窗体或控件。</p>
+<h4 id="鼠标消息"><a href="#鼠标消息" class="headerlink" title="鼠标消息"></a>鼠标消息</h4><p>鼠标动作无非就是点击、释放、移动、拖拽，这些都是如下消息组合实现的。</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标消息</th>
+<th align="center">意义</th>
+<th align="left">鼠标消息</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">WM_LBUTTONDOWN</td>
+<td align="center">单击左键</td>
+<td align="left">WM_RBUTTONDOWN</td>
+<td align="center">单击右键</td>
+</tr>
+<tr>
+<td align="left">WM_LBUTTONUP</td>
+<td align="center">释放左键</td>
+<td align="left">WM_RBUTTONUP</td>
+<td align="center">释放右键</td>
+</tr>
+<tr>
+<td align="left">WM_LBUTTONDBLCLK</td>
+<td align="center">左键双击</td>
+<td align="left">WM_RBUTTONDBLCLK</td>
+<td align="center">双击右键</td>
+</tr>
+<tr>
+<td align="left">WM_MBUTTONDOWN</td>
+<td align="center">单击中键</td>
+<td align="left">WM_MBUTTONUP</td>
+<td align="center">释放中键</td>
+</tr>
+<tr>
+<td align="left">WM_MBUTTONDBLCLK</td>
+<td align="center">双击中键</td>
+<td align="left">WM_MOUSEMOVE</td>
+<td align="center">移动鼠标</td>
+</tr>
+</tbody></table>
+<p>让基于对话框框架的程序响应鼠标消息，直接让主对话框类响应上述消息即可。模拟鼠标消息的方法与模拟键盘类似，也有两种方法：</p>
+<p>一、使用mouse_event模拟鼠标动作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouse_event</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags,           <span class="comment">//鼠标动作</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dx,                <span class="comment">//鼠标的X位置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dy,                <span class="comment">//鼠标的Y位置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwData,            <span class="comment">//一般为0</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG_PTR dwExtraInfo    <span class="comment">//一般为0</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span></span><br></pre></td></tr></table></figure>
+<p>添加按钮并关联响应函数，然后添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CPoint <span class="title">p</span><span class="params">(<span class="number">50</span>,<span class="number">100</span>)</span></span>;</span><br><span class="line">ClientToScreen(&amp;p);		</span><br><span class="line">SetCursorPos(p.x,p.y);  <span class="comment">//移动鼠标的位置到对话框区域（离开按钮）</span></span><br><span class="line">mouse_event(MOUSEEVENTF_MIDDLEDOWN,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);    <span class="comment">//按压中键</span></span><br><span class="line">mouse_event(MOUSEEVENTF_MIDDLEUP,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>打开类向导，让主对话框响应中键单击消息，并添加响应代码。mouse_event与keybd_event一样，只是触发鼠标事件，不管谁来响应。如果不将鼠标设置到对话框区域，就无法看到中键单击的效果。</p>
+<p>二、使用PostMessage发送鼠标消息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//按钮响应函数中添加</span></span><br><span class="line">PostMessage(WM_RBUTTONDOWN,<span class="number">0</span>,<span class="number">0</span>);    <span class="comment">//右键消息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在类向导中对主对话框添加右键响应消息</span></span><br></pre></td></tr></table></figure>
+<h4 id="WM-DEVICECHANGE"><a href="#WM-DEVICECHANGE" class="headerlink" title="WM_DEVICECHANGE"></a>WM_DEVICECHANGE</h4><p>这个消息可用于检测USB移动存储设备的插拔，当用户接插USB设备到计算机时，系统会触发这个消息，并将其发送给所有程序，失去焦点的窗口依然可以处理该消息。</p>
+<p>这个消息只能手动添加响应函数，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对话框类头文件中</span></span><br><span class="line"><span class="function">afx_msg BOOL <span class="title">OnDeviceChange</span><span class="params">(UINT nEventType,DWORD dwData)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对话框类函数定义文件中</span></span><br><span class="line">BEGIN_MESSAGE_MAP(CFileCopyDlg, CDialog)</span><br><span class="line">    ON_WM_DEVICECHANGE()</span><br><span class="line">END_MESSAGE_MAP()</span><br><span class="line"></span><br><span class="line"><span class="comment">//响应函数定义</span></span><br><span class="line"><span class="function">BOOL <span class="title">CUsbcheckDlg::OnDeviceChange</span><span class="params">(UINT nEventType,DWORD dwData)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(nEventType)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> DBT_DEVICEARRIVAL:        <span class="comment">//有设备插入且可用</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;USB插入&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> DBT_DEVICEREMOVECOMPLETE: <span class="comment">//移除某一设备</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;USB拔出&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中nEventType就是WM_DEVICECHANGE消息的wParam参数。必须在文件开头引入#include “Dbt.h”，否则无法识别DBT系列值。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/08/15/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86/" rel="prev" title="VC编程 对话框">
+                  <i class="fa fa-chevron-left"></i> VC编程 对话框
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/08/19/VC%E7%BC%96%E7%A8%8B%20%E7%BB%98%E5%9B%BE/" rel="next" title="VC编程 绘图">
+                  VC编程 绘图 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

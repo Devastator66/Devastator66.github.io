@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="Linux的很多资源都是通过文件表示的，所以使用文件操作就能调动很多系统功能；而Windows系统有个注册表，要想调动Windows系统功能，就要通过操作注册表来实现。 操作注册表一般有两种方式：API函数、CRegKey类。两种方式都比较常用，程序员可根据自身习惯采用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 注册表">
+<meta property="og:url" content="https://devastator66.github.io/2016/03/20/VC%E7%BC%96%E7%A8%8B%20%E6%B3%A8%E5%86%8C%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="Linux的很多资源都是通过文件表示的，所以使用文件操作就能调动很多系统功能；而Windows系统有个注册表，要想调动Windows系统功能，就要通过操作注册表来实现。 操作注册表一般有两种方式：API函数、CRegKey类。两种方式都比较常用，程序员可根据自身习惯采用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-20T09:35:22.000Z">
+<meta property="article:modified_time" content="2021-02-10T05:08:15.895Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2016/03/20/VC%E7%BC%96%E7%A8%8B%20%E6%B3%A8%E5%86%8C%E8%A1%A8/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 注册表 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">注册表结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">API函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRegKey%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">CRegKey类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2016/03/20/VC%E7%BC%96%E7%A8%8B%20%E6%B3%A8%E5%86%8C%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 注册表
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-20 17:35:22" itemprop="dateCreated datePublished" datetime="2016-03-20T17:35:22+08:00">2016-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Linux的很多资源都是通过文件表示的，所以使用文件操作就能调动很多系统功能；而Windows系统有个注册表，要想调动Windows系统功能，就要通过操作注册表来实现。</p>
+<p>操作注册表一般有两种方式：API函数、CRegKey类。两种方式都比较常用，程序员可根据自身习惯采用。</p>
+<a id="more"></a>
+
+<h4 id="注册表结构"><a href="#注册表结构" class="headerlink" title="注册表结构"></a>注册表结构</h4><p>按压win+R，在“运行”框内输入regedit，即可打开注册表。可以看出，注册表具有树状结构。<br>最顶层的称为<strong>根键</strong>，只有五个：</p>
+<ul>
+<li>HKEY_CLASSES_ROOT 存储不同文件后缀和应用程序间的关系</li>
+<li>HKEY_CURRENT_USER 存储有关当前登录用户的配置信息</li>
+<li>HKEY_LOCAL_MACHINE 存储控制系统和软件的设置</li>
+<li>HKEY_USERS 存储了所有用户的配置文件</li>
+<li>HKEY_CURRENT_CONFIG 存储了系统在启动时需要的硬件配置信息</li>
+</ul>
+<p>根键下的每层子目录都称为<strong>子键</strong>。在树状结构的最底层——叶子位置的数据（显示在注册表程序的右侧）称为<strong>键值</strong>。一个键值包括：键值名、键值类型和数据。键值类型有：</p>
+<ul>
+<li>REG_DWORD 四字</li>
+<li>REG_BINARY 二进制</li>
+<li>REG_SZ 字符串</li>
+<li>REG_MULTI_SZ 多字符串</li>
+<li>REG_EXOEND_SZ 可扩展字符串</li>
+</ul>
+<h4 id="API函数"><a href="#API函数" class="headerlink" title="API函数"></a>API函数</h4><p>一 读取键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegOpenKeyEx</span><span class="params">(   <span class="comment">//打开一个键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY   hKey,          <span class="comment">//根键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpSubKey,      <span class="comment">//子键路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD  ulOptions,     <span class="comment">//必须为0</span></span></span></span><br><span class="line"><span class="function"><span class="params">  REGSAM samDesired,    <span class="comment">//打开权限</span></span></span></span><br><span class="line"><span class="function"><span class="params">  PHKEY  phkResult      <span class="comment">//打开成功则将一个HKEY类型的句柄返回到这个参数</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>参数lpSubKey的子键路径格式与文件路径类似，每级子键由\分隔。参数samDesired可以为：</p>
+<ul>
+<li>KEY_ALL_ACCESS (0xF003F) 综合了所有权限</li>
+<li>KEY_CREATE_LINK (0x0020) 系统保留</li>
+<li>KEY_CREATE_SUB_KEY (0x0004) 创建子键</li>
+<li>KEY_ENUMERATE_SUB_KEYS (0x0008) 枚举一个键下的子键</li>
+<li>KEY_EXECUTE (0x20019) 等价于KEY_READ</li>
+<li>KEY_NOTIFY (0x0010) 更改键或子键</li>
+<li>KEY_QUERY_VALUE (0x0001) 访问键值</li>
+<li>KEY_READ (0x20019) 组合了STANDARD_RIGHTS_READ，KEY_QUERY_VALUE，KEY_ENUMERATE_SUB_KEYS，KEY_NOTIFY。</li>
+<li>KEY_SET_VALUE (0x0002) 创建、删除或设置键值</li>
+<li>KEY_WOW64_32KEY (0x0200) 指示在64位Windows下操作32位的注册表，此项必须与其他权限组合使用。</li>
+<li>KEY_WOW64_64KEY (0x0100) 指示在64位Windows下操作64位的注册表，此项必须与其他权限组合使用。</li>
+<li>KEY_WRITE (0x20006) 组合了STANDARD_RIGHTS_WRITE，KEY_SET_VALUE，KEY_CREATE_SUB_KEY。</li>
+</ul>
+<p>如果打开成功，函数返回ERROR_SUCCESS，否则返回一个非零错误代码。</p>
+<blockquote>
+<p>每个键自身具有安全描述符，实际的操作权限并不完全按照打开时参数设置的那样。<br>在win7 x64环境下，开发32位程序操作注册表，需要在samDesired中组合KEY_WOW64_64KEY。<br>使用位或 | 组合不同的权限。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegQueryValueEx</span><span class="params">(  <span class="comment">//根据键值名获取类型和数据</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY    hKey,           <span class="comment">//打开的句柄，打开时必须有KEY_QUERY_VALUE权限。</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR  lpValueName,    <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD lpReserved,     <span class="comment">//必须为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD lpType,         <span class="comment">//用于接收键值的类型，为NULL则放弃获取。</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPBYTE  lpData,         <span class="comment">//缓冲区地址，用于接收键值的数据，为NULL则放弃获取。</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD lpcbData        <span class="comment">//缓冲区尺寸，应该考虑到字符类型数据末尾的NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>获取成功返回ERROR_SUCCESS，如果注册表中不存在lpValueName键值，则返回ERROR_FILE_NOT_FOUND。</p>
+<blockquote>
+<p>这个函数通常用作获取REG_SZ类型的数据。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegCloseKey</span><span class="params">(    <span class="comment">//关闭打开的键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY hKey             <span class="comment">//打开的句柄</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>例：获取键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CString SerialNo=<span class="string">&quot;HARDWARE\\DEVICEMAP\\PARALLEL PORTS&quot;</span>;</span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG lnRes=RegOpenKeyEx(HKEY_LOCAL_MACHINE,SerialNo,<span class="number">0</span>,KEY_READ|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (lnRes == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    BYTE dev[<span class="number">50</span>] = &#123;<span class="number">0</span>&#125;;<span class="comment">//用于接收REG_SZ</span></span><br><span class="line">    DWORD devSize = <span class="number">50</span>;<span class="comment">//必须够大</span></span><br><span class="line">    DWORD type;</span><br><span class="line">    lnRes = RegQueryValueEx(hKey,<span class="string">&quot;\\Device\\Parallel0&quot;</span>,<span class="number">0</span>,&amp;type,dev,&amp;devSize);</span><br><span class="line">    <span class="keyword">if</span>(lnRes == ERROR_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        m_Edit1.Format(<span class="string">&quot;%s&quot;</span>,dev);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">UpdateData(FALSE);</span><br><span class="line">RegCloseKey(hKey);</span><br></pre></td></tr></table></figure>
+<p>使用RegOpenKeyEx打开键时，要注意那个键的权限，如果只是读取数据，使用KEY_READ足以。</p>
+<p>二 设置键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegCreateKey</span><span class="params">(   <span class="comment">//创建一个子键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY   hKey,          <span class="comment">//根键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpSubKey,      <span class="comment">//子键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  PHKEY  phkResult      <span class="comment">//用于接收创建的句柄</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br><span class="line"><span class="function">LSTATUS <span class="title">RegSetValueEx</span><span class="params">(    <span class="comment">//设置或创建键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY       hKey,        <span class="comment">//已被打开的句柄，且有KEY_SET_VALUE权限</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR     lpValueName, <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD      Reserved,    <span class="comment">//必须为0</span></span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD      dwType,      <span class="comment">//键值类型</span></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">const</span> BYTE *lpData,     <span class="comment">//数据缓冲区地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD      cbData       <span class="comment">//数据占用的字节数</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参数lpData如果是REG_SZ，末尾有1个NULL；如果是REG_MULTI_SZ，末尾有2个NULL。<br>上述两个函数如果执行成功都会返回ERROR_SUCCESS。</p>
+</blockquote>
+<p>例：屏蔽任务管理器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">CString RegVervion = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System&quot;</span>;</span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,RegVervion,<span class="literal">NULL</span>,KEY_ALL_ACCESS|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line">DWORD a = <span class="number">0</span>;        <span class="comment">//用于接收REG_DWORD</span></span><br><span class="line">DWORD Size = <span class="number">4</span>;     <span class="comment">//必须够大，否则234错误</span></span><br><span class="line"><span class="keyword">if</span> (lnRes != ERROR_SUCCESS)    <span class="comment">//不存在System键，建立它</span></span><br><span class="line">&#123;</span><br><span class="line">    RegCreateKey(HKEY_CURRENT_USER,RegVervion,&amp;hKey);<span class="comment">//创建子键</span></span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">    RegSetValueEx(hKey,<span class="string">&quot;DisableTaskMgr&quot;</span>,<span class="number">0</span>,REG_DWORD,(BYTE*)&amp;a,<span class="number">4</span>);<span class="comment">//一个DWORD有4个BYTE</span></span><br><span class="line">    RegCloseKey(hKey);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    lnRes = RegQueryValueEx(hKey,<span class="string">&quot;DisableTaskMgr&quot;</span>,<span class="number">0</span>,<span class="literal">NULL</span>,(BYTE*)&amp;a,&amp;Size);</span><br><span class="line">    <span class="keyword">if</span>(lnRes == ERROR_SUCCESS)<span class="comment">//存在，检查是否为1</span></span><br><span class="line">    &#123;	</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a = <span class="number">1</span>;</span><br><span class="line">            RegSetValueEx(hKey,<span class="string">&quot;DisableTaskMgr&quot;</span>,<span class="number">0</span>,REG_DWORD,(BYTE*)&amp;a,<span class="number">4</span>);<span class="comment">//一个DWORD有4个BYTE</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span><span class="comment">//没有这个键值，则建立</span></span><br><span class="line">    &#123;</span><br><span class="line">        a = <span class="number">1</span>;</span><br><span class="line">        RegSetValueEx(hKey,<span class="string">&quot;DisableTaskMgr&quot;</span>,<span class="number">0</span>,REG_DWORD,(BYTE*)&amp;a,<span class="number">4</span>);<span class="comment">//一个DWORD有4个BYTE</span></span><br><span class="line">    &#125;</span><br><span class="line">    RegCloseKey(hKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，每个RegSetValueEx调用都是用BYTE*做强制转换，其目的是取DWORD类型的数据a的首地址。由于数据a占4个字节，故而最后一个参数设置为4。</p>
+<p>三 枚举键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegEnumKeyEx</span><span class="params">(        <span class="comment">//枚举已打开键的子键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY      hKey,            <span class="comment">//已打开键的句柄</span></span></span></span><br><span class="line"><span class="function"><span class="params">  DWORD     dwIndex,         <span class="comment">//索引，从0起</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPSTR     lpName,          <span class="comment">//缓冲区，接受子键名</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcchName,       <span class="comment">//lpName缓冲区尺寸</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpReserved,      <span class="comment">//设置为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPSTR     lpClass,         <span class="comment">//缓冲区，接受用户定义class，可以为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcchClass,      <span class="comment">//lpClass缓冲区尺寸</span></span></span></span><br><span class="line"><span class="function"><span class="params">  PFILETIME lpftLastWriteTime<span class="comment">//接受一个FILETIME结构，获得子键最后被写时间，可以为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>此函数每次调用，获取一个子键名到lpName，获取顺序不定。获取成功则返回ERROR_SUCCESS，如果所有子键都已获取，函数返回ERROR_NO_MORE_ITEMS。</p>
+<blockquote>
+<p>每次调用成功，参数lpcchName会被赋值为lpName缓冲区内字符的长度。所以，如果要循环调用枚举函数，需要重置lpcchName，以保持缓冲区指定尺寸。可以使用RegQueryInfoKey获得最长子键尺寸。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">FILETIME</span> &#123;</span></span><br><span class="line">  DWORD dwLowDateTime;        <span class="comment">//时间低位</span></span><br><span class="line">  DWORD dwHighDateTime;       <span class="comment">//时间高位</span></span><br><span class="line">&#125; FILETIME, *PFILETIME, *LPFILETIME;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将FILETIME数据转化为CTime对象的方法为：CTime ct(filetime)</p>
+</blockquote>
+<p>例：枚举所有子键</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CString usbstor = <span class="string">&quot;SYSTEM\\CurrentControlSet\\Enum\\USBSTOR\\&quot;</span>;</span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG regUsb = RegOpenKeyEx(HKEY_LOCAL_MACHINE,usbstor,<span class="literal">NULL</span>,KEY_READ|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line"><span class="keyword">if</span> (regUsb == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> name[MAX_PATH] = &#123;<span class="number">0</span>&#125;;    <span class="comment">//缓冲区，用于接收子键名</span></span><br><span class="line">    DWORD size = MAX_PATH;        <span class="comment">//缓冲区长度</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (RegEnumKeyEx(hKey,i,name,&amp;size,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>) == ERROR_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        AfxMessageBox(name);</span><br><span class="line">        i++;</span><br><span class="line">        size = MAX_PATH;    <span class="comment">//重置缓冲区尺寸</span></span><br><span class="line">    &#125;</span><br><span class="line">    RegCloseKey(hKey);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>四 获取子键信息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegQueryInfoKey</span><span class="params">(            <span class="comment">//获得指定键的信息</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY      hKey,                   <span class="comment">//已打开的键</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPSTR     lpClass,                <span class="comment">//用户定义class缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcchClass,             <span class="comment">//用户定义class缓冲区尺寸</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpReserved,             <span class="comment">//保留，为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcSubKeys,             <span class="comment">//包含子键数量</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcbMaxSubKeyLen,       <span class="comment">//最长子键名的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcbMaxClassLen,        <span class="comment">//最长子键类字符串的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcValues,              <span class="comment">//这个键下的键值数量</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcbMaxValueNameLen,    <span class="comment">//最长键值名的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcbMaxValueLen,        <span class="comment">//最长数据组件的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPDWORD   lpcbSecurityDescriptor, <span class="comment">//键的安全描述符长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">  PFILETIME lpftLastWriteTime       <span class="comment">//FILETIME结构，接收最后写时间</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>除第一个参数外，其余参数都可以设置为NULL。如果不需要某项数据，赋予NULL即可。函数执行成功返回ERROR_SUCCESS。</p>
+<p>例：显示子键数目和最长子键字符数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CString usbstor = <span class="string">&quot;SYSTEM\\CurrentControlSet\\Enum\\USBSTOR\\&quot;</span>;</span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG regUsb = RegOpenKeyEx(HKEY_LOCAL_MACHINE,usbstor,<span class="literal">NULL</span>,KEY_READ|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line"><span class="keyword">if</span> (regUsb == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    DWORD subkeyNum;</span><br><span class="line">    DWORD maxSubkeyLen;	</span><br><span class="line">    RegQueryInfoKey(hKey,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,&amp;subkeyNum,&amp;maxSubkeyLen,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>);</span><br><span class="line">    CString result;</span><br><span class="line">    result.Format(<span class="string">&quot;有子键%d个，最长子键有字符%d个。&quot;</span>,subkeyNum,maxSubkeyLen);</span><br><span class="line">    AfxMessageBox(result);</span><br><span class="line">    RegCloseKey(hKey);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>五 删除</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LSTATUS <span class="title">RegDeleteKey</span><span class="params">(     <span class="comment">//删除一个子键及其键值（必须没有子键）</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY   hKey,            <span class="comment">//已打开的句柄，打开权限无影响</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpSubKey         <span class="comment">//子键名</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br><span class="line"><span class="function">LSTATUS <span class="title">RegDeleteValue</span><span class="params">(   <span class="comment">//根据键值名删除键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY   hKey,            <span class="comment">//已打开的句柄，必须带有KEY_SET_VALUE权限</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpValueName      <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br><span class="line"><span class="function">LSTATUS <span class="title">RegDeleteTree</span><span class="params">(    <span class="comment">//递归的删除所有子键及其键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">  HKEY   hKey,            <span class="comment">//已打开的句柄，必须带有KEY_ENUMERATE_SUB_KEYS和KEY_QUERY_VALUE</span></span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpSubKey         <span class="comment">//子键名</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>对于RegDeleteTree函数，参数lpSubKey如果为NULL，则删除已打开键下的所有子键。当已打开键下有键值时，函数会返回错误，其下子键照样被删除，但其下键值仍旧存在。如果想要彻底清空一个键，需要在打开键时，带有KEY_SET_VALUE权限。</p>
+<p>例：删除键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CString RegV = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System&quot;</span>;<span class="comment">//此子键访问权限需要KEY_SET_VALUE</span></span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,RegV,<span class="literal">NULL</span>,KEY_SET_VALUE|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line"><span class="keyword">if</span> (lnRes == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (RegDeleteValue(hKey,<span class="string">&quot;DisableTaskMgr&quot;</span>) == ERROR_SUCCESS)</span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除成功&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">    RegCloseKey(hKey);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>例：删除子键</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CString RegV = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies&quot;</span>;</span><br><span class="line">......</span><br><span class="line">    <span class="keyword">if</span> (RegDeleteKey(hKey,<span class="string">&quot;system&quot;</span>) == ERROR_SUCCESS)</span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除成功&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>例：删除子键及其下的所有子键和键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CString RegV = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\system&quot;</span>;<span class="comment">//此子键访问权限需要KEY_SET_VALUE</span></span><br><span class="line">HKEY hKey;</span><br><span class="line">LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,RegV,<span class="literal">NULL</span>,KEY_SET_VALUE|KEY_ENUMERATE_SUB_KEYS|KEY_QUERY_VALUE|KEY_WOW64_64KEY,&amp;hKey);</span><br><span class="line">......</span><br><span class="line">    <span class="keyword">if</span> (RegDeleteTree(hKey,<span class="literal">NULL</span>) == ERROR_SUCCESS)</span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除成功&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h4 id="CRegKey类"><a href="#CRegKey类" class="headerlink" title="CRegKey类"></a>CRegKey类</h4><p>一 读取键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">Open</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    HKEY hKeyParent,        <span class="comment">//根键</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszKeyName,    <span class="comment">//子键名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    REGSAM samDesired = KEY_READ | KEY_WRITE)</span> <span class="title">throw</span><span class="params">()</span></span>;<span class="comment">//权限，默认为KEY_ALL_ACCESS</span></span><br><span class="line"></span><br><span class="line"><span class="function">LONG <span class="title">Close</span><span class="params">()</span> <span class="title">throw</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>使用注册表类操作注册表，仍旧需要先打开某键，使用Open函数，打开的句柄保存到m_hKey。然后，可以使用下列函数查询键值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">QueryBinaryValue</span><span class="params">(            <span class="comment">//读取REG_BINARY类型键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,         <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span>* pValue,                 <span class="comment">//TCHAR类型缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG* pnBytes)</span> <span class="title">throw</span><span class="params">()</span></span>;      <span class="comment">//接收尺寸</span></span><br><span class="line"><span class="function">LONG <span class="title">QueryDWORDValue</span><span class="params">(             <span class="comment">//读取REG_DWORD类型键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,         <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD&amp; dwValue)</span> <span class="title">throw</span><span class="params">()</span></span>;      <span class="comment">//缓冲区</span></span><br><span class="line"><span class="function">LONG <span class="title">QueryMultiStringValue</span><span class="params">(       <span class="comment">//读取REG_MULTI_SZ类型键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,         <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR pszValue,              <span class="comment">//TCHAR类型缓冲区，获取的字符串末尾有两个NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG* pnChars)</span> <span class="title">throw</span><span class="params">()</span></span>;      <span class="comment">//接收尺寸</span></span><br><span class="line"><span class="function">LONG <span class="title">QueryStringValue</span><span class="params">(            <span class="comment">//读取REG_SZ类型键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,         <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR pszValue,              <span class="comment">//TCHAR类型缓冲区，获取的字符串末尾有一个NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG* pnChars)</span> <span class="title">throw</span><span class="params">()</span></span>;      <span class="comment">//接收尺寸</span></span><br></pre></td></tr></table></figure>
+<p>程序员可按照键值类型选用对应的查询函数。这些函数执行成功，返回ERROR_SUCCESS，参数pnChars会得到实际获取的长度；如果读取的是不对应类型的键值，则返回ERROR_INVALID_DATA。</p>
+<p>例：查询REG_BINARY类型数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CString path=<span class="string">&quot;HARDWARE\\DEVICEMAP\\VIDEO&quot;</span>;</span><br><span class="line">CRegKey reg;</span><br><span class="line"><span class="keyword">if</span> (reg.Open(HKEY_LOCAL_MACHINE,path,KEY_READ) == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    TCHAR dev[<span class="number">50</span>] = &#123;<span class="number">0</span>&#125;;	</span><br><span class="line">    ULONG devSize = <span class="number">50</span>;</span><br><span class="line">    <span class="keyword">if</span> (reg.QueryBinaryValue(<span class="string">&quot;ObjectNumberList&quot;</span>,dev,&amp;devSize) == ERROR_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        m_Edit1.Format(<span class="string">&quot;%x&quot;</span>,dev[<span class="number">24</span>]);</span><br><span class="line">        UpdateData(FALSE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;查询失败&quot;</span>);</span><br><span class="line">    reg.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>当然，也可以使用如下通用查询函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">QueryValue</span><span class="params">(                <span class="comment">//通用查询函数</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,       <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD* pdwType,             <span class="comment">//用于获取键值类型，可为NULL拒绝获取</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span>* pData,                <span class="comment">//TCHAR缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG* pnBytes)</span> <span class="title">throw</span><span class="params">()</span></span>;    <span class="comment">//缓冲区尺寸，执行成功则为实际获取的字节数</span></span><br></pre></td></tr></table></figure>
+<p>如果获取的是REG_SZ或REG_MULTI_SZ数据，参数pnBytes的计数含末尾的NULL。</p>
+<p>例：查询REG_MULTI_SZ类型数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CString SerialNo=<span class="string">&quot;HARDWARE\\DESCRIPTION\\System&quot;</span>;</span><br><span class="line">CRegKey reg;</span><br><span class="line"><span class="keyword">if</span> (reg.Open(HKEY_LOCAL_MACHINE,SerialNo,KEY_READ) == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    TCHAR dev[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;	</span><br><span class="line">    ULONG devSize = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">if</span> (reg.QueryValue(<span class="string">&quot;SystemBiosVersion&quot;</span>,<span class="literal">NULL</span>,dev,&amp;devSize) == ERROR_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        m_Edit1.Format(<span class="string">&quot;%s&quot;</span>,&amp;dev[<span class="number">17</span>]);<span class="comment">//显示第二行</span></span><br><span class="line">        UpdateData(FALSE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;查询失败&quot;</span>);</span><br><span class="line">    reg.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>REG_MULTI_SZ类型键值，每行由\0（NULL）分隔，末尾有两个\0（NULL）。</p>
+</blockquote>
+<p>二 设置键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">Create</span><span class="params">(                    <span class="comment">//创建一个键</span></span></span></span><br><span class="line"><span class="function"><span class="params">    HKEY hKeyParent,            <span class="comment">//根键</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszKeyName,        <span class="comment">//子键名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR lpszClass = REG_NONE,                <span class="comment">//指定键的class</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwOptions = REG_OPTION_NON_VOLATILE,  <span class="comment">//键的选项</span></span></span></span><br><span class="line"><span class="function"><span class="params">    REGSAM samDesired = KEY_READ | KEY_WRITE,   <span class="comment">//权限</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPSECURITY_ATTRIBUTES lpSecAttr = <span class="literal">NULL</span>,     <span class="comment">//指示能否被继承</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPDWORD lpdwDisposition = <span class="literal">NULL</span>)</span> <span class="title">throw</span><span class="params">()</span></span>;    <span class="comment">//不为空，则为REG_CREATED_NEW_KEY或REG_OPENED_EXISTING_KEY</span></span><br><span class="line"></span><br><span class="line"><span class="function">LONG <span class="title">SetValue</span><span class="params">(                <span class="comment">//设置键值</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR pszValueName,     <span class="comment">//键值名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwType,             <span class="comment">//键值类型</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> <span class="keyword">void</span>* pValue,       <span class="comment">//缓冲区，函数数据</span></span></span></span><br><span class="line"><span class="function"><span class="params">    ULONG nBytes)</span> <span class="title">throw</span><span class="params">()</span></span>;    <span class="comment">//数据尺寸</span></span><br></pre></td></tr></table></figure>
+<p>一般只用给出Create函数前两个参数即可。使用SetValue函数，写入REG_SZ或REG_MULTI_SZ类型数据，参数nBytes需要计入字符串末尾的NULL（SZ一个，MULTI两个）。</p>
+<p>例：写入REG_MULTI_SZ类型键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CString RegV = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System&quot;</span>;</span><br><span class="line">CRegKey reg;</span><br><span class="line"></span><br><span class="line">TCHAR a[<span class="number">13</span>] = <span class="string">&quot;abcdefg\0hij&quot;</span>;<span class="comment">//预留两个空间</span></span><br><span class="line">ULONG Size = <span class="number">13</span>;</span><br><span class="line"><span class="keyword">if</span> (reg.Open(HKEY_CURRENT_USER,RegV) != ERROR_SUCCESS)<span class="comment">//不存在System键，建立它</span></span><br><span class="line">&#123;</span><br><span class="line">    reg.Create(HKEY_CURRENT_USER,RegV);	<span class="comment">//创建子键，其他默认即可</span></span><br><span class="line">    reg.SetValue(<span class="string">&quot;DisableTaskMgr&quot;</span>,REG_MULTI_SZ,a,Size);<span class="comment">//设置键值</span></span><br><span class="line">    reg.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;已存在&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>SetValue是一个通用写入键值函数，其实CRegKey也提供了一系列按照类型写入的专用Set函数，这里不再赘述。</p>
+<p>三 枚举键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">EnumKey</span><span class="params">(                <span class="comment">//枚举已打开键的子键</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD iIndex,            <span class="comment">//索引，从0起</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR pszName,          <span class="comment">//TCHAR缓冲区，用于接收子键名，含末尾的NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPDWORD pnNameLength,    <span class="comment">//缓冲区尺寸，执行成功则为实际获取的字节数，不含末尾的NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    FILETIME* pftLastWriteTime = <span class="literal">NULL</span>)</span> <span class="title">throw</span><span class="params">()</span></span>;<span class="comment">//返回最后写入时间</span></span><br></pre></td></tr></table></figure>
+<p>函数执行成功返回ERROR_SUCCESS，如果返回ERROR_NO_MORE_ITEMS，则说明枚举了所有的子键。</p>
+<p>例：枚举所有子键及其最后写入时间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">CString usbstor = <span class="string">&quot;SYSTEM\\ControlSet002\\Enum\\USBSTOR\\Disk&amp;Ven_aigo&amp;Prod_Miniking&amp;Rev_8.07&quot;</span>;<span class="comment">//此子键访问权限不能设置为ACCESS</span></span><br><span class="line">CRegKey reg;</span><br><span class="line"><span class="keyword">if</span> (reg.Open(HKEY_LOCAL_MACHINE,usbstor,KEY_READ) == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    TCHAR name[MAX_PATH] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    DWORD size = MAX_PATH;			<span class="comment">//获得子键名字的实际长度</span></span><br><span class="line">    FILETIME t;</span><br><span class="line">    CString str;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (reg.EnumKey(i,name,&amp;size,&amp;t) == ERROR_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">CTime <span class="title">ct</span><span class="params">(t)</span></span>;</span><br><span class="line">        str.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">            ct.GetYear(),ct.GetMonth(),ct.GetDay(),</span><br><span class="line">            ct.GetHour(),ct.GetMinute(),ct.GetSecond());</span><br><span class="line">        str = <span class="string">&quot; &quot;</span> + str;</span><br><span class="line">        str = name + str;</span><br><span class="line">        AfxMessageBox(str);</span><br><span class="line">        i++;</span><br><span class="line">        size = MAX_PATH;		<span class="comment">//重置缓冲区长度</span></span><br><span class="line">    &#125;</span><br><span class="line">    reg.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>四 删除</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">DeleteValue</span><span class="params">(LPCTSTR lpszValue)</span> <span class="title">throw</span><span class="params">()</span></span>;    <span class="comment">//删除键值</span></span><br><span class="line"><span class="function">LONG <span class="title">DeleteSubKey</span><span class="params">(LPCTSTR lpszSubKey)</span> <span class="title">throw</span><span class="params">()</span></span>;  <span class="comment">//删除没有子键的键</span></span><br><span class="line"><span class="function">LONG <span class="title">RecurseDeleteKey</span><span class="params">(LPCTSTR lpszKey)</span> <span class="title">throw</span><span class="params">()</span></span>; <span class="comment">//删除子键及其下的所有东西</span></span><br></pre></td></tr></table></figure>
+<p>删除之前还是需要打开上层的键。</p>
+<p>例：删除键值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CString RegV = <span class="string">&quot;Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System&quot;</span>;</span><br><span class="line">CRegKey Reg;</span><br><span class="line"><span class="keyword">if</span> (Reg.Open(HKEY_CURRENT_USER,RegV) == ERROR_SUCCESS)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (Reg.DeleteValue(<span class="string">&quot;DisableTaskMgr&quot;</span>) == ERROR_SUCCESS)</span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除成功&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        AfxMessageBox(<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">    Reg.Close();</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>例：删除含有子键的键</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line"><span class="keyword">if</span> (Reg.RecurseDeleteKey(<span class="string">&quot;abc&quot;</span>) == ERROR_SUCCESS)</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;删除成功&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;删除失败&quot;</span>);</span><br><span class="line">Reg.Close();</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>个人觉得使用CRegKey操作注册表更好，它的成员函数更加面向需求，参数类型更加简洁友好。使用MFC编程的一大痛苦就是折腾数据类型，这种问题经常会中断程序员的逻辑思考，分散程序员的注意力。迫使程序员将精力分配到语法的语言，不是一门好语言。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/03/17/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE/" rel="prev" title="VC编程 文件查找">
+                  <i class="fa fa-chevron-left"></i> VC编程 文件查找
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/03/23/VC%E7%BC%96%E7%A8%8B%20%E5%AE%B9%E5%99%A8/" rel="next" title="VC编程 容器">
+                  VC编程 容器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

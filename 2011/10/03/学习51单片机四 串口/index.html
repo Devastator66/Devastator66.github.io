@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="单片机的通信一般是指单片机与计算机，或与单片机之间的信息交换，有并行和串行两种方式。并行通信控制简单、相对传输速度快，但长距离传送时成本高且收、发方的各位同时接收存在困难；串行通信是按位将数据逐个传送，其优点是线路少成本低，可以利用现成线路，但传送控制比较复杂。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习51单片机四 串口">
+<meta property="og:url" content="https://devastator66.github.io/2011/10/03/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%9B%9B%20%E4%B8%B2%E5%8F%A3/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="单片机的通信一般是指单片机与计算机，或与单片机之间的信息交换，有并行和串行两种方式。并行通信控制简单、相对传输速度快，但长距离传送时成本高且收、发方的各位同时接收存在困难；串行通信是按位将数据逐个传送，其优点是线路少成本低，可以利用现成线路，但传送控制比较复杂。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/6LXCd5PlQ43e9fv.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/UIKtiDAkPNfoh4H.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/cmUn3dxourCVqYp.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/1PxkT3jFgzf7iDd.png">
+<meta property="article:published_time" content="2011-10-03T03:28:55.000Z">
+<meta property="article:modified_time" content="2021-02-11T04:50:22.730Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="51Chip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/11/6LXCd5PlQ43e9fv.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2011/10/03/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%9B%9B%20%E4%B8%B2%E5%8F%A3/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习51单片机四 串口 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">串行通信概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RS-232%E7%94%B5%E5%B9%B3%E4%B8%8ETTL%E7%94%B5%E5%B9%B3"><span class="nav-number">2.</span> <span class="nav-text">RS-232电平与TTL电平</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%B2%E5%8F%A3%E7%89%B9%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">单片机串口特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">4.</span> <span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">经验总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2011/10/03/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%9B%9B%20%E4%B8%B2%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习51单片机四 串口
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-03 11:28:55" itemprop="dateCreated datePublished" datetime="2011-10-03T11:28:55+08:00">2011-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/51Chip/" itemprop="url" rel="index"><span itemprop="name">51Chip</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>单片机的通信一般是指单片机与计算机，或与单片机之间的信息交换，有并行和串行两种方式。并行通信控制简单、相对传输速度快，但长距离传送时成本高且收、发方的各位同时接收存在困难；串行通信是按位将数据逐个传送，其优点是线路少成本低，可以利用现成线路，但传送控制比较复杂。</p>
+<a id="more"></a>
+
+<h4 id="串行通信概念"><a href="#串行通信概念" class="headerlink" title="串行通信概念"></a>串行通信概念</h4><p>串行通信分为异步串行通信和同步串行通信</p>
+<ol>
+<li>异步串行通信的发送与接收设备使用各自的时钟，以帧为单位进行传输，每帧之间的时间间隔是任意的。通常一帧由4部分组成：起始位、数据位、奇偶校验位和停止位。</li>
+<li>同步串行通信要建立发送方时钟对接收方时钟的直接控制，使双方达到完全同步。</li>
+</ol>
+<p>串行通信的制式</p>
+<ol>
+<li>单工：仅能沿一个方向传输。</li>
+<li>半双工：可以两个方向传输，但需要分时进行。</li>
+<li>全双工：可以两个方向同时传输。</li>
+</ol>
+<p>错误校验</p>
+<ol>
+<li>奇偶校验：奇校验时，数据位和校验位中1的个数之和应是奇数；偶校验时，数据位和校验位中1的个数之和应是偶数。</li>
+<li>代码和校验：发送前，对数据求和并以此生成一个字节的校验码，附加到数据末尾一同发送。接收后，对数据求和、生成校验码并以此与发送方校验码对比。</li>
+<li>循环冗余校验</li>
+</ol>
+<h4 id="RS-232电平与TTL电平"><a href="#RS-232电平与TTL电平" class="headerlink" title="RS-232电平与TTL电平"></a>RS-232电平与TTL电平</h4><p>RS-232电平与TTL电平都是数字电路的电平，而数字电路只有高电平和低电平。单片机的串口为TTL电平，高电平为+5V，低电平为0V；计算机的串口为RS-232C，高电平为-12V，低电平为+12V。所以，计算机与单片机之间的通信需要转换芯片。</p>
+<p>RS-232C接口标准</p>
+<p><img src="https://i.loli.net/2020/09/11/6LXCd5PlQ43e9fv.png" alt="1插针.PNG"></p>
+<blockquote>
+<p>上图是插针序号，母头则左右颠倒。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">插针序号</th>
+<th align="center">名称</th>
+<th align="left">功能</th>
+<th align="center">方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">DCD</td>
+<td align="left">载波检测</td>
+<td align="center">DCE-&gt;DTE</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">RXD</td>
+<td align="left">接收数据（串行输入）</td>
+<td align="center">DCE-&gt;DTE</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">TXD</td>
+<td align="left">发送数据（串行输出）</td>
+<td align="center">DTE-&gt;DCE</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">DTR</td>
+<td align="left">DTE就绪（数据终端准备就绪）</td>
+<td align="center">DTE-&gt;DCE</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">GND</td>
+<td align="left">信号地线</td>
+<td align="center">—</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">DSR</td>
+<td align="left">DCE就绪（数据建立就绪）</td>
+<td align="center">DCE-&gt;DTE</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">RTS</td>
+<td align="left">请求发送</td>
+<td align="center">DTE-&gt;DCE</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">CTS</td>
+<td align="left">允许发送</td>
+<td align="center">DCE-&gt;DTE</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">RI</td>
+<td align="left">振铃指示</td>
+<td align="center">DCE-&gt;DTE</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>DTE为数据终端设备，DCE为数据通信设备。</p>
+</blockquote>
+<p>电平转换芯片MAX232</p>
+<p><img src="https://i.loli.net/2020/09/11/UIKtiDAkPNfoh4H.png" alt="2MAX232.PNG"></p>
+<ol>
+<li>C1+和C1-，C2+和C2-之间各需要连接一个0.1uF/16V电容。</li>
+<li>V+与GND之间连接两个0.1uF电容；V-与GND之间连接一个0.1uF/16V电容。</li>
+<li>$T1_{IN}$和$T2_{IN}$可直接连接单片机的串口发送端TXD。$T1_{OUT}$和$T2_{OUT}$可直接连接PC机的串口接收端RXD。</li>
+<li>$R1_{IN}$和$R2_{IN}$可直接连接PC机串口的发送端TXD。$R1_{OUT}$和$R2_{OUT}$可直接连接单片机的串口接收端RXD。</li>
+</ol>
+<p>开发板中MAX232的连接方法</p>
+<p><img src="https://i.loli.net/2020/09/11/cmUn3dxourCVqYp.png" alt="3串口连接.PNG"></p>
+<ol>
+<li>单片机发送信息：单片机TXD端——P3.1连接至MAX232的11脚$T1_{IN}$。MAX232的14脚$T1_{OUT}$连接至开发板串口座的第2脚。这个第2脚通过“交叉串口线”，连接至PC机串口的RXD端——第3脚。</li>
+<li>PC机发送信息：PC机串口TXD端——第2脚通过“交叉串口线”连接置开发板串口座第3脚。这个第3脚连接至MAX232的$R1_{IN}$。MAX232的$R1_{OUT}$连接至单片机的RXD端——P3.0。</li>
+</ol>
+<blockquote>
+<p>串口连接线是交叉线，2和3口对调，传输距离不超过15米。</p>
+</blockquote>
+<h4 id="单片机串口特性"><a href="#单片机串口特性" class="headerlink" title="单片机串口特性"></a>单片机串口特性</h4><p>51单片机串行口是一个可编程全双工接口，由两个独立的串行数据缓冲区、发送/接收控制器、输入移位寄存器等电路组成。</p>
+<p>通过SCON来设置串口的工作方式，其字节地址为98H，可位寻址。单片机复位时SCON被清0。</p>
+<table>
+<thead>
+<tr>
+<th align="center">D7</th>
+<th align="center">D6</th>
+<th align="center">D5</th>
+<th align="center">D4</th>
+<th align="center">D3</th>
+<th align="center">D2</th>
+<th align="center">D1</th>
+<th align="center">D0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">工作方式</td>
+<td align="center">工作方式</td>
+<td align="center">多机控制</td>
+<td align="center">接受允许</td>
+<td align="center">发送第9位</td>
+<td align="center">接收第9位</td>
+<td align="center">发送中断</td>
+<td align="center">接收中断</td>
+</tr>
+<tr>
+<td align="center">SM0</td>
+<td align="center">SM1</td>
+<td align="center">SM2</td>
+<td align="center">REN</td>
+<td align="center">TB8</td>
+<td align="center">RB8</td>
+<td align="center">TI</td>
+<td align="center">RI</td>
+</tr>
+</tbody></table>
+<p>串行口有4种工作方式：</p>
+<table>
+<thead>
+<tr>
+<th align="center">SM0</th>
+<th align="center">SM1</th>
+<th align="center">方式</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="left">同步移位寄存器方式</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="left">10位异步收发（8位数据），波特率可变（T1溢出率控制）</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="left">11位异步收发（9位数据），波特率固定</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td align="left">11位异步收发（9位数据），波特率可变（T1溢出率控制）</td>
+</tr>
+</tbody></table>
+<ol>
+<li>SM2主要用于方式2和方式3。当接收机的SM2=1时：RB8=1，数据进入SBUF并中断RI置1；RB8=0，数据丢弃不中断。SM2=0时，无论RB8为何值，数据均进入SBUF并中断RI置1。方式0时，SM2必须为0。方式1时，SM2=1，则只在接收到有效停止位时，RI才置1。</li>
+<li>REN为1允许串口接收数据；为0禁止串口接收数据。</li>
+<li>TB8方式2、3中发送数据的第9位，可以用软件规定其作用。可以用作数据奇偶校验或标志位。方式0、1中未使用。</li>
+<li>RB8方式2、3中接收数据的第9位，可以用作数据奇偶校验或标志位。方式1时，若SM2=0，RB8是接收到的停止位。</li>
+<li>在方式0时，当串口发送第8位结束时，或其他方式，串口发送停止位的开始时，TI自动置1并发出中断。在中断服务程序中，必须手动清0。</li>
+<li>在方式0时，当串口接收第8位结束时，或其他方式，串口接收停止位的中间时，RI自动置1并发出中断。同样必须手动清0。</li>
+</ol>
+<h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><p>方式1通信，一帧10位：起始位0、8位数据、停止位1。数据传送时，低位在前，高位在后。串口通信的速率用波特率表示。<strong>波特率</strong>为每秒传输二进制的位数，即1波特=1位/秒，单位是bps（位/秒）。</p>
+<p>方式1波特率的计算方式：</p>
+<ol>
+<li>方式0的波特率=$f_{osc}/12$</li>
+<li>方式1的波特率=$(2^{SMOD}/32)$×(T1溢出率)</li>
+<li>方式2的波特率=$(2^{SMOD}/64)$×$f_{osc}$</li>
+<li>方式3的波特率=$(2^{SMOD}/32)$×(T1溢出率)</li>
+</ol>
+<blockquote>
+<p>$f_{osc}$为晶振频率，通常为11.0592MHz。SMOD是PCON的最高位。T1溢出率为定时器T1溢出的频率。</p>
+</blockquote>
+<p>电源管理寄存器PCON，字节地址为87H，不能位寻址。单片机复位时全部清0。</p>
+<table>
+<thead>
+<tr>
+<th align="center">D7</th>
+<th align="center">D6</th>
+<th align="center">D5</th>
+<th align="center">D4</th>
+<th align="center">D3</th>
+<th align="center">D2</th>
+<th align="center">D1</th>
+<th align="center">D0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SMOD</td>
+<td align="center">(SMOD0)</td>
+<td align="center">(LVDF)</td>
+<td align="center">(P0F)</td>
+<td align="center">GF1</td>
+<td align="center">GF0</td>
+<td align="center">PD</td>
+<td align="center">IDL</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>SMOD=0时，串口方式1、2、3波特率一般；SMOD=1时，串口方式1、2、3波特率加倍。其余位在串口通信中用不到。</p>
+</blockquote>
+<p>如上所述，方式1的波特率决定于T1的溢出率，只要计算出T1每溢出一次的时间，那么这个时间的倒数即是它的溢出率。为了尽量使传输速率精确，我们采用T1定时器的方式2来自动装填TH1和TL1。定时器每$2^8$-X个计数溢出一次，每个计数时间为1个机器周期，1个机器周期等于12个时钟周期，所以1个计数时间为12/11.0592s。将T1溢出率代入“方式1”公式得到波特率：$(2^{SMOD}/32)\times (256−X)×12\div 11.0592$。</p>
+<blockquote>
+<p>通常波特率都是取1200、1800、2400、3600、4800、7200、9600、14400、19200等，当晶振频率为11.0592时，求X都能得到整数。</p>
+</blockquote>
+<p>例：计算机与单片机串口通信</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">uchar flag, ch, i;</span><br><span class="line">uchar code str[] = <span class="string">&quot;answer:&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TMOD = <span class="number">0x20</span>;</span><br><span class="line">    TH1 = <span class="number">0xfd</span>;     <span class="comment">//9600bps</span></span><br><span class="line">    TL1 = <span class="number">0xfd</span>;</span><br><span class="line">    TR1 = <span class="number">1</span>;        <span class="comment">//打开定时器1</span></span><br><span class="line"></span><br><span class="line">    SM0 = <span class="number">0</span>;        <span class="comment">//串口方式1</span></span><br><span class="line">    SM1 = <span class="number">1</span>;</span><br><span class="line">    REN = <span class="number">1</span>;        <span class="comment">//打开串口</span></span><br><span class="line"></span><br><span class="line">    EA = <span class="number">1</span>;         <span class="comment">//打开串口中断</span></span><br><span class="line">    ES = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">1</span>)<span class="comment">//收到一个字符</span></span><br><span class="line">        &#123;</span><br><span class="line">            ES = <span class="number">0</span>;   <span class="comment">//关闭串口中断，一个一个字符的处理</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">7</span>; i++) <span class="comment">//发送7个字符</span></span><br><span class="line">            &#123;</span><br><span class="line">                SBUF = str[i];  <span class="comment">//发送1个字符</span></span><br><span class="line">                <span class="keyword">while</span>(!TI);     <span class="comment">//没使用中断发送方式</span></span><br><span class="line">                TI = <span class="number">0</span>;         <span class="comment">//TI复位，准备发送下一个字符</span></span><br><span class="line">            &#125;</span><br><span class="line">            SBUF = ch;          <span class="comment">//接收的那个字符，也发送过去</span></span><br><span class="line">            <span class="keyword">while</span> (!TI);        <span class="comment">//判断是否发送完成</span></span><br><span class="line">            TI = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            ES = <span class="number">1</span>;             <span class="comment">//打开串口中断</span></span><br><span class="line">            flag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">serial</span><span class="params">()</span> interrupt 4</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    RI = <span class="number">0</span>;     <span class="comment">//中断标志复位</span></span><br><span class="line">    ch = SBUF;  <span class="comment">//单片机获取一个字节</span></span><br><span class="line">    flag = <span class="number">1</span>;   <span class="comment">//接到数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我们通过“串口调试助手”，在计算机上接收/发送数据。串口调试助手会占用当前串口，所以在下载程序到单片机时，应解除其对串口的占用。</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/09/11/1PxkT3jFgzf7iDd.png" alt="4串口调试助手.PNG"></p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li>定时器和串口通信都可以在不开中断的情况下，靠检测标志位的方式工作，如此就避免了写中断处理函数。</li>
+<li>在设置好控制端口后，给SBUF赋值或SBUF赋值给某个变量，进行串口数据传输。使用while或if语句来判断RI、TI的值，以确定完成1个字节的接收/发送。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/51Chip/" rel="tag"># 51Chip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2011/09/30/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%89%20%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E5%92%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD/" rel="prev" title="学习51单片机三 外部中断和定时器中断">
+                  <i class="fa fa-chevron-left"></i> 学习51单片机三 外部中断和定时器中断
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/" rel="next" title="学习51单片机五 模数转换">
+                  学习51单片机五 模数转换 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

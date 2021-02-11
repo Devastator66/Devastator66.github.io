@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="数字量与模拟量的转换，其实就是一个描点过程。描点越多，表示越精确，但不可能完全一致，因为模拟量是连续的，需要无穷多的数字量。比如，用8位二进制数表示每个点，那么可以有$2^8$个点来表示模拟图像。 当前的处理器都是数字芯片，无法直接接收&#x2F;发送模拟信号，所以在需要处理模拟信号的情况下，必然需要转换电路来完成设计。下面介绍两个芯片，分别说明两个方向上的转换。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习51单片机五 模数转换">
+<meta property="og:url" content="https://devastator66.github.io/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="数字量与模拟量的转换，其实就是一个描点过程。描点越多，表示越精确，但不可能完全一致，因为模拟量是连续的，需要无穷多的数字量。比如，用8位二进制数表示每个点，那么可以有$2^8$个点来表示模拟图像。 当前的处理器都是数字芯片，无法直接接收&#x2F;发送模拟信号，所以在需要处理模拟信号的情况下，必然需要转换电路来完成设计。下面介绍两个芯片，分别说明两个方向上的转换。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/lq1K2Xpk3dbN4Iy.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/irV2pPM1vyR4oEa.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/M75AapYjHyXCZG2.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/jQBCcoGS2q3EK7r.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/etSTbsC5WpV4zXK.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/30/c3ujWf9mHXdJR2w.png">
+<meta property="article:published_time" content="2011-10-06T08:13:18.000Z">
+<meta property="article:modified_time" content="2021-02-11T07:44:59.827Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="51Chip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/30/lq1K2Xpk3dbN4Iy.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习51单片机五 模数转换 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-D"><span class="nav-number">1.</span> <span class="nav-text">A&#x2F;D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-A"><span class="nav-number">2.</span> <span class="nav-text">D&#x2F;A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习51单片机五 模数转换
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-06 16:13:18" itemprop="dateCreated datePublished" datetime="2011-10-06T16:13:18+08:00">2011-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/51Chip/" itemprop="url" rel="index"><span itemprop="name">51Chip</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>数字量与模拟量的转换，其实就是一个描点过程。描点越多，表示越精确，但不可能完全一致，因为模拟量是连续的，需要无穷多的数字量。比如，用8位二进制数表示每个点，那么可以有$2^8$个点来表示模拟图像。</p>
+<p>当前的处理器都是数字芯片，无法直接接收/发送模拟信号，所以在需要处理模拟信号的情况下，必然需要转换电路来完成设计。下面介绍两个芯片，分别说明两个方向上的转换。</p>
+<a id="more"></a>
+
+<h4 id="A-D"><a href="#A-D" class="headerlink" title="A/D"></a>A/D</h4><p>为了正确无误地采集模拟信号，必须满足$f_{s}\ge 2f_{imax}$。$f_{s}$为采用频率，$f_{imax}$为模拟信号最高频率分量的频率。上述采样定理只是规定了转换频率的下限，采样频率通常取$f_{s}$ = (3~5)$f_{imax}$能够满足要求。</p>
+<p>A/D每次把参考电压转换为数字量都需要一定的时间，这个过程远比D/A要慢。因此，一般以精度和速度两个方面来考量A/D芯片的性能。</p>
+<p>ADC0804</p>
+<p><img src="https://i.loli.net/2020/08/30/lq1K2Xpk3dbN4Iy.png" alt="1ADC0805.PNG"></p>
+<ol>
+<li>$V_{IN}$(+)和$V_{IN}$(-)模拟信号输入端，可接受单极性、双极性和差模输入信号。</li>
+<li>DB7~DB0具有三态特性数字信号输出口。</li>
+<li>AGND模拟接地，DGND数字接地。</li>
+<li>CLK时钟信号输入。CLKR内部时钟发生器的外接电阻端，与CLK连接可由芯片自身产生时钟，频率为1/(1.1RC)。</li>
+<li>$\overline{CS}$片选信号输入，低电平有效，表明启动芯片，开始工作。</li>
+<li>$\overline{WR}$写信号输入，$\overline{RD}读信号输入。</li>
+<li>$\overline{INTR}$在A/D转换结束后，置低电平表示转换完成。</li>
+<li>$V_{REF}$/2参考电平输入，决定量化单位，取2.5V。</li>
+<li>Vcc芯片电源5V。</li>
+</ol>
+<p>从直觉上看，$V_{IN}$(+)和$V_{IN}$(-)用来从外界接收模拟量，DB口用来输出转换后的数字量，其他端口用于控制。开发板的连接方法如下：</p>
+<p><img src="https://i.loli.net/2020/08/30/irV2pPM1vyR4oEa.png" alt="2AD数模转换.PNG"></p>
+<p>如图，单片机P1口接DB0~DB7，P0.7管脚通过一个锁存器连接$\overline{CS}$，P3.6管脚接$\overline{WR}$，P3.7管脚接$\overline{RD}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
+<p><img src="https://i.loli.net/2020/08/30/M75AapYjHyXCZG2.png" alt="3ADC0805时序.PNG"></p>
+<p>如图，先给$\overline{CS}$赋予低电平，然后给$\overline{WR}$赋予一个低脉冲，一段时间后对应数字量才会在输出口稳定住。在输出口读取数据需要给$\overline{RD}$赋予一个低脉冲。在这个脉冲底部，我们可以通过读取P1口来获得数字量。</p>
+<p>例：用数码管显示电压</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;intrins.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P0^<span class="number">7</span>;     <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>;     <span class="comment">//WR</span></span><br><span class="line">sbit rd = P3^<span class="number">7</span>;     <span class="comment">//RD</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint n = <span class="number">0</span>;</span><br><span class="line">    uint i = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//始终保持为0</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        wr = <span class="number">1</span>;     <span class="comment">//写入</span></span><br><span class="line">        _nop_();    <span class="comment">//延时</span></span><br><span class="line">        wr = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        wr = <span class="number">1</span>;</span><br><span class="line">        delay(<span class="number">20</span>);  <span class="comment">//等待数据转换</span></span><br><span class="line"></span><br><span class="line">        rd = <span class="number">1</span>;     <span class="comment">//读取</span></span><br><span class="line">        _nop_();    </span><br><span class="line">        rd = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        n = P1;     <span class="comment">//得到数字量</span></span><br><span class="line">        rd = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//延长显示时间</span></span><br><span class="line">            display(n);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;        <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = (n / <span class="number">10</span>) / <span class="number">10</span>; <span class="comment">//得到十位</span></span><br><span class="line">    uchar h = n / <span class="number">100</span>;       <span class="comment">//得到百位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];        <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7b</span>;            <span class="comment">//为了CS置为0，所以为7</span></span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];        <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7d</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[h];        <span class="comment">//显示百位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7e</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述程序未使用中断触发方式。</p>
+</blockquote>
+<h4 id="D-A"><a href="#D-A" class="headerlink" title="D/A"></a>D/A</h4><p>每个数字量就是一串二进制码，其中每一位都有一定的权。为了将数字量转换为模拟量，必须将每一位按其权的大小转换成相应的模拟量，然后将这些模拟量相加，即可得到与数字量成正比的总模拟量。</p>
+<p>DAC0832</p>
+<p><img src="https://i.loli.net/2020/08/30/jQBCcoGS2q3EK7r.png" alt="4DAC0832.PNG"></p>
+<ol>
+<li>$\overline{CS}$片选信号输入端</li>
+<li>$\overline{WR1}$输入寄存器写选通，当CS为0，ILE为1，WR1为0时，DI0~DI7状态被锁存到输入寄存器。</li>
+<li>$\overline{WR2}$为DAC寄存器写选通，当XEFR为0，WR2为0时，输入寄存器的状态传到DAC寄存器中。</li>
+<li>DI0~DI7数据输入端，TTL电平，有效时间大于90ns。</li>
+<li>$V_{REF}$基准电压输入端，电压范围为-10V~+10V。</li>
+<li>$R_{fb}$反馈电阻端</li>
+<li>$I_{out1}$电流输出端，输入全为1时，其电流最大。$I_{out2}$其值与$I_{out1}$端电流之和为一常数。</li>
+<li>$\overline{XFER}$数据传输控制信号输入端。ILE数据锁存允许信号输入端，高电平有效。</li>
+<li>Vcc电源+5V~+15V，GND模拟地和数字地。</li>
+</ol>
+<p>从直觉上看，DI口用来接收8位二进制数输入，$I_{out1}$和$I_{out2}$口用来输出对应的模拟量，其它端口用于控制。DAC0832有三种模式：双缓冲、单缓冲、直通。开发板采用最基本的直通方式连接电路：</p>
+<p><img src="https://i.loli.net/2020/08/30/etSTbsC5WpV4zXK.png" alt="5DA数模转换.PNG"></p>
+<p>如图，单片机P1口接DI0~DI7，P3.2管脚接$\overline{CS}$，P3.6管脚接$\overline{WR1}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
+<p><img src="https://i.loli.net/2020/08/30/c3ujWf9mHXdJR2w.png" alt="6DAC0832时序.PNG"></p>
+<p>如图，先要给$\overline{CS}$和$\overline{WR1}$赋予低电平，在ts秒后D/A转换完成，$I_{out}$输出稳定。结束转换可以给$\overline{CS}$和$\overline{WR1}$赋予高电平。</p>
+<p>例：呼吸灯</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P3^<span class="number">2</span>; <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>; <span class="comment">//WR</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;  <span class="comment">//数据端计数0~255</span></span><br><span class="line">    uint flag = <span class="number">0</span>;  <span class="comment">//标识计数方向</span></span><br><span class="line">    duan = <span class="number">1</span>;       <span class="comment">//复用了P0，为防止数码管乱显示。</span></span><br><span class="line">    P0 = <span class="number">0</span>;</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//片选</span></span><br><span class="line">    wr = <span class="number">0</span>;         <span class="comment">//开始写数据</span></span><br><span class="line">    P0 = flag;      <span class="comment">//给D0~D7赋初值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            count += <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= <span class="number">255</span>)</span><br><span class="line">                flag = <span class="number">1</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);      <span class="comment">//DA转换延时</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            count -= <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &lt;= <span class="number">0</span>)</span><br><span class="line">                flag = <span class="number">0</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只要将$\overline{CS}$和$\overline{WR1}$置为0，就可以连续给数据口赋值，芯片随之输出模拟量。D/A转换过程很快，但最好还是加上延时以保证数据完成转换。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>可以在<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">https://www.alldatasheet.com/</a>下载芯片说明书。</li>
+<li>芯片的说明书有典型的接法，其编程方法就是其时序图。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/51Chip/" rel="tag"># 51Chip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2011/10/03/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%9B%9B%20%E4%B8%B2%E5%8F%A3/" rel="prev" title="学习51单片机四 串口">
+                  <i class="fa fa-chevron-left"></i> 学习51单片机四 串口
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2011/10/08/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AD%201602%E6%B6%B2%E6%99%B6%E5%B1%8F/" rel="next" title="学习51单片机六 1602液晶屏">
+                  学习51单片机六 1602液晶屏 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'none'
+      },
+      options: {
+        renderActions: {
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</body>
+</html>

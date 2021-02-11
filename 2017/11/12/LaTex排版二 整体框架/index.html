@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTex排版二 整体框架">
+<meta property="og:url" content="https://devastator66.github.io/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-12T01:15:32.000Z">
+<meta property="article:modified_time" content="2021-02-11T00:58:08.506Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="LaTex">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>LaTex排版二 整体框架 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">写论文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E4%B9%A6"><span class="nav-number">2.</span> <span class="nav-text">写书</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LaTex排版二 整体框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-12 09:15:32" itemprop="dateCreated datePublished" datetime="2017-11-12T09:15:32+08:00">2017-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LaTex/" itemprop="url" rel="index"><span itemprop="name">LaTex</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。</p>
+<a id="more"></a>
+
+<h4 id="写论文"><a href="#写论文" class="headerlink" title="写论文"></a>写论文</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8,a4paper]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"><span class="keyword">\date</span> &#123;<span class="keyword">\today</span>&#125;    <span class="comment">%设置日期，为空则不显示日期</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;      <span class="comment">%图片</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;       <span class="comment">%数学表示</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;      <span class="comment">%语法高亮</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;xcolor&#125;        <span class="comment">%颜色包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;  <span class="comment">%文章开始</span></span><br><span class="line"><span class="keyword">\maketitle</span>        <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;abstract&#125;</span><br><span class="line">  <span class="comment">%摘要内容</span></span><br><span class="line"><span class="keyword">\end</span>&#123;abstract&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%目录另起一页</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>  <span class="comment">%显示目录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%正文另起一页</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二节内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;10&#125;  <span class="comment">%参考文献</span></span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP1&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.1.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP2&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.2.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP3&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.3.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;  <span class="comment">%文章结尾</span></span><br></pre></td></tr></table></figure>
+<p>1.通过第一行<code>\documentclass[选项]&#123;文档类&#125;</code>中的“选项”（多个选项之间以逗号分隔），可以设置：</p>
+<ul>
+<li>纸张 a4paper，a5paper，b5paper</li>
+<li>字号 10pt，11pt，12pt</li>
+</ul>
+<p>2.通过\usepackage引入支持文档编辑的包。常用的就是上面那四个。</p>
+<p>3.按照ctexart文档类的特性，摘要会紧接上文内容显示。可以使用\newpage命令把摘要或目录用独立页显示。</p>
+<p>4.文章具体内容放在每个小结层次内。</p>
+<p>5.参考文献</p>
+<ul>
+<li><code>\begin&#123;thebibliography&#125;&#123;标号位宽&#125;</code>中的“标号位宽”表示自动编号的最大位数。例如共有30条参考，这个标号位宽可以是30，99，ab等。</li>
+<li>每条参考格式：<code>\bibitem&#123;标签&#125; 作者 , 书名 , 出版社 , 年份</code>。标签是个名字，在文章正文中引用文献时会用到它。</li>
+<li>引用文献的命令：<code>cite&#123;标签&#125;</code>。</li>
+</ul>
+<h4 id="写书"><a href="#写书" class="headerlink" title="写书"></a>写书</h4><p>因为一本书的体量远远大于一篇论文，如果把所有文字放在一个文件里，管理起来会很困难。所以采用多文件的方式，有层次的存放各种类型的文档。比如，建立一个根目录book，在其下建立主文件（main.tex）和各章节子目录chapter1、chapter2…在每个章目录内建立章文件（chapter.tex）和picture、code目录，用来保存本章各种图片和源代码。</p>
+<p>一、书籍主文件框架（main.tex）</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[选项]&#123;ctexbook&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%引入常用包，跟上面论文框架类似</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="keyword">\maketitle</span>                  <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/Foreword&#125;   <span class="comment">%插入前言</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>            <span class="comment">%显示目录</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter1&#125;   <span class="comment">%引入章节，路径中文件名不带扩展名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter2&#125;</span><br><span class="line"><span class="keyword">\appendix</span>                   <span class="comment">%引入附录，此命令后，引入的章节以“附录X”编号</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixA&#125;  </span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixB&#125;</span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;plain&#125;   <span class="comment">%插入参考</span></span><br><span class="line"><span class="keyword">\bibliography</span>&#123;数据库文件名&#125;  <span class="comment">%不要加上扩展名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>1.通过<code>\include</code>引入子目录中的章节文件。</p>
+<p>2.另一种加入参考文献的方法</p>
+<ul>
+<li>在书末尾通过<code>\bibliographystyle</code>和<code>\bibliography</code>引入文献数据库（*.bib）。</li>
+<li>引用文献仍是通过<code>\cite&#123;标签&#125;</code>，不引用的文献不会显示。一个文献都不引用，编译报错。</li>
+<li>数据库文件（*.bib）的格式如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@BOOK&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  publisher &#x3D; &#123;出版社&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;, </span><br><span class="line">  volume &#x3D; &#123;第几卷&#125;,</span><br><span class="line">  edition &#x3D; &#123;第几版&#125;  %first、second、third</span><br><span class="line">&#125;</span><br><span class="line">@ARTICLE&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  joural &#x3D; &#123;期刊名&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;,</span><br><span class="line">  number &#x3D; &#123;期刊号&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里列举了BOOK、ARTICLE的一些常用属性设置，当然还可以设置其他的属性。一个*.bib文件可以存放多个文献的信息。带bib数据库的文档需要多次编译。这种方式并不比之前的方法省事，通常都是从网上下载这种bib数据库文件直接引用。</p>
+</blockquote>
+<p>二、章节文件框架（chapter.tex）</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\chapter</span>&#123;章节名称&#125;</span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二小节内容</span></span><br><span class="line"><span class="keyword">\endinput</span>   <span class="comment">%显式的结束文本，后面的内容不会被编译</span></span><br></pre></td></tr></table></figure>
+<p>去掉章节编号：添加星即可<code>\chapter*&#123;&#125;</code>。同时，这个chapter也不会被编进目录中。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/LaTex/" rel="tag"># LaTex</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/11/03/LaTex%E6%8E%92%E7%89%88%E4%B8%80%20%E6%A6%82%E8%BF%B0/" rel="prev" title="LaTex排版一 概述">
+                  <i class="fa fa-chevron-left"></i> LaTex排版一 概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/11/18/%E5%8F%98%E5%BD%A2%E9%87%91%E5%88%9A%E7%8E%A9%E5%85%B7/" rel="next" title="变形金刚玩具">
+                  变形金刚玩具 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>

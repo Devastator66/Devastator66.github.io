@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="文件是任何系统最基本的资源，通常作为程序输入输出的对象。对于MFC，最基本的操作文件类就是CFile，它提供了众多基本函数，比如文件读写、移动读写指针等。当然，还有其他的文件操作类，简化了一些操作，但基本的使用思路没什么不同。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC编程 文件">
+<meta property="og:url" content="https://devastator66.github.io/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="文件是任何系统最基本的资源，通常作为程序输入输出的对象。对于MFC，最基本的操作文件类就是CFile，它提供了众多基本函数，比如文件读写、移动读写指针等。当然，还有其他的文件操作类，简化了一些操作，但基本的使用思路没什么不同。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-15T04:10:22.000Z">
+<meta property="article:modified_time" content="2021-02-10T05:08:38.925Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="VC++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>VC编程 文件 | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CFile%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">CFile基本操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CStdioFile%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">CStdioFile基本操作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC编程 文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-15 12:10:22" itemprop="dateCreated datePublished" datetime="2016-03-15T12:10:22+08:00">2016-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VC/" itemprop="url" rel="index"><span itemprop="name">VC++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>文件是任何系统最基本的资源，通常作为程序输入输出的对象。对于MFC，最基本的操作文件类就是CFile，它提供了众多基本函数，比如文件读写、移动读写指针等。当然，还有其他的文件操作类，简化了一些操作，但基本的使用思路没什么不同。</p>
+<a id="more"></a>
+
+<h4 id="CFile基本操作"><a href="#CFile基本操作" class="headerlink" title="CFile基本操作"></a>CFile基本操作</h4><p><strong>一 创建</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CFile(    <span class="comment">//构造函数</span></span><br><span class="line">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span><br><span class="line">    UINT nOpenFlags);        <span class="comment">//访问选项</span></span><br></pre></td></tr></table></figure>
+<p>参数nOpenFlags可选择如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CFile::modeRead         <span class="comment">//只读属性</span></span><br><span class="line">CFile::modeWrite        <span class="comment">//只写属性</span></span><br><span class="line">CFile::modeReadWrite    <span class="comment">//读写访问</span></span><br><span class="line">CFile::modeCreate       <span class="comment">//如果文件不存在创建文件，如果存在则覆盖并设置文件为空</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模式可以组合使用，通过运算符 | 。</p>
+</blockquote>
+<p>创建文件主要靠的是参数modeCreate，所以创建一个文件除了通过CFile的构造函数，还可以通过下面的Open函数实现。使用构造函数创建文件对象，直接就打开了实际的文件。</p>
+<p><strong>二 打开和关闭</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Open</span><span class="params">(      <span class="comment">//以nOpenFlags属性打开lpszFileName路径的文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nOpenFlags,         <span class="comment">//访问选项</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CFileException* pError = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Close</span><span class="params">()</span></span>;        <span class="comment">//关闭一个文件并删除对象。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参数lpszFileName可接受字符串常量或CString类型的变量。</p>
+</blockquote>
+<p>例：打开指定路径的文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CString CurrentPath; </span><br><span class="line">GetModuleFileName(<span class="literal">NULL</span>,CurrentPath.GetBufferSetLength(MAX_PATH+<span class="number">1</span>),MAX_PATH+<span class="number">1</span>);  <span class="comment">//获取当前程序的路径</span></span><br><span class="line"><span class="keyword">int</span> i = CurrentPath.ReverseFind(<span class="string">&#x27;\\&#x27;</span>);</span><br><span class="line">CurrentPath = CurrentPath.Left(i+<span class="number">1</span>);</span><br><span class="line">CurrentPath += <span class="string">&quot;log.dat&quot;</span>;    <span class="comment">//当前程序路径下的日志文件路径</span></span><br><span class="line"></span><br><span class="line">CFile f;</span><br><span class="line"><span class="keyword">if</span> (f.Open(CurrentPath,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//进行文件操作</span></span><br><span class="line">    f.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;文件打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>三 读写</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> UINT <span class="title">Read</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span>* lpBuf,        <span class="comment">//接收数据缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//读取的最大字节数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Write</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> <span class="keyword">void</span>* lpBuf,  <span class="comment">//包含待写入数据的缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//要从缓冲区传输的字节数</span></span><br></pre></td></tr></table></figure>
+<p>从这两个函数的缓冲区类型上看，MFC并没有对其进行严格的限制，通常可以作为缓冲区的参数类型如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">50</span>]        <span class="comment">//1.字符数组</span></span><br><span class="line">str.GetBuffer()   <span class="comment">//2.CString缓冲区</span></span><br></pre></td></tr></table></figure>
+<p>例：读取日志并根据用户名得到密码<br>我们假设待读取的文件内容为姓名和密码，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">张三	m123ad242</span><br><span class="line">李四	acs003342</span><br><span class="line">王五	skdlfjs32</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：log.dat文件的字符格式应为GBK，否则获取中文会得到乱码。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line"><span class="keyword">char</span> a = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">CString Name = <span class="string">&quot;&quot;</span>;    <span class="comment">//收集姓名</span></span><br><span class="line">CString No = <span class="string">&quot;&quot;</span>;      <span class="comment">//收集编号</span></span><br><span class="line"><span class="keyword">while</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    f.Read(&amp;a,<span class="number">1</span>);<span class="comment">//获取本行第一个字符</span></span><br><span class="line">    <span class="keyword">if</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (a != <span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Name += a;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Name == <span class="string">&quot;李四&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                No += a;</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            Name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文件读取指针是每调用一次Read，自动更新指针到下一个位置。</p>
+<p>例：在文件末尾写入信息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line">CString name = <span class="string">&quot;张三&quot;</span>;</span><br><span class="line">CString str = name + <span class="string">&quot;下线&quot;</span> + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line">f.SeekToEnd();	<span class="comment">//移动文件指针到末尾</span></span><br><span class="line">f.Write(str,str.GetLength());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>写入的字符格式也是GBK。</p>
+</blockquote>
+<p><strong>四 定位</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">Seek</span><span class="params">(    <span class="comment">//移动文件指针</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LONGLONG lOff,         <span class="comment">//移动的字节数，正值表示从前向后移动，负值则从后向前移动。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nFrom)</span></span>;           <span class="comment">//当前位置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SeekToBegin</span><span class="params">()</span></span>;        <span class="comment">//移动到文件开始</span></span><br><span class="line"><span class="function">ULONGLONG <span class="title">SeekToEnd</span><span class="params">()</span></span>;     <span class="comment">//移动到文件末尾</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetPosition</span><span class="params">()</span> <span class="keyword">const</span></span>;    <span class="comment">//获取当前的文件指针的位置</span></span><br></pre></td></tr></table></figure>
+<p>参数nFrom可以选择如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CFile::begin        <span class="comment">//从文件开始（从0计）</span></span><br><span class="line">CFile::current      <span class="comment">//从当前位置</span></span><br><span class="line">CFile::end          <span class="comment">//从文件末尾</span></span><br></pre></td></tr></table></figure>
+<p>Seek如果移动指针失败，则返回一个未定义值并抛出一个CFileException异常。</p>
+<p>例：定位到文件最后一个字符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.Seek(<span class="number">-1</span>,CFile::end);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (CFileException* e)</span><br><span class="line">&#123;</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;当前文件空&quot;</span>);</span><br><span class="line">    flag = <span class="number">1</span>;    <span class="comment">//出现异常置位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>五 大小，改名、删除</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetLength</span><span class="params">()</span> <span class="keyword">const</span></span>;           <span class="comment">//返回文件的尺寸</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SetLength</span><span class="params">(ULONGLONG dwNewLen)</span></span>;    <span class="comment">//设置文件的尺寸。dwNewLen可以大于或小于文件尺寸。源文件会被放大或截断，放大部分用0x0填充。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Rename</span><span class="params">(      <span class="comment">//重命名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszOldName,        <span class="comment">//老路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszNewName,        <span class="comment">//新路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Remove</span><span class="params">(      <span class="comment">//移除文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,       <span class="comment">//路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Rename和Remove都是静态函数，可以直接调用，例如CFile::Remove。</p>
+</blockquote>
+<p><strong>六 属性</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">GetStatus</span><span class="params">(CFileStatus&amp; rStatus)</span> <span class="keyword">const</span></span>;    <span class="comment">//获得文件的状态</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> BOOL PASCAL <span class="title">GetStatus</span><span class="params">(        <span class="comment">//获得文件状态（静态版本）</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    CFileStatus&amp; rStatus,            <span class="comment">//用于接收文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">SetStatus</span><span class="params">(        <span class="comment">//设置文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> CFileStatus&amp; status,       <span class="comment">//通过提前填充CFileStatus对象来设置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>CFileStatus成员：</p>
+<ul>
+<li>CTime m_ctime 文件创建日期时间</li>
+<li>CTime m_mtime 文件最后修改日期时间</li>
+<li>CTime m_atime 文件最后访问日期时间</li>
+<li>ULONGLONG m_size 文件尺寸（字节）</li>
+<li>BYTE m_attribute 文件属性</li>
+<li>char m_szFullName[_MAX_PATH] 文件名</li>
+</ul>
+<p>m_attribute数据：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Attribute</span> &#123;</span></span><br><span class="line">    normal =    <span class="number">0x00</span>,</span><br><span class="line">    readOnly =  <span class="number">0x01</span>,</span><br><span class="line">    hidden =    <span class="number">0x02</span>,</span><br><span class="line">    system =    <span class="number">0x04</span>,</span><br><span class="line">    volume =    <span class="number">0x08</span>,</span><br><span class="line">    directory = <span class="number">0x10</span>,</span><br><span class="line">    archive =   <span class="number">0x20</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>例：获取文件大小和创建时间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CFileStatus status;</span><br><span class="line"><span class="keyword">if</span>(f.GetStatus(status))</span><br><span class="line">&#123;</span><br><span class="line">    m_Edit1.Format(<span class="string">&quot;%d&quot;</span>,status.m_size);</span><br><span class="line">    m_Edit2.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">        status.m_ctime.GetYear(),status.m_ctime.GetMonth(),status.m_ctime.GetDay(),</span><br><span class="line">        status.m_ctime.GetHour(),status.m_ctime.GetMinute(),status.m_ctime.GetSecond());</span><br><span class="line">    m_Edit3.Format(<span class="string">&quot;0x%x&quot;</span>,status.m_attribute);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例：设置文件属性为隐藏</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CFileStatus t;</span><br><span class="line">t.m_size = <span class="number">0</span>;	</span><br><span class="line">t.m_attribute |= CFile::hidden;</span><br><span class="line">CFile::SetStatus(CurrentPath,t);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果CFileStatus对象中的某项被设置为0，那么这一项不会更新。</p>
+</blockquote>
+<h4 id="CStdioFile基本操作"><a href="#CStdioFile基本操作" class="headerlink" title="CStdioFile基本操作"></a>CStdioFile基本操作</h4><p>CStdioFile继承自CFile，提供了行读写函数。</p>
+<p><strong>一 读取一行</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> LPTSTR <span class="title">ReadString</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR lpsz,       <span class="comment">//指定一个字符缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nMax)</span></span>;        <span class="comment">//最大接收字符数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">ReadString</span><span class="params">(CString&amp; rString)</span></span>;    <span class="comment">//接收一个CString对象</span></span><br></pre></td></tr></table></figure>
+<p>通常，接收CString对象的版本更加实用。ReadString每次获取一行，但不获取每行末尾的\r\n，使用起来非常方便。读取正常的话，rString每次都能获取一行字符，如果到达文件末尾，rString会得到NULL，函数返回False。</p>
+<p>例：读取每行信息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CStdioFile <span class="built_in">log</span>;</span><br><span class="line">CString Line, str;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">log</span>.Open(<span class="string">&quot;H:\\log.dat&quot;</span>,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.ReadString(Line);</span><br><span class="line">    str.Format(<span class="string">&quot;%d&quot;</span>,Line.GetLength());<span class="comment">//不包括\r\n</span></span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">log</span>.ReadString(Line))	<span class="comment">//抵达末尾，返回空</span></span><br><span class="line">        AfxMessageBox(Line);</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;抵达文件末尾&quot;</span>);</span><br><span class="line">    <span class="built_in">log</span>.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessage(<span class="string">&quot;log打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>二 写入一行</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">WriteString</span><span class="params">(LPCTSTR lpsz)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>WriteString没有什么特别之处，与CFile的Write类似，将lpsz缓冲区内的字符串直接写入文件，并没有在末尾自动添加\r\n这类东西。</p>
+<p>例：写入三行信息</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//log文件以modeWrite打开</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;张三\t123456\r\n&quot;</span>);    <span class="comment">//写入时同样不会添加\r\n</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;李四\t123456\r\n&quot;</span>);</span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;王五\t123456&quot;</span>);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VC/" rel="tag"># VC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/03/11/VC%E7%BC%96%E7%A8%8B%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="VC编程 字符串">
+                  <i class="fa fa-chevron-left"></i> VC编程 字符串
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/03/17/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE/" rel="next" title="VC编程 文件查找">
+                  VC编程 文件查找 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>
