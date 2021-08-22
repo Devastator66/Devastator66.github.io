@@ -27,7 +27,7 @@
 <p>过去就总结到此，下面该展望未来了。未来该怎么说呢？任何一个人都希望能过得更好。客观上讲，那不是个人能左右的，年龄越大越能感到命运之力。所以只能将自己修好，并期望上天眷顾。</p>
 <p>2021年要完成的事如下：</p>
 <ol>
-<li>学会FPGA</li>
+<li>学会Python</li>
 <li>通过“系统分析师”考试</li>
 <li>取得驾照</li>
 </ol>
@@ -360,6 +360,86 @@
       </tags>
   </entry>
   <entry>
+    <title>LaTex排版三 细节</title>
+    <url>/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/</url>
+    <content><![CDATA[<h4 id="文字字符"><a href="#文字字符" class="headerlink" title="文字字符"></a>文字字符</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;文字&#125;</span><br><span class="line"><span class="keyword">\textbf</span>&#123;加粗&#125;</span><br><span class="line"><span class="keyword">\emph</span>&#123;强调&#125;</span><br><span class="line"><span class="keyword">\underline</span>&#123;下划线&#125;</span><br><span class="line"><span class="keyword">\footnote</span>&#123;脚注内容&#125;</span><br><span class="line"><span class="keyword">\copyright</span>            <span class="comment">%版权符号</span></span><br><span class="line"><span class="keyword">\songti</span>&#123;宋体&#125;         <span class="comment">%ctex提供的中文字体</span></span><br><span class="line"><span class="keyword">\heiti</span>&#123;黑体&#125;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;楷书&#125;</span><br><span class="line"><span class="keyword">\ </span>                    <span class="comment">%空格</span></span><br><span class="line"><span class="keyword">\quad</span>                 <span class="comment">%一m宽度空白</span></span><br><span class="line"><span class="keyword">\qquad</span>                <span class="comment">%二m宽度空白</span></span><br><span class="line"><span class="keyword">\#</span> <span class="keyword">\$</span> <span class="keyword">\%</span> <span class="keyword">\&amp;</span> <span class="keyword">\&#123;</span> <span class="keyword">\&#125;</span> <span class="keyword">\_</span>  <span class="comment">%不能直接显示的符号，在前面加上转义字符\</span></span><br><span class="line"><span class="keyword">\backslash</span>            <span class="comment">%反斜杠</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">  <span class="keyword">\zihao</span>&#123;-5&#125;<span class="keyword">\kaishu</span> 引用的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;quote&#125;</span><br></pre></td></tr></table></figure>
+<p>1.<code>\zihao&#123;-5&#125;\kaishu</code>调整字号为小五号，字体为楷书，后面要接一个空格再写正文。<br>2.这段文字将在它的放置处单独分行，增加缩进和上下间距排印，以突出引用部门。</p>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>先要在导言区定义定理，通过<code>\newtheorem&#123;环境名&#125;&#123;标题名&#125;[章节]</code>，然后在文章中插入定理：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理1的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理2的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br></pre></td></tr></table></figure>
+<p>1.[环境名]是统一的，每次引用都只是这一个名字。<br>2.[标题名]是在定理开头显示的文字，通常为“定理”或“引理”。<br>3.同一环境名下的定理会自动顺延编号，所以“标题名”和“定理名”不要带编号。<br>4.[章节]是可选的，可以为chapter、section分别对应按章或节自动编号。<br>5.[定理名]是可选的。</p>
+<h4 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h4><p>一、在行内插入数学公式：<code>$ 算式 $</code>。</p>
+<p>二、独立行显示数学公式：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span> 公式 <span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>三、数据符号</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\frac</span>&#123;a&#125;&#123;b&#125;                   <span class="comment">%分数</span></span><br><span class="line"><span class="keyword">\log</span><span class="built_in">_</span>a b                      <span class="comment">%对数</span></span><br><span class="line"><span class="keyword">\ln</span> a</span><br><span class="line"><span class="keyword">\lg</span> b</span><br><span class="line">a<span class="built_in">^</span>b                           <span class="comment">%指数</span></span><br><span class="line"><span class="keyword">\sqrt</span>&#123;x&#125;                      <span class="comment">%平方根</span></span><br><span class="line"><span class="keyword">\sqrt</span>[n]&#123;x&#125;                   <span class="comment">%n次方根</span></span><br><span class="line"><span class="keyword">\overline</span>&#123;m+n&#125;                <span class="comment">%上水平线</span></span><br><span class="line"><span class="keyword">\underline</span>&#123;m+n&#125;               <span class="comment">%下水平线</span></span><br><span class="line"><span class="keyword">\cdots</span>                        <span class="comment">%省略号...</span></span><br><span class="line"><span class="keyword">\underbrace</span>&#123;a+b+<span class="keyword">\cdots</span>+z&#125;<span class="built_in">_</span>26  <span class="comment">%下大括号</span></span><br><span class="line"><span class="keyword">\overbrace</span>&#123;a+b&#125;<span class="built_in">^</span>2             <span class="comment">%上大括号</span></span><br><span class="line"><span class="keyword">\vec</span> a                        <span class="comment">%单个字符向量</span></span><br><span class="line"><span class="keyword">\overrightarrow</span>&#123;AB&#125;           <span class="comment">%右向量</span></span><br><span class="line"><span class="keyword">\overleftarrow</span>&#123;CD&#125;            <span class="comment">%左向量</span></span><br><span class="line"><span class="keyword">\angle</span> a                      <span class="comment">%角</span></span><br><span class="line">30<span class="built_in">^</span><span class="keyword">\circ</span>                      <span class="comment">%度</span></span><br><span class="line"><span class="keyword">\pi</span>                           <span class="comment">% π</span></span><br></pre></td></tr></table></figure>
+<p>通常下标用_，上标用^，上下标的组合式用{}括起。两个减号可以输出一条横线，表示数字的范围。</p>
+<p>四、希腊字母<br><img src="https://i.loli.net/2019/12/20/EVwstqQneN4CbzB.png" alt="罗马字母.png"></p>
+<p>五、数学运算</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">+ - <span class="keyword">\times</span> <span class="keyword">\div</span>               <span class="comment">%加减乘除</span></span><br><span class="line"><span class="keyword">\pm</span> <span class="keyword">\mp</span>                       <span class="comment">%加减、减加</span></span><br><span class="line"><span class="keyword">\cdot</span>                         <span class="comment">%点乘</span></span><br><span class="line"><span class="keyword">\cup</span>  <span class="keyword">\vee</span>                    <span class="comment">%并集（圆、尖）</span></span><br><span class="line"><span class="keyword">\cap</span>  <span class="keyword">\wedge</span>                  <span class="comment">%交集（圆、尖）</span></span><br><span class="line"><span class="keyword">\oplus</span> <span class="keyword">\ominus</span> <span class="keyword">\otimes</span>        <span class="comment">%圆加、圆减、圆乘</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>&#123;n&#125;                <span class="comment">%求和</span></span><br><span class="line"><span class="keyword">\prod</span><span class="built_in">_</span>&#123;a&#125;<span class="built_in">^</span>&#123;b&#125;                 <span class="comment">%求积</span></span><br><span class="line"><span class="keyword">\int</span><span class="built_in">_</span>&#123;0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\pi</span>&#125;                <span class="comment">%积分</span></span><br><span class="line"><span class="keyword">\lim</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> <span class="keyword">\infty</span>&#125;x<span class="built_in">_</span>n        <span class="comment">%求极限，条件放在右侧</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> 1&#125;x<span class="built_in">_</span>n      <span class="comment">%求极限，条件放在下面</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;<span class="keyword">\substack</span>&#123;x <span class="keyword">\to</span> +<span class="keyword">\infty</span><span class="keyword">\\</span> y<span class="keyword">\to</span> -<span class="keyword">\infty</span>&#125;&#125;x<span class="built_in">_</span>n <span class="comment">%求二重极限</span></span><br></pre></td></tr></table></figure>
+<p>六、关系</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&lt; &gt; =                         <span class="comment">%小于、大于、等于</span></span><br><span class="line"><span class="keyword">\le</span> <span class="keyword">\ge</span> <span class="keyword">\ll</span> <span class="keyword">\gg</span>               <span class="comment">%小于等于、大于等于、远小于、远大于</span></span><br><span class="line"><span class="keyword">\equiv</span> <span class="keyword">\ne</span> <span class="keyword">\doteq</span>             <span class="comment">%恒等、不等、点等</span></span><br><span class="line"><span class="keyword">\sim</span> <span class="keyword">\cong</span>                    <span class="comment">%波浪 约等于</span></span><br><span class="line"><span class="keyword">\subset</span> <span class="keyword">\subseteq</span>             <span class="comment">%子集</span></span><br><span class="line"><span class="keyword">\supset</span> <span class="keyword">\supseteq</span>             <span class="comment">%超集</span></span><br><span class="line"><span class="keyword">\in</span> <span class="keyword">\ni</span> <span class="keyword">\notin</span>                <span class="comment">%属于（左、右）、不属于</span></span><br></pre></td></tr></table></figure>
+<p>七、箭头、定界符及其他</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\leftarrow</span> <span class="keyword">\rightarrow</span>        <span class="comment">%左右箭头</span></span><br><span class="line"><span class="keyword">\uparrow</span> <span class="keyword">\downarrow</span>           <span class="comment">%上下箭头</span></span><br><span class="line"><span class="keyword">\leftrightarrow</span>               <span class="comment">%双向箭头</span></span><br><span class="line"><span class="keyword">\Leftarrow</span> <span class="keyword">\Rightarrow</span>        <span class="comment">%左右粗箭头</span></span><br><span class="line"><span class="keyword">\Uparrow</span> <span class="keyword">\Downarrow</span>           <span class="comment">%上下粗箭头</span></span><br><span class="line"><span class="keyword">\Leftrightarrow</span>               <span class="comment">%双向粗箭头</span></span><br><span class="line"><span class="keyword">\langle</span> <span class="keyword">\rangle</span>               <span class="comment">%尖括号</span></span><br><span class="line"><span class="keyword">\lfloor</span> <span class="keyword">\rfloor</span>               <span class="comment">%下限（左右）</span></span><br><span class="line"><span class="keyword">\lceil</span> <span class="keyword">\rceil</span>                 <span class="comment">%上限（左右）</span></span><br><span class="line"><span class="keyword">\forall</span>                       <span class="comment">%对于所有</span></span><br><span class="line"><span class="keyword">\exists</span>                       <span class="comment">%存在</span></span><br></pre></td></tr></table></figure>
+<p>八、大括号公式</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;cases&#125;</span><br></pre></td></tr></table></figure>
+<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>。显示中文需要用<code>\text&#123;&#125;</code>括起。<br>2.整体应包裹在$之内，每一行公式用\\分隔。<br>3.用&amp;分隔一条公式的值和条件。</p>
+<p>九、矩阵</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;matrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;matrix&#125;   <span class="comment">%无包裹</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;pmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;pmatrix&#125; <span class="comment">%圆括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Bmatrix&#125; <span class="comment">%花括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;bmatrix&#125; <span class="comment">%方括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;vmatrix&#125; <span class="comment">%竖线</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Vmatrix&#125; <span class="comment">%双竖线</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>，整体应包裹在$之内。<br>2.中间不能有空行，中文须用<code>\text&#123;&#125;</code>包裹，\\为换行。<br>3.每个数据之间用&amp;分隔。</p>
+<p>例如：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">A[i][j] =</span><br><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>十、综合<br>1.给公式加一个框</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\boxed</span>&#123;a+b=c&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p>2.将各种公式组合到一起</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;gather*&#125;</span><br><span class="line">  A[i][j] = </span><br><span class="line">  <span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">      0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">      1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line">  <span class="keyword">\end</span>&#123;cases&#125;<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\text</span>&#123;矩阵表示：&#125;A[i][j] = </span><br><span class="line">      <span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line">      <span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;gather*&#125;</span><br></pre></td></tr></table></figure>
+<p>3.多行公式，&amp;符号用于对齐</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align*&#125;</span><br><span class="line">  A <span class="built_in">&amp;</span>= B+C<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= D*E<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= F-G</span><br><span class="line"><span class="keyword">\end</span>&#123;align*&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插图"><a href="#插图" class="headerlink" title="插图"></a>插图</h4><p>一、xelatex支持的图像格式有pdf、png、jpg、eps等。<br>二、需要在导言区引入graphicx宏包：<code>\usepackage&#123;graphicx&#125;</code>。<br>三、在行内插入图片：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>路径中不要使用中文，否则报错。可以使用相对路径。</p>
+</blockquote>
+<p>四、独立显示一幅浮动图片：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[ht]</span><br><span class="line">  <span class="keyword">\centering</span></span><br><span class="line">  <span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br><span class="line">  <span class="keyword">\caption</span>&#123;图的说明文字&#125;</span><br><span class="line">  <span class="keyword">\label</span>&#123;标签名&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>figure表示浮动体，ht表示图片在当前处或一页的上部。centering表示后面的内容居中。caption添加说明和自动编号。label定义一个标签，在文章其他部分可通过\ref{标签名}引用此图。</p>
+</blockquote>
+<h4 id="条目"><a href="#条目" class="headerlink" title="条目"></a>条目</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">  <span class="keyword">\item</span>[1]第一条</span><br><span class="line">  <span class="keyword">\item</span>[2]第二条</span><br><span class="line">  <span class="keyword">\item</span>[3]第三条</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;对齐方式&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    表头1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 表头n <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    内容1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 内容n <span class="keyword">\\</span></span><br><span class="line">          ......       <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一行之内不同列之间用&amp;分隔，每行用\\分隔。</li>
+<li>表格中的横线、竖线、表头、实际内容都要按照预想的样式键入字符设置。如上所示，先用\hline显示一条横线，然后是一行表头，接着又是一条横线，之后就是若干行具体内容了，最后由一条横线收尾。表头和内容之间即使没有竖线分隔，也会自动按照格式摆放。</li>
+<li>对齐方式有三种，分别为l，c，r，每个字母代表一列，竖线也是在“对齐方式”中设置的。例如|ccc|表示有三列，都是中对齐，只有两侧有边线。</li>
+</ul>
+<p>整体示例：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;|r|cccc|l|&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">  序号 <span class="built_in">&amp;</span> 部门 <span class="built_in">&amp;</span> 姓名 <span class="built_in">&amp;</span> 性别 <span class="built_in">&amp;</span> 年龄 <span class="built_in">&amp;</span> 工资<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    1 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 张三 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 36 <span class="built_in">&amp;</span> 10<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    2 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 李四 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 25 <span class="built_in">&amp;</span> 8<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    3 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 王五 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 33 <span class="built_in">&amp;</span> 9<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>整个tabular块放在了center块中，可使表格居中显示。</p>
+</blockquote>
+<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><p>导入<code>\usepackage&#123;listings&#125;</code>包。然后在导言区添加如下代码：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\lstset</span>&#123;</span><br><span class="line">    columns=fixed,</span><br><span class="line">    numbers=left,                                        <span class="comment">% 在左侧显示行号</span></span><br><span class="line">    numberstyle=<span class="keyword">\scriptsize</span><span class="keyword">\color</span>&#123;darkgray&#125;,             <span class="comment">% 设定行号格式</span></span><br><span class="line">    frame=single,                                        <span class="comment">% 不显示背景边框</span></span><br><span class="line">    tabsize=4,                                           <span class="comment">% 设置tab空格数</span></span><br><span class="line">    breaklines,                                          <span class="comment">% 自动折行  </span></span><br><span class="line">    basicstyle=<span class="keyword">\scriptsize</span>,                              <span class="comment">% 代码字体尺寸</span></span><br><span class="line">    xleftmargin=3em,xrightmargin=1em, aboveskip=1em,     <span class="comment">% 显示位置</span></span><br><span class="line">    backgroundcolor=<span class="keyword">\color</span>[RGB]&#123;245,245,244&#125;,            <span class="comment">% 设定背景颜色</span></span><br><span class="line">    keywordstyle=<span class="keyword">\color</span>[RGB]&#123;40,40,255&#125;,                 <span class="comment">% 设定关键字颜色</span></span><br><span class="line">    commentstyle=<span class="keyword">\it</span><span class="keyword">\color</span>[RGB]&#123;0,96,96&#125;,                <span class="comment">% 设置注释颜色</span></span><br><span class="line">    stringstyle=<span class="keyword">\rmfamily</span><span class="keyword">\slshape</span><span class="keyword">\color</span>[RGB]&#123;128,0,0&#125;,   <span class="comment">% 设置字符串</span></span><br><span class="line">    showstringspaces=false,                              <span class="comment">% 不显示字符串中的空格</span></span><br><span class="line">    language=c++,                                        <span class="comment">% 设置语言</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接在文章中插入代码示例：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;lstlisting&#125;</span><br><span class="line">    <span class="params">#</span>include &lt;stdio.h&gt;</span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;hello,world!&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;lstlisting&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>\setmainfont</code>用于设置代码显示的字体</p>
+</blockquote>
+<p>引用源代码文件示例：</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"> <span class="keyword">\lstinputlisting</span>[firstline=1, lastline=6]&#123;./path/filename.*&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>firstline为要显示的首行号，lastline为要显示的末行号。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>LaTex</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTex排版一 概述</title>
     <url>/2017/11/03/LaTex%E6%8E%92%E7%89%88%E4%B8%80%20%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>LaTeX是一种基于ΤeΧ的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发。由于具有TeX的基因，一方面它特别适合编写数学、计算机类文档书籍，另一方面继承了一定的复杂性（肯定比Word难上手）。</p>
@@ -444,83 +524,22 @@
       </tags>
   </entry>
   <entry>
-    <title>LaTex排版三 细节</title>
-    <url>/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/</url>
-    <content><![CDATA[<h4 id="文字字符"><a href="#文字字符" class="headerlink" title="文字字符"></a>文字字符</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;文字&#125;</span><br><span class="line"><span class="keyword">\textbf</span>&#123;加粗&#125;</span><br><span class="line"><span class="keyword">\emph</span>&#123;强调&#125;</span><br><span class="line"><span class="keyword">\underline</span>&#123;下划线&#125;</span><br><span class="line"><span class="keyword">\footnote</span>&#123;脚注内容&#125;</span><br><span class="line"><span class="keyword">\copyright</span>            <span class="comment">%版权符号</span></span><br><span class="line"><span class="keyword">\songti</span>&#123;宋体&#125;         <span class="comment">%ctex提供的中文字体</span></span><br><span class="line"><span class="keyword">\heiti</span>&#123;黑体&#125;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;楷书&#125;</span><br><span class="line"><span class="keyword">\ </span>                    <span class="comment">%空格</span></span><br><span class="line"><span class="keyword">\quad</span>                 <span class="comment">%一m宽度空白</span></span><br><span class="line"><span class="keyword">\qquad</span>                <span class="comment">%二m宽度空白</span></span><br><span class="line"><span class="keyword">\#</span> <span class="keyword">\$</span> <span class="keyword">\%</span> <span class="keyword">\&amp;</span> <span class="keyword">\&#123;</span> <span class="keyword">\&#125;</span> <span class="keyword">\_</span>  <span class="comment">%不能直接显示的符号，在前面加上转义字符\</span></span><br><span class="line"><span class="keyword">\backslash</span>            <span class="comment">%反斜杠</span></span><br></pre></td></tr></table></figure>
+    <title>MPP36威震天</title>
+    <url>/2018/11/17/MPP36%E5%A8%81%E9%9C%87%E5%A4%A9/</url>
+    <content><![CDATA[<p>去年买了MPP10擎天柱，这个威震天就成了今年必买的玩具了。拿到实物第一感觉是威将的做工进步了，料子比MPP10好，而且这次是自主设计，一体变形（含枪托）。</p>
 <a id="more"></a>
 
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;quote&#125;</span><br><span class="line">  <span class="keyword">\zihao</span>&#123;-5&#125;<span class="keyword">\kaishu</span> 引用的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;quote&#125;</span><br></pre></td></tr></table></figure>
-<p>1.<code>\zihao&#123;-5&#125;\kaishu</code>调整字号为小五号，字体为楷书，后面要接一个空格再写正文。<br>2.这段文字将在它的放置处单独分行，增加缩进和上下间距排印，以突出引用部门。</p>
-<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>先要在导言区定义定理，通过<code>\newtheorem&#123;环境名&#125;&#123;标题名&#125;[章节]</code>，然后在文章中插入定理：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理1的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;环境名&#125;[定理名]</span><br><span class="line">  定理2的内容</span><br><span class="line"><span class="keyword">\end</span>&#123;环境名&#125;</span><br></pre></td></tr></table></figure>
-<p>1.[环境名]是统一的，每次引用都只是这一个名字。<br>2.[标题名]是在定理开头显示的文字，通常为“定理”或“引理”。<br>3.同一环境名下的定理会自动顺延编号，所以“标题名”和“定理名”不要带编号。<br>4.[章节]是可选的，可以为chapter、section分别对应按章或节自动编号。<br>5.[定理名]是可选的。</p>
-<h4 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h4><p>一、在行内插入数学公式：<code>$ 算式 $</code>。</p>
-<p>二、独立行显示数学公式：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span> 公式 <span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-<p>三、数据符号</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\frac</span>&#123;a&#125;&#123;b&#125;                   <span class="comment">%分数</span></span><br><span class="line"><span class="keyword">\log</span><span class="built_in">_</span>a b                      <span class="comment">%对数</span></span><br><span class="line"><span class="keyword">\ln</span> a</span><br><span class="line"><span class="keyword">\lg</span> b</span><br><span class="line">a<span class="built_in">^</span>b                           <span class="comment">%指数</span></span><br><span class="line"><span class="keyword">\sqrt</span>&#123;x&#125;                      <span class="comment">%平方根</span></span><br><span class="line"><span class="keyword">\sqrt</span>[n]&#123;x&#125;                   <span class="comment">%n次方根</span></span><br><span class="line"><span class="keyword">\overline</span>&#123;m+n&#125;                <span class="comment">%上水平线</span></span><br><span class="line"><span class="keyword">\underline</span>&#123;m+n&#125;               <span class="comment">%下水平线</span></span><br><span class="line"><span class="keyword">\cdots</span>                        <span class="comment">%省略号...</span></span><br><span class="line"><span class="keyword">\underbrace</span>&#123;a+b+<span class="keyword">\cdots</span>+z&#125;<span class="built_in">_</span>26  <span class="comment">%下大括号</span></span><br><span class="line"><span class="keyword">\overbrace</span>&#123;a+b&#125;<span class="built_in">^</span>2             <span class="comment">%上大括号</span></span><br><span class="line"><span class="keyword">\vec</span> a                        <span class="comment">%单个字符向量</span></span><br><span class="line"><span class="keyword">\overrightarrow</span>&#123;AB&#125;           <span class="comment">%右向量</span></span><br><span class="line"><span class="keyword">\overleftarrow</span>&#123;CD&#125;            <span class="comment">%左向量</span></span><br><span class="line"><span class="keyword">\angle</span> a                      <span class="comment">%角</span></span><br><span class="line">30<span class="built_in">^</span><span class="keyword">\circ</span>                      <span class="comment">%度</span></span><br><span class="line"><span class="keyword">\pi</span>                           <span class="comment">% π</span></span><br></pre></td></tr></table></figure>
-<p>通常下标用_，上标用^，上下标的组合式用{}括起。两个减号可以输出一条横线，表示数字的范围。</p>
-<p>四、希腊字母<br><img src="https://i.loli.net/2019/12/20/EVwstqQneN4CbzB.png" alt="罗马字母.png"></p>
-<p>五、数学运算</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">+ - <span class="keyword">\times</span> <span class="keyword">\div</span>               <span class="comment">%加减乘除</span></span><br><span class="line"><span class="keyword">\pm</span> <span class="keyword">\mp</span>                       <span class="comment">%加减、减加</span></span><br><span class="line"><span class="keyword">\cdot</span>                         <span class="comment">%点乘</span></span><br><span class="line"><span class="keyword">\cup</span>  <span class="keyword">\vee</span>                    <span class="comment">%并集（圆、尖）</span></span><br><span class="line"><span class="keyword">\cap</span>  <span class="keyword">\wedge</span>                  <span class="comment">%交集（圆、尖）</span></span><br><span class="line"><span class="keyword">\oplus</span> <span class="keyword">\ominus</span> <span class="keyword">\otimes</span>        <span class="comment">%圆加、圆减、圆乘</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>&#123;n&#125;                <span class="comment">%求和</span></span><br><span class="line"><span class="keyword">\prod</span><span class="built_in">_</span>&#123;a&#125;<span class="built_in">^</span>&#123;b&#125;                 <span class="comment">%求积</span></span><br><span class="line"><span class="keyword">\int</span><span class="built_in">_</span>&#123;0&#125;<span class="built_in">^</span>&#123;<span class="keyword">\pi</span>&#125;                <span class="comment">%积分</span></span><br><span class="line"><span class="keyword">\lim</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> <span class="keyword">\infty</span>&#125;x<span class="built_in">_</span>n        <span class="comment">%求极限，条件放在右侧</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;n <span class="keyword">\to</span> 1&#125;x<span class="built_in">_</span>n      <span class="comment">%求极限，条件放在下面</span></span><br><span class="line"><span class="keyword">\lim</span><span class="keyword">\limits</span><span class="built_in">_</span>&#123;<span class="keyword">\substack</span>&#123;x <span class="keyword">\to</span> +<span class="keyword">\infty</span><span class="keyword">\\</span> y<span class="keyword">\to</span> -<span class="keyword">\infty</span>&#125;&#125;x<span class="built_in">_</span>n <span class="comment">%求二重极限</span></span><br></pre></td></tr></table></figure>
-<p>六、关系</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&lt; &gt; =                         <span class="comment">%小于、大于、等于</span></span><br><span class="line"><span class="keyword">\le</span> <span class="keyword">\ge</span> <span class="keyword">\ll</span> <span class="keyword">\gg</span>               <span class="comment">%小于等于、大于等于、远小于、远大于</span></span><br><span class="line"><span class="keyword">\equiv</span> <span class="keyword">\ne</span> <span class="keyword">\doteq</span>             <span class="comment">%恒等、不等、点等</span></span><br><span class="line"><span class="keyword">\sim</span> <span class="keyword">\cong</span>                    <span class="comment">%波浪 约等于</span></span><br><span class="line"><span class="keyword">\subset</span> <span class="keyword">\subseteq</span>             <span class="comment">%子集</span></span><br><span class="line"><span class="keyword">\supset</span> <span class="keyword">\supseteq</span>             <span class="comment">%超集</span></span><br><span class="line"><span class="keyword">\in</span> <span class="keyword">\ni</span> <span class="keyword">\notin</span>                <span class="comment">%属于（左、右）、不属于</span></span><br></pre></td></tr></table></figure>
-<p>七、箭头、定界符及其他</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\leftarrow</span> <span class="keyword">\rightarrow</span>        <span class="comment">%左右箭头</span></span><br><span class="line"><span class="keyword">\uparrow</span> <span class="keyword">\downarrow</span>           <span class="comment">%上下箭头</span></span><br><span class="line"><span class="keyword">\leftrightarrow</span>               <span class="comment">%双向箭头</span></span><br><span class="line"><span class="keyword">\Leftarrow</span> <span class="keyword">\Rightarrow</span>        <span class="comment">%左右粗箭头</span></span><br><span class="line"><span class="keyword">\Uparrow</span> <span class="keyword">\Downarrow</span>           <span class="comment">%上下粗箭头</span></span><br><span class="line"><span class="keyword">\Leftrightarrow</span>               <span class="comment">%双向粗箭头</span></span><br><span class="line"><span class="keyword">\langle</span> <span class="keyword">\rangle</span>               <span class="comment">%尖括号</span></span><br><span class="line"><span class="keyword">\lfloor</span> <span class="keyword">\rfloor</span>               <span class="comment">%下限（左右）</span></span><br><span class="line"><span class="keyword">\lceil</span> <span class="keyword">\rceil</span>                 <span class="comment">%上限（左右）</span></span><br><span class="line"><span class="keyword">\forall</span>                       <span class="comment">%对于所有</span></span><br><span class="line"><span class="keyword">\exists</span>                       <span class="comment">%存在</span></span><br></pre></td></tr></table></figure>
-<p>八、大括号公式</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;cases&#125;</span><br></pre></td></tr></table></figure>
-<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>。显示中文需要用<code>\text&#123;&#125;</code>括起。<br>2.整体应包裹在$之内，每一行公式用\\分隔。<br>3.用&amp;分隔一条公式的值和条件。</p>
-<p>九、矩阵</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;matrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;matrix&#125;   <span class="comment">%无包裹</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;pmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;pmatrix&#125; <span class="comment">%圆括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Bmatrix&#125; <span class="comment">%花括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;bmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;bmatrix&#125; <span class="comment">%方括号</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;vmatrix&#125; <span class="comment">%竖线</span></span><br><span class="line">  <span class="keyword">\begin</span>&#123;Vmatrix&#125; 1<span class="built_in">&amp;</span>0<span class="keyword">\\</span> 0<span class="built_in">&amp;</span>-1 <span class="keyword">\end</span>&#123;Vmatrix&#125; <span class="comment">%双竖线</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-<p>1.需要导入包<code>\usepackage&#123;amsmath&#125;</code>，整体应包裹在$之内。<br>2.中间不能有空行，中文须用<code>\text&#123;&#125;</code>包裹，\\为换行。<br>3.每个数据之间用&amp;分隔。</p>
-<p>例如：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">A[i][j] =</span><br><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">  1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">  0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-<p>十、综合<br>1.给公式加一个框</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\boxed</span>&#123;a+b=c&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-<p>2.将各种公式组合到一起</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;gather*&#125;</span><br><span class="line">  A[i][j] = </span><br><span class="line">  <span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">      0 <span class="built_in">&amp;</span> &lt;v<span class="built_in">_</span>i,v<span class="built_in">_</span>j&gt;<span class="keyword">\text</span>&#123;或&#125;(v<span class="built_in">_</span>i,v<span class="built_in">_</span>j)<span class="keyword">\in</span> VR <span class="keyword">\\</span></span><br><span class="line">      1 <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;反之&#125;</span><br><span class="line">  <span class="keyword">\end</span>&#123;cases&#125;<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\text</span>&#123;矩阵表示：&#125;A[i][j] = </span><br><span class="line">      <span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">        1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 <span class="keyword">\\</span></span><br><span class="line">        0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 0 </span><br><span class="line">      <span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;gather*&#125;</span><br></pre></td></tr></table></figure>
-<p>3.多行公式，&amp;符号用于对齐</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align*&#125;</span><br><span class="line">  A <span class="built_in">&amp;</span>= B+C<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= D*E<span class="keyword">\\</span></span><br><span class="line">    <span class="built_in">&amp;</span>= F-G</span><br><span class="line"><span class="keyword">\end</span>&#123;align*&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="插图"><a href="#插图" class="headerlink" title="插图"></a>插图</h4><p>一、xelatex支持的图像格式有pdf、png、jpg、eps等。<br>二、需要在导言区引入graphicx宏包：<code>\usepackage&#123;graphicx&#125;</code>。<br>三、在行内插入图片：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>路径中不要使用中文，否则报错。可以使用相对路径。</p>
-</blockquote>
-<p>四、独立显示一幅浮动图片：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[ht]</span><br><span class="line">  <span class="keyword">\centering</span></span><br><span class="line">  <span class="keyword">\includegraphics</span>[scale=0.6]&#123;./path/name.png&#125;</span><br><span class="line">  <span class="keyword">\caption</span>&#123;图的说明文字&#125;</span><br><span class="line">  <span class="keyword">\label</span>&#123;标签名&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>figure表示浮动体，ht表示图片在当前处或一页的上部。centering表示后面的内容居中。caption添加说明和自动编号。label定义一个标签，在文章其他部分可通过\ref{标签名}引用此图。</p>
-</blockquote>
-<h4 id="条目"><a href="#条目" class="headerlink" title="条目"></a>条目</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">  <span class="keyword">\item</span>[1]第一条</span><br><span class="line">  <span class="keyword">\item</span>[2]第二条</span><br><span class="line">  <span class="keyword">\item</span>[3]第三条</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;对齐方式&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    表头1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 表头n <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    内容1 <span class="built_in">&amp;</span> ... <span class="built_in">&amp;</span> 内容n <span class="keyword">\\</span></span><br><span class="line">          ......       <span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一行之内不同列之间用&amp;分隔，每行用\\分隔。</li>
-<li>表格中的横线、竖线、表头、实际内容都要按照预想的样式键入字符设置。如上所示，先用\hline显示一条横线，然后是一行表头，接着又是一条横线，之后就是若干行具体内容了，最后由一条横线收尾。表头和内容之间即使没有竖线分隔，也会自动按照格式摆放。</li>
-<li>对齐方式有三种，分别为l，c，r，每个字母代表一列，竖线也是在“对齐方式”中设置的。例如|ccc|表示有三列，都是中对齐，只有两侧有边线。</li>
-</ul>
-<p>整体示例：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;|r|cccc|l|&#125;</span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">  序号 <span class="built_in">&amp;</span> 部门 <span class="built_in">&amp;</span> 姓名 <span class="built_in">&amp;</span> 性别 <span class="built_in">&amp;</span> 年龄 <span class="built_in">&amp;</span> 工资<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    1 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 张三 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 36 <span class="built_in">&amp;</span> 10<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    2 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 李四 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 25 <span class="built_in">&amp;</span> 8<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line">    3 <span class="built_in">&amp;</span> 设计 <span class="built_in">&amp;</span> 王五 <span class="built_in">&amp;</span> 男 <span class="built_in">&amp;</span> 33 <span class="built_in">&amp;</span> 9<span class="keyword">\\</span></span><br><span class="line">  <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>整个tabular块放在了center块中，可使表格居中显示。</p>
-</blockquote>
-<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><p>导入<code>\usepackage&#123;listings&#125;</code>包。然后在导言区添加如下代码：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\lstset</span>&#123;</span><br><span class="line">    columns=fixed,</span><br><span class="line">    numbers=left,                                        <span class="comment">% 在左侧显示行号</span></span><br><span class="line">    numberstyle=<span class="keyword">\scriptsize</span><span class="keyword">\color</span>&#123;darkgray&#125;,             <span class="comment">% 设定行号格式</span></span><br><span class="line">    frame=single,                                        <span class="comment">% 不显示背景边框</span></span><br><span class="line">    tabsize=4,                                           <span class="comment">% 设置tab空格数</span></span><br><span class="line">    breaklines,                                          <span class="comment">% 自动折行  </span></span><br><span class="line">    basicstyle=<span class="keyword">\scriptsize</span>,                              <span class="comment">% 代码字体尺寸</span></span><br><span class="line">    xleftmargin=3em,xrightmargin=1em, aboveskip=1em,     <span class="comment">% 显示位置</span></span><br><span class="line">    backgroundcolor=<span class="keyword">\color</span>[RGB]&#123;245,245,244&#125;,            <span class="comment">% 设定背景颜色</span></span><br><span class="line">    keywordstyle=<span class="keyword">\color</span>[RGB]&#123;40,40,255&#125;,                 <span class="comment">% 设定关键字颜色</span></span><br><span class="line">    commentstyle=<span class="keyword">\it</span><span class="keyword">\color</span>[RGB]&#123;0,96,96&#125;,                <span class="comment">% 设置注释颜色</span></span><br><span class="line">    stringstyle=<span class="keyword">\rmfamily</span><span class="keyword">\slshape</span><span class="keyword">\color</span>[RGB]&#123;128,0,0&#125;,   <span class="comment">% 设置字符串</span></span><br><span class="line">    showstringspaces=false,                              <span class="comment">% 不显示字符串中的空格</span></span><br><span class="line">    language=c++,                                        <span class="comment">% 设置语言</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>直接在文章中插入代码示例：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;lstlisting&#125;</span><br><span class="line">    <span class="params">#</span>include &lt;stdio.h&gt;</span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;hello,world!&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;lstlisting&#125;&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>\setmainfont</code>用于设置代码显示的字体</p>
-</blockquote>
-<p>引用源代码文件示例：</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">&#123;<span class="keyword">\setmainfont</span>&#123;Consolas&#125;</span><br><span class="line"> <span class="keyword">\lstinputlisting</span>[firstline=1, lastline=6]&#123;./path/filename.*&#125;&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>firstline为要显示的首行号，lastline为要显示的末行号。</p>
-</blockquote>
+<p>整体造型还原G1，头雕仿官方MP36，身材与MPP10比例一致，臂炮具有灯效。搭配的激光鸟可变形为消声器，脚下有磁性，可吸附在威震天的手臂上。与官方MP36相比，正面还是官方更还原G1动画，背面MPP36更加平整。</p>
+<p><img src="https://i.loli.net/2020/05/05/PM1smCg8W4vZxf9.jpg" alt="威震天-1.jpg"><br><img src="https://i.loli.net/2020/05/05/4KBGzOhq1NZmpSI.jpg" alt="威震天-2.jpg"><br><img src="https://i.loli.net/2020/05/05/fFYK4ybaDNEPXwM.jpg" alt="威震天-3.jpg"></p>
+<p>小时候，我特别讨厌威震天。印象里在每集的开头，威震天都会有个计划说给观众听，然后发出自信的淫笑。在每集的结尾都会被柱子打的屁滚尿流，随之发出一声惨叫——撤退，狂派众人狼狈逃窜。</p>
+<p>还有关键的一点，我不喜欢威震天的动画形象：老鼠灰加上马桶头，变形成一把小枪也没见多厉害。小时候，我总是盼着红蜘蛛能造反成功，那样就再也不会看见它了:D</p>
 ]]></content>
       <categories>
-        <category>LaTex</category>
+        <category>Toy</category>
+        <category>Transformers</category>
       </categories>
       <tags>
-        <tag>LaTex</tag>
+        <tag>Transformers</tag>
       </tags>
   </entry>
   <entry>
@@ -613,25 +632,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MPP36威震天</title>
-    <url>/2018/11/17/MPP36%E5%A8%81%E9%9C%87%E5%A4%A9/</url>
-    <content><![CDATA[<p>去年买了MPP10擎天柱，这个威震天就成了今年必买的玩具了。拿到实物第一感觉是威将的做工进步了，料子比MPP10好，而且这次是自主设计，一体变形（含枪托）。</p>
-<a id="more"></a>
-
-<p>整体造型还原G1，头雕仿官方MP36，身材与MPP10比例一致，臂炮具有灯效。搭配的激光鸟可变形为消声器，脚下有磁性，可吸附在威震天的手臂上。与官方MP36相比，正面还是官方更还原G1动画，背面MPP36更加平整。</p>
-<p><img src="https://i.loli.net/2020/05/05/PM1smCg8W4vZxf9.jpg" alt="威震天-1.jpg"><br><img src="https://i.loli.net/2020/05/05/4KBGzOhq1NZmpSI.jpg" alt="威震天-2.jpg"><br><img src="https://i.loli.net/2020/05/05/fFYK4ybaDNEPXwM.jpg" alt="威震天-3.jpg"></p>
-<p>小时候，我特别讨厌威震天。印象里在每集的开头，威震天都会有个计划说给观众听，然后发出自信的淫笑。在每集的结尾都会被柱子打的屁滚尿流，随之发出一声惨叫——撤退，狂派众人狼狈逃窜。</p>
-<p>还有关键的一点，我不喜欢威震天的动画形象：老鼠灰加上马桶头，变形成一把小枪也没见多厉害。小时候，我总是盼着红蜘蛛能造反成功，那样就再也不会看见它了:D</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Office笔记</title>
     <url>/2017/09/22/Office%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>随着管理工作越来越多，经常会使用Office套件。对于一些看似普通的功能，还真不能简单的试出来。每次百度搜，不如直接看自己的博客，所以此贴动态更新，把Office的点点滴滴都收集于此。</p>
@@ -664,8 +664,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Python3基础语法</title>
-    <url>/2019/05/05/Python3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <title>RG沙扎比</title>
+    <url>/2019/12/24/RG%E6%B2%99%E6%89%8E%E6%AF%94/</url>
+    <content><![CDATA[<h4 id="机体特点"><a href="#机体特点" class="headerlink" title="机体特点"></a>机体特点</h4><p>拼装骨架结构紧实，隐藏水口，可动优秀（可调整大腿位置），MG尺寸，可以爆甲，有一定的分色。</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2020/01/24/bBH3huNCdlvrEWZ.jpg" alt="沙扎比-1.jpg"><br><img src="https://i.loli.net/2020/01/24/JZDjlLewu5QBYR7.jpg" alt="沙扎比-2.jpg"><br><img src="https://i.loli.net/2020/01/24/uxWpqSrBRmNFvDd.jpg" alt="沙扎比-3.jpg"></p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li>这个RG沙扎比的料子感觉比龟霸软，用指甲按就会出现痕迹，盾牌尖锐部分轻易就会卷边。其结构相对于其他RG机体虽然算的上紧实，但还是没法跟MG2.0时期的东西比。</li>
+<li>弧形件水口用打磨板也能处理。这样对我来说，海绵砂纸就没什么用了，也许可以用来处理“水波纹”。</li>
+<li>有点想买模型专用锉刀，尤其是600目切割力的，因为600目砂纸用的太费，修不了几个水口就没有切削力了，换砂纸实在太麻烦。</li>
+<li>再次强调：无论是模型专用单刃钳，还是锉刀，硬度都比较高。硬度高的钢通常易断易锈，所以一定不要沾湿，每次最好准备一块布来擦拭。</li>
+<li>一定要相信万代的做工，只要是接插不顺，必定是你错了。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Gundam</category>
+      </categories>
+      <tags>
+        <tag>Gundam</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python基础语法</title>
+    <url>/2019/05/05/Python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><ol>
 <li>弱类型语言。任何数据都是对象。</li>
 <li>代码区分大小写，变量可由下划线、数字、字母组成。</li>
@@ -676,6 +699,9 @@
 
 </li>
 </ol>
+<blockquote>
+<p>本文介绍Python 3语法</p>
+</blockquote>
 <h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>一、整数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1000</span></span><br><span class="line">-<span class="number">8</span></span><br><span class="line"><span class="built_in">int</span>(<span class="number">3.14</span>)       <span class="comment">#3，强制转换为整数，小数部分丢弃</span></span><br><span class="line"><span class="built_in">int</span>(-<span class="number">7</span>)         <span class="comment">#-7</span></span><br></pre></td></tr></table></figure>
 <p>二、浮点数</p>
@@ -766,48 +792,7 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RG沙扎比</title>
-    <url>/2019/12/24/RG%E6%B2%99%E6%89%8E%E6%AF%94/</url>
-    <content><![CDATA[<h4 id="机体特点"><a href="#机体特点" class="headerlink" title="机体特点"></a>机体特点</h4><p>拼装骨架结构紧实，隐藏水口，可动优秀（可调整大腿位置），MG尺寸，可以爆甲，有一定的分色。</p>
-<a id="more"></a>
-
-<p><img src="https://i.loli.net/2020/01/24/bBH3huNCdlvrEWZ.jpg" alt="沙扎比-1.jpg"><br><img src="https://i.loli.net/2020/01/24/JZDjlLewu5QBYR7.jpg" alt="沙扎比-2.jpg"><br><img src="https://i.loli.net/2020/01/24/uxWpqSrBRmNFvDd.jpg" alt="沙扎比-3.jpg"></p>
-<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
-<li>这个RG沙扎比的料子感觉比龟霸软，用指甲按就会出现痕迹，盾牌尖锐部分轻易就会卷边。其结构相对于其他RG机体虽然算的上紧实，但还是没法跟MG2.0时期的东西比。</li>
-<li>弧形件水口用打磨板也能处理。这样对我来说，海绵砂纸就没什么用了，也许可以用来处理“水波纹”。</li>
-<li>有点想买模型专用锉刀，尤其是600目切割力的，因为600目砂纸用的太费，修不了几个水口就没有切削力了，换砂纸实在太麻烦。</li>
-<li>再次强调：无论是模型专用单刃钳，还是锉刀，硬度都比较高。硬度高的钢通常易断易锈，所以一定不要沾湿，每次最好准备一块布来擦拭。</li>
-<li>一定要相信万代的做工，只要是接插不顺，必定是你错了。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Gundam</category>
-      </categories>
-      <tags>
-        <tag>Gundam</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SS08眩晕</title>
-    <url>/2019/07/28/SS08%E7%9C%A9%E6%99%95/</url>
-    <content><![CDATA[<p>SS变形金刚主要是电影版玩具，本人关注较少，能记住的角色只有变1开场出来的眩晕、变2大力神、变3震荡波、变4禁闭。买这款SS08眩晕主要是因为近期降价幅度较大，100出头的价格感觉还是比较值的。</p>
-<a id="more"></a>
-
-<p>总的来说人形态、载具形态都很还原电影，头雕精细，附带蝎子，按理说应该是一款非常成功的商品，无奈用料太薄太脆，以致于载具形态合缝相当不好，变形体验极差，一圈下来全是白痕，让人不得不质疑商家的诚意，所以价格腰斩一点也不令人意外。</p>
-<p><img src="https://i.loli.net/2020/02/03/UjtzmIOHbAglcXL.jpg" alt="眩晕1.jpg"><br><img src="https://i.loli.net/2020/02/03/WTeufJi4m8wZbCP.jpg" alt="眩晕2.jpg"><br><img src="https://i.loli.net/2020/02/03/YOUaiSxXz8pZT4e.jpg" alt="眩晕3.jpg"></p>
-<p>所以说，对于变形金刚不能无脑认为官方的东西都是好的。</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -848,6 +833,24 @@
       </categories>
       <tags>
         <tag>VC++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SS08眩晕</title>
+    <url>/2019/07/28/SS08%E7%9C%A9%E6%99%95/</url>
+    <content><![CDATA[<p>SS变形金刚主要是电影版玩具，本人关注较少，能记住的角色只有变1开场出来的眩晕、变2大力神、变3震荡波、变4禁闭。买这款SS08眩晕主要是因为近期降价幅度较大，100出头的价格感觉还是比较值的。</p>
+<a id="more"></a>
+
+<p>总的来说人形态、载具形态都很还原电影，头雕精细，附带蝎子，按理说应该是一款非常成功的商品，无奈用料太薄太脆，以致于载具形态合缝相当不好，变形体验极差，一圈下来全是白痕，让人不得不质疑商家的诚意，所以价格腰斩一点也不令人意外。</p>
+<p><img src="https://i.loli.net/2020/02/03/UjtzmIOHbAglcXL.jpg" alt="眩晕1.jpg"><br><img src="https://i.loli.net/2020/02/03/WTeufJi4m8wZbCP.jpg" alt="眩晕2.jpg"><br><img src="https://i.loli.net/2020/02/03/YOUaiSxXz8pZT4e.jpg" alt="眩晕3.jpg"></p>
+<p>所以说，对于变形金刚不能无脑认为官方的东西都是好的。</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
       </tags>
   </entry>
   <entry>
@@ -1500,35 +1503,6 @@
       </tags>
   </entry>
   <entry>
-    <title>VMware的基本使用</title>
-    <url>/2007/11/18/VMware%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h4 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h4><p>先关闭虚拟机，在窗口左侧右键选择虚拟机，快照-&gt;快照管理器。在弹出的窗口上部箭头图中选择某个点，按压“拍摄快照”按钮即可。可以建立多个快照。</p>
-<p>如果要回到某个快照点，选择箭头图中的快照点，点击“转到”按钮即可（当前虚拟机状态会丢失）。此时的“当前位置”会另起一个分支。</p>
-<a id="more"></a>
-
-<h4 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h4><p>所有的快照都处于一个虚拟机中，有时需要多台虚拟机，这时就要使用克隆功能。进入快照管理器，在上面箭头图中选择快照点，点击“克隆”按钮，弹出克隆向导对话框，按照如下步骤建立克隆：</p>
-<ol>
-<li>选择克隆点；</li>
-<li>选择创建克隆链接，还是完整克隆；</li>
-<li>选择克隆机名字和保存位置，点击“完成”按钮。</li>
-</ol>
-<p>回到快照管理器会发现快照点多了锁型标志。返回VMware主界面，在左侧选择新创建的克隆机，打开电源即可使用。</p>
-<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><p>VMware默认会创建两块虚拟网卡，分别为VMnet0 ~ VMnet8。在“虚拟网络编辑器”中可添加更多的网卡。每块网卡有三种选择：桥接网络、仅主机网络、NAT网络。</p>
-<p>如果想让各个虚拟机之间能互相通信，需要把它们都连接到同一个虚拟交换机下。具体方法：</p>
-<ol>
-<li>在“虚拟网络编辑器”中设置某个VMnet，特别要注意填写子网IP和子网掩码，这是虚拟交换机的地址。</li>
-<li>在主界面左侧选中虚拟机，在右侧点击“网络适配器”，会弹出虚拟机设置对话框，在右侧“网络连接”中设置为那个VMnet。所有想要联网的虚拟机都要统一设置为那个VMnet。</li>
-<li>打开每个想要通信的虚拟机，设置它们的IP地址为这个虚拟子网的合法地址，即可通信。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>virtualmachine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Github</title>
     <url>/2017/01/20/%E4%BD%BF%E7%94%A8Github/</url>
     <content><![CDATA[<h4 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h4><ol>
@@ -1555,6 +1529,35 @@
       </categories>
       <tags>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VMware的基本使用</title>
+    <url>/2007/11/18/VMware%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h4 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h4><p>先关闭虚拟机，在窗口左侧右键选择虚拟机，快照-&gt;快照管理器。在弹出的窗口上部箭头图中选择某个点，按压“拍摄快照”按钮即可。可以建立多个快照。</p>
+<p>如果要回到某个快照点，选择箭头图中的快照点，点击“转到”按钮即可（当前虚拟机状态会丢失）。此时的“当前位置”会另起一个分支。</p>
+<a id="more"></a>
+
+<h4 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h4><p>所有的快照都处于一个虚拟机中，有时需要多台虚拟机，这时就要使用克隆功能。进入快照管理器，在上面箭头图中选择快照点，点击“克隆”按钮，弹出克隆向导对话框，按照如下步骤建立克隆：</p>
+<ol>
+<li>选择克隆点；</li>
+<li>选择创建克隆链接，还是完整克隆；</li>
+<li>选择克隆机名字和保存位置，点击“完成”按钮。</li>
+</ol>
+<p>回到快照管理器会发现快照点多了锁型标志。返回VMware主界面，在左侧选择新创建的克隆机，打开电源即可使用。</p>
+<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><p>VMware默认会创建两块虚拟网卡，分别为VMnet0 ~ VMnet8。在“虚拟网络编辑器”中可添加更多的网卡。每块网卡有三种选择：桥接网络、仅主机网络、NAT网络。</p>
+<p>如果想让各个虚拟机之间能互相通信，需要把它们都连接到同一个虚拟交换机下。具体方法：</p>
+<ol>
+<li>在“虚拟网络编辑器”中设置某个VMnet，特别要注意填写子网IP和子网掩码，这是虚拟交换机的地址。</li>
+<li>在主界面左侧选中虚拟机，在右侧点击“网络适配器”，会弹出虚拟机设置对话框，在右侧“网络连接”中设置为那个VMnet。所有想要联网的虚拟机都要统一设置为那个VMnet。</li>
+<li>打开每个想要通信的虚拟机，设置它们的IP地址为这个虚拟子网的合法地址，即可通信。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>virtualmachine</tag>
       </tags>
   </entry>
   <entry>
@@ -1654,6 +1657,70 @@
       </tags>
   </entry>
   <entry>
+    <title>变形金刚玩具</title>
+    <url>/2017/11/18/%E5%8F%98%E5%BD%A2%E9%87%91%E5%88%9A%E7%8E%A9%E5%85%B7/</url>
+    <content><![CDATA[<p>时隔多年，再次想到玩变形金刚不是因为几部电影。2008年看第一部电影时，只记住了眩晕登场。当时确实被变形过程惊艳到了，气氛烘托的也不错，变形后的打斗——黑夜、晃镜——瞬间失望。</p>
+<p>2016年，在玩过《变形金刚：赛博坦之战》和《变形金刚：赛博坦陨落》后，又重新感受到了童年的兴奋。这两部游戏的人设、剧情太优秀了，强烈推荐给变形金刚爱好者。</p>
+<p>经过网上查阅对比，在今年双十一买了MPP10擎天柱（Optimus Prime），算是圆了童年的愿望，也为自己开了一个花钱的新坑:D</p>
+<a id="more"></a>
+
+<p>整体感觉不错，造型还原，变形合理，车窗、脚板、领导模块等处使用了合金件，32厘米高的玩具拿在手里沉甸甸的。</p>
+<p><img src="https://i.loli.net/2020/02/02/oXmuFrqOi7lg3kd.jpg" alt="擎天柱-1.jpg"><br><img src="https://i.loli.net/2020/02/02/iSsGqpYIwAyR4N2.jpg" alt="擎天柱-2.jpg"><br><img src="https://i.loli.net/2020/02/02/trgl6jQcuMOWkio.jpg" alt="擎天柱-3.jpg"></p>
+<p>虽然变形手感没官方MP10好，但胸部添加卡扣合缝更紧实，手指添加金属轴不会脱落，而且价格远远低于MP10。</p>
+<p>小时候最喜欢的变形金刚就是擎天柱、大力神、声波；最讨厌的是铁皮、大黄蜂、威震天。擎天柱作为正义的主角，最先受到关注。每次柱子出场，我都激动万分。具体剧情虽然都不记得了，但在印象里总有一个擎天柱的形象：博派一堆小车被打的七零八落，一辆大卡车开过来——变形——干趴狂派所有坏蛋:D</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>养生的重要性</title>
+    <url>/2020/09/10/%E5%85%BB%E7%94%9F%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/</url>
+    <content><![CDATA[<p>年龄越大，越知道健康的重要性。记得刚毕业做第一份工作时，与领导的一次闲谈——他吸了一口烟，幽幽的说：“现在能活到60退休不容易！”那时，他才33岁！</p>
+<p>我当时就觉得他说的是对的。在市场经济环境下，作为一个被剥削者，年轻时不爱惜身体，等到年龄大了，顶不住了，按照中国企业家推崇的“狼性”法则，会毫不犹豫地淘汰你，还得杀人诛心的说你落后产能。</p>
+<a id="more"></a>
+
+<h4 id="防电磁辐射"><a href="#防电磁辐射" class="headerlink" title="防电磁辐射"></a>防电磁辐射</h4><p>这个有点玄乎，比吃转基因食品还玄，毕竟没有直接证据证明对人体有伤害。不过从中国传统养生思想的角度看，非自然的东西注意点没坏处。</p>
+<p>解决方案：喝绿茶，吃胡萝卜、豆芽，在计算机旁放香蕉、仙人掌。</p>
+<h4 id="颈椎视力"><a href="#颈椎视力" class="headerlink" title="颈椎视力"></a>颈椎视力</h4><p>久坐伤腰，当然颈椎也好不到哪去，视力也是个问题，毕竟现在办公室工作都使用计算机。目前对于视力伤害最大的是手机，一般人总是利用边角时间玩手机，对于距离、光线往往不在意。</p>
+<p>解决方案：在工作过程中保持正确的坐姿</p>
+<p><img src="https://i.loli.net/2021/08/22/nNLxXYDQGO8qtSJ.png" alt="1坐姿.png"></p>
+<ol>
+<li>身体向后倾，颈部有扶托</li>
+<li>手臂自然下垂，放置椅子托手</li>
+<li>手与键盘平行</li>
+<li>膝盖微高于座椅，血液顺畅运行</li>
+<li>屏幕略低于视线</li>
+</ol>
+<blockquote>
+<p>正确的姿势也替代不了定时休息</p>
+</blockquote>
+<p>当前人们对手机有种依赖，就像烟民抽烟一样，是个心理问题，不好解决。我觉得通过减少使用手机的机会比较有效，平时少在家里待着，增加户外活动时间。枸杞子和决明子泡茶对眼睛有好处，眼睛干涩可用冰袋冷敷15分钟。</p>
+<h4 id="肠胃病"><a href="#肠胃病" class="headerlink" title="肠胃病"></a>肠胃病</h4><p>在中国小微企业工作，凡是岗位重要点的，几乎可以说没有肠胃好的人。通常小企业领导都没有按时吃饭的概念，作为下属自然也得陪着，实在饿得不行了，随便吃口凉饭对付一下。晚上熬夜吃垃圾食品，早晨起不来自然不吃早饭。小饭馆的饭菜卫生也靠不住。</p>
+<p>平时上班压力就不小，公司业绩不好还得变本加厉，绩效有没有放一边，瞎折腾是少不了的。人在折腾的环境中很难平复心情：不动心思人倒霉，动心思心累伤脾，老胃病容易复发。</p>
+<p>解决方案：正常工作，按时吃饭，吃饭不要过快，尽量吃热饭，只有凉饭时一定要细嚼慢咽。苹果含鞣酸，对肠胃有好处，我个人非常推荐。在公司准备一些饼干、面包（一定得是<strong>干</strong>粮，馒头不行）以备不测。</p>
+<h4 id="心态"><a href="#心态" class="headerlink" title="心态"></a>心态</h4><p>在当前中国，作为一个打工人，心态的重要性无须多讲。小企业不讲理是赤裸裸的，尤其是在公司业绩不好的时候，老板不爽直接开骂，中层为自保策划一堆“不可能实现”任务，基层员工憋气窝火是家常便饭。</p>
+<p>大企业内部体系结构已建立，每个岗位实际上都变得不那么重要了。公司每个人的命运并不决定于他的业务能力，而是领导的信任程度。现实往往是人以类聚，不同性格的人走不到一起，派系林立是必然的。没有派系，没有领导的信任就不要大展拳脚，自作聪明没有好下场。</p>
+<p>人一定要顺应自然，以实际环境为基础灵活做事，不要有思维定式，即使作为公司高层也不行。如果是管理工作，凡事一定要将自己从事件中摘出来（至少心态要出的来）。技术工作也得有自知之明，要知道这年头的世界是围着资本转的。</p>
+<p>如果在一份工作中，既感到身体劳累，又感到憋气窝火时，说明你与这份工作已经无缘了，结果不是你主动离职，就是企业逼你离职。三十六计，走为上计，主动离职才能有充裕的时间摆好“着陆”姿势。</p>
+<h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><p>身体是心理的基础，没有好身体，不会有自信，心态自然好不了。当前打工人大部分都处于亚健康状态，身体需要锻炼是大家的共识。于是，大家纷纷痛下决心，先后买了健身房年卡，以为有个圈子就能将健身坚持下去，但是去过一两次之后……</p>
+<p>其实这也是可以理解的，毕竟大家上班幸苦一天，回到家中就不想再出去折腾了。如果连晚上遛弯都做不到的话，怎么能指望出门健身。我觉得徒手健身，是打工人最合理的选择，至多买根跳绳、买对哑铃就可以了。</p>
+<p>今年年初，武汉爆发新型冠状病毒疫情，公司不得已放了个长假，也就有了一些精力。我从5月开始跳绳，第一天就伤到了膝盖。这可不是肌肉酸疼，而是骨头缝隐痛，给人一种岁月不饶人的感觉:)</p>
+<h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>正所谓“工欲善其事，必先利其器”，千万不要在生产力工具上省钱，因为这可能会影响到身体或心态。在兴趣爱好上，最好也不要使用一些廉价工具，质量差的工具甚至能让你怀疑自己是否真的感兴趣。</p>
+<p>解决方案：价格昂贵的工具可以买中档的，单价贵的耗材不妨买一点尝试。</p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Hexo建立博客二 配置博客</title>
     <url>/2017/10/05/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%BA%8C%20%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>Hexo默认使用landscape主题，我们可以在<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>下载其他主题。NexT主题界面简洁推荐使用，其官方主页为<a href="http://theme-next.iissnan.com/">http://theme-next.iissnan.com/</a>。</p>
@@ -1687,27 +1754,6 @@
       </tags>
   </entry>
   <entry>
-    <title>变形金刚玩具</title>
-    <url>/2017/11/18/%E5%8F%98%E5%BD%A2%E9%87%91%E5%88%9A%E7%8E%A9%E5%85%B7/</url>
-    <content><![CDATA[<p>时隔多年，再次想到玩变形金刚不是因为几部电影。2008年看第一部电影时，只记住了眩晕登场。当时确实被变形过程惊艳到了，气氛烘托的也不错，变形后的打斗——黑夜、晃镜——瞬间失望。</p>
-<p>2016年，在玩过《变形金刚：赛博坦之战》和《变形金刚：赛博坦陨落》后，又重新感受到了童年的兴奋。这两部游戏的人设、剧情太优秀了，强烈推荐给变形金刚爱好者。</p>
-<p>经过网上查阅对比，在今年双十一买了MPP10擎天柱（Optimus Prime），算是圆了童年的愿望，也为自己开了一个花钱的新坑:D</p>
-<a id="more"></a>
-
-<p>整体感觉不错，造型还原，变形合理，车窗、脚板、领导模块等处使用了合金件，32厘米高的玩具拿在手里沉甸甸的。</p>
-<p><img src="https://i.loli.net/2020/02/02/oXmuFrqOi7lg3kd.jpg" alt="擎天柱-1.jpg"><br><img src="https://i.loli.net/2020/02/02/iSsGqpYIwAyR4N2.jpg" alt="擎天柱-2.jpg"><br><img src="https://i.loli.net/2020/02/02/trgl6jQcuMOWkio.jpg" alt="擎天柱-3.jpg"></p>
-<p>虽然变形手感没官方MP10好，但胸部添加卡扣合缝更紧实，手指添加金属轴不会脱落，而且价格远远低于MP10。</p>
-<p>小时候最喜欢的变形金刚就是擎天柱、大力神、声波；最讨厌的是铁皮、大黄蜂、威震天。擎天柱作为正义的主角，最先受到关注。每次柱子出场，我都激动万分。具体剧情虽然都不记得了，但在印象里总有一个擎天柱的形象：博派一堆小车被打的七零八落，一辆大卡车开过来——变形——干趴狂派所有坏蛋:D</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>围城震荡波和红蜘蛛</title>
     <url>/2019/06/22/%E5%9B%B4%E5%9F%8E%E9%9C%87%E8%8D%A1%E6%B3%A2%E5%92%8C%E7%BA%A2%E8%9C%98%E8%9B%9B/</url>
     <content><![CDATA[<p>围城玩具总的来说，给人一种廉价的塑料感，每个级别的人物都要比传统级别小。正面颜值还算可以，虽说是赛博坦形态，但样子还是照着G1做的。值得一提的是表面刻线，算是围城变形金刚的创新。至于背面偷胶、手臂没有盖板，放在今天就是官方标配，大家都不觉得意外。看网上介绍，我觉得还不错的只有震荡波、红蜘蛛、探长、横炮。</p>
@@ -1734,7 +1780,7 @@
   <entry>
     <title>声波（Soundwave）</title>
     <url>/2020/12/20/%E5%A3%B0%E6%B3%A2%EF%BC%88Soundwave%EF%BC%89/</url>
-    <content><![CDATA[<p>声波在G1动画中的形象是相当低调的，以至于我一开始都没注意到它。实际上声波每集的出场率是相当之高，而且实力强悍，记忆里声波几乎没有失败的经历。</p>
+    <content><![CDATA[<p>在我的记忆里，声波几乎每一集都会出现，而且实力强悍鲜有败绩。它的磁带部队也很有特色，不过声波的人设很低调，长期如此就熟视无睹了。其实，大众总是被表面光鲜的角色所吸引，低调做事即使能力再强，只要时间够长，也会被熟视无睹。</p>
 <a id="more"></a>
 
 <p>游戏“赛博坦陨落”中，声波暗中救过威震天，并作为追击方舟的先锋，这些内容非常还原动画。</p>
@@ -2433,6 +2479,74 @@
       </tags>
   </entry>
   <entry>
+    <title>学习51单片机五 模数转换</title>
+    <url>/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>数字量与模拟量的转换，其实就是一个描点过程。描点越多，表示越精确，但不可能完全一致，因为模拟量是连续的，需要无穷多的数字量。比如，用8位二进制数表示每个点，那么可以有$2^8$个点来表示模拟图像。</p>
+<p>当前的处理器都是数字芯片，无法直接接收/发送模拟信号，所以在需要处理模拟信号的情况下，必然需要转换电路来完成设计。下面介绍两个芯片，分别说明两个方向上的转换。</p>
+<a id="more"></a>
+
+<h4 id="A-D"><a href="#A-D" class="headerlink" title="A/D"></a>A/D</h4><p>为了正确无误地采集模拟信号，必须满足$f_{s}\ge 2f_{imax}$。$f_{s}$为采用频率，$f_{imax}$为模拟信号最高频率分量的频率。上述采样定理只是规定了转换频率的下限，采样频率通常取$f_{s}$ = (3~5)$f_{imax}$能够满足要求。</p>
+<p>A/D每次把参考电压转换为数字量都需要一定的时间，这个过程远比D/A要慢。因此，一般以精度和速度两个方面来考量A/D芯片的性能。</p>
+<p>ADC0804</p>
+<p><img src="https://i.loli.net/2020/08/30/lq1K2Xpk3dbN4Iy.png" alt="1ADC0805.PNG"></p>
+<ol>
+<li>$V_{IN}$(+)和$V_{IN}$(-)模拟信号输入端，可接受单极性、双极性和差模输入信号。</li>
+<li>DB7~DB0具有三态特性数字信号输出口。</li>
+<li>AGND模拟接地，DGND数字接地。</li>
+<li>CLK时钟信号输入。CLKR内部时钟发生器的外接电阻端，与CLK连接可由芯片自身产生时钟，频率为1/(1.1RC)。</li>
+<li>$\overline{CS}$片选信号输入，低电平有效，表明启动芯片，开始工作。</li>
+<li>$\overline{WR}$写信号输入，$\overline{RD}读信号输入。</li>
+<li>$\overline{INTR}$在A/D转换结束后，置低电平表示转换完成。</li>
+<li>$V_{REF}$/2参考电平输入，决定量化单位，取2.5V。</li>
+<li>Vcc芯片电源5V。</li>
+</ol>
+<p>从直觉上看，$V_{IN}$(+)和$V_{IN}$(-)用来从外界接收模拟量，DB口用来输出转换后的数字量，其他端口用于控制。开发板的连接方法如下：</p>
+<p><img src="https://i.loli.net/2020/08/30/irV2pPM1vyR4oEa.png" alt="2AD数模转换.PNG"></p>
+<p>如图，单片机P1口接DB0~DB7，P0.7管脚通过一个锁存器连接$\overline{CS}$，P3.6管脚接$\overline{WR}$，P3.7管脚接$\overline{RD}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
+<p><img src="https://i.loli.net/2020/08/30/M75AapYjHyXCZG2.png" alt="3ADC0805时序.PNG"></p>
+<p>如图，先给$\overline{CS}$赋予低电平，然后给$\overline{WR}$赋予一个低脉冲，一段时间后对应数字量才会在输出口稳定住。在输出口读取数据需要给$\overline{RD}$赋予一个低脉冲。在这个脉冲底部，我们可以通过读取P1口来获得数字量。</p>
+<p>例：用数码管显示电压</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;intrins.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P0^<span class="number">7</span>;     <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>;     <span class="comment">//WR</span></span><br><span class="line">sbit rd = P3^<span class="number">7</span>;     <span class="comment">//RD</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint n = <span class="number">0</span>;</span><br><span class="line">    uint i = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//始终保持为0</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        wr = <span class="number">1</span>;     <span class="comment">//写入</span></span><br><span class="line">        _nop_();    <span class="comment">//延时</span></span><br><span class="line">        wr = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        wr = <span class="number">1</span>;</span><br><span class="line">        delay(<span class="number">20</span>);  <span class="comment">//等待数据转换</span></span><br><span class="line"></span><br><span class="line">        rd = <span class="number">1</span>;     <span class="comment">//读取</span></span><br><span class="line">        _nop_();    </span><br><span class="line">        rd = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        n = P1;     <span class="comment">//得到数字量</span></span><br><span class="line">        rd = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//延长显示时间</span></span><br><span class="line">            display(n);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;        <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = (n / <span class="number">10</span>) / <span class="number">10</span>; <span class="comment">//得到十位</span></span><br><span class="line">    uchar h = n / <span class="number">100</span>;       <span class="comment">//得到百位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];        <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7b</span>;            <span class="comment">//为了CS置为0，所以为7</span></span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];        <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7d</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[h];        <span class="comment">//显示百位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7e</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述程序未使用中断触发方式。</p>
+</blockquote>
+<h4 id="D-A"><a href="#D-A" class="headerlink" title="D/A"></a>D/A</h4><p>每个数字量就是一串二进制码，其中每一位都有一定的权。为了将数字量转换为模拟量，必须将每一位按其权的大小转换成相应的模拟量，然后将这些模拟量相加，即可得到与数字量成正比的总模拟量。</p>
+<p>DAC0832</p>
+<p><img src="https://i.loli.net/2020/08/30/jQBCcoGS2q3EK7r.png" alt="4DAC0832.PNG"></p>
+<ol>
+<li>$\overline{CS}$片选信号输入端</li>
+<li>$\overline{WR1}$输入寄存器写选通，当CS为0，ILE为1，WR1为0时，DI0~DI7状态被锁存到输入寄存器。</li>
+<li>$\overline{WR2}$为DAC寄存器写选通，当XEFR为0，WR2为0时，输入寄存器的状态传到DAC寄存器中。</li>
+<li>DI0~DI7数据输入端，TTL电平，有效时间大于90ns。</li>
+<li>$V_{REF}$基准电压输入端，电压范围为-10V~+10V。</li>
+<li>$R_{fb}$反馈电阻端</li>
+<li>$I_{out1}$电流输出端，输入全为1时，其电流最大。$I_{out2}$其值与$I_{out1}$端电流之和为一常数。</li>
+<li>$\overline{XFER}$数据传输控制信号输入端。ILE数据锁存允许信号输入端，高电平有效。</li>
+<li>Vcc电源+5V~+15V，GND模拟地和数字地。</li>
+</ol>
+<p>从直觉上看，DI口用来接收8位二进制数输入，$I_{out1}$和$I_{out2}$口用来输出对应的模拟量，其它端口用于控制。DAC0832有三种模式：双缓冲、单缓冲、直通。开发板采用最基本的直通方式连接电路：</p>
+<p><img src="https://i.loli.net/2020/08/30/etSTbsC5WpV4zXK.png" alt="5DA数模转换.PNG"></p>
+<p>如图，单片机P1口接DI0~DI7，P3.2管脚接$\overline{CS}$，P3.6管脚接$\overline{WR1}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
+<p><img src="https://i.loli.net/2020/08/30/c3ujWf9mHXdJR2w.png" alt="6DAC0832时序.PNG"></p>
+<p>如图，先要给$\overline{CS}$和$\overline{WR1}$赋予低电平，在ts秒后D/A转换完成，$I_{out}$输出稳定。结束转换可以给$\overline{CS}$和$\overline{WR1}$赋予高电平。</p>
+<p>例：呼吸灯</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P3^<span class="number">2</span>; <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>; <span class="comment">//WR</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;  <span class="comment">//数据端计数0~255</span></span><br><span class="line">    uint flag = <span class="number">0</span>;  <span class="comment">//标识计数方向</span></span><br><span class="line">    duan = <span class="number">1</span>;       <span class="comment">//复用了P0，为防止数码管乱显示。</span></span><br><span class="line">    P0 = <span class="number">0</span>;</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//片选</span></span><br><span class="line">    wr = <span class="number">0</span>;         <span class="comment">//开始写数据</span></span><br><span class="line">    P0 = flag;      <span class="comment">//给D0~D7赋初值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            count += <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= <span class="number">255</span>)</span><br><span class="line">                flag = <span class="number">1</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);      <span class="comment">//DA转换延时</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            count -= <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &lt;= <span class="number">0</span>)</span><br><span class="line">                flag = <span class="number">0</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只要将$\overline{CS}$和$\overline{WR1}$置为0，就可以连续给数据口赋值，芯片随之输出模拟量。D/A转换过程很快，但最好还是加上延时以保证数据完成转换。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>可以在<a href="https://www.alldatasheet.com/">https://www.alldatasheet.com/</a>下载芯片说明书。</li>
+<li>芯片的说明书有典型的接法，其编程方法就是其时序图。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>51Chip</category>
+      </categories>
+      <tags>
+        <tag>51Chip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习51单片机二 I/O端口</title>
     <url>/2011/09/28/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%8C%20IO%E7%AB%AF%E5%8F%A3/</url>
     <content><![CDATA[<p>STC89C52输入输出端口共有4个，分别为P1~P4，每个端口8位，可用于接收或发送信号。信号只有两种：高电平和低电平，反映到编程层面就是0和1。</p>
@@ -2525,66 +2639,93 @@
       </tags>
   </entry>
   <entry>
-    <title>学习51单片机五 模数转换</title>
-    <url>/2011/10/06/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%BA%94%20%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>数字量与模拟量的转换，其实就是一个描点过程。描点越多，表示越精确，但不可能完全一致，因为模拟量是连续的，需要无穷多的数字量。比如，用8位二进制数表示每个点，那么可以有$2^8$个点来表示模拟图像。</p>
-<p>当前的处理器都是数字芯片，无法直接接收/发送模拟信号，所以在需要处理模拟信号的情况下，必然需要转换电路来完成设计。下面介绍两个芯片，分别说明两个方向上的转换。</p>
+    <title>学习51单片机八 温控系统</title>
+    <url>/2011/10/18/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AB%20%E6%B8%A9%E6%8E%A7%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>温控系统必然有温度感应元器件，开发板使用DS18B20作为温度传感器。DS18B20工作电压为3.0~5.5V，在寄生电源方式下可由数据线供电。电源极性接反时，不会烧毁，但不能正常工作。温控范围-55~125，在-10~85时精度为±0.5。</p>
 <a id="more"></a>
 
-<h4 id="A-D"><a href="#A-D" class="headerlink" title="A/D"></a>A/D</h4><p>为了正确无误地采集模拟信号，必须满足$f_{s}\ge 2f_{imax}$。$f_{s}$为采用频率，$f_{imax}$为模拟信号最高频率分量的频率。上述采样定理只是规定了转换频率的下限，采样频率通常取$f_{s}$ = (3~5)$f_{imax}$能够满足要求。</p>
-<p>A/D每次把参考电压转换为数字量都需要一定的时间，这个过程远比D/A要慢。因此，一般以精度和速度两个方面来考量A/D芯片的性能。</p>
-<p>ADC0804</p>
-<p><img src="https://i.loli.net/2020/08/30/lq1K2Xpk3dbN4Iy.png" alt="1ADC0805.PNG"></p>
-<ol>
-<li>$V_{IN}$(+)和$V_{IN}$(-)模拟信号输入端，可接受单极性、双极性和差模输入信号。</li>
-<li>DB7~DB0具有三态特性数字信号输出口。</li>
-<li>AGND模拟接地，DGND数字接地。</li>
-<li>CLK时钟信号输入。CLKR内部时钟发生器的外接电阻端，与CLK连接可由芯片自身产生时钟，频率为1/(1.1RC)。</li>
-<li>$\overline{CS}$片选信号输入，低电平有效，表明启动芯片，开始工作。</li>
-<li>$\overline{WR}$写信号输入，$\overline{RD}读信号输入。</li>
-<li>$\overline{INTR}$在A/D转换结束后，置低电平表示转换完成。</li>
-<li>$V_{REF}$/2参考电平输入，决定量化单位，取2.5V。</li>
-<li>Vcc芯片电源5V。</li>
-</ol>
-<p>从直觉上看，$V_{IN}$(+)和$V_{IN}$(-)用来从外界接收模拟量，DB口用来输出转换后的数字量，其他端口用于控制。开发板的连接方法如下：</p>
-<p><img src="https://i.loli.net/2020/08/30/irV2pPM1vyR4oEa.png" alt="2AD数模转换.PNG"></p>
-<p>如图，单片机P1口接DB0~DB7，P0.7管脚通过一个锁存器连接$\overline{CS}$，P3.6管脚接$\overline{WR}$，P3.7管脚接$\overline{RD}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
-<p><img src="https://i.loli.net/2020/08/30/M75AapYjHyXCZG2.png" alt="3ADC0805时序.PNG"></p>
-<p>如图，先给$\overline{CS}$赋予低电平，然后给$\overline{WR}$赋予一个低脉冲，一段时间后对应数字量才会在输出口稳定住。在输出口读取数据需要给$\overline{RD}$赋予一个低脉冲。在这个脉冲底部，我们可以通过读取P1口来获得数字量。</p>
-<p>例：用数码管显示电压</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;intrins.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P0^<span class="number">7</span>;     <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>;     <span class="comment">//WR</span></span><br><span class="line">sbit rd = P3^<span class="number">7</span>;     <span class="comment">//RD</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;   <span class="comment">//段选</span></span><br><span class="line">sbit wei = P2^<span class="number">7</span>;    <span class="comment">//位选</span></span><br><span class="line">uchar code table[] = &#123;  <span class="comment">//编码0-15</span></span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint n = <span class="number">0</span>;</span><br><span class="line">    uint i = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//始终保持为0</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        wr = <span class="number">1</span>;     <span class="comment">//写入</span></span><br><span class="line">        _nop_();    <span class="comment">//延时</span></span><br><span class="line">        wr = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        wr = <span class="number">1</span>;</span><br><span class="line">        delay(<span class="number">20</span>);  <span class="comment">//等待数据转换</span></span><br><span class="line"></span><br><span class="line">        rd = <span class="number">1</span>;     <span class="comment">//读取</span></span><br><span class="line">        _nop_();    </span><br><span class="line">        rd = <span class="number">0</span>;</span><br><span class="line">        _nop_();</span><br><span class="line">        n = P1;     <span class="comment">//得到数字量</span></span><br><span class="line">        rd = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//延长显示时间</span></span><br><span class="line">            display(n);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uint n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;        <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = (n / <span class="number">10</span>) / <span class="number">10</span>; <span class="comment">//得到十位</span></span><br><span class="line">    uchar h = n / <span class="number">100</span>;       <span class="comment">//得到百位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];        <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7b</span>;            <span class="comment">//为了CS置为0，所以为7</span></span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];        <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7d</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[h];        <span class="comment">//显示百位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0x7e</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delay(<span class="number">5</span>);             <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DS18B20样子很像三极管，如图：</p>
+<p><img src="https://i.loli.net/2020/10/02/pmkvCLbRVToWAs2.png" alt="1DS18B20.PNG"></p>
+<p>如图，DS18B20只有一条数据线，属于单总线设备。单总线即可传输时钟，又可传输数据，而且传输是双向的。</p>
 <blockquote>
-<p>上述程序未使用中断触发方式。</p>
+<p>目前常用的单片机与外设之间进行数据传输的串行总线有IIC，SPI和SCI。IIC总线采用同步串行双线通信。SPI总线采用同步串行三线通信（时钟线、输入线、输出线）。SCI总线采用异步方式通信（输入线、输出线）。</p>
 </blockquote>
-<h4 id="D-A"><a href="#D-A" class="headerlink" title="D/A"></a>D/A</h4><p>每个数字量就是一串二进制码，其中每一位都有一定的权。为了将数字量转换为模拟量，必须将每一位按其权的大小转换成相应的模拟量，然后将这些模拟量相加，即可得到与数字量成正比的总模拟量。</p>
-<p>DAC0832</p>
-<p><img src="https://i.loli.net/2020/08/30/jQBCcoGS2q3EK7r.png" alt="4DAC0832.PNG"></p>
+<p>DS18B20说明书连接图如下：</p>
+<p><img src="https://i.loli.net/2020/10/02/a1jYMQ3fDIzwUbS.png" alt="2硬件连接.PNG"></p>
+<p>通常要求在单总线上外接一个5kΩ上拉电阻。</p>
+<p>开发板连接图如下：</p>
+<p><img src="https://i.loli.net/2020/10/02/K6DQlE2Z3hmo1VC.png" alt="3开发板连接.PNG"></p>
+<p>如果要控制多个DS18B20进行温度采集，只要将所有DS18B20的DQ口接到一起即可。单片机通过它内部的序列号来识别每个设备。</p>
+<h4 id="DS18B20的指令"><a href="#DS18B20的指令" class="headerlink" title="DS18B20的指令"></a>DS18B20的指令</h4><p>DS18B20控制指令：</p>
 <ol>
-<li>$\overline{CS}$片选信号输入端</li>
-<li>$\overline{WR1}$输入寄存器写选通，当CS为0，ILE为1，WR1为0时，DI0~DI7状态被锁存到输入寄存器。</li>
-<li>$\overline{WR2}$为DAC寄存器写选通，当XEFR为0，WR2为0时，输入寄存器的状态传到DAC寄存器中。</li>
-<li>DI0~DI7数据输入端，TTL电平，有效时间大于90ns。</li>
-<li>$V_{REF}$基准电压输入端，电压范围为-10V~+10V。</li>
-<li>$R_{fb}$反馈电阻端</li>
-<li>$I_{out1}$电流输出端，输入全为1时，其电流最大。$I_{out2}$其值与$I_{out1}$端电流之和为一常数。</li>
-<li>$\overline{XFER}$数据传输控制信号输入端。ILE数据锁存允许信号输入端，高电平有效。</li>
-<li>Vcc电源+5V~+15V，GND模拟地和数字地。</li>
+<li>33H：读ROM中的64位编码。</li>
+<li>55H：发出此命令后，接着发送64位ROM码，等待对应的DS18B20回应。</li>
+<li>CCH：跳过1，2步，直接向DS18B20发送变换命令，适用于只有一个传感器的情况。</li>
+<li>F0H：确定同一总线上DS18B20的个数。</li>
+<li>ECH：使得温度只有超过上限或下限时才响应。</li>
 </ol>
-<p>从直觉上看，DI口用来接收8位二进制数输入，$I_{out1}$和$I_{out2}$口用来输出对应的模拟量，其它端口用于控制。DAC0832有三种模式：双缓冲、单缓冲、直通。开发板采用最基本的直通方式连接电路：</p>
-<p><img src="https://i.loli.net/2020/08/30/etSTbsC5WpV4zXK.png" alt="5DA数模转换.PNG"></p>
-<p>如图，单片机P1口接DI0~DI7，P3.2管脚接$\overline{CS}$，P3.6管脚接$\overline{WR1}$。硬件连接有了，接着就要考虑编程操作，这需要知道这种连接模式的时序。</p>
-<p><img src="https://i.loli.net/2020/08/30/c3ujWf9mHXdJR2w.png" alt="6DAC0832时序.PNG"></p>
-<p>如图，先要给$\overline{CS}$和$\overline{WR1}$赋予低电平，在ts秒后D/A转换完成，$I_{out}$输出稳定。结束转换可以给$\overline{CS}$和$\overline{WR1}$赋予高电平。</p>
-<p>例：呼吸灯</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit cs = P3^<span class="number">2</span>; <span class="comment">//CS</span></span><br><span class="line">sbit wr = P3^<span class="number">6</span>; <span class="comment">//WR</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;  <span class="comment">//数据端计数0~255</span></span><br><span class="line">    uint flag = <span class="number">0</span>;  <span class="comment">//标识计数方向</span></span><br><span class="line">    duan = <span class="number">1</span>;       <span class="comment">//复用了P0，为防止数码管乱显示。</span></span><br><span class="line">    P0 = <span class="number">0</span>;</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    cs = <span class="number">0</span>;         <span class="comment">//片选</span></span><br><span class="line">    wr = <span class="number">0</span>;         <span class="comment">//开始写数据</span></span><br><span class="line">    P0 = flag;      <span class="comment">//给D0~D7赋初值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            count += <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= <span class="number">255</span>)</span><br><span class="line">                flag = <span class="number">1</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);      <span class="comment">//DA转换延时</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            count -= <span class="number">5</span>;</span><br><span class="line">            P0 = count;</span><br><span class="line">            <span class="keyword">if</span> (count &lt;= <span class="number">0</span>)</span><br><span class="line">                flag = <span class="number">0</span>;   <span class="comment">//反向</span></span><br><span class="line">            delay(<span class="number">50</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(uint ms)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;ms; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>只要将$\overline{CS}$和$\overline{WR1}$置为0，就可以连续给数据口赋值，芯片随之输出模拟量。D/A转换过程很快，但最好还是加上延时以保证数据完成转换。</p>
+<p>64位ROM：8位CRC，48位序列号，8位产品类型号</p>
 </blockquote>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
-<li>可以在<a href="https://www.alldatasheet.com/">https://www.alldatasheet.com/</a>下载芯片说明书。</li>
-<li>芯片的说明书有典型的接法，其编程方法就是其时序图。</li>
+<p>当有多个DS18B20连接到总线时，先发送33H命令获取每个传感器的64位ROM。然后，发送55H命令，紧接着发送想要通信的传感器64位ROM码。之后的读取操作就是针对这个传感器。如果只有一个DS18B20，就可以发送CCH命令跳过上述步骤。</p>
+<p>DS18B20温度获取指令：</p>
+<ol>
+<li>44H：温度转换，12位转换750ms，9位转换93.75ms。</li>
+<li>BEH：读取RAM中的温度数据。</li>
+<li>4EH：写RAM的第2、3字节，设置上下限温度（此命令后，发送两字节温度数据）。</li>
+<li>48H：将RAM的第2、3字节复制到EEPROM。</li>
+<li>B8H：将EEPROM中的内容恢复到RAM的第3、4字节。</li>
+<li>B4H：读取DS18B20的供电方式。寄生供电，DS18B20发送0；外接电源，发送1。</li>
 </ol>
-]]></content>
+<p>RAM共9个字节：0温度值低位LSB，1温度值高位MSB，2高温限值TH，3低温限值TL，4配置寄存器，5、6、7保留，8CRC校验值。</p>
+<p>DS18B20出厂默认12位，最高位为符号位，温度值为11位。单片机在读取温度值时，会读取2字节共16位。前5位为符号位，每一位同时变化一模一样，为1表示负值，为0表示正值。当温度值为负时，需要将11位温度值取反加1再乘以0.0625才可得到实际温度值；为正值，直接乘以0.0625即可。</p>
+<h4 id="DS18B20读写时序"><a href="#DS18B20读写时序" class="headerlink" title="DS18B20读写时序"></a>DS18B20读写时序</h4><p>初始化时序</p>
+<p><img src="https://i.loli.net/2020/10/02/BCJktomYhrMLT7x.png" alt="4初始化.png"></p>
+<ol>
+<li>将数据线置1，短暂延时</li>
+<li>将数据线置0，延时750us（480~960us）</li>
+<li>将数据线置1，延时15~60us后，由DS18B20返回低电平0。</li>
+<li>单片机收到0后，延时60~240us。</li>
+<li>将数据线置1结束。从第三步至此，至少需要480us。</li>
+</ol>
+<p>用代码描述如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint i;                 <span class="comment">//必须为int型</span></span><br><span class="line">    DQ = <span class="number">0</span>;                 <span class="comment">//第二步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">103</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    DQ = <span class="number">1</span>;                 <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">4</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写时序</p>
+<p><img src="https://i.loli.net/2020/10/02/BSyhuWKkGQCexJ1.png" alt="5写.png"></p>
+<p>每个字节从低位到高位发送，每次写1位数据：</p>
+<ol>
+<li>写0：将数据线置0，延时60us；再将数据线置1，延时大于1us。</li>
+<li>写1：将数据线置0，延时大于1us；再将数据线置1，延时45us。</li>
+</ol>
+<blockquote>
+<p>位传送时间为45us</p>
+</blockquote>
+<p>用代码描述如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint j;             <span class="comment">//必须为int型</span></span><br><span class="line">    uchar i;</span><br><span class="line">    bit b;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//每次写一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        b = d &amp; <span class="number">0x01</span>;   <span class="comment">//前7位清0</span></span><br><span class="line">        d = d &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (b)          <span class="comment">//写1，第二条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>            <span class="comment">//写0，第一条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>读时序</p>
+<p><img src="https://i.loli.net/2020/10/02/64bfH9MKvrtyILx.png" alt="6读.png"></p>
+<p>与写时序类似，所有的读时间间隙也应至少有60us，在时间间隙之间应有1us的恢复时间。读时间间隙起始于主设备拉低电平至少1us，然后释放总线（拉高）。</p>
+<ol>
+<li>将数据线置0，延时4us。</li>
+<li>将数据线置1，延时6us，等待DS18B20返回数据。</li>
+<li>读取1位，延时45us。</li>
+<li>重复1~3，直到读取完一个字节。</li>
+</ol>
+<p>用代码描述如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    bit rb;             </span><br><span class="line">    DQ = <span class="number">0</span>; i++;        <span class="comment">//第一步</span></span><br><span class="line">    DQ = <span class="number">1</span>; i++;i++;    <span class="comment">//第二步</span></span><br><span class="line">    rb = DQ;            <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">8</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    <span class="keyword">return</span> rb;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp, rbyte;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//第四步</span></span><br><span class="line">    &#123;</span><br><span class="line">        temp = read_bit();</span><br><span class="line">        rbyte = (temp&lt;&lt;<span class="number">7</span>) | (rbyte&gt;&gt;<span class="number">1</span>); <span class="comment">//从最低位开始接收</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rbyte;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="显示当前温度"><a href="#显示当前温度" class="headerlink" title="显示当前温度"></a>显示当前温度</h4><p>通过DS18B20获取当前温度，将温度值显示到数码管并通过串口发送到上位机程序。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit DQ = P2^<span class="number">2</span>;     <span class="comment">//传感器数据线</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> code table[] = &#123;</span><br><span class="line">    <span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,<span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,<span class="number">0x7f</span>,<span class="number">0x6f</span>,  <span class="comment">//带小数点0~9</span></span><br><span class="line">    <span class="number">0xbf</span>,<span class="number">0x86</span>,<span class="number">0xdb</span>,<span class="number">0xcf</span>,<span class="number">0xe6</span>,<span class="number">0xed</span>,<span class="number">0xfd</span>,<span class="number">0x87</span>,<span class="number">0xff</span>,<span class="number">0xef</span>   <span class="comment">//不带小数点0~9</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_DS18B20</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_t</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar,uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_t</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_com</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_com</span><span class="params">(<span class="keyword">char</span>*)</span></span>;</span><br><span class="line"><span class="keyword">float</span> temperature;<span class="comment">//保留1位小数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    uchar buff[<span class="number">4</span>];</span><br><span class="line">    init_com();</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        init_DS18B20();</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">            <span class="keyword">display_t</span>(<span class="keyword">get_t</span>());</span><br><span class="line">        <span class="built_in">sprintf</span>(buff,<span class="string">&quot;%f&quot;</span>,temperature+<span class="number">0.05</span>);<span class="comment">//浮点型转字符型</span></span><br><span class="line">        put_com(buff);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;d; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint i;                 <span class="comment">//必须为int型</span></span><br><span class="line">    DQ = <span class="number">0</span>;                 <span class="comment">//第二步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">103</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    DQ = <span class="number">1</span>;                 <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">4</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    bit rb;</span><br><span class="line">    DQ = <span class="number">0</span>; i++;        <span class="comment">//第一步</span></span><br><span class="line">    DQ = <span class="number">1</span>; i++;i++;    <span class="comment">//第二步</span></span><br><span class="line">    rb = DQ;            <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">8</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    <span class="keyword">return</span> rb;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp, rbyte;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//第四步</span></span><br><span class="line">    &#123;</span><br><span class="line">        temp = read_bit();</span><br><span class="line">        rbyte = (temp&lt;&lt;<span class="number">7</span>) | (rbyte&gt;&gt;<span class="number">1</span>); <span class="comment">//从最低位开始接收</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rbyte;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint j;             <span class="comment">//必须为int型</span></span><br><span class="line">    uchar i;</span><br><span class="line">    bit b;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//每次写一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        b = d &amp; <span class="number">0x01</span>;   <span class="comment">//前7位清0</span></span><br><span class="line">        d = d &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (b)          <span class="comment">//写1，第二条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>            <span class="comment">//写0，第一条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_DS18B20</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    reset();</span><br><span class="line">    delayms(<span class="number">1</span>);</span><br><span class="line">    write_byte(<span class="number">0xcc</span>);    <span class="comment">//跳过寻址</span></span><br><span class="line">    write_byte(<span class="number">0x44</span>);    <span class="comment">//转换温度</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_t</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar h,l;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    reset();</span><br><span class="line">    delayms(<span class="number">1</span>);</span><br><span class="line">    write_byte(<span class="number">0xcc</span>);</span><br><span class="line">    write_byte(<span class="number">0xbe</span>);    <span class="comment">//读取温度</span></span><br><span class="line">    l = read_byte();     <span class="comment">//读取低位</span></span><br><span class="line">    h = read_byte();     <span class="comment">//读取高位</span></span><br><span class="line">    t = h;               <span class="comment">//合并高低位</span></span><br><span class="line">    t &lt;&lt;= <span class="number">8</span>;             <span class="comment">//空出低8位</span></span><br><span class="line">    t = t | l;</span><br><span class="line">    temperature = t * <span class="number">0.0625</span>;    <span class="comment">//求得实际温度值（包含小数部分）</span></span><br><span class="line">    t = temperature * <span class="number">10</span> + <span class="number">0.5</span>;  <span class="comment">//乘10将第一位小数划入整数部分，</span></span><br><span class="line">    <span class="keyword">return</span> t;                    <span class="comment">//0.5加到了第二位小数，用于四舍五入。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar pos,uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = (~(<span class="number">0x01</span>&lt;&lt;pos));</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);     <span class="comment">//延时 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_t</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    i = t/<span class="number">100</span>;      <span class="comment">//得到十位</span></span><br><span class="line">    display(<span class="number">0</span>,i);   <span class="comment">//在第一个数据管显示</span></span><br><span class="line">    i = t%<span class="number">100</span>/<span class="number">10</span>;   <span class="comment">//得到个位，需带小数点</span></span><br><span class="line">    display(<span class="number">1</span>,i+<span class="number">10</span>);</span><br><span class="line">    i = t%<span class="number">100</span>%<span class="number">10</span>;   <span class="comment">//小数位</span></span><br><span class="line">    display(<span class="number">2</span>,i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_com</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TMOD = <span class="number">0x20</span>;</span><br><span class="line">    PCON = <span class="number">0</span>;</span><br><span class="line">    SCON = <span class="number">0x50</span>;</span><br><span class="line">    TH1 = <span class="number">0xFD</span>;</span><br><span class="line">    TL1 = <span class="number">0xFD</span>;</span><br><span class="line">    TR1 = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_com</span><span class="params">(<span class="keyword">char</span> *d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        SBUF = *d++;</span><br><span class="line">        <span class="keyword">while</span> (!TI);</span><br><span class="line">        TI = <span class="number">0</span>;	</span><br><span class="line">    &#125;<span class="keyword">while</span>(*d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="VC开发上位机程序"><a href="#VC开发上位机程序" class="headerlink" title="VC开发上位机程序"></a>VC开发上位机程序</h4><p>一、添加串口控件，对于windows7x64，VC2010环境，需要下载MSCOMM32.OCX，然后将其放入C:\Windows\SysWOW64。在CMD中输入命令Regsvr32 C:\Windows\SysWOW64\MSCOMM32.OCX，提示注册成功后，检查注册表中两项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[HKEY_CLASSES_ROOT\Licenses\ED4B87C4-9F76-11d1-8BF7-0000F8754DA1]</span><br><span class="line">@ &#x3D; &quot;knlggnmntgggrninthpgmnngrhqhnnjnslsh&quot;</span><br><span class="line">[HKEY_CLASSES_ROOT\Licenses\4250E830-6AC2-11cf-8ADB-00AA00C00905]</span><br><span class="line">@ &#x3D; &quot;kjljvjjjoquqmjjjvpqqkqmqykypoqjquoun&quot;</span><br></pre></td></tr></table></figure>
+<p>如果没有这两项，需要手动添加。完成后，重新打开VC2010即可插入MSCOMM32控件。插入方法：在资源视图下，右键对话框控件，选择“插入ActiveX控件”。在弹出的对话框中选择“Microsoft Communications Control,version6.0”。此时会出现一个电话图标，带有一个白边，右键图标选择“编辑控件”即可消除。</p>
+<blockquote>
+<p>这个串口控件可是个老物，使用它开发的程序未来可能会出现兼容性问题。</p>
+</blockquote>
+<p>二、为串口控件添加变量，右键点击控件，选择添加变量，默认类型为CMscomm1，输入变量名m_ctrlComm确定。在类视图中会看到多出了一个CMscomm1类，其中有很多以get和put开头的函数，用于操作串口输入输出。</p>
+<p>三、在OnInitDialog()中，添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_ctrlComm.get_PortOpen())</span><br><span class="line">    m_ctrlComm.put_PortOpen(FALSE);</span><br><span class="line">m_ctrlComm.put_CommPort(<span class="number">4</span>);                <span class="comment">//选择COM4，根据自己的串口号</span></span><br><span class="line">m_ctrlComm.put_InputMode(<span class="number">1</span>);               <span class="comment">//1表示以二进制方式捡取数据</span></span><br><span class="line">m_ctrlComm.put_InBufferSize(<span class="number">1024</span>);         <span class="comment">//输入缓冲区大小为1024byte</span></span><br><span class="line">m_ctrlComm.put_OutBufferSize(<span class="number">512</span>);         <span class="comment">//输出缓冲区大小为512byte</span></span><br><span class="line">m_ctrlComm.put_Settings(<span class="string">&quot;9600,n,8,1&quot;</span>);     <span class="comment">//波特率9600，无校验，8个数据位，1个停止位</span></span><br><span class="line"><span class="keyword">if</span> (!m_ctrlComm.get_PortOpen())</span><br><span class="line">    m_ctrlComm.put_PortOpen(TRUE);         <span class="comment">//打开串口</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;Can&#x27;t open serialport&quot;</span>);</span><br><span class="line">m_ctrlComm.put_RThreshold(<span class="number">1</span>);              <span class="comment">//1表示缓冲区内有大于等于1个字符时，将触发一个Comm事件</span></span><br><span class="line">m_ctrlComm.put_InputLen(<span class="number">0</span>);                <span class="comment">//设置当前接收区长度为0</span></span><br><span class="line">m_ctrlComm.get_Input();                    <span class="comment">//预读缓冲区以清空残留数据</span></span><br></pre></td></tr></table></figure>
+<p>四、为串口控件添加响应函数：在资源视图中右键“电话图标”，选择“添加事件处理程序”。VC会自动添加响应函数OnCommMscomm1，并建立控件与函数的映射。再在对话框资源上添加编辑框控件，绑定String类型变量m_strValue。在OnCommMscomm1中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">    m_strValue = <span class="string">&quot;&quot;</span>;                    <span class="comment">//每次响应，都应清空</span></span><br><span class="line">    VARIANT var;</span><br><span class="line">    COleSafeArray sa;</span><br><span class="line">    LONG len,i;</span><br><span class="line">    BYTE rxd[<span class="number">2048</span>];</span><br><span class="line">    CString temp;</span><br><span class="line">    <span class="keyword">if</span> (m_ctrlComm.get_CommEvent() == <span class="number">2</span>)<span class="comment">//事件2表示接收缓冲区有字符</span></span><br><span class="line">    &#123;</span><br><span class="line">        var = m_ctrlComm.get_Input();   <span class="comment">//读缓冲区</span></span><br><span class="line">        sa = var;                       <span class="comment">//类型转换</span></span><br><span class="line">        len = sa.GetOneDimSize();       <span class="comment">//得到有效数据长度</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;len; i++)</span><br><span class="line">            sa.GetElement(&amp;i,rxd+i);    <span class="comment">//转换为BYTE型数组</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;len; i++)           <span class="comment">//将数组转换为CString型变量</span></span><br><span class="line">        &#123;</span><br><span class="line">            BYTE bt = *(<span class="keyword">char</span>*)(rxd+i);</span><br><span class="line">            temp.Format(<span class="string">&quot;%c&quot;</span>,bt);</span><br><span class="line">            m_strValue += temp;         <span class="comment">//将字符累积到编辑框变量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    UpdateData(FALSE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>51Chip</category>
       </categories>
@@ -2725,101 +2866,6 @@
 <p>P0复用于数码管，为了防止数码管乱显示，锁定它们在关闭状态。</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>51Chip</category>
-      </categories>
-      <tags>
-        <tag>51Chip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习51单片机八 温控系统</title>
-    <url>/2011/10/18/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%AB%20%E6%B8%A9%E6%8E%A7%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>温控系统必然有温度感应元器件，开发板使用DS18B20作为温度传感器。DS18B20工作电压为3.0~5.5V，在寄生电源方式下可由数据线供电。电源极性接反时，不会烧毁，但不能正常工作。温控范围-55~125，在-10~85时精度为±0.5。</p>
-<a id="more"></a>
-
-<p>DS18B20样子很像三极管，如图：</p>
-<p><img src="https://i.loli.net/2020/10/02/pmkvCLbRVToWAs2.png" alt="1DS18B20.PNG"></p>
-<p>如图，DS18B20只有一条数据线，属于单总线设备。单总线即可传输时钟，又可传输数据，而且传输是双向的。</p>
-<blockquote>
-<p>目前常用的单片机与外设之间进行数据传输的串行总线有IIC，SPI和SCI。IIC总线采用同步串行双线通信。SPI总线采用同步串行三线通信（时钟线、输入线、输出线）。SCI总线采用异步方式通信（输入线、输出线）。</p>
-</blockquote>
-<p>DS18B20说明书连接图如下：</p>
-<p><img src="https://i.loli.net/2020/10/02/a1jYMQ3fDIzwUbS.png" alt="2硬件连接.PNG"></p>
-<p>通常要求在单总线上外接一个5kΩ上拉电阻。</p>
-<p>开发板连接图如下：</p>
-<p><img src="https://i.loli.net/2020/10/02/K6DQlE2Z3hmo1VC.png" alt="3开发板连接.PNG"></p>
-<p>如果要控制多个DS18B20进行温度采集，只要将所有DS18B20的DQ口接到一起即可。单片机通过它内部的序列号来识别每个设备。</p>
-<h4 id="DS18B20的指令"><a href="#DS18B20的指令" class="headerlink" title="DS18B20的指令"></a>DS18B20的指令</h4><p>DS18B20控制指令：</p>
-<ol>
-<li>33H：读ROM中的64位编码。</li>
-<li>55H：发出此命令后，接着发送64位ROM码，等待对应的DS18B20回应。</li>
-<li>CCH：跳过1，2步，直接向DS18B20发送变换命令，适用于只有一个传感器的情况。</li>
-<li>F0H：确定同一总线上DS18B20的个数。</li>
-<li>ECH：使得温度只有超过上限或下限时才响应。</li>
-</ol>
-<blockquote>
-<p>64位ROM：8位CRC，48位序列号，8位产品类型号</p>
-</blockquote>
-<p>当有多个DS18B20连接到总线时，先发送33H命令获取每个传感器的64位ROM。然后，发送55H命令，紧接着发送想要通信的传感器64位ROM码。之后的读取操作就是针对这个传感器。如果只有一个DS18B20，就可以发送CCH命令跳过上述步骤。</p>
-<p>DS18B20温度获取指令：</p>
-<ol>
-<li>44H：温度转换，12位转换750ms，9位转换93.75ms。</li>
-<li>BEH：读取RAM中的温度数据。</li>
-<li>4EH：写RAM的第2、3字节，设置上下限温度（此命令后，发送两字节温度数据）。</li>
-<li>48H：将RAM的第2、3字节复制到EEPROM。</li>
-<li>B8H：将EEPROM中的内容恢复到RAM的第3、4字节。</li>
-<li>B4H：读取DS18B20的供电方式。寄生供电，DS18B20发送0；外接电源，发送1。</li>
-</ol>
-<p>RAM共9个字节：0温度值低位LSB，1温度值高位MSB，2高温限值TH，3低温限值TL，4配置寄存器，5、6、7保留，8CRC校验值。</p>
-<p>DS18B20出厂默认12位，最高位为符号位，温度值为11位。单片机在读取温度值时，会读取2字节共16位。前5位为符号位，每一位同时变化一模一样，为1表示负值，为0表示正值。当温度值为负时，需要将11位温度值取反加1再乘以0.0625才可得到实际温度值；为正值，直接乘以0.0625即可。</p>
-<h4 id="DS18B20读写时序"><a href="#DS18B20读写时序" class="headerlink" title="DS18B20读写时序"></a>DS18B20读写时序</h4><p>初始化时序</p>
-<p><img src="https://i.loli.net/2020/10/02/BCJktomYhrMLT7x.png" alt="4初始化.png"></p>
-<ol>
-<li>将数据线置1，短暂延时</li>
-<li>将数据线置0，延时750us（480~960us）</li>
-<li>将数据线置1，延时15~60us后，由DS18B20返回低电平0。</li>
-<li>单片机收到0后，延时60~240us。</li>
-<li>将数据线置1结束。从第三步至此，至少需要480us。</li>
-</ol>
-<p>用代码描述如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint i;                 <span class="comment">//必须为int型</span></span><br><span class="line">    DQ = <span class="number">0</span>;                 <span class="comment">//第二步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">103</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    DQ = <span class="number">1</span>;                 <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">4</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>写时序</p>
-<p><img src="https://i.loli.net/2020/10/02/BSyhuWKkGQCexJ1.png" alt="5写.png"></p>
-<p>每个字节从低位到高位发送，每次写1位数据：</p>
-<ol>
-<li>写0：将数据线置0，延时60us；再将数据线置1，延时大于1us。</li>
-<li>写1：将数据线置0，延时大于1us；再将数据线置1，延时45us。</li>
-</ol>
-<blockquote>
-<p>位传送时间为45us</p>
-</blockquote>
-<p>用代码描述如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint j;             <span class="comment">//必须为int型</span></span><br><span class="line">    uchar i;</span><br><span class="line">    bit b;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//每次写一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        b = d &amp; <span class="number">0x01</span>;   <span class="comment">//前7位清0</span></span><br><span class="line">        d = d &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (b)          <span class="comment">//写1，第二条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>            <span class="comment">//写0，第一条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>读时序</p>
-<p><img src="https://i.loli.net/2020/10/02/64bfH9MKvrtyILx.png" alt="6读.png"></p>
-<p>与写时序类似，所有的读时间间隙也应至少有60us，在时间间隙之间应有1us的恢复时间。读时间间隙起始于主设备拉低电平至少1us，然后释放总线（拉高）。</p>
-<ol>
-<li>将数据线置0，延时4us。</li>
-<li>将数据线置1，延时6us，等待DS18B20返回数据。</li>
-<li>读取1位，延时45us。</li>
-<li>重复1~3，直到读取完一个字节。</li>
-</ol>
-<p>用代码描述如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    bit rb;             </span><br><span class="line">    DQ = <span class="number">0</span>; i++;        <span class="comment">//第一步</span></span><br><span class="line">    DQ = <span class="number">1</span>; i++;i++;    <span class="comment">//第二步</span></span><br><span class="line">    rb = DQ;            <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">8</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    <span class="keyword">return</span> rb;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp, rbyte;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//第四步</span></span><br><span class="line">    &#123;</span><br><span class="line">        temp = read_bit();</span><br><span class="line">        rbyte = (temp&lt;&lt;<span class="number">7</span>) | (rbyte&gt;&gt;<span class="number">1</span>); <span class="comment">//从最低位开始接收</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rbyte;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="显示当前温度"><a href="#显示当前温度" class="headerlink" title="显示当前温度"></a>显示当前温度</h4><p>通过DS18B20获取当前温度，将温度值显示到数码管并通过串口发送到上位机程序。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line">sbit DQ = P2^<span class="number">2</span>;     <span class="comment">//传感器数据线</span></span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> code table[] = &#123;</span><br><span class="line">    <span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,<span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,<span class="number">0x7f</span>,<span class="number">0x6f</span>,  <span class="comment">//带小数点0~9</span></span><br><span class="line">    <span class="number">0xbf</span>,<span class="number">0x86</span>,<span class="number">0xdb</span>,<span class="number">0xcf</span>,<span class="number">0xe6</span>,<span class="number">0xed</span>,<span class="number">0xfd</span>,<span class="number">0x87</span>,<span class="number">0xff</span>,<span class="number">0xef</span>   <span class="comment">//不带小数点0~9</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_DS18B20</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_t</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar,uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_t</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_com</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_com</span><span class="params">(<span class="keyword">char</span>*)</span></span>;</span><br><span class="line"><span class="keyword">float</span> temperature;<span class="comment">//保留1位小数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    uchar buff[<span class="number">4</span>];</span><br><span class="line">    init_com();</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        init_DS18B20();</span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">            <span class="keyword">display_t</span>(<span class="keyword">get_t</span>());</span><br><span class="line">        <span class="built_in">sprintf</span>(buff,<span class="string">&quot;%f&quot;</span>,temperature+<span class="number">0.05</span>);<span class="comment">//浮点型转字符型</span></span><br><span class="line">        put_com(buff);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;d; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint i;                 <span class="comment">//必须为int型</span></span><br><span class="line">    DQ = <span class="number">0</span>;                 <span class="comment">//第二步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">103</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    DQ = <span class="number">1</span>;                 <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">4</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">bit <span class="title">read_bit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    bit rb;</span><br><span class="line">    DQ = <span class="number">0</span>; i++;        <span class="comment">//第一步</span></span><br><span class="line">    DQ = <span class="number">1</span>; i++;i++;    <span class="comment">//第二步</span></span><br><span class="line">    rb = DQ;            <span class="comment">//第三步</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">8</span>; i&gt;<span class="number">0</span>; i--);</span><br><span class="line">    <span class="keyword">return</span> rb;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_byte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp, rbyte;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//第四步</span></span><br><span class="line">    &#123;</span><br><span class="line">        temp = read_bit();</span><br><span class="line">        rbyte = (temp&lt;&lt;<span class="number">7</span>) | (rbyte&gt;&gt;<span class="number">1</span>); <span class="comment">//从最低位开始接收</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rbyte;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_byte</span><span class="params">(uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint j;             <span class="comment">//必须为int型</span></span><br><span class="line">    uchar i;</span><br><span class="line">    bit b;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) <span class="comment">//每次写一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        b = d &amp; <span class="number">0x01</span>;   <span class="comment">//前7位清0</span></span><br><span class="line">        d = d &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (b)          <span class="comment">//写1，第二条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>            <span class="comment">//写0，第一条</span></span><br><span class="line">        &#123;</span><br><span class="line">            DQ = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (j=<span class="number">8</span>; j&gt;<span class="number">0</span>; j--);</span><br><span class="line">            DQ = <span class="number">1</span>;</span><br><span class="line">            j++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_DS18B20</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    reset();</span><br><span class="line">    delayms(<span class="number">1</span>);</span><br><span class="line">    write_byte(<span class="number">0xcc</span>);    <span class="comment">//跳过寻址</span></span><br><span class="line">    write_byte(<span class="number">0x44</span>);    <span class="comment">//转换温度</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_t</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar h,l;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    reset();</span><br><span class="line">    delayms(<span class="number">1</span>);</span><br><span class="line">    write_byte(<span class="number">0xcc</span>);</span><br><span class="line">    write_byte(<span class="number">0xbe</span>);    <span class="comment">//读取温度</span></span><br><span class="line">    l = read_byte();     <span class="comment">//读取低位</span></span><br><span class="line">    h = read_byte();     <span class="comment">//读取高位</span></span><br><span class="line">    t = h;               <span class="comment">//合并高低位</span></span><br><span class="line">    t &lt;&lt;= <span class="number">8</span>;             <span class="comment">//空出低8位</span></span><br><span class="line">    t = t | l;</span><br><span class="line">    temperature = t * <span class="number">0.0625</span>;    <span class="comment">//求得实际温度值（包含小数部分）</span></span><br><span class="line">    t = temperature * <span class="number">10</span> + <span class="number">0.5</span>;  <span class="comment">//乘10将第一位小数划入整数部分，</span></span><br><span class="line">    <span class="keyword">return</span> t;                    <span class="comment">//0.5加到了第二位小数，用于四舍五入。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar pos,uchar d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];</span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = (~(<span class="number">0x01</span>&lt;&lt;pos));</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);     <span class="comment">//延时 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_t</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i;</span><br><span class="line">    i = t/<span class="number">100</span>;      <span class="comment">//得到十位</span></span><br><span class="line">    display(<span class="number">0</span>,i);   <span class="comment">//在第一个数据管显示</span></span><br><span class="line">    i = t%<span class="number">100</span>/<span class="number">10</span>;   <span class="comment">//得到个位，需带小数点</span></span><br><span class="line">    display(<span class="number">1</span>,i+<span class="number">10</span>);</span><br><span class="line">    i = t%<span class="number">100</span>%<span class="number">10</span>;   <span class="comment">//小数位</span></span><br><span class="line">    display(<span class="number">2</span>,i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_com</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TMOD = <span class="number">0x20</span>;</span><br><span class="line">    PCON = <span class="number">0</span>;</span><br><span class="line">    SCON = <span class="number">0x50</span>;</span><br><span class="line">    TH1 = <span class="number">0xFD</span>;</span><br><span class="line">    TL1 = <span class="number">0xFD</span>;</span><br><span class="line">    TR1 = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put_com</span><span class="params">(<span class="keyword">char</span> *d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        SBUF = *d++;</span><br><span class="line">        <span class="keyword">while</span> (!TI);</span><br><span class="line">        TI = <span class="number">0</span>;	</span><br><span class="line">    &#125;<span class="keyword">while</span>(*d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="VC开发上位机程序"><a href="#VC开发上位机程序" class="headerlink" title="VC开发上位机程序"></a>VC开发上位机程序</h4><p>一、添加串口控件，对于windows7x64，VC2010环境，需要下载MSCOMM32.OCX，然后将其放入C:\Windows\SysWOW64。在CMD中输入命令Regsvr32 C:\Windows\SysWOW64\MSCOMM32.OCX，提示注册成功后，检查注册表中两项：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[HKEY_CLASSES_ROOT\Licenses\ED4B87C4-9F76-11d1-8BF7-0000F8754DA1]</span><br><span class="line">@ &#x3D; &quot;knlggnmntgggrninthpgmnngrhqhnnjnslsh&quot;</span><br><span class="line">[HKEY_CLASSES_ROOT\Licenses\4250E830-6AC2-11cf-8ADB-00AA00C00905]</span><br><span class="line">@ &#x3D; &quot;kjljvjjjoquqmjjjvpqqkqmqykypoqjquoun&quot;</span><br></pre></td></tr></table></figure>
-<p>如果没有这两项，需要手动添加。完成后，重新打开VC2010即可插入MSCOMM32控件。插入方法：在资源视图下，右键对话框控件，选择“插入ActiveX控件”。在弹出的对话框中选择“Microsoft Communications Control,version6.0”。此时会出现一个电话图标，带有一个白边，右键图标选择“编辑控件”即可消除。</p>
-<blockquote>
-<p>这个串口控件可是个老物，使用它开发的程序未来可能会出现兼容性问题。</p>
-</blockquote>
-<p>二、为串口控件添加变量，右键点击控件，选择添加变量，默认类型为CMscomm1，输入变量名m_ctrlComm确定。在类视图中会看到多出了一个CMscomm1类，其中有很多以get和put开头的函数，用于操作串口输入输出。</p>
-<p>三、在OnInitDialog()中，添加如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_ctrlComm.get_PortOpen())</span><br><span class="line">    m_ctrlComm.put_PortOpen(FALSE);</span><br><span class="line">m_ctrlComm.put_CommPort(<span class="number">4</span>);                <span class="comment">//选择COM4，根据自己的串口号</span></span><br><span class="line">m_ctrlComm.put_InputMode(<span class="number">1</span>);               <span class="comment">//1表示以二进制方式捡取数据</span></span><br><span class="line">m_ctrlComm.put_InBufferSize(<span class="number">1024</span>);         <span class="comment">//输入缓冲区大小为1024byte</span></span><br><span class="line">m_ctrlComm.put_OutBufferSize(<span class="number">512</span>);         <span class="comment">//输出缓冲区大小为512byte</span></span><br><span class="line">m_ctrlComm.put_Settings(<span class="string">&quot;9600,n,8,1&quot;</span>);     <span class="comment">//波特率9600，无校验，8个数据位，1个停止位</span></span><br><span class="line"><span class="keyword">if</span> (!m_ctrlComm.get_PortOpen())</span><br><span class="line">    m_ctrlComm.put_PortOpen(TRUE);         <span class="comment">//打开串口</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;Can&#x27;t open serialport&quot;</span>);</span><br><span class="line">m_ctrlComm.put_RThreshold(<span class="number">1</span>);              <span class="comment">//1表示缓冲区内有大于等于1个字符时，将触发一个Comm事件</span></span><br><span class="line">m_ctrlComm.put_InputLen(<span class="number">0</span>);                <span class="comment">//设置当前接收区长度为0</span></span><br><span class="line">m_ctrlComm.get_Input();                    <span class="comment">//预读缓冲区以清空残留数据</span></span><br></pre></td></tr></table></figure>
-<p>四、为串口控件添加响应函数：在资源视图中右键“电话图标”，选择“添加事件处理程序”。VC会自动添加响应函数OnCommMscomm1，并建立控件与函数的映射。再在对话框资源上添加编辑框控件，绑定String类型变量m_strValue。在OnCommMscomm1中添加如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">    m_strValue = <span class="string">&quot;&quot;</span>;                    <span class="comment">//每次响应，都应清空</span></span><br><span class="line">    VARIANT var;</span><br><span class="line">    COleSafeArray sa;</span><br><span class="line">    LONG len,i;</span><br><span class="line">    BYTE rxd[<span class="number">2048</span>];</span><br><span class="line">    CString temp;</span><br><span class="line">    <span class="keyword">if</span> (m_ctrlComm.get_CommEvent() == <span class="number">2</span>)<span class="comment">//事件2表示接收缓冲区有字符</span></span><br><span class="line">    &#123;</span><br><span class="line">        var = m_ctrlComm.get_Input();   <span class="comment">//读缓冲区</span></span><br><span class="line">        sa = var;                       <span class="comment">//类型转换</span></span><br><span class="line">        len = sa.GetOneDimSize();       <span class="comment">//得到有效数据长度</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;len; i++)</span><br><span class="line">            sa.GetElement(&amp;i,rxd+i);    <span class="comment">//转换为BYTE型数组</span></span><br><span class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;len; i++)           <span class="comment">//将数组转换为CString型变量</span></span><br><span class="line">        &#123;</span><br><span class="line">            BYTE bt = *(<span class="keyword">char</span>*)(rxd+i);</span><br><span class="line">            temp.Format(<span class="string">&quot;%c&quot;</span>,bt);</span><br><span class="line">            m_strValue += temp;         <span class="comment">//将字符累积到编辑框变量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    UpdateData(FALSE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>51Chip</category>
       </categories>
@@ -3122,23 +3168,6 @@
       </tags>
   </entry>
   <entry>
-    <title>程序员感悟</title>
-    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
-<a id="more"></a>
-
-<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
-<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
-<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据可视化</title>
     <url>/2020/11/01/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</url>
     <content><![CDATA[<p>管理工作（非领导）很难界定绩效，在当前中国职场远不如技术岗、销售岗有前途，在某些方面甚至还不如生产岗！所以，作为管理人员不能消极地寄托于领导具有一双慧眼并且具有较高的悟性，应该将自己的工作以高水平的方式展现出来。</p>
@@ -3175,7 +3204,7 @@
 <p><img src="https://i.loli.net/2021/03/27/SIWG2QpMRdzblna.png" alt="4饼图.png"></p>
 <p>二、多饼图</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</span><br><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Pie</span><br><span class="line"><span class="keyword">from</span> pyecharts.commons.utils <span class="keyword">import</span> JsCode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_label_opts</span>():</span></span><br><span class="line">    <span class="keyword">return</span> opts.LabelOpts(formatter=JsCode(fn), position=<span class="string">&quot;center&quot;</span>)</span><br><span class="line"></span><br><span class="line">c = (</span><br><span class="line">    Pie()</span><br><span class="line">    .add(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        [<span class="built_in">list</span>(z) <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">zip</span>([<span class="string">&quot;剧情&quot;</span>, <span class="string">&quot;其他&quot;</span>], [<span class="number">25</span>, <span class="number">75</span>])],</span><br><span class="line">        center=[<span class="string">&quot;20%&quot;</span>, <span class="string">&quot;30%&quot;</span>],</span><br><span class="line">        radius=[<span class="number">60</span>, <span class="number">80</span>],</span><br><span class="line">        label_opts=new_label_opts(),</span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        [<span class="built_in">list</span>(z) <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">zip</span>([<span class="string">&quot;奇幻&quot;</span>, <span class="string">&quot;其他&quot;</span>], [<span class="number">24</span>, <span class="number">76</span>])],</span><br><span class="line">        center=[<span class="string">&quot;55%&quot;</span>, <span class="string">&quot;30%&quot;</span>],</span><br><span class="line">        radius=[<span class="number">60</span>, <span class="number">80</span>],</span><br><span class="line">        label_opts=new_label_opts(),</span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        [<span class="built_in">list</span>(z) <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">zip</span>([<span class="string">&quot;爱情&quot;</span>, <span class="string">&quot;其他&quot;</span>], [<span class="number">14</span>, <span class="number">86</span>])],</span><br><span class="line">        center=[<span class="string">&quot;20%&quot;</span>, <span class="string">&quot;70%&quot;</span>],</span><br><span class="line">        radius=[<span class="number">60</span>, <span class="number">80</span>],</span><br><span class="line">        label_opts=new_label_opts(),</span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        [<span class="built_in">list</span>(z) <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">zip</span>([<span class="string">&quot;惊悚&quot;</span>, <span class="string">&quot;其他&quot;</span>], [<span class="number">11</span>, <span class="number">89</span>])],</span><br><span class="line">        center=[<span class="string">&quot;55%&quot;</span>, <span class="string">&quot;70%&quot;</span>],</span><br><span class="line">        radius=[<span class="number">60</span>, <span class="number">80</span>],</span><br><span class="line">        label_opts=new_label_opts(),</span><br><span class="line">    )</span><br><span class="line">    .set_global_opts(</span><br><span class="line">        title_opts=opts.TitleOpts(title=<span class="string">&quot;多饼图基本示例&quot;</span>),</span><br><span class="line">        legend_opts=opts.LegendOpts(</span><br><span class="line">            type_=<span class="string">&quot;scroll&quot;</span>, pos_top=<span class="string">&quot;20%&quot;</span>, pos_left=<span class="string">&quot;80%&quot;</span>, orient=<span class="string">&quot;vertical&quot;</span></span><br><span class="line">        ),</span><br><span class="line">    )</span><br><span class="line">    .render(<span class="string">&quot;mutiple_pie.html&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2021/03/27/umM95vi6pJIaEd8.png" alt="5多饼图.png"></p>
+<p><img src="https://i.loli.net/2021/08/22/s4voltkiD3ALjuT.png" alt="5多饼图.png"></p>
 <blockquote>
 <p>来自官方文档示例</p>
 </blockquote>
@@ -3190,6 +3219,23 @@
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序员感悟</title>
+    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
+<a id="more"></a>
+
+<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
+<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
+<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
       </tags>
   </entry>
   <entry>
