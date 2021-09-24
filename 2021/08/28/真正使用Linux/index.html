@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/robot_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/robot_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。 当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="真正使用Linux">
+<meta property="og:url" content="https://devastator66.github.io/2021/08/28/%E7%9C%9F%E6%AD%A3%E4%BD%BF%E7%94%A8Linux/index.html">
+<meta property="og:site_name" content="Programmer&#39;s Speak">
+<meta property="og:description" content="之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。 当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/09/23/3lvBmYENLI9MkD1.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/23/Yx9JZcNODpoUIGT.png">
+<meta property="article:published_time" content="2021-08-28T08:52:18.000Z">
+<meta property="article:modified_time" content="2021-09-24T14:32:18.008Z">
+<meta property="article:author" content="Devastator">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/23/3lvBmYENLI9MkD1.png">
+
+
+<link rel="canonical" href="https://devastator66.github.io/2021/08/28/%E7%9C%9F%E6%AD%A3%E4%BD%BF%E7%94%A8Linux/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>真正使用Linux | Programmer's Speak</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Programmer's Speak</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">理论+实践=真知+时间=睿智</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">基本设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">软件安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Devastator"
+      src="/images/Soundware.jpg">
+  <p class="site-author-name" itemprop="name">Devastator</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Devastator66" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Devastator66" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Recommend
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.racket-lang.org/" title="https:&#x2F;&#x2F;www.racket-lang.org&#x2F;" rel="noopener" target="_blank">Racket</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://devastator66.github.io/2021/08/28/%E7%9C%9F%E6%AD%A3%E4%BD%BF%E7%94%A8Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Soundware.jpg">
+      <meta itemprop="name" content="Devastator">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programmer's Speak">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          真正使用Linux
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-28 16:52:18" itemprop="dateCreated datePublished" datetime="2021-08-28T16:52:18+08:00">2021-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PC/" itemprop="url" rel="index"><span itemprop="name">PC</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。</p>
+<p>当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位版本，光盘镜像为ubuntu-16.04.6-desktop-i386.iso。</p>
+<a id="more"></a>
+
+<p>Ubuntu相对于Debain对中文支持较好，安装过程跟Windows差不多，基本上能做到无人值守。如果是在虚拟机上安装系统，还需要安装VMware Tools，步骤如下：</p>
+<ol>
+<li>点击VMware菜单“虚拟机-&gt;安装VMware Tools”。虚拟机会自动以光盘形式将VMware Tools加载到ubuntu。</li>
+<li>双击光盘内tar.gz压缩包，将vwware-tools-distrib提取到家目录。按压CTRL+ALT+T打开终端，<code>cd vwware-tools-distrib</code>进入目录后<code>sudo ./vmware-install.pl</code>。</li>
+<li>如果提示找不到命令，则键入：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">chmod +x vmware-install.pl <span class="comment">#设置文件权限为可执行</span></span><br><span class="line">sudo ./vmware-install.pl   <span class="comment">#安装完成后，键入su - username返回普通用户</span></span><br></pre></td></tr></table></figure>
+<h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><p>在操作系统安装过程中，没有设置root密码。Ubuntu默认root密码是随机的，每次开机都有一个新的root密码。设置root密码的方法：在终端键入<code>sudo passwd root</code>，然后输入当前用户的密码，终端会提示输入root密码。修改成功后测试，键入<code>su root</code>，再输入刚设置的密码即可看到#。</p>
+<p>Ubuntu的“系统设置”（齿轮图标）汇总了全部基本功能，下面介绍一些通常设置：</p>
+<ol>
+<li>亮度和锁屏：设置无操作关闭屏幕时间，唤醒后是否需要输入密码。</li>
+<li>外观：设置桌面壁纸，启动器是否隐藏，窗口菜单位置。</li>
+<li>软件和更新：可以关闭自动更新。</li>
+</ol>
+<p>如果想要将启动器移到屏幕下方，按下CTRL+ALT+T组合键调出终端，键入<code>gsettings set com.canonical.Unity.Launcher launcher-position Bottom</code>。如果想要还原到左侧，同样输入上述命令，须将末尾的bottom替换为left。</p>
+<p>我的基本设置就这么多，其他方面都默认了。我觉得无论安装的是哪个发行版本，总归是Linux系统——以黑屏命令行为基础，在其上运行个桌面程序。从本质上Linux就不是为了好看或用户体验而生的，后天再怎么美化也不会有根本上的改变。所以，我觉得还是不要花费力气勉强Linux做它不擅长的事情，就怕一顿折腾，没好看多少，影响了系统性能。当前，Linux各大发行版所需系统配置可不比Windows低。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>Linux以/为根目录，其下的目录分别有不同的用途：</p>
+<ul>
+<li>bin   存放基本命令程序</li>
+<li>boot  存放系统启动文件</li>
+<li>etc   存放配置文件，包括用户信息、密码信息、群组信息等</li>
+<li>home  家目录，用户主要使用这个目录</li>
+<li>lib   存放库文件</li>
+<li>opt   可选的意思，有些软件会安装到这里</li>
+<li>proc  进程信息与内核信息</li>
+<li>sys   系统目录，存放硬件信息</li>
+<li>run   运行目录，比如进程的PID文件</li>
+<li>srv   服务目录，本地服务相关文件</li>
+<li>sbin  存放系统管理命令程序，所有命令需要root权限</li>
+<li>var   动态数据，比如系统和软件运行日志</li>
+<li>usr   存放应用程序</li>
+</ul>
+<p>关于目录的一些符号：</p>
+<ul>
+<li>. 此层目录</li>
+<li>.. 上一层目录</li>
+<li>- 前一个工作目录</li>
+<li>~ 当前用户家目录</li>
+</ul>
+<p>Linux系统的特点是万物皆文件，文件的内容基于字符，C语言就是字符处理机。使用任何Linux发行版离不开命令行，输入命令需要调出终端，其快捷键为CTRL+ALT+T，下面介绍一些常用命令：</p>
+<p>一、账户管理<br>/etc/passwd 用于保存账户信息，每一行代表一个账号；/etc/shadow 用于保存密码信息（加密过的）；/etc/group 用于保存群组信息。相关命令如下：</p>
+<ul>
+<li>useradd   添加账户，-g指定初始群组，-G指定次要群组，-M不建立家目录，-m建立家目录，-r建立一个系统账号（不建立家目录），例如：<code>useradd -r name</code></li>
+<li>passwd    启用账户并设定密码，-l锁定账户，-u解锁账户，-n多久不可修改密码，-x多久必须修改密码，-i密码失效日期，例如：<code>passwd name</code>，<code>passwd -l name</code>，<code>passwd -x 15 name</code></li>
+<li>usermod   修改账户，可以直接修改/etc/passwd或/etc/shadow文件，-d后接家目录，-l后接账号名称，例如：<code>usermod -l newname oldname</code></li>
+<li>userdel   删除账户，-r连同家目录一同删除，<code>userdel -r name</code></li>
+<li>groupadd  添加群组，-r建立系统群组，例如：<code>groupadd gname</code></li>
+<li>groupmod  修改群组，-n修改组名，例如：<code>groupmod -n newgname oldgname</code></li>
+<li>groupdel  删除群组，例如：<code>groupdel gname</code></li>
+<li>su        切换账户，例如：<code>su - name</code>，可由一般用户切换到root，但需要root密码。</li>
+<li>sudo      以root权限执行命令，例如：<code>sudo su</code></li>
+</ul>
+<blockquote>
+<p>/etc/sudoers 用来保存一些用户，使这些用户可以通过sudo命令来暂时获得root权限。这些用户使用sudo时输入的密码是当前用户密码，而不是root密码。</p>
+</blockquote>
+<p>二、文件目录<br>当前，大多数使用Linux系统的用户都会安装桌面系统，通过鼠标对文件和目录进行各种操作更加符合人类习惯，毕竟所见即所得嘛。但有些特殊情况还需要使用命令，在这里简单说明一下：</p>
+<ul>
+<li>cd    变换目录，例如：<code>cd /home/cracker/opt/</code>，<code>cd ./opt/1</code></li>
+<li>pwd   目前所在目录，例如：<code>pwd</code></li>
+<li>mkdir 新建目录，-p为建立多层目录，-m为目录设置权限，例如：<code>mkdir a</code>，更复杂的<code>mkdir -m 711 -p a/b/c/d</code>。</li>
+<li>rmdir 删除空目录，-p为删除多层目录，例如：<code>rmdir a</code>，<code>rmdir -p a/b</code>。</li>
+<li>cp    将源文件复制到目标文件，例如：<code>cp -i ~/1 ~/opt/2</code>，将文件1复制到/opt并命名为2，-i为文件重复时询问是否覆盖。</li>
+<li>rm    删除目录或文件，-r为递归删除，例如：<code>rm -r a</code>。</li>
+<li>mv    移动目录或文件到指定位置，例如：<code>mv 2 a</code>，将文件2移入目录a。</li>
+</ul>
+<blockquote>
+<p>Linux跟Windows一样也有环境变量的概念，能直接使用的命令都设定到PATH。</p>
+</blockquote>
+<p>三、文件权限<br>这个太重要了，权限是Linux系统的一大特性，目前还是通过命令设置较为直观。<code>ls -al</code>命令可以查看当前目录所有文件和子目录的权限，如图：</p>
+<p><img src="https://i.loli.net/2021/09/23/3lvBmYENLI9MkD1.png" alt="1ls-al.PNG"></p>
+<p>第一列内容就是权限，其意义如下图所示：</p>
+<p><img src="https://i.loli.net/2021/09/23/Yx9JZcNODpoUIGT.png" alt="2权限.png"></p>
+<blockquote>
+<p>目录的x权限指的是能否进入此目录，目录的w权限指的是使用者可以无视其中文件的权限而删除它。</p>
+</blockquote>
+<p>第三列内容为拥有者，第四列为群组。群组可根据分工建立，方便不同开发组管控自己团队的文件。修改权限的命令如下：</p>
+<ul>
+<li>chgrp 改变群组，-r递归改变，例如：<code>chgrp 群组名 filename</code></li>
+<li>chown 改变拥有者，-r递归改变，例如：<code>chown 账户名 filename</code></li>
+<li>chmod 改变权限，-r递归改变，数字方式：<code>chmod 777 filename</code>；符号方式：u用户、g群组、o其他、a全部，+添加、-除去、=设定，例如：<code>chmod u=rwx,go=rx filename</code></li>
+</ul>
+<h4 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h4><p>安装Ubuntu软件中心里的软件很容易，就跟在手机商城中安装软件一样，自动下载自动安装。但是目前软件中心里只有一些传统Linux生态的软件，例如Emacs、VLC播放器等。如果想要正常办公，仍旧需要单独下载安装包。</p>
+<p>选择32位版本的Linux系统给安装软件带来了一些麻烦，必须选择名字只带有x86的安装包，x86_64的往往不行。安装软件通常需要root权限，所以在“安装命令”前添加sudo。</p>
+<p>通常的软件安装路径为/usr、/usr/local/、/opt，尽量不要安装到家目录下。如果软件安装后，当前目录带有锁头标志，会给将来安装插件带来麻烦，可以通过<code>sudo chmod -R 777 dirname</code>命令添加权限。</p>
+<p>一、Foxit Reader<br>直接到官方网站<a target="_blank" rel="noopener" href="https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts">https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts</a>下载32位Linux版本的run包。安装这种包很容易，直接双击即可。如果软件厂商都这样做，使用Linux的人应该更多。</p>
+<p>二、DrRacket</p>
+<ol>
+<li>在官方网站<a target="_blank" rel="noopener" href="https://download.racket-lang.org/all-versions.html">https://download.racket-lang.org/all-versions.html</a>下载7.3版本，racket-7.3-i386-linux.sh是支持32位Linux的最后版本。</li>
+<li>在终端键入<code>sudo sh /home/cracker/下载/racket-7.3-i386-linux.sh</code>。选择no，路径默认即可。</li>
+<li>在终端进入racket目录，执行drracket即可打开程序。</li>
+</ol>
+<p>三、Anconda3</p>
+<ol>
+<li>在<a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a>下载Anaconda3-5.3.0-Linux-x86.sh（527M，2018-09-27）。</li>
+<li>打开终端，键入<code>sudo sh /home/cracker/下载/Anaconda3-5.3.0-Linux-x86.sh</code>回车，阅读许可后yes，默认安装路径为<code>/home/cracker/anaconda3</code>回车，程序开始安装。完成后，安装环境变量yes，安装VSCode时no。</li>
+<li>安装过程中已经添加了环境变量。在终端键入<code>python</code>进行测试，如果显示版本为2.7（ubuntu16.04再带python2.7），说明系统尚未识别，键入<code>source ~/.bashrc</code>更新环境变量即可。Anaconda3-5.3.0自带的python版本为3.7.0。</li>
+<li>在终端中输入<code>ipython notebook</code>，启动Jupyter notebook，首页显示的是HOME目录。</li>
+<li>选择路径新建文件，编写代码后Shift+Enter执行，点击软盘图标保存文件，回到首页点击右上角Quit按钮退出程序。</li>
+</ol>
+<p>安装python插件：</p>
+<ol>
+<li>先要更新pip，在终端键入<code>pip install --upgrade pip</code>。</li>
+<li>安装pyecharts，在终端键入<code>pip install pyecharts</code>，会报<code>twisted 18.7.0 requires PyHamcrest&gt;=1.9.0, which is not installed.</code>错误，键入命令<code>pip install PyHamcrest</code>即可解决。</li>
+<li>安装Flask，在终端键入<code>pip install Flask</code>。</li>
+</ol>
+<p>四、JDK9<br>安装pycharm之前，需要安装JDK，从JAVA10开始就没有32位版本的JDK了，所以只能安装JDK9，步骤如下：</p>
+<ol>
+<li>在终端中键入<code>javac</code>，查看需要安装的软件名，这里安装JDK9，键入命令<code>sudo apt install openjdk-9-jdk-headless</code>，输入y继续。</li>
+<li>安装完成后，需要添加环境变量，在终端中键入<code>sudo gedit /etc/profile</code>。在文件开头的注释后代码前输入：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-9-openjdk-i386 <span class="comment">#文件安装路径，会在安装过程中显示</span></span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></li>
+<li>在终端键入<code>source /etc/profile</code>让修改的文件生效，键入<code>javac</code>测试结果。</li>
+</ol>
+<p>五、Pycharm</p>
+<ol>
+<li>在<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/other.html">https://www.jetbrains.com/pycharm/download/other.html</a>下载2019.1带有anaconda插件的版本。2020以后的版本需要JAVA11，所以无法安装。</li>
+<li>将下载的压缩包解压到/opt目录，键入<code>sudo sh /opt/pycharm-anaconda-2019.1.4/bin/pytcharm.sh</code>启动程序。</li>
+<li>专业版需要激活，当前不太好破解。</li>
+<li>设置python解释器，选择/anaconda3/bin/python3.7（蓝色问号图标）。</li>
+<li>关闭自动更新，点击菜单File-&gt;Settings，在左侧树状目录中选择System Settings-&gt;Updates，去掉勾选。</li>
+</ol>
+<p>六、有道翻译</p>
+<ol>
+<li>从官方网站<a target="_blank" rel="noopener" href="http://cidian.youdao.com/index-linux.html">http://cidian.youdao.com/index-linux.html</a>下载32位程序，是个deb包。</li>
+<li>在终端中键入<code>sudo dpkg -i deb路径</code>，可能会报dpkg加锁，使用如下命令解决：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock  <span class="comment">#rm后可加-rf</span></span><br></pre></td></tr></table></figure></li>
+<li>重启后再次键入<code>sudo dpkg -i deb路径</code>，会报缺少依赖包，紧跟安装命令键入<code>sudo apt-get -f install</code>，系统会根据依赖关系树自动安装依赖包。</li>
+<li>通过搜索找到有道词典，启动程序后点击左下角图标进行设置。</li>
+</ol>
+<p>七、QT Creator</p>
+<ol>
+<li>在官方网站注册账户，安装程序时要用。</li>
+<li>从官方网站<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/">https://download.qt.io/archive/qt/</a>下载Linux32位安装包qt-linux-opensource-5.1.0-x86-offline.run。</li>
+<li>直接运行不了上述.run安装包，在终端中键入<code>sudo chmod +x qt-opensource-linux-5.1.0-x86-offline.run</code>，双击run进入向导。选择安装路径到/opt，一直下一步即可。</li>
+</ol>
+<p>打开程序会报Help插件错误，因为QT帮助是采用流媒体方式加载的，尝试安装流媒体库文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgstreamer0.10-dev</span><br><span class="line">sudo apt-get install libgstreamer-plugins-base0.10-dev</span><br></pre></td></tr></table></figure>
+<p>新建一个默认gui程序，会报cannot find -lGL错误，在终端中键入<code>sudo apt-get install libqt4-dev</code>即可解决。</p>
+<p>八、安装VScode</p>
+<ol>
+<li>在终端键入<code>sudo apt-get install ubuntu-make</code>安装umake工具。</li>
+<li>安装VScode在终端键入<code>umake ide visual-studio-code</code>。</li>
+<li>在终端家目录下键入<code>cd ./.local/share/umake/ide/visual-studio-code/bin/</code>进入目录，运行<code>code</code>。</li>
+<li>设置字体为Ubuntu Mono，字号为18。安装chinese插件。</li>
+<li>卸载程序在终端键入<code>umake ide visual-studio-code  --remove</code>。</li>
+</ol>
+<p>九、TexLive</p>
+<ol>
+<li>在终端键入<code>sudo apt-get install texlive-full</code>安装程序，大约3G。如果使用官方源，安装过程比较漫长。以我的经验，从中午开始下载速度较快。</li>
+<li>安装完成后，可能会提示有几个安装包无法下载，此时按照提示在终端键入<code>sudo apt-get update</code>，或者<code>sudo apt-get update --fix-missing</code>，然后再次键入<code>sudo apt-get install texlive-full</code>安装程序直到成功。</li>
+<li>在终端键入<code>tex --version</code>，如果安装成功会显示Primary author of TeX: D.E.Knuth。</li>
+<li>我使用VScode编辑文本。先安装LaTeX Workshop插件，然后进入“设置”，搜索并点击settings.json。在settings.json中加入配置信息，具体内容参考另一篇文章——“LaTex排版一 概述”。</li>
+<li>编辑文本前，选择Latex语法高亮。完成编辑后，Ctrl+S即可编译出pdf文档（也可以点击右边栏中“TEX”，再点击Build LaTeX project进行编译）。</li>
+</ol>
+<p>十、Arduino</p>
+<ol>
+<li>从官方网站<a target="_blank" rel="noopener" href="https://www.arduino.cc/en/donate/">https://www.arduino.cc/en/donate/</a>下载Linux32位安装包arduino-1.8.15-linux32.tar.xz。</li>
+<li>将其解压到合适的目录，这个目录就是Arduino程序的目录。</li>
+<li>在终端键入<code>sudo sh 路径/install.sh</code>安装。</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>很多Linux书籍一上来就介绍一堆发展史，然后就是一堆命令，这是非常不符合实际使用情况的。对于一个刚接触某个操作系统的普通使用者，面对的实际问题是：如何安装操作系统、如何安装驱动、如何进行一些必要设置、如何安装常用软件。这一系列问题才是入门真正需要的知识。</p>
+<p>我觉得正确的学习方法是：就像最开始接触Windows系统时那样，直接使用即可，遇到问题上网查基本都能自行解决。随着使用时间的增加，知识和经验就积累起来了，完全没必要先学完某本书再去使用。我估计所有学会Linux的人，没有一个是学完某本书再去使用的。</p>
+<p>Ubuntu在安装系统和安装驱动这两点上做的比较好，基本上做到无人值守，并且自带各种驱动，无需用户费神。系统设置与智能手机类似，只要认识文字就能操作。安装软件还是有点麻烦的，但这不是Linux的错，其实Linux的软件安装机制挺好，只不过各大软硬件厂商不怎么配合。</p>
+<p>我觉的Linux未来会朝着Android、MacOS方向走，当然我知道它们都源自于Linux，但是随着技术发展，社会环境更加接受那种设计理念。Linux不应该只局限于曾经的“哲学”，况且那些所谓的“哲学”大部分只是一些设计思想而已，被硬生生拔高到哲学层面的东西还有毒。</p>
+<blockquote>
+<p>试想一个修理工要去修理水管，有一把看似奇异的管钳子可供选择，传说只有“天才”才能使用它，并且得先学一本大典。试问，当前社会有几个人还有那个闲心折腾，毕竟目标在于把“水管”修好，况且会修水管也不是什么了不起的事。</p>
+</blockquote>
+<p>不过，Linux原则中有三点非常好，就是自由、开放、免费。这三点很接地气并能聚敛人气，是Linux保持长久活力的原因，在冥冥之中引导着Linux朝着正确的方向发展。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="Devastator 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/pay.jpg" alt="Devastator 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/21/DDR%E5%86%85%E5%AD%98/" rel="prev" title="DDR内存">
+                  <i class="fa fa-chevron-left"></i> DDR内存
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Devastator</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+
+</body>
+</html>
