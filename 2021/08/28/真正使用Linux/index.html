@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/09/23/3lvBmYENLI9MkD1.png">
 <meta property="og:image" content="https://i.loli.net/2021/10/03/NC4qTMt3Gbn8gzL.png">
 <meta property="article:published_time" content="2021-08-28T08:52:18.000Z">
-<meta property="article:modified_time" content="2021-10-03T04:32:28.739Z">
+<meta property="article:modified_time" content="2021-10-07T07:39:45.312Z">
 <meta property="article:author" content="Devastator">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -205,20 +205,20 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -336,15 +336,23 @@
 <li>如果提示找不到命令，则键入：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">chmod +x vmware-install.pl <span class="comment">#设置文件权限为可执行</span></span><br><span class="line">sudo ./vmware-install.pl   <span class="comment">#安装完成后，键入su - username返回普通用户</span></span><br></pre></td></tr></table></figure>
-<h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><p>在操作系统安装过程中，没有设置root密码。Ubuntu默认root密码是随机的，每次开机都有一个新的root密码。设置root密码的方法：在终端键入<code>sudo passwd root</code>，然后输入当前用户的密码，终端会提示输入root密码。修改成功后测试，键入<code>su root</code>，再输入刚设置的密码即可看到#。</p>
-<p>Ubuntu的“系统设置”（齿轮图标）汇总了全部基本功能，下面介绍一些通常设置：</p>
+<h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><p>在操作系统安装过程中，没有设置root密码。Ubuntu默认root密码是随机的，每次开机都会有一个新的root密码。如果想要设置一个固定的root密码，按下Ctrl+Alt+T调出终端，键入<code>sudo passwd root</code>，然后输入当前用户的密码，终端会提示输入root密码。修改成功后测试，键入<code>su root</code>，再输入刚设置的密码即可看到#。</p>
+<p>Ubuntu的“系统设置”（齿轮图标）汇总了全部基本功能，下面介绍一些设置：</p>
 <ol>
 <li>亮度和锁屏：设置无操作关闭屏幕时间，唤醒后是否需要输入密码。</li>
 <li>外观：设置桌面壁纸，启动器是否隐藏，窗口菜单位置。</li>
 <li>软件和更新：可以关闭自动更新。</li>
 </ol>
-<p>如果想要将启动器移到屏幕下方，按下CTRL+ALT+T组合键调出终端，键入<code>gsettings set com.canonical.Unity.Launcher launcher-position Bottom</code>。如果想要还原到左侧，同样输入上述命令，须将末尾的bottom替换为left。</p>
-<p>我的基本设置就这么多，其他方面都默认了。我觉得无论安装的是哪个发行版本，总归是Linux系统——以黑屏命令行为基础，在其上运行个桌面程序。从本质上Linux就不是为了好看或用户体验而生的，后天再怎么美化也不会有根本上的改变。所以，我觉得还是不要花费力气勉强Linux做它不擅长的事情，就怕一顿折腾，没好看多少，影响了系统性能。当前，Linux各大发行版所需系统配置可不比Windows低。</p>
+<p>如果想要将启动器移到屏幕下方，在终端键入<code>gsettings set com.canonical.Unity.Launcher launcher-position Bottom</code>。如果想要还原到左侧，同样输入上述命令，须将末尾的bottom替换为left。</p>
+<p>Ubuntu没有宋体、微软雅黑等字体，安装方法如下：</p>
+<ol>
+<li>在Windows系统下，从C:\Windows\Fonts目录将所需的字体复制出来，或者从网上下载字体。</li>
+<li>在Ubuntu系统下，打开终端安装微软核心字库：<code>sudo apt-get install ttf-mscorefonts-installer</code>，出现向导后，按Tab键选中按钮方可确认。然后安装字体设置工具：<code>sudo apt-get install fontconfig</code>。</li>
+<li>进入/usr/share/fonts/目录，通过终端建立目录<code>sudo mkdir myfonts</code>。将下载好的字体放到这个目录<code>sudo cp ~/font/* ./myfonts/</code>。</li>
+<li>修改字体文件的权限，使得一般用户可以访问<code>sudo chmod -R 755 myfonts</code>。</li>
+<li>建立字体缓存，在终端键入<code>sudo mkfontscale</code>和<code>sudo mkfontdir</code>。以后每当需要新字体，只需将字体文件放入myfonts目录，再次运行这个两个命令。</li>
+</ol>
+<p>我的设置就这么多，其他方面都默认了。无论安装的是哪个发行版本，总归是Linux系统——以黑屏命令行为基础，在其上运行个桌面程序。从本质上Linux就不是为了好看或用户体验而生的，后天再怎么美化也不会有根本上的改变。所以，我觉得还是不要花费力气勉强Linux做它不擅长的事情，就怕一顿折腾，没好看多少，影响了系统性能。当前，Linux各大发行版所需系统配置可不比Windows低。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>Linux以/为根目录，其下的目录分别有不同的用途：</p>
 <ul>
 <li>bin   存放基本命令程序</li>
