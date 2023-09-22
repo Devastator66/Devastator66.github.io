@@ -295,6 +295,87 @@
       </tags>
   </entry>
   <entry>
+    <title>HTML常用标签</title>
+    <url>/2007/11/22/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<p>HTML（Hyper Text Markup Language）超文本标记语言，用来构建网页最基本功能。</p>
+<a id="more"></a>
+
+<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	   头部 <span class="comment">&lt;!--不在页面中显示--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	   主体 <span class="comment">&lt;!--放要显示的内容--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="头部标签"><a href="#头部标签" class="headerlink" title="头部标签"></a>头部标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span> <span class="comment">&lt;!--设置当前文本的编码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="主体标签"><a href="#主体标签" class="headerlink" title="主体标签"></a>主体标签</h4><p>1.文本标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">hn</span>&gt;</span> <span class="comment">&lt;!--自动换行，n=1~6，一个页面内h1最多放一个--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">字体</span> <span class="attr">color</span>=<span class="string">颜色</span> <span class="attr">size</span>=<span class="string">大小</span>&gt;</span>设置字体<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2.格式标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> <span class="comment">&lt;!--换行--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> <span class="attr">width</span>=<span class="string">宽度</span> <span class="attr">size</span>=<span class="string">高度</span>&gt;</span> <span class="comment">&lt;!--居中水平分割线，可使用百分数，会随着网页大小变化--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3.超链接标签</p>
+<ul>
+<li><p>基本链接</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">https://www.baidu.com</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--绝对路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./hello world.txt&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--相对路径--&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>锚点链接（页内跳转）</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;锚点名&quot;</span>&gt;</span>段落标题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#锚点名</span>&gt;</span>返回段首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#</span>&gt;</span>返回页首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>4.图像标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">url</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>img属性</p>
+<ul>
+<li>border：边框宽度，如果不要边框设置为0。</li>
+<li>width/height：设置的不合适会失真。</li>
+<li>alt：当鼠标放到图片上或图片加载失败时提示的内容，搜索引擎会根据这个文字搜索到图片。</li>
+</ul>
+<p>5.列表标签</p>
+<ul>
+<li>无序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>有序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>6.表格标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span>	<span class="comment">&lt;!--行--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段1<span class="tag">&lt;/<span class="name">th</span>&gt;</span>	<span class="comment">&lt;!--标题，字体加粗显示--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段3<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span>	<span class="comment">&lt;!--列--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>table属性<br>align：left，center，right<br>border：默认无边框<br>width：格的宽度<br>height：格的高度<br>cellspacing：格与格的间距<br>cellpadding：文字与格的间距<br>bgcolor：背景颜色<br>bordercolor：边框颜色<br>bordercolorlight：边框亮面</p>
+</li>
+<li><p>tr属性<br>align，valign，bgcolor</p>
+</li>
+<li><p>td/th属性<br>width：会影响同列<br>height：会影响同行<br>align：left，center，right<br>valign：top，middle，bottom<br>colspan：当前格占几列<br>rowspan：当前格占几行</p>
+</li>
+</ul>
+<p>7.表单标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">控件类型</span> <span class="attr">name</span>=<span class="string">变量名</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>form属性<br>name：表单名<br>action：表单内容提交到哪（URL）<br>method：提交方式：get一堆缺点，一般用post。<br>target：提交后返回的结果在哪个窗口显示<br>title：当鼠标悬停在表单上出现的内容</p>
+</li>
+<li><p>input属性<br>name：变量名<br>size：框体宽<br>value：默认值<br>type：</p>
+<ul>
+<li>text文本框</li>
+<li>password密码框</li>
+<li>submit提交按钮</li>
+<li>reset重置按钮</li>
+<li>button按钮，需要配合Javascript使用。</li>
+<li>checkbox复选框，如果需要同时操作，相应的name用数组表示。checked表示选中。</li>
+<li>radio单选框，一个组name相同。checked表示选中。</li>
+<li>hidden定义隐藏字段。隐藏字段对于用户是不可见的。</li>
+<li>file上传文件</li>
+</ul>
+</li>
+</ul>
+<p>8.下拉列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">size</span>=<span class="string">&quot;&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>项<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>select属性<br>name：变量名<br>size：如果有这个属性会以列表形式显示<br>multiple：可多选，也会以列表形式显示。</p>
+</li>
+<li><p>option属性<br>value：有这个属性会提交它的值，没有则提交项。<br>selected：标记选中</p>
+</li>
+</ul>
+<p>9.图像地图<br>用于设置一个图片的不同区域对应不同的链接</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;路径/图片名.jpg&quot;</span> <span class="attr">usemap</span>=<span class="string">#标记名/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">标记名</span> <span class="attr">id</span>=<span class="string">标记名</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;rect&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;10,10,20,20&quot;</span> <span class="attr">href</span>=<span class="string">跳转url1</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;35,35,10&quot;</span> <span class="attr">href</span>=<span class="string">跳转url2</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>shape为rect，coords为对角线坐标（上x，上y，下x，下y）。<br>shape为circle，coords为圆心坐标和半径长度（x,y,r）。<br>shape为poly，coords为各定点坐标（x1，y1，x2，2y，…）。</p>
+<p>10.符号</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;	<span class="symbol">&amp;lt;</span></span><br><span class="line">&gt;	<span class="symbol">&amp;gt;</span></span><br><span class="line">&amp;	<span class="symbol">&amp;amp;</span></span><br><span class="line">&quot;	<span class="symbol">&amp;quot;</span></span><br><span class="line">￥	<span class="symbol">&amp;yen;</span></span><br><span class="line">$	<span class="symbol">&amp;sect;</span></span><br><span class="line">© 	<span class="symbol">&amp;copy;</span></span><br><span class="line">®	<span class="symbol">&amp;reg;</span></span><br><span class="line">×	<span class="symbol">&amp;times;</span></span><br><span class="line">÷	<span class="symbol">&amp;divide;</span></span><br><span class="line">空格	<span class="symbol">&amp;nbsp;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IP地址与子网划分</title>
     <url>/2008/12/16/IP%E5%9C%B0%E5%9D%80%E4%B8%8E%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/</url>
     <content><![CDATA[<p>计算机网络的三大功能：信息交换、资源共享、分布式处理。按结构分为两类：</p>
@@ -397,87 +478,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML常用标签</title>
-    <url>/2007/11/22/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<p>HTML（Hyper Text Markup Language）超文本标记语言，用来构建网页最基本功能。</p>
-<a id="more"></a>
-
-<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	   头部 <span class="comment">&lt;!--不在页面中显示--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	   主体 <span class="comment">&lt;!--放要显示的内容--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="头部标签"><a href="#头部标签" class="headerlink" title="头部标签"></a>头部标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span> <span class="comment">&lt;!--设置当前文本的编码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="主体标签"><a href="#主体标签" class="headerlink" title="主体标签"></a>主体标签</h4><p>1.文本标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">hn</span>&gt;</span> <span class="comment">&lt;!--自动换行，n=1~6，一个页面内h1最多放一个--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">字体</span> <span class="attr">color</span>=<span class="string">颜色</span> <span class="attr">size</span>=<span class="string">大小</span>&gt;</span>设置字体<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2.格式标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> <span class="comment">&lt;!--换行--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> <span class="attr">width</span>=<span class="string">宽度</span> <span class="attr">size</span>=<span class="string">高度</span>&gt;</span> <span class="comment">&lt;!--居中水平分割线，可使用百分数，会随着网页大小变化--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>3.超链接标签</p>
-<ul>
-<li><p>基本链接</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">https://www.baidu.com</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--绝对路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./hello world.txt&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--相对路径--&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>锚点链接（页内跳转）</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;锚点名&quot;</span>&gt;</span>段落标题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#锚点名</span>&gt;</span>返回段首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#</span>&gt;</span>返回页首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>4.图像标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">url</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>img属性</p>
-<ul>
-<li>border：边框宽度，如果不要边框设置为0。</li>
-<li>width/height：设置的不合适会失真。</li>
-<li>alt：当鼠标放到图片上或图片加载失败时提示的内容，搜索引擎会根据这个文字搜索到图片。</li>
-</ul>
-<p>5.列表标签</p>
-<ul>
-<li>无序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>有序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>6.表格标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span>	<span class="comment">&lt;!--行--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段1<span class="tag">&lt;/<span class="name">th</span>&gt;</span>	<span class="comment">&lt;!--标题，字体加粗显示--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段3<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span>	<span class="comment">&lt;!--列--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>table属性<br>align：left，center，right<br>border：默认无边框<br>width：格的宽度<br>height：格的高度<br>cellspacing：格与格的间距<br>cellpadding：文字与格的间距<br>bgcolor：背景颜色<br>bordercolor：边框颜色<br>bordercolorlight：边框亮面</p>
-</li>
-<li><p>tr属性<br>align，valign，bgcolor</p>
-</li>
-<li><p>td/th属性<br>width：会影响同列<br>height：会影响同行<br>align：left，center，right<br>valign：top，middle，bottom<br>colspan：当前格占几列<br>rowspan：当前格占几行</p>
-</li>
-</ul>
-<p>7.表单标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">控件类型</span> <span class="attr">name</span>=<span class="string">变量名</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>form属性<br>name：表单名<br>action：表单内容提交到哪（URL）<br>method：提交方式：get一堆缺点，一般用post。<br>target：提交后返回的结果在哪个窗口显示<br>title：当鼠标悬停在表单上出现的内容</p>
-</li>
-<li><p>input属性<br>name：变量名<br>size：框体宽<br>value：默认值<br>type：</p>
-<ul>
-<li>text文本框</li>
-<li>password密码框</li>
-<li>submit提交按钮</li>
-<li>reset重置按钮</li>
-<li>button按钮，需要配合Javascript使用。</li>
-<li>checkbox复选框，如果需要同时操作，相应的name用数组表示。checked表示选中。</li>
-<li>radio单选框，一个组name相同。checked表示选中。</li>
-<li>hidden定义隐藏字段。隐藏字段对于用户是不可见的。</li>
-<li>file上传文件</li>
-</ul>
-</li>
-</ul>
-<p>8.下拉列表</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">size</span>=<span class="string">&quot;&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>项<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>select属性<br>name：变量名<br>size：如果有这个属性会以列表形式显示<br>multiple：可多选，也会以列表形式显示。</p>
-</li>
-<li><p>option属性<br>value：有这个属性会提交它的值，没有则提交项。<br>selected：标记选中</p>
-</li>
-</ul>
-<p>9.图像地图<br>用于设置一个图片的不同区域对应不同的链接</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;路径/图片名.jpg&quot;</span> <span class="attr">usemap</span>=<span class="string">#标记名/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">标记名</span> <span class="attr">id</span>=<span class="string">标记名</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;rect&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;10,10,20,20&quot;</span> <span class="attr">href</span>=<span class="string">跳转url1</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;35,35,10&quot;</span> <span class="attr">href</span>=<span class="string">跳转url2</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>shape为rect，coords为对角线坐标（上x，上y，下x，下y）。<br>shape为circle，coords为圆心坐标和半径长度（x,y,r）。<br>shape为poly，coords为各定点坐标（x1，y1，x2，2y，…）。</p>
-<p>10.符号</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;	<span class="symbol">&amp;lt;</span></span><br><span class="line">&gt;	<span class="symbol">&amp;gt;</span></span><br><span class="line">&amp;	<span class="symbol">&amp;amp;</span></span><br><span class="line">&quot;	<span class="symbol">&amp;quot;</span></span><br><span class="line">￥	<span class="symbol">&amp;yen;</span></span><br><span class="line">$	<span class="symbol">&amp;sect;</span></span><br><span class="line">© 	<span class="symbol">&amp;copy;</span></span><br><span class="line">®	<span class="symbol">&amp;reg;</span></span><br><span class="line">×	<span class="symbol">&amp;times;</span></span><br><span class="line">÷	<span class="symbol">&amp;divide;</span></span><br><span class="line">空格	<span class="symbol">&amp;nbsp;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -645,6 +645,25 @@
       </tags>
   </entry>
   <entry>
+    <title>MPP36威震天</title>
+    <url>/2018/11/17/MPP36%E5%A8%81%E9%9C%87%E5%A4%A9/</url>
+    <content><![CDATA[<p>去年买了MPP10擎天柱，这个威震天就成了今年必买的玩具了。拿到实物第一感觉是威将的做工进步了，料子比MPP10好，而且这次是自主设计，一体变形（含枪托）。</p>
+<a id="more"></a>
+
+<p>整体造型还原G1，头雕仿官方MP36，身材与MPP10比例一致，臂炮具有灯效。搭配的激光鸟可变形为消声器，脚下有磁性，可吸附在威震天的手臂上。与官方MP36相比，正面还是官方更还原G1动画，背面MPP36更加平整。</p>
+<p><img src="https://i.loli.net/2021/11/07/lroNSVHJdnzWF2y.png" alt="1威震天.png"><br><img src="https://i.loli.net/2020/05/05/fFYK4ybaDNEPXwM.jpg" alt="威震天-3.jpg"></p>
+<p>小时候，我特别讨厌威震天。印象里在每集的开头，威震天都会有个计划说给观众听，然后发出自信的淫笑。在每集的结尾都会被柱子打的屁滚尿流，随之发出一声惨叫——撤退，狂派众人狼狈逃窜。</p>
+<p>还有关键的一点，我不喜欢威震天的动画形象：老鼠灰加上马桶头，变形成一把小枪也没见多厉害。小时候，我总是盼着红蜘蛛能造反成功，那样就再也不会看见它了:D</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTex排版二 整体框架</title>
     <url>/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/</url>
     <content><![CDATA[<p>按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。</p>
@@ -688,25 +707,6 @@
       </categories>
       <tags>
         <tag>LaTex</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MPP36威震天</title>
-    <url>/2018/11/17/MPP36%E5%A8%81%E9%9C%87%E5%A4%A9/</url>
-    <content><![CDATA[<p>去年买了MPP10擎天柱，这个威震天就成了今年必买的玩具了。拿到实物第一感觉是威将的做工进步了，料子比MPP10好，而且这次是自主设计，一体变形（含枪托）。</p>
-<a id="more"></a>
-
-<p>整体造型还原G1，头雕仿官方MP36，身材与MPP10比例一致，臂炮具有灯效。搭配的激光鸟可变形为消声器，脚下有磁性，可吸附在威震天的手臂上。与官方MP36相比，正面还是官方更还原G1动画，背面MPP36更加平整。</p>
-<p><img src="https://i.loli.net/2021/11/07/lroNSVHJdnzWF2y.png" alt="1威震天.png"><br><img src="https://i.loli.net/2020/05/05/fFYK4ybaDNEPXwM.jpg" alt="威震天-3.jpg"></p>
-<p>小时候，我特别讨厌威震天。印象里在每集的开头，威震天都会有个计划说给观众听，然后发出自信的淫笑。在每集的结尾都会被柱子打的屁滚尿流，随之发出一声惨叫——撤退，狂派众人狼狈逃窜。</p>
-<p>还有关键的一点，我不喜欢威震天的动画形象：老鼠灰加上马桶头，变形成一把小枪也没见多厉害。小时候，我总是盼着红蜘蛛能造反成功，那样就再也不会看见它了:D</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
       </tags>
   </entry>
   <entry>
@@ -960,29 +960,6 @@
       </tags>
   </entry>
   <entry>
-    <title>VC编程 定时器</title>
-    <url>/2016/03/25/VC%E7%BC%96%E7%A8%8B%20%E5%AE%9A%E6%97%B6%E5%99%A8/</url>
-    <content><![CDATA[<p>从名字看，定时器更像是硬件相关的东西；从功能上看，MFC定时器也确实跟单片机的定时器类似。MFC定时器的使用分为三个步骤：安装、响应、结束。</p>
-<a id="more"></a>
-
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UINT_PTR <span class="title">SetTimer</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    UINT_PTR nIDEvent,  <span class="comment">//一个整数，用于标识定时器</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nElapse,       <span class="comment">//多长间隔发出一个WM_TIMER消息，单位毫秒</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span> (CALLBACK* lpfnTimer)(HWND,    <span class="comment">//回调函数地址，一般设置为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT,</span></span></span><br><span class="line"><span class="function"><span class="params">    UINT_PTR,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD))</span></span>;</span><br></pre></td></tr></table></figure>
-<p>参数lpfnTimer接受一个回调函数（用于处理WM_TIMER消息）地址，如果为NULL，则WM_TIMER消息将被放置在应用程序的消息队列中，并由CWnd对象处理。</p>
-<p>SetTimer是CWnd类的成员函数，所以可以在程序中直接调用。此函数将一个定时器安装到系统中，每当nElapse时间间隔，系统都会将WM_TIMER消息发布到消息队列中，或将消息传递给应用程序定义的TimerProc回调函数。</p>
-<p>例：在OnInitDialog中设置两个定时器</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 在此添加额外的初始化代码</span></span><br><span class="line">SetTimer(<span class="number">1</span>,<span class="number">5000</span>,<span class="literal">NULL</span>);<span class="comment">//定时器1，每5秒触发</span></span><br><span class="line">SetTimer(<span class="number">2</span>,<span class="number">10000</span>,<span class="literal">NULL</span>);<span class="comment">//定时器2，每10秒触发</span></span><br></pre></td></tr></table></figure>
-<h4 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h4><p>响应定时器是通过响应WM_TIMER消息完成的。我们在类向导中选择合适的类，添加WM_TIMER消息响应函数，如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CArrayAndListDlg::OnTimer</span><span class="params">(UINT_PTR nIDEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加消息处理程序代码和/或调用默认值</span></span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)<span class="comment">//多定时器</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            AfxMessageBox(<span class="string">&quot;定时器1：只触发一次！&quot;</span>);</span><br><span class="line">            KillTimer(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            LASTINPUTINFO lputinfo;</span><br><span class="line">            lputinfo.cbSize = <span class="keyword">sizeof</span>(lputinfo);<span class="comment">//必须赋值，否则无效</span></span><br><span class="line">            GetLastInputInfo(&amp;lputinfo);<span class="comment">//获取系统最后输入时间</span></span><br><span class="line">            <span class="keyword">if</span> (GetTickCount()-lputinfo.dwTime &gt; <span class="number">60000</span>)<span class="comment">//1分钟</span></span><br><span class="line">            &#123;</span><br><span class="line">                AfxMessageBox(<span class="string">&quot;定时器2：当系统无输入1分钟时结束！&quot;</span>);</span><br><span class="line">                KillTimer(<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">KillTimer</span><span class="params">(UINT_PTR nIDEvent)</span></span>;<span class="comment">//结束nIDEvent定时器</span></span><br></pre></td></tr></table></figure>
-<p>它也是CWnd类的成员函数，故而也可以直接调用。</p>
-]]></content>
-      <categories>
-        <category>VC++</category>
-      </categories>
-      <tags>
-        <tag>VC++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VC编程 字符串</title>
     <url>/2016/03/11/VC%E7%BC%96%E7%A8%8B%20%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<p>在任何编程过程中，字符串操作即广泛又重要。对于MFC，最通用的字符串类型就是CString，很多操作都要将数据转换为CString类型，以方便处理、共享、传递。</p>
@@ -1015,6 +992,29 @@
 <p>由此看出，使用Format主要是用来将数字转换为CString。例如，获取当前系统时间：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CTime t = CTime::GetCurrentTime();</span><br><span class="line">CString m_strTime;</span><br><span class="line">m_strTime.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">	t.GetYear(),t.GetMonth(),t.GetDay(),</span><br><span class="line">	t.GetHour(),t.GetMinute(),t.GetSecond());</span><br></pre></td></tr></table></figure>
 <h4 id="与TCHAR数组的转换"><a href="#与TCHAR数组的转换" class="headerlink" title="与TCHAR数组的转换"></a>与TCHAR数组的转换</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CString edt2 = <span class="string">&quot;abcdef&quot;</span>;                <span class="comment">//CString -&gt; TCHAR</span></span><br><span class="line">TCHAR *str = <span class="keyword">new</span> TCHAR(<span class="number">10</span>);</span><br><span class="line">str = edt2.GetBuffer(edt2.GetLength());</span><br><span class="line"></span><br><span class="line">CString edt3 = str;                    <span class="comment">//TCHAR -&gt; CString</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>VC++</category>
+      </categories>
+      <tags>
+        <tag>VC++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VC编程 定时器</title>
+    <url>/2016/03/25/VC%E7%BC%96%E7%A8%8B%20%E5%AE%9A%E6%97%B6%E5%99%A8/</url>
+    <content><![CDATA[<p>从名字看，定时器更像是硬件相关的东西；从功能上看，MFC定时器也确实跟单片机的定时器类似。MFC定时器的使用分为三个步骤：安装、响应、结束。</p>
+<a id="more"></a>
+
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UINT_PTR <span class="title">SetTimer</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    UINT_PTR nIDEvent,  <span class="comment">//一个整数，用于标识定时器</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nElapse,       <span class="comment">//多长间隔发出一个WM_TIMER消息，单位毫秒</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span> (CALLBACK* lpfnTimer)(HWND,    <span class="comment">//回调函数地址，一般设置为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT,</span></span></span><br><span class="line"><span class="function"><span class="params">    UINT_PTR,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD))</span></span>;</span><br></pre></td></tr></table></figure>
+<p>参数lpfnTimer接受一个回调函数（用于处理WM_TIMER消息）地址，如果为NULL，则WM_TIMER消息将被放置在应用程序的消息队列中，并由CWnd对象处理。</p>
+<p>SetTimer是CWnd类的成员函数，所以可以在程序中直接调用。此函数将一个定时器安装到系统中，每当nElapse时间间隔，系统都会将WM_TIMER消息发布到消息队列中，或将消息传递给应用程序定义的TimerProc回调函数。</p>
+<p>例：在OnInitDialog中设置两个定时器</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 在此添加额外的初始化代码</span></span><br><span class="line">SetTimer(<span class="number">1</span>,<span class="number">5000</span>,<span class="literal">NULL</span>);<span class="comment">//定时器1，每5秒触发</span></span><br><span class="line">SetTimer(<span class="number">2</span>,<span class="number">10000</span>,<span class="literal">NULL</span>);<span class="comment">//定时器2，每10秒触发</span></span><br></pre></td></tr></table></figure>
+<h4 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h4><p>响应定时器是通过响应WM_TIMER消息完成的。我们在类向导中选择合适的类，添加WM_TIMER消息响应函数，如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CArrayAndListDlg::OnTimer</span><span class="params">(UINT_PTR nIDEvent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 在此添加消息处理程序代码和/或调用默认值</span></span><br><span class="line">    <span class="keyword">switch</span> (nIDEvent)<span class="comment">//多定时器</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            AfxMessageBox(<span class="string">&quot;定时器1：只触发一次！&quot;</span>);</span><br><span class="line">            KillTimer(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            LASTINPUTINFO lputinfo;</span><br><span class="line">            lputinfo.cbSize = <span class="keyword">sizeof</span>(lputinfo);<span class="comment">//必须赋值，否则无效</span></span><br><span class="line">            GetLastInputInfo(&amp;lputinfo);<span class="comment">//获取系统最后输入时间</span></span><br><span class="line">            <span class="keyword">if</span> (GetTickCount()-lputinfo.dwTime &gt; <span class="number">60000</span>)<span class="comment">//1分钟</span></span><br><span class="line">            &#123;</span><br><span class="line">                AfxMessageBox(<span class="string">&quot;定时器2：当系统无输入1分钟时结束！&quot;</span>);</span><br><span class="line">                KillTimer(<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    CDialogEx::OnTimer(nIDEvent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">KillTimer</span><span class="params">(UINT_PTR nIDEvent)</span></span>;<span class="comment">//结束nIDEvent定时器</span></span><br></pre></td></tr></table></figure>
+<p>它也是CWnd类的成员函数，故而也可以直接调用。</p>
+]]></content>
       <categories>
         <category>VC++</category>
       </categories>
@@ -1802,6 +1802,39 @@
       </tags>
   </entry>
   <entry>
+    <title>使用Hexo建立博客二 配置博客</title>
+    <url>/2017/10/05/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%BA%8C%20%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>Hexo默认使用landscape主题，我们可以在<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>下载其他主题。NexT主题界面简洁推荐使用，其官方主页为<a href="http://theme-next.iissnan.com/">http://theme-next.iissnan.com/</a>。</p>
+<a id="more"></a>
+
+<h4 id="Hexo全局设置"><a href="#Hexo全局设置" class="headerlink" title="Hexo全局设置"></a>Hexo全局设置</h4><p>打开Hexo全局配置文件_config.yml，按如下注释进行设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Programmer&#39;s Speak           #站点名</span><br><span class="line">subtitle: 理论+实践&#x3D;真知+时间&#x3D;睿智    #副标题</span><br><span class="line">description: &#39;&#39;                     #对站点的描述，用于SEO</span><br><span class="line">keywords: Program                   #用于SEO</span><br><span class="line">author: Devastator                  #博主昵称</span><br><span class="line">language: zh-CN                     #博客语言</span><br><span class="line">timezone: Asia&#x2F;Shanghai             #时区</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: https:&#x2F;&#x2F;YourGithubName.github.io&#x2F;      #博客地址，与申请的GitHub一致</span><br><span class="line">root: &#x2F;</span><br><span class="line">permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line"># Directory                 目录设置，一般不修改</span><br><span class="line">source_dir: source          #源文件夹，存放文章</span><br><span class="line">public_dir: public          #公共文件夹，存放生成的静态文件</span><br><span class="line">tag_dir: tags               #标签文件夹，默认是tags。实际存放在source&#x2F;tags中。</span><br><span class="line">archive_dir: archives       #档案文件夹，默认是archives。</span><br><span class="line">category_dir: categories    #分类文件夹，默认是categories。实际存放在source&#x2F;categories中。</span><br><span class="line">code_dir: downloads&#x2F;code    #代码文件夹，默认是downloads&#x2F;code</span><br><span class="line">i18n_dir: :lang             #国际化文件夹，默认跟language相同</span><br><span class="line">skip_render:                #跳过指定文件的渲染</span><br><span class="line"></span><br><span class="line"># Writing                   文章布局、写作格式的定义，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Home page setting</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#39;&#39;</span><br><span class="line">  per_page: 10          #每页显示的Post数</span><br><span class="line">  order_by: -date       #Post的顺序（按日期从后向前排序）</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag        分类和标签，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Date &#x2F; Time format    日期、时间格式，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next            #博客主题，默认是landscape</span><br><span class="line"></span><br><span class="line"># Deployment           部署到Github</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: git@github.com:YourGithubName&#x2F;YourGithubName.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
+<h4 id="NexT主题设置"><a href="#NexT主题设置" class="headerlink" title="NexT主题设置"></a>NexT主题设置</h4><p>从NexT的github下载，解压缩后改名为next，放入theme目录。按下面注释修改NexT配置文件themes\next\_config.yml：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes           选择样式</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line"># Dark Mode</span><br><span class="line">darkmode: false</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Site Information Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">favicon:</span><br><span class="line">  small: &#x2F;images&#x2F;robot_16px.png   #网站图标，存放于\next\source\images</span><br><span class="line">  medium: &#x2F;images&#x2F;robot_32px.png</span><br><span class="line">  apple_touch_icon: &#x2F;images&#x2F;apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: &#x2F;images&#x2F;logo.svg</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">menu:               # 去掉注释就可以显示，顺序可调整</span><br><span class="line">  home: &#x2F; || fa fa-home                  #首页</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th   #分类</span><br><span class="line">  about: &#x2F;about&#x2F; || fa fa-user           #关于</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags             #标签</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Sidebar Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;sidebar</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: &#x2F;images&#x2F;name.jpg     #头像，存放于\next\source\images</span><br><span class="line">  ......</span><br><span class="line"># Social Links              个人链接</span><br><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;name || fab fa-github</span><br><span class="line">  ......</span><br><span class="line"># Blog rolls                </span><br><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-globe</span><br><span class="line">  title: Recommend          #输入链接区域的标题</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: block</span><br><span class="line"></span><br><span class="line">links:                      #名：地址</span><br><span class="line">  Racket: https:&#x2F;&#x2F;www.racket-lang.org&#x2F;</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Footer Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;footer</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">footer:</span><br><span class="line">  since: 2017       #起始年</span><br><span class="line">  ......</span><br><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">  powered: false    #不显示“强力驱动”</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Post Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;posts</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Post meta display settings</span><br><span class="line">post_meta:          #文章标题内容</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true  #发表日期</span><br><span class="line">  updated_at:       #更新日期</span><br><span class="line">    enable: false</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true  #分类于</span><br><span class="line">  ......</span><br><span class="line"># Donate (Sponsor) settings</span><br><span class="line"># Front-matter variable (unsupport animation).</span><br><span class="line">reward_settings:</span><br><span class="line">  # If true, a donate button will be displayed in every article by default.</span><br><span class="line">  enable: true      #显示打赏按钮</span><br><span class="line">  animation: true</span><br><span class="line">  #comment: Buy me a coffee</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;wechat.png   #微信收款，存放于\next\source\images</span><br><span class="line">  alipay: &#x2F;images&#x2F;pay.jpg         #支付宝收款</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Misc Theme Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;miscellaneous</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # All available themes: https:&#x2F;&#x2F;theme-next.js.org&#x2F;highlight&#x2F;</span><br><span class="line">  theme:        #代码块高亮主题设置</span><br><span class="line">    light: atom-one-dark #railscasts</span><br><span class="line">    dark: tomorrow-night</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Third Party Plugins &amp; Services Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;third-party-services&#x2F;</span><br><span class="line"># More plugins: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;awesome-next</span><br><span class="line"># You may need to install the corresponding dependency packages</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 这一部分的设置在下一节说明</span><br></pre></td></tr></table></figure>
+<h4 id="第三方插件和服务"><a href="#第三方插件和服务" class="headerlink" title="第三方插件和服务"></a>第三方插件和服务</h4><p>NexT支持众多第三方插件，方便用户扩展功能。在上一节中的末尾部分，就是关于插件的设置。</p>
+<p>一、使用Latex数学公式</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">math:</span><br><span class="line">  # Default (false) will load mathjax &#x2F; katex script on demand.</span><br><span class="line">  # That is it only render those page which has &#96;mathjax: true&#96; in front-matter.</span><br><span class="line">  # If you set it to true, it will load mathjax &#x2F; katex srcipt EVERY PAGE.</span><br><span class="line">  every_page: false     #一般设置为false，我们只在需要时渲染数学公式</span><br><span class="line"></span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true        #开启功能</span><br><span class="line">    # Available values: none | ams | all</span><br><span class="line">    tags: none</span><br></pre></td></tr></table></figure>
+<p>按照上面设置后，每当需要在文章中使用Latex数学公式时，在文章标题中添加mathjax项：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章名</span><br><span class="line">date: 2017-9-30 11:15:36</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>二、不蒜子统计</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">busuanzi_count:           #将下面的三项设置为true即可</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: far fa-eye</span><br></pre></td></tr></table></figure>
+<p>设置后如果没反应，则进入next\layout\_third-party\analytics目录，打开busuanzi-counter.njk，修正其中的地址即可。</p>
+<p>三、添加搜索<br>在Next的配置文件中启用搜索：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true       #设置为true，即可启用</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br></pre></td></tr></table></figure>
+<p>进入Hexo根目录，右键打开Git Bash，键入<code>$ npm install hexo-generator-searchdb --save</code>安装搜索模块。然后，在Hexo的全局配置文件_config.yml中任意位置添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>通过如下命令可以看到效果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean    <span class="comment"># 用于清除缓存</span></span><br><span class="line">$ hexo generate <span class="comment"># 生成静态网页</span></span><br><span class="line">$ hexo server   <span class="comment"># 访问localhost:4000。</span></span><br></pre></td></tr></table></figure>
+<p>此时点击页面中的分类、关于、标签，没有任何反应。下一篇文章会说明如何添加这些内容。</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Hexo建立博客三 发布文章</title>
     <url>/2017/10/08/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%B8%89%20%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<h4 id="实现分类、标签和关于链接"><a href="#实现分类、标签和关于链接" class="headerlink" title="实现分类、标签和关于链接"></a>实现分类、标签和关于链接</h4><p>进入Hexo目录，右键选择Git Bash，键入：</p>
@@ -1836,39 +1869,6 @@
 <p>打开浏览器，访问localhost:5000，根据实际情况对源文件进行修改。调整完毕可上传到Github：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>此时分类和标签页就会自动出现文章的索引。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo建立博客二 配置博客</title>
-    <url>/2017/10/05/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%BA%8C%20%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>Hexo默认使用landscape主题，我们可以在<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>下载其他主题。NexT主题界面简洁推荐使用，其官方主页为<a href="http://theme-next.iissnan.com/">http://theme-next.iissnan.com/</a>。</p>
-<a id="more"></a>
-
-<h4 id="Hexo全局设置"><a href="#Hexo全局设置" class="headerlink" title="Hexo全局设置"></a>Hexo全局设置</h4><p>打开Hexo全局配置文件_config.yml，按如下注释进行设置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Programmer&#39;s Speak           #站点名</span><br><span class="line">subtitle: 理论+实践&#x3D;真知+时间&#x3D;睿智    #副标题</span><br><span class="line">description: &#39;&#39;                     #对站点的描述，用于SEO</span><br><span class="line">keywords: Program                   #用于SEO</span><br><span class="line">author: Devastator                  #博主昵称</span><br><span class="line">language: zh-CN                     #博客语言</span><br><span class="line">timezone: Asia&#x2F;Shanghai             #时区</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: https:&#x2F;&#x2F;YourGithubName.github.io&#x2F;      #博客地址，与申请的GitHub一致</span><br><span class="line">root: &#x2F;</span><br><span class="line">permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line"># Directory                 目录设置，一般不修改</span><br><span class="line">source_dir: source          #源文件夹，存放文章</span><br><span class="line">public_dir: public          #公共文件夹，存放生成的静态文件</span><br><span class="line">tag_dir: tags               #标签文件夹，默认是tags。实际存放在source&#x2F;tags中。</span><br><span class="line">archive_dir: archives       #档案文件夹，默认是archives。</span><br><span class="line">category_dir: categories    #分类文件夹，默认是categories。实际存放在source&#x2F;categories中。</span><br><span class="line">code_dir: downloads&#x2F;code    #代码文件夹，默认是downloads&#x2F;code</span><br><span class="line">i18n_dir: :lang             #国际化文件夹，默认跟language相同</span><br><span class="line">skip_render:                #跳过指定文件的渲染</span><br><span class="line"></span><br><span class="line"># Writing                   文章布局、写作格式的定义，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Home page setting</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#39;&#39;</span><br><span class="line">  per_page: 10          #每页显示的Post数</span><br><span class="line">  order_by: -date       #Post的顺序（按日期从后向前排序）</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag        分类和标签，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Date &#x2F; Time format    日期、时间格式，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next            #博客主题，默认是landscape</span><br><span class="line"></span><br><span class="line"># Deployment           部署到Github</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: git@github.com:YourGithubName&#x2F;YourGithubName.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-<h4 id="NexT主题设置"><a href="#NexT主题设置" class="headerlink" title="NexT主题设置"></a>NexT主题设置</h4><p>从NexT的github下载，解压缩后改名为next，放入theme目录。按下面注释修改NexT配置文件themes\next\_config.yml：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes           选择样式</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line"># Dark Mode</span><br><span class="line">darkmode: false</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Site Information Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">favicon:</span><br><span class="line">  small: &#x2F;images&#x2F;robot_16px.png   #网站图标，存放于\next\source\images</span><br><span class="line">  medium: &#x2F;images&#x2F;robot_32px.png</span><br><span class="line">  apple_touch_icon: &#x2F;images&#x2F;apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: &#x2F;images&#x2F;logo.svg</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">menu:               # 去掉注释就可以显示，顺序可调整</span><br><span class="line">  home: &#x2F; || fa fa-home                  #首页</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th   #分类</span><br><span class="line">  about: &#x2F;about&#x2F; || fa fa-user           #关于</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags             #标签</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Sidebar Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;sidebar</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: &#x2F;images&#x2F;name.jpg     #头像，存放于\next\source\images</span><br><span class="line">  ......</span><br><span class="line"># Social Links              个人链接</span><br><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;name || fab fa-github</span><br><span class="line">  ......</span><br><span class="line"># Blog rolls                </span><br><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-globe</span><br><span class="line">  title: Recommend          #输入链接区域的标题</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: block</span><br><span class="line"></span><br><span class="line">links:                      #名：地址</span><br><span class="line">  Racket: https:&#x2F;&#x2F;www.racket-lang.org&#x2F;</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Footer Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;footer</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">footer:</span><br><span class="line">  since: 2017       #起始年</span><br><span class="line">  ......</span><br><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">  powered: false    #不显示“强力驱动”</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Post Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;posts</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Post meta display settings</span><br><span class="line">post_meta:          #文章标题内容</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true  #发表日期</span><br><span class="line">  updated_at:       #更新日期</span><br><span class="line">    enable: false</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true  #分类于</span><br><span class="line">  ......</span><br><span class="line"># Donate (Sponsor) settings</span><br><span class="line"># Front-matter variable (unsupport animation).</span><br><span class="line">reward_settings:</span><br><span class="line">  # If true, a donate button will be displayed in every article by default.</span><br><span class="line">  enable: true      #显示打赏按钮</span><br><span class="line">  animation: true</span><br><span class="line">  #comment: Buy me a coffee</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;wechat.png   #微信收款，存放于\next\source\images</span><br><span class="line">  alipay: &#x2F;images&#x2F;pay.jpg         #支付宝收款</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Misc Theme Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;miscellaneous</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # All available themes: https:&#x2F;&#x2F;theme-next.js.org&#x2F;highlight&#x2F;</span><br><span class="line">  theme:        #代码块高亮主题设置</span><br><span class="line">    light: atom-one-dark #railscasts</span><br><span class="line">    dark: tomorrow-night</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Third Party Plugins &amp; Services Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;third-party-services&#x2F;</span><br><span class="line"># More plugins: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;awesome-next</span><br><span class="line"># You may need to install the corresponding dependency packages</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 这一部分的设置在下一节说明</span><br></pre></td></tr></table></figure>
-<h4 id="第三方插件和服务"><a href="#第三方插件和服务" class="headerlink" title="第三方插件和服务"></a>第三方插件和服务</h4><p>NexT支持众多第三方插件，方便用户扩展功能。在上一节中的末尾部分，就是关于插件的设置。</p>
-<p>一、使用Latex数学公式</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">math:</span><br><span class="line">  # Default (false) will load mathjax &#x2F; katex script on demand.</span><br><span class="line">  # That is it only render those page which has &#96;mathjax: true&#96; in front-matter.</span><br><span class="line">  # If you set it to true, it will load mathjax &#x2F; katex srcipt EVERY PAGE.</span><br><span class="line">  every_page: false     #一般设置为false，我们只在需要时渲染数学公式</span><br><span class="line"></span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true        #开启功能</span><br><span class="line">    # Available values: none | ams | all</span><br><span class="line">    tags: none</span><br></pre></td></tr></table></figure>
-<p>按照上面设置后，每当需要在文章中使用Latex数学公式时，在文章标题中添加mathjax项：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章名</span><br><span class="line">date: 2017-9-30 11:15:36</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>二、不蒜子统计</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">busuanzi_count:           #将下面的三项设置为true即可</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: far fa-eye</span><br></pre></td></tr></table></figure>
-<p>设置后如果没反应，则进入next\layout\_third-party\analytics目录，打开busuanzi-counter.njk，修正其中的地址即可。</p>
-<p>三、添加搜索<br>在Next的配置文件中启用搜索：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true       #设置为true，即可启用</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br></pre></td></tr></table></figure>
-<p>进入Hexo根目录，右键打开Git Bash，键入<code>$ npm install hexo-generator-searchdb --save</code>安装搜索模块。然后，在Hexo的全局配置文件_config.yml中任意位置添加：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>通过如下命令可以看到效果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean    <span class="comment"># 用于清除缓存</span></span><br><span class="line">$ hexo generate <span class="comment"># 生成静态网页</span></span><br><span class="line">$ hexo server   <span class="comment"># 访问localhost:4000。</span></span><br></pre></td></tr></table></figure>
-<p>此时点击页面中的分类、关于、标签，没有任何反应。下一篇文章会说明如何添加这些内容。</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -1935,30 +1935,6 @@
 <p>整体造型还原，变形合理，车窗、脚板、领导模块等处使用了合金件，32厘米高的玩具拿在手里沉甸甸的。虽然变形手感没官方MP10好，但胸部添加卡扣合缝更紧实，手指添加金属轴不会脱落，而且价格远远低于MP10。</p>
 <p><img src="https://i.loli.net/2021/11/06/dKSqb1Vv5QztXOI.png" alt="1擎天柱.png"><br><img src="https://i.loli.net/2020/02/02/trgl6jQcuMOWkio.jpg" alt="擎天柱-3.jpg"></p>
 <p>小时候最喜欢的变形金刚就是擎天柱、大力神、声波；最讨厌的是铁皮、大黄蜂、威震天。擎天柱作为正义的主角，最先受到关注。每次柱子出场，我都激动万分。具体剧情虽然都不记得了，但在印象里总有一个擎天柱的形象：博派一堆小车被打的七零八落，一辆大卡车开过来——变形——干趴狂派所有坏蛋:D</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>围城震荡波和红蜘蛛</title>
-    <url>/2019/06/22/%E5%9B%B4%E5%9F%8E%E9%9C%87%E8%8D%A1%E6%B3%A2%E5%92%8C%E7%BA%A2%E8%9C%98%E8%9B%9B/</url>
-    <content><![CDATA[<p>围城玩具总的来说，给人一种廉价的塑料感，每个级别的人物都要比传统级别小。正面颜值还算可以，虽说是赛博坦形态，但样子还是照着G1做的。值得一提的是表面刻线，算是围城变形金刚的创新。至于背面偷胶、手臂没有盖板，放在今天就是官方标配，大家都不觉得意外。看网上介绍，我觉得还不错的只有震荡波、红蜘蛛、探长、横炮。</p>
-<a id="more"></a>
-
-<p>最先买的是震荡波，这是我最喜欢的一个，将其与MP29震荡波放在一起有过之而无不及，尤其是那只独眼，放在光下就像有灯效一样。整个玩具由本体和配件组成，这应该是官方的一个策略（V级别的尺寸加上配件当L级的卖），好在这个配件本身可玩性不错，人形和伪装形态都能无违和感的用上。</p>
-<p>围城震荡波的伪装形态不是一把手枪，而是一艘宇宙战舰，这一点我很喜欢。至于可动性，该有的都有，而且腿部应用了齿轮关节。</p>
-<p>对于震荡波，我没有什么幼年印象，只觉得这个名字不陌生而已，过去与胡同里的小伙伴们从来没谈论过它。</p>
-<p><img src="https://i.loli.net/2021/11/06/zfhqKxRXIuCgJPV.png" alt="1震荡波.png"></p>
-<p>围城红蜘蛛制作精良，至少没有偷胶，人形态还原G1动画，全身刻线细节是亮点，变形为一架三角形飞机，感觉有点差强人意。</p>
-<p>印象里，红蜘蛛是个话痨，遇见点事就大呼小叫，本来挺讨厌它的，但是看它锲而不舍的造反（小时候真不喜欢威震天），渐渐的就越来越喜欢了。还没上小学的我，那时就认为靠博派那帮人根本解决不了威震天，就把希望寄托于红蜘蛛了。</p>
-<p><img src="https://i.loli.net/2021/11/06/IRX7NqKZMhUCFnj.png" alt="2红蜘蛛.png"></p>
-<p>玩过官方的玩具后，才明白什么才是一个好的变形金刚玩具。如果一个变形金刚，你碰都懒得碰一下，只是放在柜子里摆着，那么它能算的上一个好的变形金刚玩具吗？关于这一点是仁者见仁智者见智。即便如此，变形体验（把玩手感）也是玩具设计好坏的一个重要考量。</p>
-<p>另外，官方做变形金刚，一做就会是一个系列，而且同一个角色会有持续的新版本，这点是第三方比不了的。</p>
 ]]></content>
       <categories>
         <category>Toy</category>
@@ -2152,6 +2128,30 @@
       </tags>
   </entry>
   <entry>
+    <title>围城震荡波和红蜘蛛</title>
+    <url>/2019/06/22/%E5%9B%B4%E5%9F%8E%E9%9C%87%E8%8D%A1%E6%B3%A2%E5%92%8C%E7%BA%A2%E8%9C%98%E8%9B%9B/</url>
+    <content><![CDATA[<p>围城玩具总的来说，给人一种廉价的塑料感，每个级别的人物都要比传统级别小。正面颜值还算可以，虽说是赛博坦形态，但样子还是照着G1做的。值得一提的是表面刻线，算是围城变形金刚的创新。至于背面偷胶、手臂没有盖板，放在今天就是官方标配，大家都不觉得意外。看网上介绍，我觉得还不错的只有震荡波、红蜘蛛、探长、横炮。</p>
+<a id="more"></a>
+
+<p>最先买的是震荡波，这是我最喜欢的一个，将其与MP29震荡波放在一起有过之而无不及，尤其是那只独眼，放在光下就像有灯效一样。整个玩具由本体和配件组成，这应该是官方的一个策略（V级别的尺寸加上配件当L级的卖），好在这个配件本身可玩性不错，人形和伪装形态都能无违和感的用上。</p>
+<p>围城震荡波的伪装形态不是一把手枪，而是一艘宇宙战舰，这一点我很喜欢。至于可动性，该有的都有，而且腿部应用了齿轮关节。</p>
+<p>对于震荡波，我没有什么幼年印象，只觉得这个名字不陌生而已，过去与胡同里的小伙伴们从来没谈论过它。</p>
+<p><img src="https://i.loli.net/2021/11/06/zfhqKxRXIuCgJPV.png" alt="1震荡波.png"></p>
+<p>围城红蜘蛛制作精良，至少没有偷胶，人形态还原G1动画，全身刻线细节是亮点，变形为一架三角形飞机，感觉有点差强人意。</p>
+<p>印象里，红蜘蛛是个话痨，遇见点事就大呼小叫，本来挺讨厌它的，但是看它锲而不舍的造反（小时候真不喜欢威震天），渐渐的就越来越喜欢了。还没上小学的我，那时就认为靠博派那帮人根本解决不了威震天，就把希望寄托于红蜘蛛了。</p>
+<p><img src="https://i.loli.net/2021/11/06/IRX7NqKZMhUCFnj.png" alt="2红蜘蛛.png"></p>
+<p>玩过官方的玩具后，才明白什么才是一个好的变形金刚玩具。如果一个变形金刚，你碰都懒得碰一下，只是放在柜子里摆着，那么它能算的上一个好的变形金刚玩具吗？关于这一点是仁者见仁智者见智。即便如此，变形体验（把玩手感）也是玩具设计好坏的一个重要考量。</p>
+<p>另外，官方做变形金刚，一做就会是一个系列，而且同一个角色会有持续的新版本，这点是第三方比不了的。</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基金与ETF</title>
     <url>/2022/01/13/%E5%9F%BA%E9%87%91%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<p>2021年年初，基金这个词汇在社会面爆火，涌现出一批明星基金经理，什么易方达张坤、张清华，富国天惠朱少醒，兴全合润谢治宇，工银文体袁芳等等，各种吹捧，什么清北学历，男神女神，天天创造奇迹……那时周围不少同事都在谈论基金，弄得我也想买点玩玩，直至去年10月跳槽成功后，才开始建仓买入。</p>
@@ -2243,6 +2243,26 @@
       </tags>
   </entry>
   <entry>
+    <title>声波（Soundwave）</title>
+    <url>/2020/12/20/%E5%A3%B0%E6%B3%A2%EF%BC%88Soundwave%EF%BC%89/</url>
+    <content><![CDATA[<p>在我的记忆里，声波几乎每一集都会出现，而且实力强悍鲜有败绩。它的磁带部队除了战斗，还具有多种特殊能力。虽说这支磁带部队的个体是独立的，但通常都会被当作是声波能力的延申。声波的人设很低调，长期如此容易被“遗忘”。其实，大众总是被表面光鲜的角色所吸引，低调做事即使能力再强也会被熟视无睹。</p>
+<a id="more"></a>
+
+<p>游戏“赛博坦陨落”中的声波比在动画中还要低调，几乎没有台词。当猛大帅锤扁威震天后，声波暗中将散落的零件找了回来，充分体现了声波的忠诚；在游戏的最后一节，声波作为追击方舟的先锋，非常还原T1动画。</p>
+<p>电影里的声波就差强人意了。“变型金刚2”中的间谍卫星给人一定的期待，但只出现了几分钟。“变型金刚3”中的奔驰轿车不符合声波的常规人设，辨识度极低且全场酱油，最扯淡的是，最后竟然被大黄蜂打爆了！！！</p>
+<p><img src="https://i.loli.net/2021/11/07/aFhngIKrWS7vzLG.png" alt="1声波.png"></p>
+<p>如图，整体造型还是不错的，非常还原T1动画，胸口磁带仓可以放三盘磁带，每一盘磁带都可以变形。主体背后有个机关，可以将里面的磁带弹射出去。</p>
+<p>在拥有了所有喜欢的角色后，我有点脱坑了。对于一个成年人来说，我不是把玩党，时间上就不允许，购买玩具就是因为情怀。这些玩具买来后也就变形一两次，然后就放柜子里摆着了，闲暇之余隔着柜子玻璃看看它们^o^</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大力神（Devastator）</title>
     <url>/2019/12/25/%E5%A4%A7%E5%8A%9B%E7%A5%9E%EF%BC%88Devastator%EF%BC%89/</url>
     <content><![CDATA[<p>在G1动画中，大力神作为第一个出现的组合金刚，也是唯一个六合体，给我留下了深刻的印象。小时候，我唯一的一个官方变形金刚就是这个吊车：</p>
@@ -2260,26 +2280,6 @@
 <p>作为合体金刚，最关键的还是合体后的样子：</p>
 <p><img src="https://i.loli.net/2020/07/11/wYI1gPRnqoU27tc.jpg" alt="大力神-4.jpg"></p>
 <p>相对于其他版本大力神，它更加健壮，细节丰富，前后隐藏的很好，整体造型更加现代，非常难得的是<strong>一体变形</strong>，没有附加一堆配件包。</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>声波（Soundwave）</title>
-    <url>/2020/12/20/%E5%A3%B0%E6%B3%A2%EF%BC%88Soundwave%EF%BC%89/</url>
-    <content><![CDATA[<p>在我的记忆里，声波几乎每一集都会出现，而且实力强悍鲜有败绩。它的磁带部队除了战斗，还具有多种特殊能力。虽说这支磁带部队的个体是独立的，但通常都会被当作是声波能力的延申。声波的人设很低调，长期如此容易被“遗忘”。其实，大众总是被表面光鲜的角色所吸引，低调做事即使能力再强也会被熟视无睹。</p>
-<a id="more"></a>
-
-<p>游戏“赛博坦陨落”中的声波比在动画中还要低调，几乎没有台词。当猛大帅锤扁威震天后，声波暗中将散落的零件找了回来，充分体现了声波的忠诚；在游戏的最后一节，声波作为追击方舟的先锋，非常还原T1动画。</p>
-<p>电影里的声波就差强人意了。“变型金刚2”中的间谍卫星给人一定的期待，但只出现了几分钟。“变型金刚3”中的奔驰轿车不符合声波的常规人设，辨识度极低且全场酱油，最扯淡的是，最后竟然被大黄蜂打爆了！！！</p>
-<p><img src="https://i.loli.net/2021/11/07/aFhngIKrWS7vzLG.png" alt="1声波.png"></p>
-<p>如图，整体造型还是不错的，非常还原T1动画，胸口磁带仓可以放三盘磁带，每一盘磁带都可以变形。主体背后有个机关，可以将里面的磁带弹射出去。</p>
-<p>在拥有了所有喜欢的角色后，我有点脱坑了。对于一个成年人来说，我不是把玩党，时间上就不允许，购买玩具就是因为情怀。这些玩具买来后也就变形一两次，然后就放柜子里摆着了，闲暇之余隔着柜子玻璃看看它们^o^</p>
 ]]></content>
       <categories>
         <category>Toy</category>
@@ -3590,32 +3590,6 @@
       </tags>
   </entry>
   <entry>
-    <title>房价上天的起点</title>
-    <url>/2018/09/21/%E6%88%BF%E4%BB%B7%E4%B8%8A%E5%A4%A9%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>下面这篇文章要是在2009年看到就好了。当然，看到了也不一定理解，理解了也不一定去做。不过现在看来，这篇文章也是颇具启发性。</p>
-<a id="more"></a>
-
-<h4 id="转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》"><a href="#转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》" class="headerlink" title="转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》"></a>转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》</h4><p>中央政府门户网站　<a href="http://www.gov.cn/">www.gov.cn</a>　　 2009年07月05日　　 来源：人民日报</p>
-<p>中国人民银行行长周小川在全球智库峰会上指出，中国结构调整的最优选择是扩大居民消费，这将直接拉动内需并降低总储蓄率。</p>
-<p>周小川说，全球经济不平衡有一个很明显的不合理特点，就是收入相对较低国家储蓄率高，而发达国家富裕人群过度消费。中国储蓄率过高，美国家庭储蓄率过低，两国都应进行改革。我们愿朝这个方向努力，同时不宜轻易夸大两个国家所能起到的作用。中国的家庭储蓄与GDP之比实际相当稳定，1992-2007年基本保持在20%上下；企业储蓄占比1992年为11.3%，2007年达22.9%，涨了1倍；同期，政府亦即公共部门储蓄占比从1992年的4.4%提高到2007年的8.1%，也上升近1倍。<strong>公司部门的利润较高缘于股权分布结构，广大劳动者只分享到较少的公司利润。解决这个问题，必须创造条件让更多群众拥有财产性收入。中国一颇具潜力的投资领域是城镇化发展，它为未来的人口迁移、消费条件和服务业发展打下基础。</strong>考虑到中国储蓄率基数相当高，还可能会有部分剩余储蓄，希望能更多地流向发展中国家。这就需要国际金融组织体系和国际货币体系的支持，以使全球生产率和收入分配得到改善，带来更普遍的、绿色的全球增长。</p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ol>
-<li>美国储蓄率低的原因是什么？中国储蓄率高的原因是什么？</li>
-<li>降低中国储蓄率的目的是什么？有哪些好处？有哪些坏处？</li>
-<li>公司利润较高，劳动者分享的较少，最直接合理的不是应该提高工资吗？</li>
-</ol>
-<blockquote>
-<p>上述三个问题很基本，但理解起来并不简单。这里边有真东西。</p>
-</blockquote>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>今后，央行也应该会是中国社会舞台的主角。央行发布的政策和行长发布的言论都要当作预言深入理解。</p>
-]]></content>
-      <categories>
-        <category>Economy</category>
-      </categories>
-      <tags>
-        <tag>Economy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>总结和展望（癸卯）</title>
     <url>/2023/01/24/%E5%B9%B4%E5%88%9D%E5%B1%95%E6%9C%9B%EF%BC%88%E7%99%B8%E5%8D%AF%EF%BC%89/</url>
     <content><![CDATA[<p>2021年，第一次写计划和总结，当时正值公司混改，各方面变化很大，心里有不少感触，所以下笔非常顺畅。2022年，总结和计划是分开写的，长篇大论了，写起来颇费心力。现在第三个年头了，感觉具体的计划真是没什么意义！年龄越大，越能感到命运之力，个体没有抗衡环境的力量，要想过的好点只能顺势而为。</p>
@@ -3693,6 +3667,32 @@
       </categories>
       <tags>
         <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>房价上天的起点</title>
+    <url>/2018/09/21/%E6%88%BF%E4%BB%B7%E4%B8%8A%E5%A4%A9%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
+    <content><![CDATA[<p>下面这篇文章要是在2009年看到就好了。当然，看到了也不一定理解，理解了也不一定去做。不过现在看来，这篇文章也是颇具启发性。</p>
+<a id="more"></a>
+
+<h4 id="转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》"><a href="#转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》" class="headerlink" title="转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》"></a>转载《周小川：扩大居民消费将拉动内需并降低总储蓄率》</h4><p>中央政府门户网站　<a href="http://www.gov.cn/">www.gov.cn</a>　　 2009年07月05日　　 来源：人民日报</p>
+<p>中国人民银行行长周小川在全球智库峰会上指出，中国结构调整的最优选择是扩大居民消费，这将直接拉动内需并降低总储蓄率。</p>
+<p>周小川说，全球经济不平衡有一个很明显的不合理特点，就是收入相对较低国家储蓄率高，而发达国家富裕人群过度消费。中国储蓄率过高，美国家庭储蓄率过低，两国都应进行改革。我们愿朝这个方向努力，同时不宜轻易夸大两个国家所能起到的作用。中国的家庭储蓄与GDP之比实际相当稳定，1992-2007年基本保持在20%上下；企业储蓄占比1992年为11.3%，2007年达22.9%，涨了1倍；同期，政府亦即公共部门储蓄占比从1992年的4.4%提高到2007年的8.1%，也上升近1倍。<strong>公司部门的利润较高缘于股权分布结构，广大劳动者只分享到较少的公司利润。解决这个问题，必须创造条件让更多群众拥有财产性收入。中国一颇具潜力的投资领域是城镇化发展，它为未来的人口迁移、消费条件和服务业发展打下基础。</strong>考虑到中国储蓄率基数相当高，还可能会有部分剩余储蓄，希望能更多地流向发展中国家。这就需要国际金融组织体系和国际货币体系的支持，以使全球生产率和收入分配得到改善，带来更普遍的、绿色的全球增长。</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ol>
+<li>美国储蓄率低的原因是什么？中国储蓄率高的原因是什么？</li>
+<li>降低中国储蓄率的目的是什么？有哪些好处？有哪些坏处？</li>
+<li>公司利润较高，劳动者分享的较少，最直接合理的不是应该提高工资吗？</li>
+</ol>
+<blockquote>
+<p>上述三个问题很基本，但理解起来并不简单。这里边有真东西。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>今后，央行也应该会是中国社会舞台的主角。央行发布的政策和行长发布的言论都要当作预言深入理解。</p>
+]]></content>
+      <categories>
+        <category>Economy</category>
+      </categories>
+      <tags>
+        <tag>Economy</tag>
       </tags>
   </entry>
   <entry>
@@ -3841,6 +3841,23 @@
       </tags>
   </entry>
   <entry>
+    <title>程序员感悟</title>
+    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
+<a id="more"></a>
+
+<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
+<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
+<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>组网基本思路</title>
     <url>/2013/08/03/%E7%BB%84%E7%BD%91%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF/</url>
     <content><![CDATA[<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><ol>
@@ -3887,63 +3904,6 @@
       </categories>
       <tags>
         <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>程序员感悟</title>
-    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
-<a id="more"></a>
-
-<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
-<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
-<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高达模型制作</title>
-    <url>/2019/09/15/%E9%AB%98%E8%BE%BE%E6%A8%A1%E5%9E%8B%E5%88%B6%E4%BD%9C/</url>
-    <content><![CDATA[<p>所谓高达GUNDAM模型，其实就是拼装模型的一种。本人对于高达没有任何情怀，没看过动画，也没玩过“高达”主题的游戏，只是少年时期听说过而已。上大学后，玩过很多“超级机器人大战”游戏，发现其中很多机体来自高达，才意识到高达设定对于日本机战题材作品（漫画、游戏、动漫）的深远影响。</p>
-<a id="more"></a>
-
-<p>我是玩变形金刚过来的，老实说高达众多机体的造型虽自成体系，但过于雷同，有些只是换色而已，而且造型并不太符合当前的大众审美。动画的主角——“高达型”机体过于拟人化，武士头雕与过于纤细的身材，没有充满力量的机械感。在尝试拼装了一盒MG龟霸（BANDAI）之后，个人感觉是体验到了高达拼装模型的一些特色：</p>
-<ol>
-<li>具有一定的内构。在制作过程中，有制作机械人的感觉。</li>
-<li>精准的模具。这是最让人赞叹的，各种琐碎零件的卡扣都能准确的扣合，不存在合不拢、扣不住、错位等现象。可能有人觉得这没什么，模型就应该这样，但作为一个工作多年的人，我觉得这很了不起。在中国，即使某些大厂制作出来的东西，比如某些机加工零配件，两个螺丝孔，拧上一个，另一个孔就对不上了……</li>
-<li>具有基本的可动性。很多高达机体在制作后，出现松垮、掉件的情况，这很让人沮丧，但模型毕竟不是玩具，禁不住把玩是在意料之内的，要知道其他大多数模型都没什么可动性，而且同样不结实。</li>
-<li>丰富的颜色。即使不喷漆也有模有样，这点可比军模体贴太多了。</li>
-</ol>
-<h4 id="MG龟霸"><a href="#MG龟霸" class="headerlink" title="MG龟霸"></a>MG龟霸</h4><p>结构紧实，内构精细，可动优秀，自带支架和特效件。右手爪子有弹簧机关，左手鱼雷可插特效件。胳膊、大腿、肩部可伸缩，可谓万代良心。</p>
-<p><img src="https://i.loli.net/2021/11/07/g9wWr4pbnzEaJ8s.png" alt="1龟霸.png"></p>
-<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
-<li><p>按照自己的想法和需求制作一台模型。觉得水口没什么就不要修，懒得贴纸就不要贴。你制作的模型就是你的机体，这些细节就算是你独有的特色。</p>
-</li>
-<li><p>工欲善其事，必先利其器。有了工具能让拼装工作更容易一点，成品更好一点。现列举一些基本工具如下：</p>
-<ul>
-<li>剪钳。这是最重要的，如果是情怀玩家，打算将制作模型作为一项兴趣爱好来培养，买一把“神之手”剪钳不算奢侈。一般的玩家最好也买一把单刃剪钳。单刃剪钳虽然锋利，但比较娇气，掉落或大力磕碰可能断裂。使用时也不要沾湿或直接用手擦，否则容易生锈。</li>
-<li>打磨。即使用神之手，水口还是会有的，推荐用砂纸、打磨板、打磨块。砂纸购买600目和1000目的。600目砂纸消耗较大，所以尽量购买质量好一点的。打磨板建议使用5mm、10mm宽的。1000目砂纸和打磨块用于消除刮痕。如果经费富裕，也可以购买同样目数的海绵砂纸，用于打磨弧状零件的水口。</li>
-<li>镊子。用于粘贴纸。万代贴纸有胶贴、刮贴、水贴、铝箔贴纸。<strong>胶贴</strong>最常见，塑料材质不怕水，黏贴时沾水，用镊子夹起一角，从一边滚动张贴。<strong>刮贴</strong>最优秀，但张贴后无法调整，可用胶带固定贴纸，确定位置合适后，用牙签或指甲刮，确保每个细节都刮到位后，揭下胶带即可看到结果。<strong>水贴</strong>效果介于胶贴和刮贴之间，但万代水贴粘附力很弱，干透后容易翘起。<strong>铝箔贴纸</strong>怕水。</li>
-<li>小号螺丝刀。有些模型需要螺丝固定。</li>
-</ul>
-</li>
-<li><p>不建议买仿品。在仿制方面，变形金刚做的更好，有些仿品素质比原品还要优秀，而且价格还便宜。高达模型的仿品都不太好，基本和万代没法比。仿品零件的拼装完全让人体会不到前面说的那些优点，在我看来，钱等于全部浪费了。</p>
-</li>
-<li><p>如果你对高达没有情怀，或者对于高达模型机设提不起兴趣，就一定不要跟风买入。否则就像办健身年卡一样，买之前想的很好，去了没两次就撇一边了——“烂尾的模型 + 一段时间 = 垃圾”。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Gundam</category>
-      </categories>
-      <tags>
-        <tag>Gundam</tag>
       </tags>
   </entry>
   <entry>
@@ -4086,6 +4046,46 @@
       </categories>
       <tags>
         <tag>Coin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高达模型制作</title>
+    <url>/2019/09/15/%E9%AB%98%E8%BE%BE%E6%A8%A1%E5%9E%8B%E5%88%B6%E4%BD%9C/</url>
+    <content><![CDATA[<p>所谓高达GUNDAM模型，其实就是拼装模型的一种。本人对于高达没有任何情怀，没看过动画，也没玩过“高达”主题的游戏，只是少年时期听说过而已。上大学后，玩过很多“超级机器人大战”游戏，发现其中很多机体来自高达，才意识到高达设定对于日本机战题材作品（漫画、游戏、动漫）的深远影响。</p>
+<a id="more"></a>
+
+<p>我是玩变形金刚过来的，老实说高达众多机体的造型虽自成体系，但过于雷同，有些只是换色而已，而且造型并不太符合当前的大众审美。动画的主角——“高达型”机体过于拟人化，武士头雕与过于纤细的身材，没有充满力量的机械感。在尝试拼装了一盒MG龟霸（BANDAI）之后，个人感觉是体验到了高达拼装模型的一些特色：</p>
+<ol>
+<li>具有一定的内构。在制作过程中，有制作机械人的感觉。</li>
+<li>精准的模具。这是最让人赞叹的，各种琐碎零件的卡扣都能准确的扣合，不存在合不拢、扣不住、错位等现象。可能有人觉得这没什么，模型就应该这样，但作为一个工作多年的人，我觉得这很了不起。在中国，即使某些大厂制作出来的东西，比如某些机加工零配件，两个螺丝孔，拧上一个，另一个孔就对不上了……</li>
+<li>具有基本的可动性。很多高达机体在制作后，出现松垮、掉件的情况，这很让人沮丧，但模型毕竟不是玩具，禁不住把玩是在意料之内的，要知道其他大多数模型都没什么可动性，而且同样不结实。</li>
+<li>丰富的颜色。即使不喷漆也有模有样，这点可比军模体贴太多了。</li>
+</ol>
+<h4 id="MG龟霸"><a href="#MG龟霸" class="headerlink" title="MG龟霸"></a>MG龟霸</h4><p>结构紧实，内构精细，可动优秀，自带支架和特效件。右手爪子有弹簧机关，左手鱼雷可插特效件。胳膊、大腿、肩部可伸缩，可谓万代良心。</p>
+<p><img src="https://i.loli.net/2021/11/07/g9wWr4pbnzEaJ8s.png" alt="1龟霸.png"></p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li><p>按照自己的想法和需求制作一台模型。觉得水口没什么就不要修，懒得贴纸就不要贴。你制作的模型就是你的机体，这些细节就算是你独有的特色。</p>
+</li>
+<li><p>工欲善其事，必先利其器。有了工具能让拼装工作更容易一点，成品更好一点。现列举一些基本工具如下：</p>
+<ul>
+<li>剪钳。这是最重要的，如果是情怀玩家，打算将制作模型作为一项兴趣爱好来培养，买一把“神之手”剪钳不算奢侈。一般的玩家最好也买一把单刃剪钳。单刃剪钳虽然锋利，但比较娇气，掉落或大力磕碰可能断裂。使用时也不要沾湿或直接用手擦，否则容易生锈。</li>
+<li>打磨。即使用神之手，水口还是会有的，推荐用砂纸、打磨板、打磨块。砂纸购买600目和1000目的。600目砂纸消耗较大，所以尽量购买质量好一点的。打磨板建议使用5mm、10mm宽的。1000目砂纸和打磨块用于消除刮痕。如果经费富裕，也可以购买同样目数的海绵砂纸，用于打磨弧状零件的水口。</li>
+<li>镊子。用于粘贴纸。万代贴纸有胶贴、刮贴、水贴、铝箔贴纸。<strong>胶贴</strong>最常见，塑料材质不怕水，黏贴时沾水，用镊子夹起一角，从一边滚动张贴。<strong>刮贴</strong>最优秀，但张贴后无法调整，可用胶带固定贴纸，确定位置合适后，用牙签或指甲刮，确保每个细节都刮到位后，揭下胶带即可看到结果。<strong>水贴</strong>效果介于胶贴和刮贴之间，但万代水贴粘附力很弱，干透后容易翘起。<strong>铝箔贴纸</strong>怕水。</li>
+<li>小号螺丝刀。有些模型需要螺丝固定。</li>
+</ul>
+</li>
+<li><p>不建议买仿品。在仿制方面，变形金刚做的更好，有些仿品素质比原品还要优秀，而且价格还便宜。高达模型的仿品都不太好，基本和万代没法比。仿品零件的拼装完全让人体会不到前面说的那些优点，在我看来，钱等于全部浪费了。</p>
+</li>
+<li><p>如果你对高达没有情怀，或者对于高达模型机设提不起兴趣，就一定不要跟风买入。否则就像办健身年卡一样，买之前想的很好，去了没两次就撇一边了——“烂尾的模型 + 一段时间 = 垃圾”。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Gundam</category>
+      </categories>
+      <tags>
+        <tag>Gundam</tag>
       </tags>
   </entry>
   <entry>
