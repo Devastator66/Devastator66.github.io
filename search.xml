@@ -183,87 +183,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HTML常用标签</title>
-    <url>/2007/11/22/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<p>HTML（Hyper Text Markup Language）超文本标记语言，用来构建网页最基本功能。</p>
-<a id="more"></a>
-
-<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	   头部 <span class="comment">&lt;!--不在页面中显示--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	   主体 <span class="comment">&lt;!--放要显示的内容--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="头部标签"><a href="#头部标签" class="headerlink" title="头部标签"></a>头部标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span> <span class="comment">&lt;!--设置当前文本的编码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="主体标签"><a href="#主体标签" class="headerlink" title="主体标签"></a>主体标签</h4><p>1.文本标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">hn</span>&gt;</span> <span class="comment">&lt;!--自动换行，n=1~6，一个页面内h1最多放一个--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">字体</span> <span class="attr">color</span>=<span class="string">颜色</span> <span class="attr">size</span>=<span class="string">大小</span>&gt;</span>设置字体<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2.格式标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> <span class="comment">&lt;!--换行--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> <span class="attr">width</span>=<span class="string">宽度</span> <span class="attr">size</span>=<span class="string">高度</span>&gt;</span> <span class="comment">&lt;!--居中水平分割线，可使用百分数，会随着网页大小变化--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>3.超链接标签</p>
-<ul>
-<li><p>基本链接</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">https://www.baidu.com</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--绝对路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./hello world.txt&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--相对路径--&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>锚点链接（页内跳转）</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;锚点名&quot;</span>&gt;</span>段落标题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#锚点名</span>&gt;</span>返回段首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#</span>&gt;</span>返回页首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>4.图像标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">url</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>img属性</p>
-<ul>
-<li>border：边框宽度，如果不要边框设置为0。</li>
-<li>width/height：设置的不合适会失真。</li>
-<li>alt：当鼠标放到图片上或图片加载失败时提示的内容，搜索引擎会根据这个文字搜索到图片。</li>
-</ul>
-<p>5.列表标签</p>
-<ul>
-<li>无序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>有序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>6.表格标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span>	<span class="comment">&lt;!--行--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段1<span class="tag">&lt;/<span class="name">th</span>&gt;</span>	<span class="comment">&lt;!--标题，字体加粗显示--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段3<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span>	<span class="comment">&lt;!--列--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>table属性<br>align：left，center，right<br>border：默认无边框<br>width：格的宽度<br>height：格的高度<br>cellspacing：格与格的间距<br>cellpadding：文字与格的间距<br>bgcolor：背景颜色<br>bordercolor：边框颜色<br>bordercolorlight：边框亮面</p>
-</li>
-<li><p>tr属性<br>align，valign，bgcolor</p>
-</li>
-<li><p>td/th属性<br>width：会影响同列<br>height：会影响同行<br>align：left，center，right<br>valign：top，middle，bottom<br>colspan：当前格占几列<br>rowspan：当前格占几行</p>
-</li>
-</ul>
-<p>7.表单标签</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">控件类型</span> <span class="attr">name</span>=<span class="string">变量名</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>form属性<br>name：表单名<br>action：表单内容提交到哪（URL）<br>method：提交方式：get一堆缺点，一般用post。<br>target：提交后返回的结果在哪个窗口显示<br>title：当鼠标悬停在表单上出现的内容</p>
-</li>
-<li><p>input属性<br>name：变量名<br>size：框体宽<br>value：默认值<br>type：</p>
-<ul>
-<li>text文本框</li>
-<li>password密码框</li>
-<li>submit提交按钮</li>
-<li>reset重置按钮</li>
-<li>button按钮，需要配合Javascript使用。</li>
-<li>checkbox复选框，如果需要同时操作，相应的name用数组表示。checked表示选中。</li>
-<li>radio单选框，一个组name相同。checked表示选中。</li>
-<li>hidden定义隐藏字段。隐藏字段对于用户是不可见的。</li>
-<li>file上传文件</li>
-</ul>
-</li>
-</ul>
-<p>8.下拉列表</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">size</span>=<span class="string">&quot;&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>项<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>select属性<br>name：变量名<br>size：如果有这个属性会以列表形式显示<br>multiple：可多选，也会以列表形式显示。</p>
-</li>
-<li><p>option属性<br>value：有这个属性会提交它的值，没有则提交项。<br>selected：标记选中</p>
-</li>
-</ul>
-<p>9.图像地图<br>用于设置一个图片的不同区域对应不同的链接</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;路径/图片名.jpg&quot;</span> <span class="attr">usemap</span>=<span class="string">#标记名/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">标记名</span> <span class="attr">id</span>=<span class="string">标记名</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;rect&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;10,10,20,20&quot;</span> <span class="attr">href</span>=<span class="string">跳转url1</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;35,35,10&quot;</span> <span class="attr">href</span>=<span class="string">跳转url2</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>shape为rect，coords为对角线坐标（上x，上y，下x，下y）。<br>shape为circle，coords为圆心坐标和半径长度（x,y,r）。<br>shape为poly，coords为各定点坐标（x1，y1，x2，2y，…）。</p>
-<p>10.符号</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;	<span class="symbol">&amp;lt;</span></span><br><span class="line">&gt;	<span class="symbol">&amp;gt;</span></span><br><span class="line">&amp;	<span class="symbol">&amp;amp;</span></span><br><span class="line">&quot;	<span class="symbol">&amp;quot;</span></span><br><span class="line">￥	<span class="symbol">&amp;yen;</span></span><br><span class="line">$	<span class="symbol">&amp;sect;</span></span><br><span class="line">© 	<span class="symbol">&amp;copy;</span></span><br><span class="line">®	<span class="symbol">&amp;reg;</span></span><br><span class="line">×	<span class="symbol">&amp;times;</span></span><br><span class="line">÷	<span class="symbol">&amp;divide;</span></span><br><span class="line">空格	<span class="symbol">&amp;nbsp;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS基本配置</title>
     <url>/2007/11/28/CSS%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>CSS（Cascading Style Sheets）层叠样式表，主要用于设置网页的样式，通常与HTML的空标签div配合使用。使用css可集中添加样式，因此更易于维护。</p>
@@ -478,6 +397,87 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML常用标签</title>
+    <url>/2007/11/22/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<p>HTML（Hyper Text Markup Language）超文本标记语言，用来构建网页最基本功能。</p>
+<a id="more"></a>
+
+<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	   头部 <span class="comment">&lt;!--不在页面中显示--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	   主体 <span class="comment">&lt;!--放要显示的内容--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="头部标签"><a href="#头部标签" class="headerlink" title="头部标签"></a>头部标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span> <span class="comment">&lt;!--设置当前文本的编码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="主体标签"><a href="#主体标签" class="headerlink" title="主体标签"></a>主体标签</h4><p>1.文本标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">hn</span>&gt;</span> <span class="comment">&lt;!--自动换行，n=1~6，一个页面内h1最多放一个--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">字体</span> <span class="attr">color</span>=<span class="string">颜色</span> <span class="attr">size</span>=<span class="string">大小</span>&gt;</span>设置字体<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2.格式标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> <span class="comment">&lt;!--换行--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> <span class="attr">width</span>=<span class="string">宽度</span> <span class="attr">size</span>=<span class="string">高度</span>&gt;</span> <span class="comment">&lt;!--居中水平分割线，可使用百分数，会随着网页大小变化--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3.超链接标签</p>
+<ul>
+<li><p>基本链接</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">https://www.baidu.com</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--绝对路径--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./hello world.txt&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self/_blank&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">a</span>&gt;</span>	<span class="comment">&lt;!--相对路径--&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>锚点链接（页内跳转）</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;锚点名&quot;</span>&gt;</span>段落标题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#锚点名</span>&gt;</span>返回段首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">#</span>&gt;</span>返回页首<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>4.图像标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">url</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>img属性</p>
+<ul>
+<li>border：边框宽度，如果不要边框设置为0。</li>
+<li>width/height：设置的不合适会失真。</li>
+<li>alt：当鼠标放到图片上或图片加载失败时提示的内容，搜索引擎会根据这个文字搜索到图片。</li>
+</ul>
+<p>5.列表标签</p>
+<ul>
+<li>无序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>有序列表<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表项<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>6.表格标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span>	<span class="comment">&lt;!--行--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段1<span class="tag">&lt;/<span class="name">th</span>&gt;</span>	<span class="comment">&lt;!--标题，字体加粗显示--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span>字段3<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列1<span class="tag">&lt;/<span class="name">td</span>&gt;</span>	<span class="comment">&lt;!--列--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>列3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>table属性<br>align：left，center，right<br>border：默认无边框<br>width：格的宽度<br>height：格的高度<br>cellspacing：格与格的间距<br>cellpadding：文字与格的间距<br>bgcolor：背景颜色<br>bordercolor：边框颜色<br>bordercolorlight：边框亮面</p>
+</li>
+<li><p>tr属性<br>align，valign，bgcolor</p>
+</li>
+<li><p>td/th属性<br>width：会影响同列<br>height：会影响同行<br>align：left，center，right<br>valign：top，middle，bottom<br>colspan：当前格占几列<br>rowspan：当前格占几行</p>
+</li>
+</ul>
+<p>7.表单标签</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">控件类型</span> <span class="attr">name</span>=<span class="string">变量名</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>form属性<br>name：表单名<br>action：表单内容提交到哪（URL）<br>method：提交方式：get一堆缺点，一般用post。<br>target：提交后返回的结果在哪个窗口显示<br>title：当鼠标悬停在表单上出现的内容</p>
+</li>
+<li><p>input属性<br>name：变量名<br>size：框体宽<br>value：默认值<br>type：</p>
+<ul>
+<li>text文本框</li>
+<li>password密码框</li>
+<li>submit提交按钮</li>
+<li>reset重置按钮</li>
+<li>button按钮，需要配合Javascript使用。</li>
+<li>checkbox复选框，如果需要同时操作，相应的name用数组表示。checked表示选中。</li>
+<li>radio单选框，一个组name相同。checked表示选中。</li>
+<li>hidden定义隐藏字段。隐藏字段对于用户是不可见的。</li>
+<li>file上传文件</li>
+</ul>
+</li>
+</ul>
+<p>8.下拉列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">size</span>=<span class="string">&quot;&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>项<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>select属性<br>name：变量名<br>size：如果有这个属性会以列表形式显示<br>multiple：可多选，也会以列表形式显示。</p>
+</li>
+<li><p>option属性<br>value：有这个属性会提交它的值，没有则提交项。<br>selected：标记选中</p>
+</li>
+</ul>
+<p>9.图像地图<br>用于设置一个图片的不同区域对应不同的链接</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;路径/图片名.jpg&quot;</span> <span class="attr">usemap</span>=<span class="string">#标记名/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">标记名</span> <span class="attr">id</span>=<span class="string">标记名</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;rect&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;10,10,20,20&quot;</span> <span class="attr">href</span>=<span class="string">跳转url1</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;35,35,10&quot;</span> <span class="attr">href</span>=<span class="string">跳转url2</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>shape为rect，coords为对角线坐标（上x，上y，下x，下y）。<br>shape为circle，coords为圆心坐标和半径长度（x,y,r）。<br>shape为poly，coords为各定点坐标（x1，y1，x2，2y，…）。</p>
+<p>10.符号</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;	<span class="symbol">&amp;lt;</span></span><br><span class="line">&gt;	<span class="symbol">&amp;gt;</span></span><br><span class="line">&amp;	<span class="symbol">&amp;amp;</span></span><br><span class="line">&quot;	<span class="symbol">&amp;quot;</span></span><br><span class="line">￥	<span class="symbol">&amp;yen;</span></span><br><span class="line">$	<span class="symbol">&amp;sect;</span></span><br><span class="line">© 	<span class="symbol">&amp;copy;</span></span><br><span class="line">®	<span class="symbol">&amp;reg;</span></span><br><span class="line">×	<span class="symbol">&amp;times;</span></span><br><span class="line">÷	<span class="symbol">&amp;divide;</span></span><br><span class="line">空格	<span class="symbol">&amp;nbsp;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -917,6 +917,31 @@
       </tags>
   </entry>
   <entry>
+    <title>RG沙扎比</title>
+    <url>/2019/12/24/RG%E6%B2%99%E6%89%8E%E6%AF%94/</url>
+    <content><![CDATA[<p>沙扎比（SAZABI）MSN-04是赤色彗星夏亚的最后一台机体，无论是动漫还是模型都颇具人气。个人觉得沙扎比是高达系列里造型最好的机体，所以这个是必入的。最初接触到的是卡版沙扎比，各方面都好，就是总觉得体型太大了，严重与其他MG模型不搭。RG沙扎比体型适中，造型细节很好，我个人更偏爱这个版本。</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2021/10/06/VaIUbXGFSLqwlAy.png" alt="沙扎比-1.png"></p>
+<p>模型特性：采用拼装骨架结构紧实、隐藏水口，可动优秀（可调整大腿位置），可以爆甲，外甲有一定的分色。</p>
+<p><img src="https://i.loli.net/2021/10/06/5OQH4ZUTC6FgqKc.png" alt="沙扎比-2.png"></p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li>这个RG沙扎比的料子感觉比龟霸软，用指甲按就会出现痕迹，盾牌尖锐部分轻易就会卷边。其结构相对于其他RG机体虽然算的上紧实，但还是没法跟MG2.0时期的东西比。</li>
+<li>弧形件水口用打磨板也能处理。这样对我来说，海绵砂纸就没什么用了，也许可以用来处理“水波纹”。</li>
+<li>有点想买模型专用锉刀，尤其是600目切割力的，因为600目砂纸用的太费，修不了几个水口就没有切削力了，换砂纸实在太麻烦。</li>
+<li>再次强调：无论是模型专用单刃钳，还是锉刀，硬度都比较高。硬度高的钢通常易断易锈，所以一定不要沾湿，每次最好准备一块布来擦拭。</li>
+<li>一定要相信万代的做工，只要是接插不顺，必定是你错了。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Gundam</category>
+      </categories>
+      <tags>
+        <tag>Gundam</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SS08眩晕</title>
     <url>/2019/07/28/SS08%E7%9C%A9%E6%99%95/</url>
     <content><![CDATA[<p>SS变形金刚主要是电影版玩具，本人关注较少，能记住的角色只有变1开场出来的眩晕、变2大力神、变3震荡波、变4禁闭。买这款SS08眩晕主要是因为近期降价幅度较大，100出头的价格感觉还是比较值的。</p>
@@ -955,31 +980,6 @@
       </categories>
       <tags>
         <tag>VC++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RG沙扎比</title>
-    <url>/2019/12/24/RG%E6%B2%99%E6%89%8E%E6%AF%94/</url>
-    <content><![CDATA[<p>沙扎比（SAZABI）MSN-04是赤色彗星夏亚的最后一台机体，无论是动漫还是模型都颇具人气。个人觉得沙扎比是高达系列里造型最好的机体，所以这个是必入的。最初接触到的是卡版沙扎比，各方面都好，就是总觉得体型太大了，严重与其他MG模型不搭。RG沙扎比体型适中，造型细节很好，我个人更偏爱这个版本。</p>
-<a id="more"></a>
-
-<p><img src="https://i.loli.net/2021/10/06/VaIUbXGFSLqwlAy.png" alt="沙扎比-1.png"></p>
-<p>模型特性：采用拼装骨架结构紧实、隐藏水口，可动优秀（可调整大腿位置），可以爆甲，外甲有一定的分色。</p>
-<p><img src="https://i.loli.net/2021/10/06/5OQH4ZUTC6FgqKc.png" alt="沙扎比-2.png"></p>
-<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
-<li>这个RG沙扎比的料子感觉比龟霸软，用指甲按就会出现痕迹，盾牌尖锐部分轻易就会卷边。其结构相对于其他RG机体虽然算的上紧实，但还是没法跟MG2.0时期的东西比。</li>
-<li>弧形件水口用打磨板也能处理。这样对我来说，海绵砂纸就没什么用了，也许可以用来处理“水波纹”。</li>
-<li>有点想买模型专用锉刀，尤其是600目切割力的，因为600目砂纸用的太费，修不了几个水口就没有切削力了，换砂纸实在太麻烦。</li>
-<li>再次强调：无论是模型专用单刃钳，还是锉刀，硬度都比较高。硬度高的钢通常易断易锈，所以一定不要沾湿，每次最好准备一块布来擦拭。</li>
-<li>一定要相信万代的做工，只要是接插不顺，必定是你错了。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Gundam</category>
-      </categories>
-      <tags>
-        <tag>Gundam</tag>
       </tags>
   </entry>
   <entry>
@@ -1086,6 +1086,56 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">POSITION <span class="title">GetStartPosition</span><span class="params">()</span> <span class="keyword">const</span></span>;    <span class="comment">//返回起始位置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNextAssoc</span><span class="params">(            <span class="comment">//获取每个映射的key和value</span></span></span></span><br><span class="line"><span class="function"><span class="params">    POSITION&amp; rNextPosition,  <span class="comment">//每次获取，自动更新到下一个位置。到达末尾，会被设置为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">    KEY&amp; rKey,                <span class="comment">//返回key到这里</span></span></span></span><br><span class="line"><span class="function"><span class="params">    VALUE&amp; rValue)</span> <span class="keyword">const</span></span>;     <span class="comment">//返回value到这里</span></span><br></pre></td></tr></table></figure>
 <p>下面是一个例子，在遍历过程中并不是按照索引顺序进行访问：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">POSITION pos = myMap.GetStartPosition();</span><br><span class="line"><span class="keyword">int</span> nKey;</span><br><span class="line">CPoint pt;</span><br><span class="line"><span class="keyword">while</span> (pos != <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    myMap.GetNextAssoc(pos, nKey, pt);</span><br><span class="line">    str.Format(<span class="string">&quot;%d %d %d&quot;</span>,nKey,pt.x,pt.y);</span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>VC++</category>
+      </categories>
+      <tags>
+        <tag>VC++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VC编程 对话框</title>
+    <url>/2015/08/15/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86/</url>
+    <content><![CDATA[<p>我们点击某个菜单项或某个按钮，会弹出一个对话框，以进行某个子功能。这个子对话框可以根据实际需要自行定义，也可以使用现成的通用对话框。</p>
+<a id="more"></a>
+
+<h4 id="自定义对话框"><a href="#自定义对话框" class="headerlink" title="自定义对话框"></a>自定义对话框</h4><p>在资源视图下，插入Dialog资源，默认会有两个按钮：OK（IDOK）和Cancel(IDCANCEL)。这两个按钮比较特殊，其ID是固定的，如果误删除了，可以添加两个按钮并修改ID为那两个固定ID即可。用户点击这两个按钮，会调用OnOK()和OnCancel()，由于这两个函数内部调用了EndDialog，所以点击这两个按钮会关闭对话框。</p>
+<p>选中对话框资源，可以修改对话框样式，比如Font(Size)修改字体字号，Caption调整标题等等。设置后ID后，双击对话框资源为其关联对话框子类（继承于CDialog）。这个子类初始只有DoDataExchange函数。</p>
+<p>要想显示自定义对话框，需要在主程序框架头文件中引入自定义对话框头文件，然后建立自定义对话框类对象。使用这个对象可以创建两种对话框：模态和非模态。模态对话框只有在退出后才能控制主程序，非模态对话框没有这个限制。</p>
+<p>一、模态对话框</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CDlgModel m_DlgModel;</span><br><span class="line"><span class="keyword">if</span> (m_DlgModel.DoModal() == IDOK)<span class="comment">//以模态对话框运行</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;cancel&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>DoModal的返回值应为IDOK或IDCANCEL。在子对话框结束时，调用OnOK关闭对话框会返回IDOK，调用OnCancel关闭对话框会返回IDCANCEL。我们利用这一点可以根据返回的结果，分情况编写处理代码。通过类对象可以获取子对话框成员变量、函数。</p>
+<p>二、非模态对话框</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">m_DlgNoM.Create(IDD_DIALOG_NOMODEL,<span class="keyword">this</span>);    <span class="comment">//创建对话框</span></span><br><span class="line">m_DlgNoM.ShowWindow(SW_SHOW);                <span class="comment">//显示对话框</span></span><br></pre></td></tr></table></figure>
+<p>模态对话框的创建、关闭很不自然，一般情况下不建议使用。m_DlgNoM的定义不能直接放在某个响应函数中，因为Create不能阻塞函数执行。当函数执行结束，这个对象就会销毁，表现出来就是这个对话框会一闪而过，所以一般有两种方法解决这个问题：1.把这个对象作为主程序类的成员变量，2.把这个对象定义在堆上。</p>
+<p>在非模态对话框完成工作后，不能直接调用OnOK或OnCancel关闭程序。因为这两个函数内部的EndDialog不能销毁对话框，当再次运行Create创建非模态对话框时会发生冲突。使用DestroyWindow()可以正常结束非模态对话框。</p>
+<h4 id="文件对话框"><a href="#文件对话框" class="headerlink" title="文件对话框"></a>文件对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">CFileDialog <span class="title">file</span><span class="params">(TRUE)</span></span>; <span class="comment">//true打开对话框，false另存为对话框</span></span><br><span class="line">CString Path;</span><br><span class="line">CString FileName;</span><br><span class="line"><span class="keyword">if</span> (IDOK == file.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    Path = file.GetPathName();        <span class="comment">//获取文件全路径</span></span><br><span class="line">    FileName = file.GetFileName();    <span class="comment">//获取文件名</span></span><br><span class="line">    <span class="comment">//根据文件名对文件进行处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CFileDialog的构造函数如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="title">CFileDialog</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bOpenFileDialog,            <span class="comment">//true打开文件，false另存为文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszDefExt = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,</span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFilter = <span class="literal">NULL</span>,       <span class="comment">//设置过滤器</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CWnd* pParentWnd = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwSize = <span class="number">0</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bVistaStyle = TRUE)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>打开文件只需给出第一个参数即可，另存为文件可以给出过滤器，格式如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> TCHAR BASED_CODE szFilter[] = _T(<span class="string">&quot;Word Files (*.doc;*.docx)|*.doc;*.docx|&quot;</span>)</span><br><span class="line">    _T(<span class="string">&quot;Worksheet Files (*.xls)|*.xls|Text Files (*.txt)|&quot;</span>)</span><br><span class="line">    _T(<span class="string">&quot;*.txt|All Files (*.*)|*.*||&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="颜色对话框"><a href="#颜色对话框" class="headerlink" title="颜色对话框"></a>颜色对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CColorDialog color;</span><br><span class="line"><span class="keyword">int</span> R,G,B;</span><br><span class="line"><span class="keyword">if</span> (IDOK == color.DoModal())            <span class="comment">//按下了颜色对话框中的OK按钮</span></span><br><span class="line">&#123;</span><br><span class="line">    COLORREF temp = color.GetColor();   <span class="comment">//得到选择的颜色</span></span><br><span class="line">    R = GetRValue(temp);                <span class="comment">//分别得到RGB值</span></span><br><span class="line">    G = GetGValue(temp);</span><br><span class="line">    B = GetBValue(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字体对话框"><a href="#字体对话框" class="headerlink" title="字体对话框"></a>字体对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFontDialog font;</span><br><span class="line"><span class="keyword">if</span> (IDOK == font.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    LOGFONT lgFont;                    <span class="comment">//字体信息结构，不包括颜色</span></span><br><span class="line">    font.GetCurrentFont(&amp;lgFont);      <span class="comment">//把当前选择的字体保存到lgFont</span></span><br><span class="line">    CFont cFont;                       <span class="comment">//设置字体只能通过CFont</span></span><br><span class="line">    cFont.CreateFontIndirect(&amp;lgFont); <span class="comment">//转化为CFont</span></span><br><span class="line">    GetDlgItem(IDC_STATIC)-&gt;SetFont(&amp;cFont,TRUE);<span class="comment">//调用CWnd方法设置静态控件的字体，TRUE代表重绘</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="打印对话框"><a href="#打印对话框" class="headerlink" title="打印对话框"></a>打印对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">CPrintDialog <span class="title">print</span><span class="params">(FALSE)</span></span>;      <span class="comment">//false表示带设置对话框，true表示不带设置对话框</span></span><br><span class="line">CString str;</span><br><span class="line"><span class="keyword">if</span> (IDOK == print.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    str.Format(<span class="string">&quot;%s-%s-%s&quot;</span>,</span><br><span class="line">        print.GetDeviceName(),  <span class="comment">//设备名</span></span><br><span class="line">        print.GetPortName(),    <span class="comment">//设备端口</span></span><br><span class="line">        print.GetDriverName()); <span class="comment">//设备驱动</span></span><br><span class="line">&#125;</span><br><span class="line">AfxMessageBox(str);</span><br></pre></td></tr></table></figure>
+<p>CPrintDialog中还有很多成员函数，在现实开发中可以参考使用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetFromPage</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">//得到打印起始页</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetToPage</span><span class="params">()</span> <span class="keyword">const</span></span>;        <span class="comment">//得到打印结束页</span></span><br><span class="line"><span class="function">LPDEVMODE <span class="title">GetDevMode</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">//得到DEVMODE结构</span></span><br><span class="line"><span class="function">HDC <span class="title">GetPrinterDC</span><span class="params">()</span> <span class="keyword">const</span></span>;     <span class="comment">//打印设备内容句柄</span></span><br></pre></td></tr></table></figure>
+<h4 id="替换查找对话框"><a href="#替换查找对话框" class="headerlink" title="替换查找对话框"></a>替换查找对话框</h4><p>与上面那几个通用对话框不同，需要将替换查找对话框建立为非模态对话框。这里在堆中建立CFindReplaceDialog对象，使用DestroyWindow()关闭窗口，在对话框被破坏时CFindReplaceDialog对象被自动释放。</p>
+<p>弹出替换查找对话框的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">    m_pFRDlg = <span class="keyword">new</span> CFindReplaceDialog();        <span class="comment">//非模态对话框在堆中建立</span></span><br><span class="line">    m_pFRDlg-&gt;Create(FALSE, _T(<span class="string">&quot;&quot;</span>), _T(<span class="string">&quot;&quot;</span>), FR_DOWN, <span class="keyword">this</span>);</span><br><span class="line">    m_pFRDlg-&gt;m_fr.lStructSize = <span class="keyword">sizeof</span>(FINDREPLACE);</span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.hwndOwner = this-&gt;m_hWnd;</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.lpstrFindWhat = m_pFRDlg-&gt;GetFindWhatStr();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.lpstrReplaceWith = m_pFRDlg-&gt;GetReplaceWithStr();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.wFindWhatLen = m_pFRDlg-&gt;GetFindWhatStrLen();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.wReplaceWithLen = m_pFRDlg-&gt;GetReplaceWithStrLen();</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>m_pFRDlg被当作父窗口类成员变量，定义在头文件中。其中的m_fr为CFindReplaceDialog的成员变量，类型为FINDREPLACE，其中保存了一些对话框特性。</p>
+</blockquote>
+<p>当用户点击按钮查找下一个、替换、替换全部或者关闭对话框时，查找替换对话框会向父窗口发送WM_FINDREPLACE消息，需要手动添加这个消息的响应：</p>
+<p>一、在父窗口类头文件中键入消息定义（当作全局变量）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> UINT WM_FINDREPLACE = ::RegisterWindowMessage(FINDMSGSTRING);</span><br></pre></td></tr></table></figure>
+<p>二、在父窗口类头文件中键入消息处理函数声明</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">afx_msg LONG <span class="title">OnFindReplace</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>三、在END_MESSAGE_MAP()中添加：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ON_REGISTERED_MESSAGE(WM_FINDREPLACE, &amp;CGeraDlgDlg::OnFindReplace)</span><br></pre></td></tr></table></figure>
+<p>四、在父窗口类cpp文件中键入消息处理函数的定义</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">CGeraDlgDlg::OnFindReplace</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CString str = m_pFRDlg-&gt;GetFindString();</span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在消息处理函数中，可以使用m_pFRDlg调用其成员函数，获取并处理信息。下面是一些CFindReplaceDialog成员函数的介绍：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Create</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bFindDialogOnly,        <span class="comment">//true查找对话框，false查找替换对话框</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFindWhat,        <span class="comment">//默认查找字符串，为NULL就没有默认字符串</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszReplaceWith = <span class="literal">NULL</span>,	<span class="comment">//默认替换字符串</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags = FR_DOWN,     <span class="comment">//选项，默认向下</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CWnd* pParentWnd = <span class="literal">NULL</span>)</span></span>;    <span class="comment">//为NULL将主窗口作为父窗口</span></span><br><span class="line"><span class="function">BOOL <span class="title">FindNext</span><span class="params">()</span> <span class="keyword">const</span></span>;           <span class="comment">//如果想要找下一个字符串返回非0</span></span><br><span class="line"><span class="function">CString <span class="title">GetFindString</span><span class="params">()</span> <span class="keyword">const</span></span>;   <span class="comment">//返回需要查找的字符串</span></span><br><span class="line"><span class="function">CString <span class="title">GetReplaceString</span><span class="params">()</span> <span class="keyword">const</span></span>;<span class="comment">//返回需要替换的字符串</span></span><br><span class="line"><span class="function">BOOL <span class="title">ReplaceAll</span><span class="params">()</span> <span class="keyword">const</span></span>;         <span class="comment">//判断用户是否全部替换</span></span><br><span class="line"><span class="function">BOOL <span class="title">ReplaceCurrent</span><span class="params">()</span> <span class="keyword">const</span></span>;     <span class="comment">//是否替换当前字符串</span></span><br><span class="line"><span class="function">BOOL <span class="title">IsTerminating</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">//用户是否终止查找</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>VC++</category>
       </categories>
@@ -1296,56 +1346,6 @@
 <p>这里面的属性与前面的判断函数是一一对应的，属性之间可以用位或 | 连接。</p>
 <p>例：搜索C盘根目录下隐藏的系统文件</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFileFind fi;</span><br><span class="line">BOOL bWorking = fi.FindFile(<span class="string">&quot;C:\\*.*&quot;</span>);</span><br><span class="line"><span class="keyword">while</span> (bWorking)</span><br><span class="line">&#123;</span><br><span class="line">    bWorking = fi.FindNextFile();</span><br><span class="line">    <span class="keyword">if</span> (fi.MatchesMask(FILE_ATTRIBUTE_HIDDEN | </span><br><span class="line">        FILE_ATTRIBUTE_SYSTEM))</span><br><span class="line">        AfxMessageBox(fi.GetFileName());</span><br><span class="line">&#125;</span><br><span class="line">fi.Close();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>VC++</category>
-      </categories>
-      <tags>
-        <tag>VC++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VC编程 对话框</title>
-    <url>/2015/08/15/VC%E7%BC%96%E7%A8%8B%20%E5%AF%B9%E8%AF%9D%E6%A1%86/</url>
-    <content><![CDATA[<p>我们点击某个菜单项或某个按钮，会弹出一个对话框，以进行某个子功能。这个子对话框可以根据实际需要自行定义，也可以使用现成的通用对话框。</p>
-<a id="more"></a>
-
-<h4 id="自定义对话框"><a href="#自定义对话框" class="headerlink" title="自定义对话框"></a>自定义对话框</h4><p>在资源视图下，插入Dialog资源，默认会有两个按钮：OK（IDOK）和Cancel(IDCANCEL)。这两个按钮比较特殊，其ID是固定的，如果误删除了，可以添加两个按钮并修改ID为那两个固定ID即可。用户点击这两个按钮，会调用OnOK()和OnCancel()，由于这两个函数内部调用了EndDialog，所以点击这两个按钮会关闭对话框。</p>
-<p>选中对话框资源，可以修改对话框样式，比如Font(Size)修改字体字号，Caption调整标题等等。设置后ID后，双击对话框资源为其关联对话框子类（继承于CDialog）。这个子类初始只有DoDataExchange函数。</p>
-<p>要想显示自定义对话框，需要在主程序框架头文件中引入自定义对话框头文件，然后建立自定义对话框类对象。使用这个对象可以创建两种对话框：模态和非模态。模态对话框只有在退出后才能控制主程序，非模态对话框没有这个限制。</p>
-<p>一、模态对话框</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CDlgModel m_DlgModel;</span><br><span class="line"><span class="keyword">if</span> (m_DlgModel.DoModal() == IDOK)<span class="comment">//以模态对话框运行</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;cancel&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>DoModal的返回值应为IDOK或IDCANCEL。在子对话框结束时，调用OnOK关闭对话框会返回IDOK，调用OnCancel关闭对话框会返回IDCANCEL。我们利用这一点可以根据返回的结果，分情况编写处理代码。通过类对象可以获取子对话框成员变量、函数。</p>
-<p>二、非模态对话框</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">m_DlgNoM.Create(IDD_DIALOG_NOMODEL,<span class="keyword">this</span>);    <span class="comment">//创建对话框</span></span><br><span class="line">m_DlgNoM.ShowWindow(SW_SHOW);                <span class="comment">//显示对话框</span></span><br></pre></td></tr></table></figure>
-<p>模态对话框的创建、关闭很不自然，一般情况下不建议使用。m_DlgNoM的定义不能直接放在某个响应函数中，因为Create不能阻塞函数执行。当函数执行结束，这个对象就会销毁，表现出来就是这个对话框会一闪而过，所以一般有两种方法解决这个问题：1.把这个对象作为主程序类的成员变量，2.把这个对象定义在堆上。</p>
-<p>在非模态对话框完成工作后，不能直接调用OnOK或OnCancel关闭程序。因为这两个函数内部的EndDialog不能销毁对话框，当再次运行Create创建非模态对话框时会发生冲突。使用DestroyWindow()可以正常结束非模态对话框。</p>
-<h4 id="文件对话框"><a href="#文件对话框" class="headerlink" title="文件对话框"></a>文件对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">CFileDialog <span class="title">file</span><span class="params">(TRUE)</span></span>; <span class="comment">//true打开对话框，false另存为对话框</span></span><br><span class="line">CString Path;</span><br><span class="line">CString FileName;</span><br><span class="line"><span class="keyword">if</span> (IDOK == file.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    Path = file.GetPathName();        <span class="comment">//获取文件全路径</span></span><br><span class="line">    FileName = file.GetFileName();    <span class="comment">//获取文件名</span></span><br><span class="line">    <span class="comment">//根据文件名对文件进行处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CFileDialog的构造函数如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="title">CFileDialog</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bOpenFileDialog,            <span class="comment">//true打开文件，false另存为文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszDefExt = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,</span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFilter = <span class="literal">NULL</span>,       <span class="comment">//设置过滤器</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CWnd* pParentWnd = <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwSize = <span class="number">0</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bVistaStyle = TRUE)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>打开文件只需给出第一个参数即可，另存为文件可以给出过滤器，格式如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> TCHAR BASED_CODE szFilter[] = _T(<span class="string">&quot;Word Files (*.doc;*.docx)|*.doc;*.docx|&quot;</span>)</span><br><span class="line">    _T(<span class="string">&quot;Worksheet Files (*.xls)|*.xls|Text Files (*.txt)|&quot;</span>)</span><br><span class="line">    _T(<span class="string">&quot;*.txt|All Files (*.*)|*.*||&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="颜色对话框"><a href="#颜色对话框" class="headerlink" title="颜色对话框"></a>颜色对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CColorDialog color;</span><br><span class="line"><span class="keyword">int</span> R,G,B;</span><br><span class="line"><span class="keyword">if</span> (IDOK == color.DoModal())            <span class="comment">//按下了颜色对话框中的OK按钮</span></span><br><span class="line">&#123;</span><br><span class="line">    COLORREF temp = color.GetColor();   <span class="comment">//得到选择的颜色</span></span><br><span class="line">    R = GetRValue(temp);                <span class="comment">//分别得到RGB值</span></span><br><span class="line">    G = GetGValue(temp);</span><br><span class="line">    B = GetBValue(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="字体对话框"><a href="#字体对话框" class="headerlink" title="字体对话框"></a>字体对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFontDialog font;</span><br><span class="line"><span class="keyword">if</span> (IDOK == font.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    LOGFONT lgFont;                    <span class="comment">//字体信息结构，不包括颜色</span></span><br><span class="line">    font.GetCurrentFont(&amp;lgFont);      <span class="comment">//把当前选择的字体保存到lgFont</span></span><br><span class="line">    CFont cFont;                       <span class="comment">//设置字体只能通过CFont</span></span><br><span class="line">    cFont.CreateFontIndirect(&amp;lgFont); <span class="comment">//转化为CFont</span></span><br><span class="line">    GetDlgItem(IDC_STATIC)-&gt;SetFont(&amp;cFont,TRUE);<span class="comment">//调用CWnd方法设置静态控件的字体，TRUE代表重绘</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="打印对话框"><a href="#打印对话框" class="headerlink" title="打印对话框"></a>打印对话框</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">CPrintDialog <span class="title">print</span><span class="params">(FALSE)</span></span>;      <span class="comment">//false表示带设置对话框，true表示不带设置对话框</span></span><br><span class="line">CString str;</span><br><span class="line"><span class="keyword">if</span> (IDOK == print.DoModal())</span><br><span class="line">&#123;</span><br><span class="line">    str.Format(<span class="string">&quot;%s-%s-%s&quot;</span>,</span><br><span class="line">        print.GetDeviceName(),  <span class="comment">//设备名</span></span><br><span class="line">        print.GetPortName(),    <span class="comment">//设备端口</span></span><br><span class="line">        print.GetDriverName()); <span class="comment">//设备驱动</span></span><br><span class="line">&#125;</span><br><span class="line">AfxMessageBox(str);</span><br></pre></td></tr></table></figure>
-<p>CPrintDialog中还有很多成员函数，在现实开发中可以参考使用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetFromPage</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">//得到打印起始页</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetToPage</span><span class="params">()</span> <span class="keyword">const</span></span>;        <span class="comment">//得到打印结束页</span></span><br><span class="line"><span class="function">LPDEVMODE <span class="title">GetDevMode</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">//得到DEVMODE结构</span></span><br><span class="line"><span class="function">HDC <span class="title">GetPrinterDC</span><span class="params">()</span> <span class="keyword">const</span></span>;     <span class="comment">//打印设备内容句柄</span></span><br></pre></td></tr></table></figure>
-<h4 id="替换查找对话框"><a href="#替换查找对话框" class="headerlink" title="替换查找对话框"></a>替换查找对话框</h4><p>与上面那几个通用对话框不同，需要将替换查找对话框建立为非模态对话框。这里在堆中建立CFindReplaceDialog对象，使用DestroyWindow()关闭窗口，在对话框被破坏时CFindReplaceDialog对象被自动释放。</p>
-<p>弹出替换查找对话框的代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">    m_pFRDlg = <span class="keyword">new</span> CFindReplaceDialog();        <span class="comment">//非模态对话框在堆中建立</span></span><br><span class="line">    m_pFRDlg-&gt;Create(FALSE, _T(<span class="string">&quot;&quot;</span>), _T(<span class="string">&quot;&quot;</span>), FR_DOWN, <span class="keyword">this</span>);</span><br><span class="line">    m_pFRDlg-&gt;m_fr.lStructSize = <span class="keyword">sizeof</span>(FINDREPLACE);</span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.hwndOwner = this-&gt;m_hWnd;</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.lpstrFindWhat = m_pFRDlg-&gt;GetFindWhatStr();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.lpstrReplaceWith = m_pFRDlg-&gt;GetReplaceWithStr();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.wFindWhatLen = m_pFRDlg-&gt;GetFindWhatStrLen();</span></span><br><span class="line"><span class="comment">//  m_pFRDlg-&gt;m_fr.wReplaceWithLen = m_pFRDlg-&gt;GetReplaceWithStrLen();</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>m_pFRDlg被当作父窗口类成员变量，定义在头文件中。其中的m_fr为CFindReplaceDialog的成员变量，类型为FINDREPLACE，其中保存了一些对话框特性。</p>
-</blockquote>
-<p>当用户点击按钮查找下一个、替换、替换全部或者关闭对话框时，查找替换对话框会向父窗口发送WM_FINDREPLACE消息，需要手动添加这个消息的响应：</p>
-<p>一、在父窗口类头文件中键入消息定义（当作全局变量）</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> UINT WM_FINDREPLACE = ::RegisterWindowMessage(FINDMSGSTRING);</span><br></pre></td></tr></table></figure>
-<p>二、在父窗口类头文件中键入消息处理函数声明</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">afx_msg LONG <span class="title">OnFindReplace</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>三、在END_MESSAGE_MAP()中添加：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ON_REGISTERED_MESSAGE(WM_FINDREPLACE, &amp;CGeraDlgDlg::OnFindReplace)</span><br></pre></td></tr></table></figure>
-<p>四、在父窗口类cpp文件中键入消息处理函数的定义</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">LONG <span class="title">CGeraDlgDlg::OnFindReplace</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CString str = m_pFRDlg-&gt;GetFindString();</span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在消息处理函数中，可以使用m_pFRDlg调用其成员函数，获取并处理信息。下面是一些CFindReplaceDialog成员函数的介绍：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Create</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    BOOL bFindDialogOnly,        <span class="comment">//true查找对话框，false查找替换对话框</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFindWhat,        <span class="comment">//默认查找字符串，为NULL就没有默认字符串</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszReplaceWith = <span class="literal">NULL</span>,	<span class="comment">//默认替换字符串</span></span></span></span><br><span class="line"><span class="function"><span class="params">    DWORD dwFlags = FR_DOWN,     <span class="comment">//选项，默认向下</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CWnd* pParentWnd = <span class="literal">NULL</span>)</span></span>;    <span class="comment">//为NULL将主窗口作为父窗口</span></span><br><span class="line"><span class="function">BOOL <span class="title">FindNext</span><span class="params">()</span> <span class="keyword">const</span></span>;           <span class="comment">//如果想要找下一个字符串返回非0</span></span><br><span class="line"><span class="function">CString <span class="title">GetFindString</span><span class="params">()</span> <span class="keyword">const</span></span>;   <span class="comment">//返回需要查找的字符串</span></span><br><span class="line"><span class="function">CString <span class="title">GetReplaceString</span><span class="params">()</span> <span class="keyword">const</span></span>;<span class="comment">//返回需要替换的字符串</span></span><br><span class="line"><span class="function">BOOL <span class="title">ReplaceAll</span><span class="params">()</span> <span class="keyword">const</span></span>;         <span class="comment">//判断用户是否全部替换</span></span><br><span class="line"><span class="function">BOOL <span class="title">ReplaceCurrent</span><span class="params">()</span> <span class="keyword">const</span></span>;     <span class="comment">//是否替换当前字符串</span></span><br><span class="line"><span class="function">BOOL <span class="title">IsTerminating</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">//用户是否终止查找</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>VC++</category>
       </categories>
@@ -2243,6 +2243,53 @@
       </tags>
   </entry>
   <entry>
+    <title>大力神（Devastator）</title>
+    <url>/2019/12/25/%E5%A4%A7%E5%8A%9B%E7%A5%9E%EF%BC%88Devastator%EF%BC%89/</url>
+    <content><![CDATA[<p>在G1动画中，大力神作为第一个出现的组合金刚，也是唯一个六合体，给我留下了深刻的印象。小时候，我唯一的一个官方变形金刚就是这个吊车：</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2020/07/11/oBlLJgCD8FUWpHv.jpg" alt="大力神-1.jpg"></p>
+<p>记得我二姨刚买来送给我时，姥姥家中的长辈们也都觉得新鲜凑过来看。那个时候我还没上小学，根本抢不过他们，东西一直在他们手里传。我很着急，伸着胳膊就是够不到。</p>
+<p>在最后一个人被我“骚扰”烦了后，将一个变得乱七八糟的“垃圾”甩给了我。我带着郁闷的心情，对照着说明书，试着复原，由于腰部可对折部分过紧，结果就掰断了！</p>
+<p>这个体验就太差了，从此以后它就像个“鸡肋”，被撇在我玩具库的角落里，没给我带来一天乐趣。直到上小学三年级时，在胡同小朋友家再次看到这个玩具，才知道它在当时的价格。不过，他也只有三个而已，分别是铲车、搅拌车和吊车。</p>
+<p>现在，在淘宝上看到GT大力神，自然是想买回来圆梦。同期的还有TW大力神，可玩性更好，但我不喜欢它传统的造型，那个法老头倒是创新，但实在算不上亮点。其实在我觉得，变形金刚就是一个设定，只要保证人设不变的情况下，造型完全可以随意创新。这种能够与时俱进的特性，相对于同类玩具绝对是个大优势。</p>
+<p>GT大力神每个载具都比较贴近实物，具有一定的机械感。</p>
+<p><img src="https://i.loli.net/2020/07/11/sLYo16fOFQDS4yC.jpg" alt="大力神-2.jpg"></p>
+<p>六个单体人形态高矮一致，造型中规中矩。变形过程虽然不像官方那么简单直接，但复杂程度相对于同级别第三方玩具还算合理。</p>
+<p><img src="https://i.loli.net/2020/07/11/59CPREfkBYmqKwG.jpg" alt="大力神-3.jpg"></p>
+<p>作为合体金刚，最关键的还是合体后的样子：</p>
+<p><img src="https://i.loli.net/2020/07/11/wYI1gPRnqoU27tc.jpg" alt="大力神-4.jpg"></p>
+<p>相对于其他版本大力神，它更加健壮，细节丰富，前后隐藏的很好，整体造型更加现代，非常难得的是<strong>一体变形</strong>，没有附加一堆配件包。</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>声波（Soundwave）</title>
+    <url>/2020/12/20/%E5%A3%B0%E6%B3%A2%EF%BC%88Soundwave%EF%BC%89/</url>
+    <content><![CDATA[<p>在我的记忆里，声波几乎每一集都会出现，而且实力强悍鲜有败绩。它的磁带部队除了战斗，还具有多种特殊能力。虽说这支磁带部队的个体是独立的，但通常都会被当作是声波能力的延申。声波的人设很低调，长期如此容易被“遗忘”。其实，大众总是被表面光鲜的角色所吸引，低调做事即使能力再强也会被熟视无睹。</p>
+<a id="more"></a>
+
+<p>游戏“赛博坦陨落”中的声波比在动画中还要低调，几乎没有台词。当猛大帅锤扁威震天后，声波暗中将散落的零件找了回来，充分体现了声波的忠诚；在游戏的最后一节，声波作为追击方舟的先锋，非常还原T1动画。</p>
+<p>电影里的声波就差强人意了。“变型金刚2”中的间谍卫星给人一定的期待，但只出现了几分钟。“变型金刚3”中的奔驰轿车不符合声波的常规人设，辨识度极低且全场酱油，最扯淡的是，最后竟然被大黄蜂打爆了！！！</p>
+<p><img src="https://i.loli.net/2021/11/07/aFhngIKrWS7vzLG.png" alt="1声波.png"></p>
+<p>如图，整体造型还是不错的，非常还原T1动画，胸口磁带仓可以放三盘磁带，每一盘磁带都可以变形。主体背后有个机关，可以将里面的磁带弹射出去。</p>
+<p>在拥有了所有喜欢的角色后，我有点脱坑了。对于一个成年人来说，我不是把玩党，时间上就不允许，购买玩具就是因为情怀。这些玩具买来后也就变形一两次，然后就放柜子里摆着了，闲暇之余隔着柜子玻璃看看它们^o^</p>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Transformers</category>
+      </categories>
+      <tags>
+        <tag>Transformers</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习51单片机一 起点</title>
     <url>/2011/09/26/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%80%20%E8%B5%B7%E7%82%B9/</url>
     <content><![CDATA[<p>学习计算机技术要动手，只看书学不会真功夫。学习单片机也不例外，买一块开发板是必须的，所幸价格不贵。</p>
@@ -2420,50 +2467,71 @@
       </tags>
   </entry>
   <entry>
-    <title>大力神（Devastator）</title>
-    <url>/2019/12/25/%E5%A4%A7%E5%8A%9B%E7%A5%9E%EF%BC%88Devastator%EF%BC%89/</url>
-    <content><![CDATA[<p>在G1动画中，大力神作为第一个出现的组合金刚，也是唯一个六合体，给我留下了深刻的印象。小时候，我唯一的一个官方变形金刚就是这个吊车：</p>
+    <title>学习51单片机七 IIC总线</title>
+    <url>/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/</url>
+    <content><![CDATA[<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>$I^2C$总线（Inter IC Bus）是由PHILIPS公司制定的一种总线标准，是同步通信的一种方式，具有控制简单、器件封装小、通信速率较高等优点。</p>
+<p>$I^2C$总线由数据线SDA和时钟线SCL组成，可在CPU和IC之间、IC和IC之间进行双向通信，最高传送速率为400Kbps。各种器件并联在总线上，通过唯一硬件地址寻址。</p>
 <a id="more"></a>
 
-<p><img src="https://i.loli.net/2020/07/11/oBlLJgCD8FUWpHv.jpg" alt="大力神-1.jpg"></p>
-<p>记得我二姨刚买来送给我时，姥姥家中的长辈们也都觉得新鲜凑过来看。那个时候我还没上小学，根本抢不过他们，东西一直在他们手里传。我很着急，伸着胳膊就是够不到。</p>
-<p>在最后一个人被我“骚扰”烦了后，将一个变得乱七八糟的“垃圾”甩给了我。我带着郁闷的心情，对照着说明书，试着复原，由于腰部可对折部分过紧，结果就掰断了！</p>
-<p>这个体验就太差了，从此以后它就像个“鸡肋”，被撇在我玩具库的角落里，没给我带来一天乐趣。直到上小学三年级时，在胡同小朋友家再次看到这个玩具，才知道它在当时的价格。不过，他也只有三个而已，分别是铲车、搅拌车和吊车。</p>
-<p>现在，在淘宝上看到GT大力神，自然是想买回来圆梦。同期的还有TW大力神，可玩性更好，但我不喜欢它传统的造型，那个法老头倒是创新，但实在算不上亮点。其实在我觉得，变形金刚就是一个设定，只要保证人设不变的情况下，造型完全可以随意创新。这种能够与时俱进的特性，相对于同类玩具绝对是个大优势。</p>
-<p>GT大力神每个载具都比较贴近实物，具有一定的机械感。</p>
-<p><img src="https://i.loli.net/2020/07/11/sLYo16fOFQDS4yC.jpg" alt="大力神-2.jpg"></p>
-<p>六个单体人形态高矮一致，造型中规中矩。变形过程虽然不像官方那么简单直接，但复杂程度相对于同级别第三方玩具还算合理。</p>
-<p><img src="https://i.loli.net/2020/07/11/59CPREfkBYmqKwG.jpg" alt="大力神-3.jpg"></p>
-<p>作为合体金刚，最关键的还是合体后的样子：</p>
-<p><img src="https://i.loli.net/2020/07/11/wYI1gPRnqoU27tc.jpg" alt="大力神-4.jpg"></p>
-<p>相对于其他版本大力神，它更加健壮，细节丰富，前后隐藏的很好，整体造型更加现代，非常难得的是<strong>一体变形</strong>，没有附加一堆配件包。</p>
-]]></content>
+<p>$I^2C$总线的一般连接逻辑如图：</p>
+<p><img src="https://i.loli.net/2020/09/22/Z1JKb2D45OjNqUk.png" alt="1基本结构.png"></p>
+<p>如图，SDA和SCL接10K上拉电阻。当总线空闲时，两根线均为高电平。连接到总线上的任一器件输出低电平，都将使总线的信号变低，即各器件都是线“与”关系。</p>
+<p>$I^2C$总线支持多主机方式和主从方式。多主机方式需要总线仲裁，以决定由哪个主机控制总线。主从方式就是主机通过总线控制从机，开发板采用的就是这一方式。</p>
+<p><img src="https://i.loli.net/2020/09/22/GWpjmgykA7xFEsM.png" alt="2EEPROM电路.PNG"></p>
+<p>STC80C52本身没有$I^2C$总线，开发板使用I/O管脚P2.0作为SDA，P2.1作为SCL，然后通过编程控制管脚的值来模拟$I^2C$总线的时序。</p>
+<h4 id="IIC通信与模拟"><a href="#IIC通信与模拟" class="headerlink" title="IIC通信与模拟"></a>IIC通信与模拟</h4><p>所谓模拟，就是通过编程控制作为SDA和SCL的管脚来模拟总线时序，以此控制$I^2C$设备。</p>
+<p>当总线空闲时，两根线均为高电平，用C语言模拟如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当有数据传输时，时钟线SCL以固定周期输出高低电平。我们主要考虑如何通过对数据线SDA的操作来顺应SCL周期变化来传输数据。</p>
+<p>一、起始终止信号<br>SCL在高电平期间，SDA由高转低表示起始，SDA由低转高表示终止。</p>
+<p><img src="https://i.loli.net/2020/09/22/AnRseor3Gam5Tu9.png" alt="3起始结束.png"></p>
+<p>如图，所有延时的时间应大于4us。使用代码模拟这种时序如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>SDA应该在SCL前赋值。因为在SCL为1时，SDA应该保持稳定。另外，对于start函数，如果先将SCL赋值为1，再将SDA赋值为1，可能会导致一个上升沿，因为之前SDA可能为0。同理stop函数。</p>
+</blockquote>
+<p>二、读写数据与应答<br>在$I^2C$总线传送有效数据时，SDL为高电平，SDA必须保持稳定，SDL为低电平，SDA才允许变化。</p>
+<p><img src="https://i.loli.net/2020/09/22/Jt3MODdjFbs7IgX.png" alt="4数据传输与应答.png"></p>
+<p>地址有7位和10位两种。7位从机地址加上1位方向位构成一个字节有效数据。从机地址由固定部分和可编程部分组成，可编程部分决定了同一种器件可接入数目。方向位为0表示主机对从机进行写操作；方向位为1表示主机对从机进行读操作。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每传送一个字节有效数据，都要有一个应答信号，以确定数据被对方收到。应答信号就是在SCL为高电平时，由接收设备将SDA置为低电平。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();    <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面代码融合了应答和非应答。</p>
+</blockquote>
+<h4 id="使用IIC与EEPROM通信"><a href="#使用IIC与EEPROM通信" class="headerlink" title="使用IIC与EEPROM通信"></a>使用IIC与EEPROM通信</h4><p>开发板上安装的EEPROM是ATMEL公司的AT24C02，具有2K容量，能保存数据100年，擦写次数可达10万次以上。</p>
+<p><img src="https://i.loli.net/2020/09/22/SzyF3NUtVRvIWqw.png" alt="5AT24C02A.PNG"></p>
+<ol>
+<li>A0、A1、A2可编程地址输入端。</li>
+<li>GND电源地，Vcc电源。</li>
+<li>SDA串行数据输入/输出端；SCL串行时钟输入端。</li>
+<li>WP写保护输入端，低电平正常读写，高电平只读。</li>
+</ol>
+<p>AT24C02的硬件地址：</p>
+<p><img src="https://i.loli.net/2020/09/22/He6oXmlbEgvfsai.png" alt="6硬件地址.PNG"></p>
+<p>AT24C02容量为2K，如图硬件地址固定部分为1010，后三位A2A1A0为可编程部分，$R/\overline{W}$为方向位。按照当前开发板接法，后三位皆为0。方向位为0，表示对从机写操作，为1表示对从机读操作。</p>
+<p>串行EEPROM一般有两种写入方式：字节写入方式和页写入方式。AT24C系列芯片在页写入方式下，接收到每一个字节数据后地址自动加1。如果写到页内最后一个字节，主机继续发送数据，数据将重新从该页首地址写入（上卷）。解决方法是在第8个数据后，将地址强制加1。下面是AT24C系列芯片的读写时序：</p>
+<p>一、主机向从机写入一个字节</p>
+<p><img src="https://i.loli.net/2020/09/22/B7btceWovgdPhIT.png" alt="7字节写.PNG"></p>
+<p>利用模拟函数，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二、主机向从机写入多个字节</p>
+<p><img src="https://i.loli.net/2020/09/22/WnveyoaPU5fdJDk.png" alt="8页写.PNG"></p>
+<p>三、主机向从机读取当前地址数据</p>
+<p><img src="https://i.loli.net/2020/09/22/QeTy5hrnJUcl8fu.png" alt="9当前读.PNG"></p>
+<p>四、主机向从机读取随机地址数据</p>
+<p><img src="https://i.loli.net/2020/09/22/kINVmu9dsQELgYK.png" alt="10随机读.PNG"></p>
+<p>利用模拟函数，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>五、主机向从机连续读取数据</p>
+<p><img src="https://i.loli.net/2020/09/22/w8d2Cj6LGpi1WR9.png" alt="11连续读.PNG"></p>
+<p>例：保存秒数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">sbit SDA = P2^<span class="number">0</span>;</span><br><span class="line">sbit SCL = P2^<span class="number">1</span>;</span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line">uchar code table[]=&#123;</span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span> </span>&#123;;;&#125;   <span class="comment">//4us-5us延时</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respons</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span>;</span><br><span class="line">uchar write=<span class="number">0</span>, sec=<span class="number">0</span>, t=<span class="number">0</span>;  <span class="comment">//存储标志，秒，计数器</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    sec = read_date(<span class="number">6</span>); <span class="comment">//首次运行先读取sec存储区</span></span><br><span class="line">    <span class="keyword">if</span> (sec &gt; <span class="number">100</span>)      <span class="comment">//保存在地址6处</span></span><br><span class="line">        sec = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    EA = <span class="number">1</span>;             <span class="comment">//启动定时器0中断</span></span><br><span class="line">    ET0 = <span class="number">1</span>;</span><br><span class="line">    TMOD = <span class="number">0x01</span>;        <span class="comment">//方式1</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)/<span class="number">256</span>;    <span class="comment">//50ms</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    TR0 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        display(sec);   <span class="comment">//以两位显示秒</span></span><br><span class="line">        <span class="keyword">if</span> (write == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            write = <span class="number">0</span>;  <span class="comment">//标志清0</span></span><br><span class="line">            write_date(<span class="number">6</span>,sec);<span class="comment">//保存当前秒</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">time0</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TH0 = (<span class="number">65536</span><span class="number">-50000</span>)/<span class="number">256</span>;</span><br><span class="line">    TL0 = (<span class="number">65536</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    t++;</span><br><span class="line">    <span class="keyword">if</span> (t == <span class="number">20</span>)    <span class="comment">//1s</span></span><br><span class="line">    &#123;</span><br><span class="line">        t = <span class="number">0</span>;</span><br><span class="line">        sec++;      <span class="comment">//累积秒</span></span><br><span class="line">        write = <span class="number">1</span>;  <span class="comment">//显示并保存秒</span></span><br><span class="line">        <span class="keyword">if</span> (sec == <span class="number">100</span>)</span><br><span class="line">            sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();        <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;    <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = n / <span class="number">10</span>;    <span class="comment">//得到十位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];       <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfd</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];       <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfe</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
+        <category>51Chip</category>
       </categories>
       <tags>
-        <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>声波（Soundwave）</title>
-    <url>/2020/12/20/%E5%A3%B0%E6%B3%A2%EF%BC%88Soundwave%EF%BC%89/</url>
-    <content><![CDATA[<p>在我的记忆里，声波几乎每一集都会出现，而且实力强悍鲜有败绩。它的磁带部队除了战斗，还具有多种特殊能力。虽说这支磁带部队的个体是独立的，但通常都会被当作是声波能力的延申。声波的人设很低调，长期如此容易被“遗忘”。其实，大众总是被表面光鲜的角色所吸引，低调做事即使能力再强也会被熟视无睹。</p>
-<a id="more"></a>
-
-<p>游戏“赛博坦陨落”中的声波比在动画中还要低调，几乎没有台词。当猛大帅锤扁威震天后，声波暗中将散落的零件找了回来，充分体现了声波的忠诚；在游戏的最后一节，声波作为追击方舟的先锋，非常还原T1动画。</p>
-<p>电影里的声波就差强人意了。“变型金刚2”中的间谍卫星给人一定的期待，但只出现了几分钟。“变型金刚3”中的奔驰轿车不符合声波的常规人设，辨识度极低且全场酱油，最扯淡的是，最后竟然被大黄蜂打爆了！！！</p>
-<p><img src="https://i.loli.net/2021/11/07/aFhngIKrWS7vzLG.png" alt="1声波.png"></p>
-<p>如图，整体造型还是不错的，非常还原T1动画，胸口磁带仓可以放三盘磁带，每一盘磁带都可以变形。主体背后有个机关，可以将里面的磁带弹射出去。</p>
-<p>在拥有了所有喜欢的角色后，我有点脱坑了。对于一个成年人来说，我不是把玩党，时间上就不允许，购买玩具就是因为情怀。这些玩具买来后也就变形一两次，然后就放柜子里摆着了，闲暇之余隔着柜子玻璃看看它们^o^</p>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Transformers</category>
-      </categories>
-      <tags>
-        <tag>Transformers</tag>
+        <tag>51Chip</tag>
       </tags>
   </entry>
   <entry>
@@ -2866,74 +2934,6 @@
 <li>计数器的使用方式类似于外部中断，只不过计数器接受的是一组信号。</li>
 </ol>
 ]]></content>
-      <categories>
-        <category>51Chip</category>
-      </categories>
-      <tags>
-        <tag>51Chip</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习51单片机七 IIC总线</title>
-    <url>/2011/10/15/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%83%20IIC%E6%80%BB%E7%BA%BF/</url>
-    <content><![CDATA[<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>$I^2C$总线（Inter IC Bus）是由PHILIPS公司制定的一种总线标准，是同步通信的一种方式，具有控制简单、器件封装小、通信速率较高等优点。</p>
-<p>$I^2C$总线由数据线SDA和时钟线SCL组成，可在CPU和IC之间、IC和IC之间进行双向通信，最高传送速率为400Kbps。各种器件并联在总线上，通过唯一硬件地址寻址。</p>
-<a id="more"></a>
-
-<p>$I^2C$总线的一般连接逻辑如图：</p>
-<p><img src="https://i.loli.net/2020/09/22/Z1JKb2D45OjNqUk.png" alt="1基本结构.png"></p>
-<p>如图，SDA和SCL接10K上拉电阻。当总线空闲时，两根线均为高电平。连接到总线上的任一器件输出低电平，都将使总线的信号变低，即各器件都是线“与”关系。</p>
-<p>$I^2C$总线支持多主机方式和主从方式。多主机方式需要总线仲裁，以决定由哪个主机控制总线。主从方式就是主机通过总线控制从机，开发板采用的就是这一方式。</p>
-<p><img src="https://i.loli.net/2020/09/22/GWpjmgykA7xFEsM.png" alt="2EEPROM电路.PNG"></p>
-<p>STC80C52本身没有$I^2C$总线，开发板使用I/O管脚P2.0作为SDA，P2.1作为SCL，然后通过编程控制管脚的值来模拟$I^2C$总线的时序。</p>
-<h4 id="IIC通信与模拟"><a href="#IIC通信与模拟" class="headerlink" title="IIC通信与模拟"></a>IIC通信与模拟</h4><p>所谓模拟，就是通过编程控制作为SDA和SCL的管脚来模拟总线时序，以此控制$I^2C$设备。</p>
-<p>当总线空闲时，两根线均为高电平，用C语言模拟如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当有数据传输时，时钟线SCL以固定周期输出高低电平。我们主要考虑如何通过对数据线SDA的操作来顺应SCL周期变化来传输数据。</p>
-<p>一、起始终止信号<br>SCL在高电平期间，SDA由高转低表示起始，SDA由低转高表示终止。</p>
-<p><img src="https://i.loli.net/2020/09/22/AnRseor3Gam5Tu9.png" alt="3起始结束.png"></p>
-<p>如图，所有延时的时间应大于4us。使用代码模拟这种时序如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>SDA应该在SCL前赋值。因为在SCL为1时，SDA应该保持稳定。另外，对于start函数，如果先将SCL赋值为1，再将SDA赋值为1，可能会导致一个上升沿，因为之前SDA可能为0。同理stop函数。</p>
-</blockquote>
-<p>二、读写数据与应答<br>在$I^2C$总线传送有效数据时，SDL为高电平，SDA必须保持稳定，SDL为低电平，SDA才允许变化。</p>
-<p><img src="https://i.loli.net/2020/09/22/Jt3MODdjFbs7IgX.png" alt="4数据传输与应答.png"></p>
-<p>地址有7位和10位两种。7位从机地址加上1位方向位构成一个字节有效数据。从机地址由固定部分和可编程部分组成，可编程部分决定了同一种器件可接入数目。方向位为0表示主机对从机进行写操作；方向位为1表示主机对从机进行读操作。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每传送一个字节有效数据，都要有一个应答信号，以确定数据被对方收到。应答信号就是在SCL为高电平时，由接收设备将SDA置为低电平。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();    <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>上面代码融合了应答和非应答。</p>
-</blockquote>
-<h4 id="使用IIC与EEPROM通信"><a href="#使用IIC与EEPROM通信" class="headerlink" title="使用IIC与EEPROM通信"></a>使用IIC与EEPROM通信</h4><p>开发板上安装的EEPROM是ATMEL公司的AT24C02，具有2K容量，能保存数据100年，擦写次数可达10万次以上。</p>
-<p><img src="https://i.loli.net/2020/09/22/SzyF3NUtVRvIWqw.png" alt="5AT24C02A.PNG"></p>
-<ol>
-<li>A0、A1、A2可编程地址输入端。</li>
-<li>GND电源地，Vcc电源。</li>
-<li>SDA串行数据输入/输出端；SCL串行时钟输入端。</li>
-<li>WP写保护输入端，低电平正常读写，高电平只读。</li>
-</ol>
-<p>AT24C02的硬件地址：</p>
-<p><img src="https://i.loli.net/2020/09/22/He6oXmlbEgvfsai.png" alt="6硬件地址.PNG"></p>
-<p>AT24C02容量为2K，如图硬件地址固定部分为1010，后三位A2A1A0为可编程部分，$R/\overline{W}$为方向位。按照当前开发板接法，后三位皆为0。方向位为0，表示对从机写操作，为1表示对从机读操作。</p>
-<p>串行EEPROM一般有两种写入方式：字节写入方式和页写入方式。AT24C系列芯片在页写入方式下，接收到每一个字节数据后地址自动加1。如果写到页内最后一个字节，主机继续发送数据，数据将重新从该页首地址写入（上卷）。解决方法是在第8个数据后，将地址强制加1。下面是AT24C系列芯片的读写时序：</p>
-<p>一、主机向从机写入一个字节</p>
-<p><img src="https://i.loli.net/2020/09/22/B7btceWovgdPhIT.png" alt="7字节写.PNG"></p>
-<p>利用模拟函数，实现如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>二、主机向从机写入多个字节</p>
-<p><img src="https://i.loli.net/2020/09/22/WnveyoaPU5fdJDk.png" alt="8页写.PNG"></p>
-<p>三、主机向从机读取当前地址数据</p>
-<p><img src="https://i.loli.net/2020/09/22/QeTy5hrnJUcl8fu.png" alt="9当前读.PNG"></p>
-<p>四、主机向从机读取随机地址数据</p>
-<p><img src="https://i.loli.net/2020/09/22/kINVmu9dsQELgYK.png" alt="10随机读.PNG"></p>
-<p>利用模拟函数，实现如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>五、主机向从机连续读取数据</p>
-<p><img src="https://i.loli.net/2020/09/22/w8d2Cj6LGpi1WR9.png" alt="11连续读.PNG"></p>
-<p>例：保存秒数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> uchar;</span><br><span class="line">sbit SDA = P2^<span class="number">0</span>;</span><br><span class="line">sbit SCL = P2^<span class="number">1</span>;</span><br><span class="line">sbit duan = P2^<span class="number">6</span>;</span><br><span class="line">sbit wei = P2^<span class="number">7</span>;</span><br><span class="line">uchar code table[]=&#123;</span><br><span class="line"><span class="number">0x3f</span>,<span class="number">0x06</span>,<span class="number">0x5b</span>,<span class="number">0x4f</span>,</span><br><span class="line"><span class="number">0x66</span>,<span class="number">0x6d</span>,<span class="number">0x7d</span>,<span class="number">0x07</span>,</span><br><span class="line"><span class="number">0x7f</span>,<span class="number">0x6f</span>,<span class="number">0x77</span>,<span class="number">0x7c</span>,</span><br><span class="line"><span class="number">0x39</span>,<span class="number">0x5e</span>,<span class="number">0x79</span>,<span class="number">0x71</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">()</span> </span>&#123;;;&#125;   <span class="comment">//4us-5us延时</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respons</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span>;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span>;</span><br><span class="line">uchar write=<span class="number">0</span>, sec=<span class="number">0</span>, t=<span class="number">0</span>;  <span class="comment">//存储标志，秒，计数器</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    sec = read_date(<span class="number">6</span>); <span class="comment">//首次运行先读取sec存储区</span></span><br><span class="line">    <span class="keyword">if</span> (sec &gt; <span class="number">100</span>)      <span class="comment">//保存在地址6处</span></span><br><span class="line">        sec = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    EA = <span class="number">1</span>;             <span class="comment">//启动定时器0中断</span></span><br><span class="line">    ET0 = <span class="number">1</span>;</span><br><span class="line">    TMOD = <span class="number">0x01</span>;        <span class="comment">//方式1</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)/<span class="number">256</span>;    <span class="comment">//50ms</span></span><br><span class="line">    TH0 = (<span class="number">65535</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    TR0 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        display(sec);   <span class="comment">//以两位显示秒</span></span><br><span class="line">        <span class="keyword">if</span> (write == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            write = <span class="number">0</span>;  <span class="comment">//标志清0</span></span><br><span class="line">            write_date(<span class="number">6</span>,sec);<span class="comment">//保存当前秒</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">time0</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TH0 = (<span class="number">65536</span><span class="number">-50000</span>)/<span class="number">256</span>;</span><br><span class="line">    TL0 = (<span class="number">65536</span><span class="number">-50000</span>)%<span class="number">256</span>;</span><br><span class="line">    t++;</span><br><span class="line">    <span class="keyword">if</span> (t == <span class="number">20</span>)    <span class="comment">//1s</span></span><br><span class="line">    &#123;</span><br><span class="line">        t = <span class="number">0</span>;</span><br><span class="line">        sec++;      <span class="comment">//累积秒</span></span><br><span class="line">        write = <span class="number">1</span>;  <span class="comment">//显示并保存秒</span></span><br><span class="line">        <span class="keyword">if</span> (sec == <span class="number">100</span>)</span><br><span class="line">            sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delayms</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;<span class="number">110</span>; j++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();    <span class="comment">//&gt;4us</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SDA = <span class="number">0</span>;    <span class="comment">//维持低电平&gt;4us</span></span><br><span class="line">    SCL = <span class="number">1</span>;    <span class="comment">//保持高电平</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;    <span class="comment">//维持高电平&gt;4.7us</span></span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">respond</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i = <span class="number">0</span>;</span><br><span class="line">    SCL = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">    <span class="keyword">while</span> ((SDA==<span class="number">1</span>) &amp;&amp; (i&lt;<span class="number">255</span>))<span class="comment">//等待从机应答</span></span><br><span class="line">        i++;</span><br><span class="line">    delay();        <span class="comment">//SDA=0超过4us</span></span><br><span class="line">    SCL = <span class="number">0</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writebyte</span><span class="params">(uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, temp;</span><br><span class="line">    temp = date;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = temp &lt;&lt; <span class="number">1</span>;   <span class="comment">//从高到低传送</span></span><br><span class="line">        SCL = <span class="number">0</span>;</span><br><span class="line">        delay();</span><br><span class="line">        SDA = CY;   <span class="comment">//SCL为低电平时改变SDA</span></span><br><span class="line">        delay();</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    SCL = <span class="number">0</span>;        <span class="comment">//释放总线</span></span><br><span class="line">    delay();</span><br><span class="line">    SDA = <span class="number">1</span>;</span><br><span class="line">    delay();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">readbyte</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar i, result=<span class="number">0</span>;</span><br><span class="line"><span class="comment">/*  SCL = 0;        //释放总线</span></span><br><span class="line"><span class="comment">    delay();</span></span><br><span class="line"><span class="comment">    SDA = 1;</span></span><br><span class="line"><span class="comment">    delay();*/</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        SCL = <span class="number">1</span>;    <span class="comment">//SCL为高电平时SDA数据稳定</span></span><br><span class="line">        delay();</span><br><span class="line">        result = (result&lt;&lt;<span class="number">1</span>)|SDA;   <span class="comment">//稳定后获取SDA</span></span><br><span class="line">        SCL = <span class="number">0</span>;    <span class="comment">//SCL为低电平，使得SDA得到新数据</span></span><br><span class="line">        delay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_date</span><span class="params">(uchar address,uchar date)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(date);    <span class="comment">//写一个字节数据</span></span><br><span class="line">    respond();</span><br><span class="line">    stop();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">uchar <span class="title">read_date</span><span class="params">(uchar address)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar date;</span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa0</span>);    <span class="comment">//硬件地址，写</span></span><br><span class="line">    respond();</span><br><span class="line">    writebyte(address); <span class="comment">//存储单元地址</span></span><br><span class="line">    respond();</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">    writebyte(<span class="number">0xa1</span>);    <span class="comment">//硬件地址，读</span></span><br><span class="line">    respond();</span><br><span class="line">    date = readbyte();  <span class="comment">//读一个字节</span></span><br><span class="line">    stop();</span><br><span class="line">    <span class="keyword">return</span> date;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(uchar n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uchar d = n % <span class="number">10</span>;    <span class="comment">//得到个位</span></span><br><span class="line">    uchar t = n / <span class="number">10</span>;    <span class="comment">//得到十位</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[d];       <span class="comment">//显示个位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfd</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line"></span><br><span class="line">    duan = <span class="number">1</span>;</span><br><span class="line">    P0 = table[t];       <span class="comment">//显示十位</span></span><br><span class="line">    duan = <span class="number">0</span>;</span><br><span class="line">    wei = <span class="number">1</span>;</span><br><span class="line">    P0 = <span class="number">0xfe</span>;</span><br><span class="line">    wei = <span class="number">0</span>;</span><br><span class="line">    delayms(<span class="number">5</span>);          <span class="comment">//延时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>51Chip</category>
       </categories>
@@ -3744,49 +3744,6 @@
       </tags>
   </entry>
   <entry>
-    <title>留下精神生活的痕迹</title>
-    <url>/2016/11/29/%E7%95%99%E4%B8%8B%E7%B2%BE%E7%A5%9E%E7%94%9F%E6%B4%BB%E7%9A%84%E7%97%95%E8%BF%B9/</url>
-    <content><![CDATA[<p>最近搬家收拾东西，把相册翻出来了。三本相册已经破损，近半数照片已经黏到了页面上，照片四周也不同程度的泛黄。我每天晚上花费两个小时，一张一张地清理照片，并按照时间顺序将它们放到一个新相册里。直至今日，全部照片清理完毕。</p>
-<p>每张照片都过了一遍，当时的经历和感受都记得清清楚楚，甚至包括一两岁时的情景。如果没有这些照片，恐怕也就没有这些宝贵的记忆。</p>
-<a id="more"></a>
-
-<p>当今社会从纸面数据看，确实比过去的生活好了不少，但是没有幸福感的人却很普遍。两级分化的社会环境使得众多劳动者失去了目标，每天辗转于压力与乏味之间，寄希望于花钱能买到一点快乐。</p>
-<p>快乐真的能买的到吗？真正的快乐又是什么？就我看来，真正的快乐有两种：</p>
-<ol>
-<li>初中之前，玩什么都快乐。</li>
-<li>初中之后，只有获得成功才能快乐。</li>
-</ol>
-<p>第一条大家都懂，第二条解释一下：首先这个人得有自由，然后才会有真正的理想，经过努力实现了理想，人才能获得真正的快乐。以这个标准看，你就能明白，为什么国人普遍没有幸福感了。因为对于一般成年人，第一步就完蛋了。一个没有自由的人，必然没有真正的理想，有的只是别人的期望，你每天的黄金时间都用于实现“他人”的理想，使“他人”更加快乐，而这个“他人”还不一定感受的到你的付出。</p>
-<p>有一则消息，我们那个年代的人基本上都听说过——放牛娃的故事：<br>记者采访一个农村放牛娃：“为什么放牛啊？”<br>答曰：“牛长大了卖钱。”<br>记者：“挣到钱后做什么呀？”<br>牛娃：“娶媳妇。”<br>记者：“娶完媳妇呢？”<br>牛娃：“生娃。”<br>记者：“然后呢？”<br>牛娃：“让娃放牛。”</p>
-<p>这则消息有什么意义呢？那个时代给出的“标准”答案大体是：农村人口思想落后，国家要想发展农村经济先得大力发展农村教育，鼓励广大农村青壮年走出“大山”。那个时代的背景：随着第二和第三产业发展，城市建设需要大量廉价劳动力。另一方面，农村人口过剩逐渐形成社会隐患且管理难度巨大。</p>
-<p>现在呢？那个故事还在延续：<br>A：为什么读书这么努力？<br>B：为了将来能找一份高薪的工作。<br>A：挣到钱后做什么呢？<br>B：交首付，贷款买房，娶媳妇。<br>A：娶完媳妇呢？<br>B：生娃，然后看看自身经济状况，再生二娃。<br>A：然后呢？<br>B：不能让孩子输在起跑线上，尽力给孩子更好的教育。</p>
-<p>这个时代背景：帝国自从加入WTO，资本进程加速前进，各处都需要大量资源，某些技术型官僚借鉴了美国经验，认为房地产这条产业链较长，来钱快，并且易于控制（政府-银行），然后帝国进入房地产黄金时代。2007年美国次贷危机爆发，帝国内部矛盾也逐渐显现，于是4w亿出台，资产价格全面上涨，经济开始脱实向虚。2015年下半年股市熔断，帝国执行涨价去库存政策，然后社会就涌现出两个口号：农民工买房落户、学区房。</p>
-<p><strong>农民牌</strong><br>自从建国以来，社会每逢出现问题，解决思路基本围绕农民：上山下乡、包产到户、农民进城务工、农村城镇化。因为人是社会发展的最基本资源，而帝国大部分人口是农民（有些人心里不承认）。</p>
-<p><strong>教育牌</strong><br>阶级社会下，普罗大众就像生活在一口井中，教育就是一根好像能通往外界的杆子。这根杆子就是相声中说的——手电筒打出的光柱。首先它没有尽头，别人永远可以说你学的不够好；第二，打手电筒的人一旦关闭开关，你的一切努力就白费了。教育就是给底层民众一个奔头，缓和社会矛盾的一种手段。底层大众能跑多远是受控制的（考试），跑到尽头也只是定制出来的工具人而已（面试）。</p>
-<blockquote>
-<p>教育不能改变阶级流动性。——《21世纪资本论》</p>
-</blockquote>
-<p>自从工作以后，学生时代政治课上的知识时常不自觉的在头脑中浮现，比如：消灭剥削，消除两极分化，最终实现共同富裕。革命的时代没赶上，活在特色之下，只能认清现实，顺应大势做好本份，否则只能更惨。</p>
-<blockquote>
-<p>人最宝贵的东西就是生命，生命属于我们只有一次而已。人的一生应该是这样度过的：当他回首往事时，不因虚度年华而悔恨，也不因过去的碌碌无为而羞耻，这样，他在临死的时候就能够说：“我的整个生命和全部精力，都献给了世界上最壮丽的事业——为人类的解放而斗争。”——《钢铁是怎样炼成的》</p>
-</blockquote>
-<p>一个小老百姓其实没有改变命运的力量，真正实现阶级跃迁的人都是靠时机和运气的。生物的天性都是利己的，即使后天无法成就事业，也没有人甘心当人肉干电池，也想活出点意义来，至少临死前别觉得太辜负自己。生活中的美好经历必须留下痕迹，将来回忆往事时，才不会觉得虚度此生。</p>
-<p>自从步入小学，上了所谓的“人生轨迹”后，除了一寸照片，我基本就没再照过像，也没买过任何纪念品。学生时代还好，有升学考试和毕业证作为里程碑。工作之后的经历就相对随缘了，日常生活较为松散，大概就是看书、看视频、玩游戏、旅行。这些事情都属于精神生活，即使当时获得了足够的满足感，但随着时光流逝，最终都会烟消云散。</p>
-<p>所以，特别需要留下痕迹的就是精神生活，如果当时没留下标的物，将来回首往事必然会产生虚度感。读书要做注释，将当时的理解记录下来，最好保存为电子版，既节约空间，又永不做旧。同样的，看过之后觉得喜欢的视频，最好也下载下来保存。</p>
-<p>我比较偏爱剧情型的电子游戏，例如生化危机、战争机器。这种线性叙事的游戏，普通玩家一般只通关一遍，带来的乐趣是相当短暂的，可以买一些周边商品作为纪念，比如模型或手办。外出旅行应该拍照留念，如果不拍摄夜景，我觉得用手机就好，方便携带。</p>
-<p>试想一下，未来某天我们走到柜子前，看到多本标注笔记的书籍和材料，学习过的视频光盘，各种模型手办时，必然会获得相当的满足感。当朋友来家做客看到这些东西，你也能指着某个模型或某张照片，畅谈当时的趣闻。</p>
-<p>就从现在开始吧！下图是前些时候购买的英雄联盟2016周年纪念手办：</p>
-<p><img src="https://i.loli.net/2021/09/18/yZxUWdot349lcPM.png" alt="1Jinx.png"></p>
-<p>其实创建这个博客也有留念之意，将生活中学到的东西和感想总结于此，方便未来查阅。</p>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据可视化</title>
     <url>/2020/11/01/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</url>
     <content><![CDATA[<p>管理工作（非领导）很难界定绩效，在当前中国职场远不如技术岗、销售岗有前途，在某些方面甚至还不如生产岗！所以，作为管理人员不能消极地寄托于领导具有一双慧眼并且具有较高的悟性，应该将自己的工作以高水平的方式展现出来。</p>
@@ -3841,14 +3798,40 @@
       </tags>
   </entry>
   <entry>
-    <title>程序员感悟</title>
-    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
+    <title>留下精神生活的痕迹</title>
+    <url>/2016/11/29/%E7%95%99%E4%B8%8B%E7%B2%BE%E7%A5%9E%E7%94%9F%E6%B4%BB%E7%9A%84%E7%97%95%E8%BF%B9/</url>
+    <content><![CDATA[<p>最近搬家收拾东西，把相册翻出来了。三本相册已经破损，近半数照片已经黏到了页面上，照片四周也不同程度的泛黄。我每天晚上花费两个小时，一张一张地清理照片，并按照时间顺序将它们放到一个新相册里。直至今日，全部照片清理完毕。</p>
+<p>每张照片都过了一遍，当时的经历和感受都记得清清楚楚，甚至包括一两岁时的情景。如果没有这些照片，恐怕也就没有这些宝贵的记忆。</p>
 <a id="more"></a>
 
-<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
-<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
-<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
+<p>当今社会从纸面数据看，确实比过去的生活好了不少，但是没有幸福感的人却很普遍。两级分化的社会环境使得众多劳动者失去了目标，每天辗转于压力与乏味之间，寄希望于花钱能买到一点快乐。</p>
+<p>快乐真的能买的到吗？真正的快乐又是什么？就我看来，真正的快乐有两种：</p>
+<ol>
+<li>初中之前，玩什么都快乐。</li>
+<li>初中之后，只有获得成功才能快乐。</li>
+</ol>
+<p>第一条大家都懂，第二条解释一下：首先这个人得有自由，然后才会有真正的理想，经过努力实现了理想，人才能获得真正的快乐。以这个标准看，你就能明白，为什么国人普遍没有幸福感了。因为对于一般成年人，第一步就完蛋了。一个没有自由的人，必然没有真正的理想，有的只是别人的期望，你每天的黄金时间都用于实现“他人”的理想，使“他人”更加快乐，而这个“他人”还不一定感受的到你的付出。</p>
+<p>有一则消息，我们那个年代的人基本上都听说过——放牛娃的故事：<br>记者采访一个农村放牛娃：“为什么放牛啊？”<br>答曰：“牛长大了卖钱。”<br>记者：“挣到钱后做什么呀？”<br>牛娃：“娶媳妇。”<br>记者：“娶完媳妇呢？”<br>牛娃：“生娃。”<br>记者：“然后呢？”<br>牛娃：“让娃放牛。”</p>
+<p>这则消息有什么意义呢？那个时代给出的“标准”答案大体是：农村人口思想落后，国家要想发展农村经济先得大力发展农村教育，鼓励广大农村青壮年走出“大山”。那个时代的背景：随着第二和第三产业发展，城市建设需要大量廉价劳动力。另一方面，农村人口过剩逐渐形成社会隐患且管理难度巨大。</p>
+<p>现在呢？那个故事还在延续：<br>A：为什么读书这么努力？<br>B：为了将来能找一份高薪的工作。<br>A：挣到钱后做什么呢？<br>B：交首付，贷款买房，娶媳妇。<br>A：娶完媳妇呢？<br>B：生娃，然后看看自身经济状况，再生二娃。<br>A：然后呢？<br>B：不能让孩子输在起跑线上，尽力给孩子更好的教育。</p>
+<p>这个时代背景：帝国自从加入WTO，资本进程加速前进，各处都需要大量资源，某些技术型官僚借鉴了美国经验，认为房地产这条产业链较长，来钱快，并且易于控制（政府-银行），然后帝国进入房地产黄金时代。2007年美国次贷危机爆发，帝国内部矛盾也逐渐显现，于是4w亿出台，资产价格全面上涨，经济开始脱实向虚。2015年下半年股市熔断，帝国执行涨价去库存政策，然后社会就涌现出两个口号：农民工买房落户、学区房。</p>
+<p><strong>农民牌</strong><br>自从建国以来，社会每逢出现问题，解决思路基本围绕农民：上山下乡、包产到户、农民进城务工、农村城镇化。因为人是社会发展的最基本资源，而帝国大部分人口是农民（有些人心里不承认）。</p>
+<p><strong>教育牌</strong><br>阶级社会下，普罗大众就像生活在一口井中，教育就是一根好像能通往外界的杆子。这根杆子就是相声中说的——手电筒打出的光柱。首先它没有尽头，别人永远可以说你学的不够好；第二，打手电筒的人一旦关闭开关，你的一切努力就白费了。教育就是给底层民众一个奔头，缓和社会矛盾的一种手段。底层大众能跑多远是受控制的（考试），跑到尽头也只是定制出来的工具人而已（面试）。</p>
+<blockquote>
+<p>教育不能改变阶级流动性。——《21世纪资本论》</p>
+</blockquote>
+<p>自从工作以后，学生时代政治课上的知识时常不自觉的在头脑中浮现，比如：消灭剥削，消除两极分化，最终实现共同富裕。革命的时代没赶上，活在特色之下，只能认清现实，顺应大势做好本份，否则只能更惨。</p>
+<blockquote>
+<p>人最宝贵的东西就是生命，生命属于我们只有一次而已。人的一生应该是这样度过的：当他回首往事时，不因虚度年华而悔恨，也不因过去的碌碌无为而羞耻，这样，他在临死的时候就能够说：“我的整个生命和全部精力，都献给了世界上最壮丽的事业——为人类的解放而斗争。”——《钢铁是怎样炼成的》</p>
+</blockquote>
+<p>一个小老百姓其实没有改变命运的力量，真正实现阶级跃迁的人都是靠时机和运气的。生物的天性都是利己的，即使后天无法成就事业，也没有人甘心当人肉干电池，也想活出点意义来，至少临死前别觉得太辜负自己。生活中的美好经历必须留下痕迹，将来回忆往事时，才不会觉得虚度此生。</p>
+<p>自从步入小学，上了所谓的“人生轨迹”后，除了一寸照片，我基本就没再照过像，也没买过任何纪念品。学生时代还好，有升学考试和毕业证作为里程碑。工作之后的经历就相对随缘了，日常生活较为松散，大概就是看书、看视频、玩游戏、旅行。这些事情都属于精神生活，即使当时获得了足够的满足感，但随着时光流逝，最终都会烟消云散。</p>
+<p>所以，特别需要留下痕迹的就是精神生活，如果当时没留下标的物，将来回首往事必然会产生虚度感。读书要做注释，将当时的理解记录下来，最好保存为电子版，既节约空间，又永不做旧。同样的，看过之后觉得喜欢的视频，最好也下载下来保存。</p>
+<p>我比较偏爱剧情型的电子游戏，例如生化危机、战争机器。这种线性叙事的游戏，普通玩家一般只通关一遍，带来的乐趣是相当短暂的，可以买一些周边商品作为纪念，比如模型或手办。外出旅行应该拍照留念，如果不拍摄夜景，我觉得用手机就好，方便携带。</p>
+<p>试想一下，未来某天我们走到柜子前，看到多本标注笔记的书籍和材料，学习过的视频光盘，各种模型手办时，必然会获得相当的满足感。当朋友来家做客看到这些东西，你也能指着某个模型或某张照片，畅谈当时的趣闻。</p>
+<p>就从现在开始吧！下图是前些时候购买的英雄联盟2016周年纪念手办：</p>
+<p><img src="https://i.loli.net/2021/09/18/yZxUWdot349lcPM.png" alt="1Jinx.png"></p>
+<p>其实创建这个博客也有留念之意，将生活中学到的东西和感想总结于此，方便未来查阅。</p>
 ]]></content>
       <categories>
         <category>Life</category>
@@ -3904,6 +3887,63 @@
       </categories>
       <tags>
         <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序员感悟</title>
+    <url>/2015/09/26/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记得在大学刚毕业时，面试了一堆企业，总是围绕着“有强烈兴趣”来讲，把自己表现的像不给工资都能拼死干的样子。在那个年头，经济危机才刚开始，不是清华、北大…、没有实际工作经验的学生恐怕找非销售类工作都是这样的，尤其是找个编程岗位！</p>
+<a id="more"></a>
+
+<p>印象里，那时面试官的态度就跟你“再生父母”似的，以上势下，各种刁难，好像从事了这个行业就能发财，就能光宗耀祖（当时就想揍他几拳:P）。后来看了张绍刚的节目，发现这已经成为社会普遍现象了，至少小企业老板们想推动这种风气。其实有工作经验的人都明白，对于这种二三十号人的startup企业，只要有点基础认真干上半年就能在那充专家了，而这些startup企业只能靠画大饼来报答你。每次老板请我单独吃饭（弄两个“拌凉菜…”）都想婉言拒绝，心里想啊——不知道老板又出什么妖蛾子×_×大家注意，这只是想想，不敢不去啊。所以说即使你知道画饼人的目的，但你还是得把这个“饼”吃下去，而且还要表现得好吃、爱吃ToT再后来……就没有后来了，老板在作最后的垂死挣扎（乱开项目，需求朝令夕改，工资迟发、少发…）后，毫无悬念的消失了。此刻大家才注意到，开一家startup互联网软件作坊是真的简单——写字楼房间是租的，一堆廉价隔断和桌椅，30多台计算机而已，日常成本就是房租、水电费和工资。这些成本中占比最大的就是工资，自然就成为了老板每月最不想面对的开支！所以当企业出现问题，老板做出各种违约行为一点也不奇怪。</p>
+<p>之后也进过一些大企业，工作比较乏味，晋升机制跟国家机关比也强不了多少，好在企业比较稳，不会因为抱怨几句就被当作异端。一路走来总的感觉是编程不适合作为一项职业，特别是大龄青年，倒不是因为竞争不过年轻人，主要是觉得太累，一方面要照顾到领导的情绪，一方面又不忍心对下属太狠（毕竟自己也是从那过来的），而自身又要去从事编码（有人说这是脱不了干活的胎）。另外这个行业女性比例太低，仅有的几个也是够看的，其中有个同事，我们一直不知道他的性别，看着是男的，感觉是女的，从说话声音也听不出来，为此我们研究了好久，直到我离开那个公司都没弄清楚，也算是个遗憾了:)</p>
+<p>所以这个行业的人在积累一定的经济基础后，往往会想尝试一些更有趣味的人生，但又有几个人能真正成功摆脱这样的人生呢？很多人都是想想就算了，或者迈出一步或几步后又回来了。最狠的人是离开了这个坑，但又跳入了另一个坑，然后就在那个坑里待下去了。我觉的要想真正的解脱出来，其实面对的问题和其他行业一样，就是努力奔向财富自由，提前退休。最直接的方法还是得靠投资理财。</p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高达模型制作</title>
+    <url>/2019/09/15/%E9%AB%98%E8%BE%BE%E6%A8%A1%E5%9E%8B%E5%88%B6%E4%BD%9C/</url>
+    <content><![CDATA[<p>所谓高达GUNDAM模型，其实就是拼装模型的一种。本人对于高达没有任何情怀，没看过动画，也没玩过“高达”主题的游戏，只是少年时期听说过而已。上大学后，玩过很多“超级机器人大战”游戏，发现其中很多机体来自高达，才意识到高达设定对于日本机战题材作品（漫画、游戏、动漫）的深远影响。</p>
+<a id="more"></a>
+
+<p>我是玩变形金刚过来的，老实说高达众多机体的造型虽自成体系，但过于雷同，有些只是换色而已，而且造型并不太符合当前的大众审美。动画的主角——“高达型”机体过于拟人化，武士头雕与过于纤细的身材，没有充满力量的机械感。在尝试拼装了一盒MG龟霸（BANDAI）之后，个人感觉是体验到了高达拼装模型的一些特色：</p>
+<ol>
+<li>具有一定的内构。在制作过程中，有制作机械人的感觉。</li>
+<li>精准的模具。这是最让人赞叹的，各种琐碎零件的卡扣都能准确的扣合，不存在合不拢、扣不住、错位等现象。可能有人觉得这没什么，模型就应该这样，但作为一个工作多年的人，我觉得这很了不起。在中国，即使某些大厂制作出来的东西，比如某些机加工零配件，两个螺丝孔，拧上一个，另一个孔就对不上了……</li>
+<li>具有基本的可动性。很多高达机体在制作后，出现松垮、掉件的情况，这很让人沮丧，但模型毕竟不是玩具，禁不住把玩是在意料之内的，要知道其他大多数模型都没什么可动性，而且同样不结实。</li>
+<li>丰富的颜色。即使不喷漆也有模有样，这点可比军模体贴太多了。</li>
+</ol>
+<h4 id="MG龟霸"><a href="#MG龟霸" class="headerlink" title="MG龟霸"></a>MG龟霸</h4><p>结构紧实，内构精细，可动优秀，自带支架和特效件。右手爪子有弹簧机关，左手鱼雷可插特效件。胳膊、大腿、肩部可伸缩，可谓万代良心。</p>
+<p><img src="https://i.loli.net/2021/11/07/g9wWr4pbnzEaJ8s.png" alt="1龟霸.png"></p>
+<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
+<li><p>按照自己的想法和需求制作一台模型。觉得水口没什么就不要修，懒得贴纸就不要贴。你制作的模型就是你的机体，这些细节就算是你独有的特色。</p>
+</li>
+<li><p>工欲善其事，必先利其器。有了工具能让拼装工作更容易一点，成品更好一点。现列举一些基本工具如下：</p>
+<ul>
+<li>剪钳。这是最重要的，如果是情怀玩家，打算将制作模型作为一项兴趣爱好来培养，买一把“神之手”剪钳不算奢侈。一般的玩家最好也买一把单刃剪钳。单刃剪钳虽然锋利，但比较娇气，掉落或大力磕碰可能断裂。使用时也不要沾湿或直接用手擦，否则容易生锈。</li>
+<li>打磨。即使用神之手，水口还是会有的，推荐用砂纸、打磨板、打磨块。砂纸购买600目和1000目的。600目砂纸消耗较大，所以尽量购买质量好一点的。打磨板建议使用5mm、10mm宽的。1000目砂纸和打磨块用于消除刮痕。如果经费富裕，也可以购买同样目数的海绵砂纸，用于打磨弧状零件的水口。</li>
+<li>镊子。用于粘贴纸。万代贴纸有胶贴、刮贴、水贴、铝箔贴纸。<strong>胶贴</strong>最常见，塑料材质不怕水，黏贴时沾水，用镊子夹起一角，从一边滚动张贴。<strong>刮贴</strong>最优秀，但张贴后无法调整，可用胶带固定贴纸，确定位置合适后，用牙签或指甲刮，确保每个细节都刮到位后，揭下胶带即可看到结果。<strong>水贴</strong>效果介于胶贴和刮贴之间，但万代水贴粘附力很弱，干透后容易翘起。<strong>铝箔贴纸</strong>怕水。</li>
+<li>小号螺丝刀。有些模型需要螺丝固定。</li>
+</ul>
+</li>
+<li><p>不建议买仿品。在仿制方面，变形金刚做的更好，有些仿品素质比原品还要优秀，而且价格还便宜。高达模型的仿品都不太好，基本和万代没法比。仿品零件的拼装完全让人体会不到前面说的那些优点，在我看来，钱等于全部浪费了。</p>
+</li>
+<li><p>如果你对高达没有情怀，或者对于高达模型机设提不起兴趣，就一定不要跟风买入。否则就像办健身年卡一样，买之前想的很好，去了没两次就撇一边了——“烂尾的模型 + 一段时间 = 垃圾”。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Toy</category>
+        <category>Gundam</category>
+      </categories>
+      <tags>
+        <tag>Gundam</tag>
       </tags>
   </entry>
   <entry>
@@ -4046,46 +4086,6 @@
       </categories>
       <tags>
         <tag>Coin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高达模型制作</title>
-    <url>/2019/09/15/%E9%AB%98%E8%BE%BE%E6%A8%A1%E5%9E%8B%E5%88%B6%E4%BD%9C/</url>
-    <content><![CDATA[<p>所谓高达GUNDAM模型，其实就是拼装模型的一种。本人对于高达没有任何情怀，没看过动画，也没玩过“高达”主题的游戏，只是少年时期听说过而已。上大学后，玩过很多“超级机器人大战”游戏，发现其中很多机体来自高达，才意识到高达设定对于日本机战题材作品（漫画、游戏、动漫）的深远影响。</p>
-<a id="more"></a>
-
-<p>我是玩变形金刚过来的，老实说高达众多机体的造型虽自成体系，但过于雷同，有些只是换色而已，而且造型并不太符合当前的大众审美。动画的主角——“高达型”机体过于拟人化，武士头雕与过于纤细的身材，没有充满力量的机械感。在尝试拼装了一盒MG龟霸（BANDAI）之后，个人感觉是体验到了高达拼装模型的一些特色：</p>
-<ol>
-<li>具有一定的内构。在制作过程中，有制作机械人的感觉。</li>
-<li>精准的模具。这是最让人赞叹的，各种琐碎零件的卡扣都能准确的扣合，不存在合不拢、扣不住、错位等现象。可能有人觉得这没什么，模型就应该这样，但作为一个工作多年的人，我觉得这很了不起。在中国，即使某些大厂制作出来的东西，比如某些机加工零配件，两个螺丝孔，拧上一个，另一个孔就对不上了……</li>
-<li>具有基本的可动性。很多高达机体在制作后，出现松垮、掉件的情况，这很让人沮丧，但模型毕竟不是玩具，禁不住把玩是在意料之内的，要知道其他大多数模型都没什么可动性，而且同样不结实。</li>
-<li>丰富的颜色。即使不喷漆也有模有样，这点可比军模体贴太多了。</li>
-</ol>
-<h4 id="MG龟霸"><a href="#MG龟霸" class="headerlink" title="MG龟霸"></a>MG龟霸</h4><p>结构紧实，内构精细，可动优秀，自带支架和特效件。右手爪子有弹簧机关，左手鱼雷可插特效件。胳膊、大腿、肩部可伸缩，可谓万代良心。</p>
-<p><img src="https://i.loli.net/2021/11/07/g9wWr4pbnzEaJ8s.png" alt="1龟霸.png"></p>
-<h4 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h4><ol>
-<li><p>按照自己的想法和需求制作一台模型。觉得水口没什么就不要修，懒得贴纸就不要贴。你制作的模型就是你的机体，这些细节就算是你独有的特色。</p>
-</li>
-<li><p>工欲善其事，必先利其器。有了工具能让拼装工作更容易一点，成品更好一点。现列举一些基本工具如下：</p>
-<ul>
-<li>剪钳。这是最重要的，如果是情怀玩家，打算将制作模型作为一项兴趣爱好来培养，买一把“神之手”剪钳不算奢侈。一般的玩家最好也买一把单刃剪钳。单刃剪钳虽然锋利，但比较娇气，掉落或大力磕碰可能断裂。使用时也不要沾湿或直接用手擦，否则容易生锈。</li>
-<li>打磨。即使用神之手，水口还是会有的，推荐用砂纸、打磨板、打磨块。砂纸购买600目和1000目的。600目砂纸消耗较大，所以尽量购买质量好一点的。打磨板建议使用5mm、10mm宽的。1000目砂纸和打磨块用于消除刮痕。如果经费富裕，也可以购买同样目数的海绵砂纸，用于打磨弧状零件的水口。</li>
-<li>镊子。用于粘贴纸。万代贴纸有胶贴、刮贴、水贴、铝箔贴纸。<strong>胶贴</strong>最常见，塑料材质不怕水，黏贴时沾水，用镊子夹起一角，从一边滚动张贴。<strong>刮贴</strong>最优秀，但张贴后无法调整，可用胶带固定贴纸，确定位置合适后，用牙签或指甲刮，确保每个细节都刮到位后，揭下胶带即可看到结果。<strong>水贴</strong>效果介于胶贴和刮贴之间，但万代水贴粘附力很弱，干透后容易翘起。<strong>铝箔贴纸</strong>怕水。</li>
-<li>小号螺丝刀。有些模型需要螺丝固定。</li>
-</ul>
-</li>
-<li><p>不建议买仿品。在仿制方面，变形金刚做的更好，有些仿品素质比原品还要优秀，而且价格还便宜。高达模型的仿品都不太好，基本和万代没法比。仿品零件的拼装完全让人体会不到前面说的那些优点，在我看来，钱等于全部浪费了。</p>
-</li>
-<li><p>如果你对高达没有情怀，或者对于高达模型机设提不起兴趣，就一定不要跟风买入。否则就像办健身年卡一样，买之前想的很好，去了没两次就撇一边了——“烂尾的模型 + 一段时间 = 垃圾”。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Toy</category>
-        <category>Gundam</category>
-      </categories>
-      <tags>
-        <tag>Gundam</tag>
       </tags>
   </entry>
   <entry>
@@ -4362,75 +4362,6 @@
       </tags>
   </entry>
   <entry>
-    <title>政府、资本和未来</title>
-    <url>/2022/02/02/%E6%94%BF%E5%BA%9C%E3%80%81%E8%B5%84%E6%9C%AC%E5%92%8C%E6%9C%AA%E6%9D%A5/</url>
-    <content><![CDATA[<p>入冬以来疫情再起，我在家闲来无事上网刷视频，从司马南频道上看了几段关于联想和通钢的评说，紧接着就刷到了马云系列。在蚂蚁上市前夕，马云在外滩峰会上带着个人情绪谈了一些看法。我觉得此演讲充满了超级资本家的真情实感，颇具有启发性。另外，政府对此事的理解和后续行为也值得关注，所以将演讲内容记录于此。</p>
-<a id="more"></a>
-
-<p>政府创造了现有体制，现有体制催生了资本生长，现在资本已经成长为庞然大物，大到不能倒，大到产生了权威，一堆人争着叫爸爸。马云能将资本做的那么大，本身说明了在这种体制下，其认识的“正确性和先进性”，但从客观上讲，这隐含着一些难以言表但确实存在的问题。政府挥舞着那双缓慢、笨拙、看得见的手，无法解决同样由它创造出来的“宠儿”，</p>
-<ol>
-<li>不舍得解决，对其仍有依赖，只要听话，还会继续关照；</li>
-<li>在这个体制下，人家没什么错，还这么“优秀”，没有解决的理由；</li>
-<li>解决它会引发政府不愿意面对的问题。</li>
-</ol>
-<p>当然了，有“宠儿”就有“弃儿”，自然之理。现在的问题是“弃儿”数量越来越多，已经达到了政府不得不面对的地步。怎么办？按照当前政府解决“两难”问题的套路，必然又是一堆骚操作，目的就是先稳住，再期望用时间磨平伤痕。</p>
-<blockquote>
-<p>2020年10月23-25日，中国金融四十人论坛（CF40）联合各组委会成员机构在上海召开第二届外滩金融峰会。峰会主题为“危与机：新格局下的新金融与新经济”。24日，马云以联合国数字合作高级别小组联合主席、联合国可持续发展目标倡导者的身份进行了演讲。</p>
-</blockquote>
-<h4 id="正文转载"><a href="#正文转载" class="headerlink" title="正文转载"></a>正文转载</h4><p>没人扔炸弹，哪敢扔炸弹。向大家问好……</p>
-<p>感谢大会的邀请，很高兴有这个机会和大家一起学习、交流和探讨。2013年，也是在上海，我来到上海陆家嘴金融峰会，发表了一通关于互联网金融的被称为异想天开的观点。七年过去了，今天我作为非官方的非专业人士，又来到了上海的外滩金融论坛，希望有一些观点，供大家思考。</p>
-<p>其实今天要不要来讲，坦白来说，我很纠结。但是我想我们这批人，有一个东西是责无旁贷的，就是为未来思考的责任，因为这个世界虽然留给我们发展的机会很多，但是关键性的机会也就这一两次，现在就到了最关键的时刻。</p>
-<p>所以我想来这里讲讲我自己的想法和一些看法。这是我们自己16年实践经验总结出来，加上有幸担任联合国数字合作高级别小组联合主席和联合国可持续发展目标倡导者期间，我跟全世界的学者、专家还有实践者经过了探讨和研究。</p>
-<p>我想，我已经算是退休了，在这个非官方的论坛上，想畅所欲言一下，分享一些非专业人士的专业看法，所幸我发现，现在绝大部分专业人士已经不讲专业了。</p>
-<p>有三个观点，仅供大家参考，可能不成熟，讲得不对，贻笑大方，但是大家姑且一听，觉得没道理，忘了就算了。</p>
-<p>第一个观点，一直以来我们有一些思维上的惯性，比如总觉得要为了跟国际接轨，必须要做欧美发达国家有，而我们没有的所谓空白，要填补国内空白，把填补国内空白当作追求的目标。</p>
-<p>我一直认为，在今天的形势下，“填补空白”这句话是有问题的，不是因为欧美的就是先进的，就是我们要去填补的。其实我们今天不应该刻意的去追求和哪个东西接轨，适应哪国的标准，填补哪个空白，今天我们要思考的是，如何和未来接轨，如何适应未来的标准，怎么样去弥补未来的空白，我们要想明白，未来是如何的，以及自己到底要做什么，然后再去看看别人怎么做，如果永远重复别人的语言，讨论别人设定的主题，我们不但会迷失现在，更会错失未来。</p>
-<p>二战以后，世界需要恢复经济的繁荣，布雷登森林体系建立起来以后，对全球经济的推动是巨大的。后来亚洲金融风暴发生后，巴塞尔协议讲的风险控制，越来越受重视，到后来变成了一个风险控制的操作标准。现在的趋势是，越来越像是全世界只讲风险控制，不讲发展，很少去讲年轻人的机会、发展中国家的机会在哪里。</p>
-<p>这其实也诞生了今天世界很多问题的根源。我们今天也看到巴塞尔协议本身也让欧洲的整体创新受到了很大的限制，比如在数字金融方面。</p>
-<p><strong>巴塞尔协议，比较像一个老年人俱乐部，它要解决的是运转了几十年的金融体系老化的问题，欧洲那些老化的体制，系统极其复杂。但是中国的问题，我认为正好相反，不是金融系统性风险，因为中国金融基本上没有系统，中国实际上是“缺乏金融系统”的风险。</strong></p>
-<p>中国的金融和其他刚成长起来的发展中国家一样，在金融业我们是青春少年，还没有成熟的生态系统，没有完全的流动起来。中国有很多大银行，更像是大江大河和血液的动脉，但是我们今天更需要湖泊、需要水塘，需要小溪小河，需要各种各样的沼泽地，缺少了这些生态系统，我们才会涝的时候涝死，旱的时候旱死。所以，今天我们国家是缺乏健康金融系统的风险，我们需要的是建设金融的健康系统。</p>
-<p>不是金融系统性风险，这是两个完全不同的病，就像老年痴呆症和小儿麻痹症，看起来都一样，但其实是完全不同的病。如果小孩子吃了老年痴呆的药，不光会得老人的病，还有很多莫名其妙的病。</p>
-<p>这个巴塞尔协议就是考虑系统老化、过度复杂的老年人的病，而我们要思考的是跟着老年人学什么？要知道老年人和年轻人关心的问题不同。年轻人城市关心的是有没有学校，老年人关心是有没有医院。</p>
-<p>所以，今年世界的变化是非常神奇，非常快速的。我也很自豪的跟大家宣布，昨天晚上就在上海，我们决定了蚂蚁金服上市的定价。这个全人类有史以来最大的上市，在纽约城以外定价，这是第一次。在五年前甚至三年前，我们想都不敢想，但是奇迹就这么发生了。</p>
-<p>第二，创新一定要付出代价，我们这代人必须有所担当。</p>
-<p>习近平主席讲过“功成不必在我”，我理解这句话讲的是一种责任，讲的是为未来、为明天、为下一代去担当。今天世界的很多问题包括中国，都只能用创新去解决。但是真正的创新，一定是没有人带路的，一定需要有人担当的，因为创新一定会犯错误，问题不是怎么样不犯错误，而是犯了错误之后，能不能完善修正，坚持创新。做没有风险的创新，就是扼杀创新，这世界上没有无风险的创新。很多时候，把风险控制为零，这才是最大的风险。</p>
-<p>当年的赤壁之战，我认为，曹操要把所有的船连起来，这就是中国也是全世界最早的航母的思想，但是一把火烧掉后，一千年来，中国人连想都不敢去想，一旦想到那把火，谁还想把船做大，谁还会有这种系统性思考？</p>
-<p>七八年以前，我提过互联网金融这个概念，也在上海。而且我们一直强调，互联网金融必须有三个核心要素：第一是必须拥有丰富的数据；第二是必须基于丰富大数据下的风控技术；第三，必须拥有基于大数据的信用体系。</p>
-<p>用这三个标准来衡量，就会看到P2P根本不是互联网金融，但是今天不能因为P2P，把整个互联网技术对金融的创新给否定了，其实我们想一想，中国怎么可能在几年以内就出现了几千家互联网金融公司？我们是不是应该检查一下，是什么原因诞生了几千家的互联网金融，所谓的P2P公司？今天我们的监管确实很难，全球的监管都很难。</p>
-<p>创新主要来自于市场，创新来自于基层，创新来自于年轻人。对监管的挑战越来越大，其实监和管是两回事，“监”是看着你发展，关注你发展。管是有问题的时候或是预判有问题的时候才去管，但是我们现在，管的能力越来越强，监的能力明显不足。</p>
-<p>好的创新不怕监管，但是怕用昨天的方式去监管，我们不能用管理火车站的办法去管理飞机场，不能用昨天的办法来管未来。</p>
-<p>“监”和“管”不一样，政策和文件也不一样。今天这个不许，那个不许，那都叫文件。政策是机制建设，是激励发展。今天全世界，特别是中国，需要很多的政策专家，而不是文件专家。</p>
-<p>制订政策是一门技术活，其实解决系统性复杂的问题，我自己觉得，可以跟大家分享一下，我们淘宝是怎么做的。</p>
-<p>17年以前，我们没有技术、没有数据，也对未来的判断不准确，我们制订了很多这个不许那个不许的很多规则。但是今天，我们能够技术解决了，今天我们有能力解决这些系统性问题。但是，我们今天的年轻人，也像监管一样，总是喜欢出各种各样新的文件，不允许这样，也不允许那样。后来我想出一个办法，叫“加一减三”，你要加一条规则，必须要减掉前面三条规则。这样我们的文件就越来越短，如果说你不减，那你的规章制度越来越厚，是逼迫每个人去犯法，每个人去犯错，大家自己都糊涂起来。</p>
-<p>理论和系统也是不一样的，专家和学者是不一样的，我们这个国家，把很多学者和专家都混为一谈。专家是干出来的，他干得很厉害，但不一定会总结。</p>
-<p>很多学者，自己不具体干，但是能从别人实干的经验中总结出理论。我认为只有专家和学者结合起来，才能把理论和实践结合起来，才能真正去创新、解决今天和明天的问题。我想，我们需要来自于实践的理论，不是来自于办公室理论的实践。</p>
-<p>P2P很多就是来自于办公室理论的实践，我想，更应该认为，今天我们正确理解P2P给我们带来的巨大教训，我们不是要去否定互联网技术，更不要重复办公室理论的实践。</p>
-<p>我觉得还有一个现象，全球很多监管部门，监管到后面，自己变成了没有风险，自己的部门没有风险，但是整个经济有风险，整个社会变成了有风险。未来的比赛是创新的比赛，不是监管技能的比赛。现在各国一个比一个狠，发展都是空的，但是不许这样干，都是刀刀见血。</p>
-<p>我的理解，习主席说的提升执政能力，是指在监管有序的下面保持健康可持续的发展，而不是监管了就没有发展。监管其实不难，难的是监管的目的是为了可持续的健康发展，监管就是为了健康的发展。</p>
-<p>第三个观点，金融的本质是信用管理。我们必须改掉今天金融的当铺思想，要依靠信用体系的发展。</p>
-<p>今天的银行，延续的还是当铺思想。抵押和担保就是当铺。这在当年，是很先进的，没有抵押，担保这些创新，就不可能有今天的金融机构，中国经济40年来的发展也不可能发展到现在。</p>
-<p>但是靠资产和抵押的资质会走向极端。我是中国企业俱乐部的主席，也是浙商总会的会长，我这几年跟很多企业家交流，中国的金融当铺思想非常严重，也影响了很多企业家。尤其企业家要把资产全押了出去，压力非常大，压力大了以后，动作就变形。</p>
-<p>还有一些人，肆无忌惮地贷款，不断加杠杆，负债搞的越来越大。大家都知道，借10万块，你怕银行；借1000万，你和银行都有点慌；借10个亿，银行怕你。还有一个习惯，银行喜欢给好企业、不需要钱的企业贷款，拼命的贷款。结果让很多好企业变成了坏企业，形成了多元化的投资，形成了甚至把这个钱转出去做完全不符合自己的事，钱太多也惹很多事。</p>
-<p>抵押的当铺思想，是不可能支持未来30年世界发展对金融的需求的。我们必须用借助今天的技术能力，用大数据为基础的信用体系，来取代当铺思想，这个信用体系不是建立在传统的IT基础上，不是建立在熟人关系的社会基础上，而是<strong>必须是建立在大数据的基础上</strong>，才能真正让信用等于财富。其实要饭的也要有信用，没有信用，连要饭都要不上。我认为每个要饭的人都是（要）有信用的。</p>
-<p>最后我想今天的世界，迫切期待一个真正为未来而思考的全新的金融体系。</p>
-<p>今天的金融体系是工业时代的产物，是为了解决工业化而设置的全面的金融体系，是为了完成二八理论。什么叫二八理论？就是投资20%，来解决80%的问题。而未来的金融体系，是要解决八二理论，帮助80%的小企业和年轻人来带动20%的人。要从过去的人找钱、企业找钱，到转型为钱找人、钱找企业，钱找好企业。评价这个体系的唯一的标准就是是否普惠、包容、绿色和可持续，背后的大数据、云计算、和区块链等前沿技术，今天能够担当起巨大的责任。</p>
-<p>各位，即使在二战以后，当时的人们没有这样的远见，为后代为未来设计一个很好的金融体系，我们今天有这个责任和思考，为去建立一个真正属于未来，属于年轻人和下一代，属于这个时代的金融体系。今天我们不是做不到，而是不去做。今天我们的技术发展让我们完全可以做到这一些，遗憾的是，很多人不愿意去做。</p>
-<p>今天全球的金融体系必须改革，不然不仅仅是失去机会的问题，而是让全世界可能会陷入更多的混乱。<strong>创新走在监管前面是正常的，但是当创新远远地走在监管前面的时候，当创新的丰富度和深度远远超过监管的想象的时候，就不正常了，社会和世界就会陷入混乱。</strong></p>
-<p>拿数字货币来说，如果用未来的眼光打造30年以后世界所需的金融体系，数字货币可能是非常重要的核心。今天的金融确实不需要数字货币，但是明天需要，未来需要，成千上万的发展中国家和年轻人需要，我们应该问自己，数字货币到底要解决未来的什么实际问题？</p>
-<p>十年以后的数字货币和今天的数字货币，可能根本就不是一回事，这个数字货币不应该从历史上去找，不应该从监管的角度去找，不应该从研究机构去找，而是从市场去找，从需求去找，从未来去找。这件事事关重大，我们的研究机构不应该是政策机构。政策机构也不能仅仅依赖于自己的研究机构。因为数字货币体系是一个技术问题，但又不仅仅是技术问题，更是一个解决未来问题的方案，数字货币可能重新定义货币，尽管货币的主要功能仍然在，但是它一定会重新定义货币，就像苹果手机重新定义了手机，打电话只是其中的一个功能。数字货币今天远远没有到抢标准的时候，是创造价值的时候，是需要思考如何通过数字货币，建立新型的金融体系，为全世界思考未来，思考全球的贸易怎么做，更要思考这世界上应该要有经得起考验的技术的基础上，所建立的数字货币。是要真正解决世界贸易可持续、绿色和普惠的问题。</p>
-<p>所以，最后我想说，今天人类社会到了最关键的时刻，千万不要小看这场疫情，这场疫情是倒逼人类社会进步的力量，它不亚于二战。</p>
-<p>从金融本身来说，从美国不断地向世界各国，特别是向华尔街不断输入大量现金，各国都在跟随其后，大家想过后面的结果会怎么样没有，它所带来的巨大的影响，远远超过我们今天很多人讨论的技术层面的问题。</p>
-<p>我们今天对世界上很多的组织机构，不要简单的去反对它，而是一起重新思考它们今天的价值，无论是联合国，WTO，还是 WHO，这些组织确实存在着很多问题。这些组织我都工作过，打过交道，有过合作，但是消灭这些组织并不解决问题，我们应该考虑这些组织应该如何面向未来，如何改革，如何重新思考定位。</p>
-<p>新金融体系是未来的方向，不管我们高兴不高兴，它一定会起来，不管我们做不做，一定会有人去做。未来，我相信，改革是要付出牺牲的，是要付出代价的，我们这一代人要做这样的改革，可能下一代人才能看到，我们可能是负重前行的一个人，这是历史的机遇，也是历史的责任。过去16年，蚂蚁金服一直围绕着绿色、可持续和普惠发展。如果绿色、可持续和普惠包容的金融是错误的话，我们将会一错再错，一错到底。</p>
-]]></content>
-      <categories>
-        <category>Economy</category>
-      </categories>
-      <tags>
-        <tag>Economy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>政府、商人和普罗大众</title>
     <url>/2019/07/08/%E6%94%BF%E5%BA%9C%E3%80%81%E5%95%86%E4%BA%BA%E5%92%8C%E6%99%AE%E7%BD%97%E5%A4%A7%E4%BC%97/</url>
     <content><![CDATA[<p>本人觉得下面两篇文章应该是发自官媒作者与商人的真情实感，其中的内容既没有多少政治理论，也没有罗列一堆经济数据，没有大段的政策“成就”，也没有成功人士的“正能量”鸡汤，但真正道出了一些“东西”，本人觉得非常具有启发性。</p>
@@ -4539,6 +4470,75 @@
 <p>我的生意或许部分不在中国，但是我的心一直在这里，根依旧扎在这里。我是潮汕人，也是香港人，还是中国人，也是加拿大籍，最终我们都是地球村的居民。</p>
 <p>我爱我的家乡，我爱我的故乡，我爱我的祖国，我也爱我们共同居住的地球，我的爱真挚而深沉，和你一样。</p>
 <p>李嘉诚不会跑，也不愿跑，更跑不了。这是我的真心话，也是我的誓言。</p>
+]]></content>
+      <categories>
+        <category>Economy</category>
+      </categories>
+      <tags>
+        <tag>Economy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>政府、资本和未来</title>
+    <url>/2022/02/02/%E6%94%BF%E5%BA%9C%E3%80%81%E8%B5%84%E6%9C%AC%E5%92%8C%E6%9C%AA%E6%9D%A5/</url>
+    <content><![CDATA[<p>入冬以来疫情再起，我在家闲来无事上网刷视频，从司马南频道上看了几段关于联想和通钢的评说，紧接着就刷到了马云系列。在蚂蚁上市前夕，马云在外滩峰会上带着个人情绪谈了一些看法。我觉得此演讲充满了超级资本家的真情实感，颇具有启发性。另外，政府对此事的理解和后续行为也值得关注，所以将演讲内容记录于此。</p>
+<a id="more"></a>
+
+<p>政府创造了现有体制，现有体制催生了资本生长，现在资本已经成长为庞然大物，大到不能倒，大到产生了权威，一堆人争着叫爸爸。马云能将资本做的那么大，本身说明了在这种体制下，其认识的“正确性和先进性”，但从客观上讲，这隐含着一些难以言表但确实存在的问题。政府挥舞着那双缓慢、笨拙、看得见的手，无法解决同样由它创造出来的“宠儿”，</p>
+<ol>
+<li>不舍得解决，对其仍有依赖，只要听话，还会继续关照；</li>
+<li>在这个体制下，人家没什么错，还这么“优秀”，没有解决的理由；</li>
+<li>解决它会引发政府不愿意面对的问题。</li>
+</ol>
+<p>当然了，有“宠儿”就有“弃儿”，自然之理。现在的问题是“弃儿”数量越来越多，已经达到了政府不得不面对的地步。怎么办？按照当前政府解决“两难”问题的套路，必然又是一堆骚操作，目的就是先稳住，再期望用时间磨平伤痕。</p>
+<blockquote>
+<p>2020年10月23-25日，中国金融四十人论坛（CF40）联合各组委会成员机构在上海召开第二届外滩金融峰会。峰会主题为“危与机：新格局下的新金融与新经济”。24日，马云以联合国数字合作高级别小组联合主席、联合国可持续发展目标倡导者的身份进行了演讲。</p>
+</blockquote>
+<h4 id="正文转载"><a href="#正文转载" class="headerlink" title="正文转载"></a>正文转载</h4><p>没人扔炸弹，哪敢扔炸弹。向大家问好……</p>
+<p>感谢大会的邀请，很高兴有这个机会和大家一起学习、交流和探讨。2013年，也是在上海，我来到上海陆家嘴金融峰会，发表了一通关于互联网金融的被称为异想天开的观点。七年过去了，今天我作为非官方的非专业人士，又来到了上海的外滩金融论坛，希望有一些观点，供大家思考。</p>
+<p>其实今天要不要来讲，坦白来说，我很纠结。但是我想我们这批人，有一个东西是责无旁贷的，就是为未来思考的责任，因为这个世界虽然留给我们发展的机会很多，但是关键性的机会也就这一两次，现在就到了最关键的时刻。</p>
+<p>所以我想来这里讲讲我自己的想法和一些看法。这是我们自己16年实践经验总结出来，加上有幸担任联合国数字合作高级别小组联合主席和联合国可持续发展目标倡导者期间，我跟全世界的学者、专家还有实践者经过了探讨和研究。</p>
+<p>我想，我已经算是退休了，在这个非官方的论坛上，想畅所欲言一下，分享一些非专业人士的专业看法，所幸我发现，现在绝大部分专业人士已经不讲专业了。</p>
+<p>有三个观点，仅供大家参考，可能不成熟，讲得不对，贻笑大方，但是大家姑且一听，觉得没道理，忘了就算了。</p>
+<p>第一个观点，一直以来我们有一些思维上的惯性，比如总觉得要为了跟国际接轨，必须要做欧美发达国家有，而我们没有的所谓空白，要填补国内空白，把填补国内空白当作追求的目标。</p>
+<p>我一直认为，在今天的形势下，“填补空白”这句话是有问题的，不是因为欧美的就是先进的，就是我们要去填补的。其实我们今天不应该刻意的去追求和哪个东西接轨，适应哪国的标准，填补哪个空白，今天我们要思考的是，如何和未来接轨，如何适应未来的标准，怎么样去弥补未来的空白，我们要想明白，未来是如何的，以及自己到底要做什么，然后再去看看别人怎么做，如果永远重复别人的语言，讨论别人设定的主题，我们不但会迷失现在，更会错失未来。</p>
+<p>二战以后，世界需要恢复经济的繁荣，布雷登森林体系建立起来以后，对全球经济的推动是巨大的。后来亚洲金融风暴发生后，巴塞尔协议讲的风险控制，越来越受重视，到后来变成了一个风险控制的操作标准。现在的趋势是，越来越像是全世界只讲风险控制，不讲发展，很少去讲年轻人的机会、发展中国家的机会在哪里。</p>
+<p>这其实也诞生了今天世界很多问题的根源。我们今天也看到巴塞尔协议本身也让欧洲的整体创新受到了很大的限制，比如在数字金融方面。</p>
+<p><strong>巴塞尔协议，比较像一个老年人俱乐部，它要解决的是运转了几十年的金融体系老化的问题，欧洲那些老化的体制，系统极其复杂。但是中国的问题，我认为正好相反，不是金融系统性风险，因为中国金融基本上没有系统，中国实际上是“缺乏金融系统”的风险。</strong></p>
+<p>中国的金融和其他刚成长起来的发展中国家一样，在金融业我们是青春少年，还没有成熟的生态系统，没有完全的流动起来。中国有很多大银行，更像是大江大河和血液的动脉，但是我们今天更需要湖泊、需要水塘，需要小溪小河，需要各种各样的沼泽地，缺少了这些生态系统，我们才会涝的时候涝死，旱的时候旱死。所以，今天我们国家是缺乏健康金融系统的风险，我们需要的是建设金融的健康系统。</p>
+<p>不是金融系统性风险，这是两个完全不同的病，就像老年痴呆症和小儿麻痹症，看起来都一样，但其实是完全不同的病。如果小孩子吃了老年痴呆的药，不光会得老人的病，还有很多莫名其妙的病。</p>
+<p>这个巴塞尔协议就是考虑系统老化、过度复杂的老年人的病，而我们要思考的是跟着老年人学什么？要知道老年人和年轻人关心的问题不同。年轻人城市关心的是有没有学校，老年人关心是有没有医院。</p>
+<p>所以，今年世界的变化是非常神奇，非常快速的。我也很自豪的跟大家宣布，昨天晚上就在上海，我们决定了蚂蚁金服上市的定价。这个全人类有史以来最大的上市，在纽约城以外定价，这是第一次。在五年前甚至三年前，我们想都不敢想，但是奇迹就这么发生了。</p>
+<p>第二，创新一定要付出代价，我们这代人必须有所担当。</p>
+<p>习近平主席讲过“功成不必在我”，我理解这句话讲的是一种责任，讲的是为未来、为明天、为下一代去担当。今天世界的很多问题包括中国，都只能用创新去解决。但是真正的创新，一定是没有人带路的，一定需要有人担当的，因为创新一定会犯错误，问题不是怎么样不犯错误，而是犯了错误之后，能不能完善修正，坚持创新。做没有风险的创新，就是扼杀创新，这世界上没有无风险的创新。很多时候，把风险控制为零，这才是最大的风险。</p>
+<p>当年的赤壁之战，我认为，曹操要把所有的船连起来，这就是中国也是全世界最早的航母的思想，但是一把火烧掉后，一千年来，中国人连想都不敢去想，一旦想到那把火，谁还想把船做大，谁还会有这种系统性思考？</p>
+<p>七八年以前，我提过互联网金融这个概念，也在上海。而且我们一直强调，互联网金融必须有三个核心要素：第一是必须拥有丰富的数据；第二是必须基于丰富大数据下的风控技术；第三，必须拥有基于大数据的信用体系。</p>
+<p>用这三个标准来衡量，就会看到P2P根本不是互联网金融，但是今天不能因为P2P，把整个互联网技术对金融的创新给否定了，其实我们想一想，中国怎么可能在几年以内就出现了几千家互联网金融公司？我们是不是应该检查一下，是什么原因诞生了几千家的互联网金融，所谓的P2P公司？今天我们的监管确实很难，全球的监管都很难。</p>
+<p>创新主要来自于市场，创新来自于基层，创新来自于年轻人。对监管的挑战越来越大，其实监和管是两回事，“监”是看着你发展，关注你发展。管是有问题的时候或是预判有问题的时候才去管，但是我们现在，管的能力越来越强，监的能力明显不足。</p>
+<p>好的创新不怕监管，但是怕用昨天的方式去监管，我们不能用管理火车站的办法去管理飞机场，不能用昨天的办法来管未来。</p>
+<p>“监”和“管”不一样，政策和文件也不一样。今天这个不许，那个不许，那都叫文件。政策是机制建设，是激励发展。今天全世界，特别是中国，需要很多的政策专家，而不是文件专家。</p>
+<p>制订政策是一门技术活，其实解决系统性复杂的问题，我自己觉得，可以跟大家分享一下，我们淘宝是怎么做的。</p>
+<p>17年以前，我们没有技术、没有数据，也对未来的判断不准确，我们制订了很多这个不许那个不许的很多规则。但是今天，我们能够技术解决了，今天我们有能力解决这些系统性问题。但是，我们今天的年轻人，也像监管一样，总是喜欢出各种各样新的文件，不允许这样，也不允许那样。后来我想出一个办法，叫“加一减三”，你要加一条规则，必须要减掉前面三条规则。这样我们的文件就越来越短，如果说你不减，那你的规章制度越来越厚，是逼迫每个人去犯法，每个人去犯错，大家自己都糊涂起来。</p>
+<p>理论和系统也是不一样的，专家和学者是不一样的，我们这个国家，把很多学者和专家都混为一谈。专家是干出来的，他干得很厉害，但不一定会总结。</p>
+<p>很多学者，自己不具体干，但是能从别人实干的经验中总结出理论。我认为只有专家和学者结合起来，才能把理论和实践结合起来，才能真正去创新、解决今天和明天的问题。我想，我们需要来自于实践的理论，不是来自于办公室理论的实践。</p>
+<p>P2P很多就是来自于办公室理论的实践，我想，更应该认为，今天我们正确理解P2P给我们带来的巨大教训，我们不是要去否定互联网技术，更不要重复办公室理论的实践。</p>
+<p>我觉得还有一个现象，全球很多监管部门，监管到后面，自己变成了没有风险，自己的部门没有风险，但是整个经济有风险，整个社会变成了有风险。未来的比赛是创新的比赛，不是监管技能的比赛。现在各国一个比一个狠，发展都是空的，但是不许这样干，都是刀刀见血。</p>
+<p>我的理解，习主席说的提升执政能力，是指在监管有序的下面保持健康可持续的发展，而不是监管了就没有发展。监管其实不难，难的是监管的目的是为了可持续的健康发展，监管就是为了健康的发展。</p>
+<p>第三个观点，金融的本质是信用管理。我们必须改掉今天金融的当铺思想，要依靠信用体系的发展。</p>
+<p>今天的银行，延续的还是当铺思想。抵押和担保就是当铺。这在当年，是很先进的，没有抵押，担保这些创新，就不可能有今天的金融机构，中国经济40年来的发展也不可能发展到现在。</p>
+<p>但是靠资产和抵押的资质会走向极端。我是中国企业俱乐部的主席，也是浙商总会的会长，我这几年跟很多企业家交流，中国的金融当铺思想非常严重，也影响了很多企业家。尤其企业家要把资产全押了出去，压力非常大，压力大了以后，动作就变形。</p>
+<p>还有一些人，肆无忌惮地贷款，不断加杠杆，负债搞的越来越大。大家都知道，借10万块，你怕银行；借1000万，你和银行都有点慌；借10个亿，银行怕你。还有一个习惯，银行喜欢给好企业、不需要钱的企业贷款，拼命的贷款。结果让很多好企业变成了坏企业，形成了多元化的投资，形成了甚至把这个钱转出去做完全不符合自己的事，钱太多也惹很多事。</p>
+<p>抵押的当铺思想，是不可能支持未来30年世界发展对金融的需求的。我们必须用借助今天的技术能力，用大数据为基础的信用体系，来取代当铺思想，这个信用体系不是建立在传统的IT基础上，不是建立在熟人关系的社会基础上，而是<strong>必须是建立在大数据的基础上</strong>，才能真正让信用等于财富。其实要饭的也要有信用，没有信用，连要饭都要不上。我认为每个要饭的人都是（要）有信用的。</p>
+<p>最后我想今天的世界，迫切期待一个真正为未来而思考的全新的金融体系。</p>
+<p>今天的金融体系是工业时代的产物，是为了解决工业化而设置的全面的金融体系，是为了完成二八理论。什么叫二八理论？就是投资20%，来解决80%的问题。而未来的金融体系，是要解决八二理论，帮助80%的小企业和年轻人来带动20%的人。要从过去的人找钱、企业找钱，到转型为钱找人、钱找企业，钱找好企业。评价这个体系的唯一的标准就是是否普惠、包容、绿色和可持续，背后的大数据、云计算、和区块链等前沿技术，今天能够担当起巨大的责任。</p>
+<p>各位，即使在二战以后，当时的人们没有这样的远见，为后代为未来设计一个很好的金融体系，我们今天有这个责任和思考，为去建立一个真正属于未来，属于年轻人和下一代，属于这个时代的金融体系。今天我们不是做不到，而是不去做。今天我们的技术发展让我们完全可以做到这一些，遗憾的是，很多人不愿意去做。</p>
+<p>今天全球的金融体系必须改革，不然不仅仅是失去机会的问题，而是让全世界可能会陷入更多的混乱。<strong>创新走在监管前面是正常的，但是当创新远远地走在监管前面的时候，当创新的丰富度和深度远远超过监管的想象的时候，就不正常了，社会和世界就会陷入混乱。</strong></p>
+<p>拿数字货币来说，如果用未来的眼光打造30年以后世界所需的金融体系，数字货币可能是非常重要的核心。今天的金融确实不需要数字货币，但是明天需要，未来需要，成千上万的发展中国家和年轻人需要，我们应该问自己，数字货币到底要解决未来的什么实际问题？</p>
+<p>十年以后的数字货币和今天的数字货币，可能根本就不是一回事，这个数字货币不应该从历史上去找，不应该从监管的角度去找，不应该从研究机构去找，而是从市场去找，从需求去找，从未来去找。这件事事关重大，我们的研究机构不应该是政策机构。政策机构也不能仅仅依赖于自己的研究机构。因为数字货币体系是一个技术问题，但又不仅仅是技术问题，更是一个解决未来问题的方案，数字货币可能重新定义货币，尽管货币的主要功能仍然在，但是它一定会重新定义货币，就像苹果手机重新定义了手机，打电话只是其中的一个功能。数字货币今天远远没有到抢标准的时候，是创造价值的时候，是需要思考如何通过数字货币，建立新型的金融体系，为全世界思考未来，思考全球的贸易怎么做，更要思考这世界上应该要有经得起考验的技术的基础上，所建立的数字货币。是要真正解决世界贸易可持续、绿色和普惠的问题。</p>
+<p>所以，最后我想说，今天人类社会到了最关键的时刻，千万不要小看这场疫情，这场疫情是倒逼人类社会进步的力量，它不亚于二战。</p>
+<p>从金融本身来说，从美国不断地向世界各国，特别是向华尔街不断输入大量现金，各国都在跟随其后，大家想过后面的结果会怎么样没有，它所带来的巨大的影响，远远超过我们今天很多人讨论的技术层面的问题。</p>
+<p>我们今天对世界上很多的组织机构，不要简单的去反对它，而是一起重新思考它们今天的价值，无论是联合国，WTO，还是 WHO，这些组织确实存在着很多问题。这些组织我都工作过，打过交道，有过合作，但是消灭这些组织并不解决问题，我们应该考虑这些组织应该如何面向未来，如何改革，如何重新思考定位。</p>
+<p>新金融体系是未来的方向，不管我们高兴不高兴，它一定会起来，不管我们做不做，一定会有人去做。未来，我相信，改革是要付出牺牲的，是要付出代价的，我们这一代人要做这样的改革，可能下一代人才能看到，我们可能是负重前行的一个人，这是历史的机遇，也是历史的责任。过去16年，蚂蚁金服一直围绕着绿色、可持续和普惠发展。如果绿色、可持续和普惠包容的金融是错误的话，我们将会一错再错，一错到底。</p>
 ]]></content>
       <categories>
         <category>Economy</category>
