@@ -565,6 +565,52 @@
       </tags>
   </entry>
   <entry>
+    <title>LaTex排版二 整体框架</title>
+    <url>/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<p>按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。</p>
+<a id="more"></a>
+
+<h4 id="写论文"><a href="#写论文" class="headerlink" title="写论文"></a>写论文</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8,a4paper]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"><span class="keyword">\date</span> &#123;<span class="keyword">\today</span>&#125;    <span class="comment">%设置日期，为空则不显示日期</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;      <span class="comment">%图片</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;       <span class="comment">%数学表示</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;      <span class="comment">%语法高亮</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;xcolor&#125;        <span class="comment">%颜色包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;  <span class="comment">%文章开始</span></span><br><span class="line"><span class="keyword">\maketitle</span>        <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;abstract&#125;</span><br><span class="line">  <span class="comment">%摘要内容</span></span><br><span class="line"><span class="keyword">\end</span>&#123;abstract&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%目录另起一页</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>  <span class="comment">%显示目录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%正文另起一页</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二节内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;10&#125;  <span class="comment">%参考文献</span></span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP1&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.1.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP2&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.2.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP3&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.3.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;  <span class="comment">%文章结尾</span></span><br></pre></td></tr></table></figure>
+<p>1.通过第一行<code>\documentclass[选项]&#123;文档类&#125;</code>中的“选项”（多个选项之间以逗号分隔），可以设置：</p>
+<ul>
+<li>纸张 a4paper，a5paper，b5paper</li>
+<li>字号 10pt，11pt，12pt</li>
+</ul>
+<p>2.通过\usepackage引入支持文档编辑的包。常用的就是上面那四个。</p>
+<p>3.按照ctexart文档类的特性，摘要会紧接上文内容显示。可以使用\newpage命令把摘要或目录用独立页显示。</p>
+<p>4.文章具体内容放在每个小结层次内。</p>
+<p>5.参考文献</p>
+<ul>
+<li><code>\begin&#123;thebibliography&#125;&#123;标号位宽&#125;</code>中的“标号位宽”表示自动编号的最大位数。例如共有30条参考，这个标号位宽可以是30，99，ab等。</li>
+<li>每条参考格式：<code>\bibitem&#123;标签&#125; 作者 , 书名 , 出版社 , 年份</code>。标签是个名字，在文章正文中引用文献时会用到它。</li>
+<li>引用文献的命令：<code>cite&#123;标签&#125;</code>。</li>
+</ul>
+<h4 id="写书"><a href="#写书" class="headerlink" title="写书"></a>写书</h4><p>因为一本书的体量远远大于一篇论文，如果把所有文字放在一个文件里，管理起来会很困难。所以采用多文件的方式，有层次的存放各种类型的文档。比如，建立一个根目录book，在其下建立主文件（main.tex）和各章节子目录chapter1、chapter2…在每个章目录内建立章文件（chapter.tex）和picture、code目录，用来保存本章各种图片和源代码。</p>
+<p>一、书籍主文件框架（main.tex）</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[选项]&#123;ctexbook&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%引入常用包，跟上面论文框架类似</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="keyword">\maketitle</span>                  <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/Foreword&#125;   <span class="comment">%插入前言</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>            <span class="comment">%显示目录</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter1&#125;   <span class="comment">%引入章节，路径中文件名不带扩展名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter2&#125;</span><br><span class="line"><span class="keyword">\appendix</span>                   <span class="comment">%引入附录，此命令后，引入的章节以“附录X”编号</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixA&#125;  </span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixB&#125;</span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;plain&#125;   <span class="comment">%插入参考</span></span><br><span class="line"><span class="keyword">\bibliography</span>&#123;数据库文件名&#125;  <span class="comment">%不要加上扩展名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>1.通过<code>\include</code>引入子目录中的章节文件。</p>
+<p>2.另一种加入参考文献的方法</p>
+<ul>
+<li>在书末尾通过<code>\bibliographystyle</code>和<code>\bibliography</code>引入文献数据库（*.bib）。</li>
+<li>引用文献仍是通过<code>\cite&#123;标签&#125;</code>，不引用的文献不会显示。一个文献都不引用，编译报错。</li>
+<li>数据库文件（*.bib）的格式如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@BOOK&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  publisher &#x3D; &#123;出版社&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;, </span><br><span class="line">  volume &#x3D; &#123;第几卷&#125;,</span><br><span class="line">  edition &#x3D; &#123;第几版&#125;  %first、second、third</span><br><span class="line">&#125;</span><br><span class="line">@ARTICLE&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  joural &#x3D; &#123;期刊名&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;,</span><br><span class="line">  number &#x3D; &#123;期刊号&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里列举了BOOK、ARTICLE的一些常用属性设置，当然还可以设置其他的属性。一个*.bib文件可以存放多个文献的信息。带bib数据库的文档需要多次编译。这种方式并不比之前的方法省事，通常都是从网上下载这种bib数据库文件直接引用。</p>
+</blockquote>
+<p>二、章节文件框架（chapter.tex）</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\chapter</span>&#123;章节名称&#125;</span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二小节内容</span></span><br><span class="line"><span class="keyword">\endinput</span>   <span class="comment">%显式的结束文本，后面的内容不会被编译</span></span><br></pre></td></tr></table></figure>
+<p>去掉章节编号：添加星即可<code>\chapter*&#123;&#125;</code>。同时，这个chapter也不会被编进目录中。</p>
+]]></content>
+      <categories>
+        <category>LaTex</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTex排版三 细节</title>
     <url>/2017/12/16/LaTex%E6%8E%92%E7%89%88%E4%B8%89%20%E7%BB%86%E8%8A%82/</url>
     <content><![CDATA[<h4 id="文字字符"><a href="#文字字符" class="headerlink" title="文字字符"></a>文字字符</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;文字&#125;</span><br><span class="line"><span class="keyword">\textbf</span>&#123;加粗&#125;</span><br><span class="line"><span class="keyword">\emph</span>&#123;强调&#125;</span><br><span class="line"><span class="keyword">\underline</span>&#123;下划线&#125;</span><br><span class="line"><span class="keyword">\footnote</span>&#123;脚注内容&#125;</span><br><span class="line"><span class="keyword">\copyright</span>            <span class="comment">%版权符号</span></span><br><span class="line"><span class="keyword">\songti</span>&#123;宋体&#125;         <span class="comment">%ctex提供的中文字体</span></span><br><span class="line"><span class="keyword">\heiti</span>&#123;黑体&#125;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;楷书&#125;</span><br><span class="line"><span class="keyword">\ </span>                    <span class="comment">%空格</span></span><br><span class="line"><span class="keyword">\quad</span>                 <span class="comment">%一m宽度空白</span></span><br><span class="line"><span class="keyword">\qquad</span>                <span class="comment">%二m宽度空白</span></span><br><span class="line"><span class="keyword">\#</span> <span class="keyword">\$</span> <span class="keyword">\%</span> <span class="keyword">\&amp;</span> <span class="keyword">\&#123;</span> <span class="keyword">\&#125;</span> <span class="keyword">\_</span>  <span class="comment">%不能直接显示的符号，在前面加上转义字符\</span></span><br><span class="line"><span class="keyword">\backslash</span>            <span class="comment">%反斜杠</span></span><br></pre></td></tr></table></figure>
@@ -661,52 +707,6 @@
       </categories>
       <tags>
         <tag>Transformers</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LaTex排版二 整体框架</title>
-    <url>/2017/11/12/LaTex%E6%8E%92%E7%89%88%E4%BA%8C%20%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<p>按照写作目的，本文主要内容分为两部分：论文编写基本框架和书籍编写基本框架。</p>
-<a id="more"></a>
-
-<h4 id="写论文"><a href="#写论文" class="headerlink" title="写论文"></a>写论文</h4><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8,a4paper]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"><span class="keyword">\date</span> &#123;<span class="keyword">\today</span>&#125;    <span class="comment">%设置日期，为空则不显示日期</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;      <span class="comment">%图片</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;       <span class="comment">%数学表示</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;      <span class="comment">%语法高亮</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;xcolor&#125;        <span class="comment">%颜色包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;  <span class="comment">%文章开始</span></span><br><span class="line"><span class="keyword">\maketitle</span>        <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;abstract&#125;</span><br><span class="line">  <span class="comment">%摘要内容</span></span><br><span class="line"><span class="keyword">\end</span>&#123;abstract&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%目录另起一页</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>  <span class="comment">%显示目录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span>  <span class="comment">%正文另起一页</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二节内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;10&#125;  <span class="comment">%参考文献</span></span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP1&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.1.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP2&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.2.</span><br><span class="line"><span class="keyword">\bibitem</span> &#123;TAOCP3&#125; Donald Knuth , 计算机程序设计艺术 , 人民邮电出版社 , 2010.10 ,Vol.3.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;  <span class="comment">%文章结尾</span></span><br></pre></td></tr></table></figure>
-<p>1.通过第一行<code>\documentclass[选项]&#123;文档类&#125;</code>中的“选项”（多个选项之间以逗号分隔），可以设置：</p>
-<ul>
-<li>纸张 a4paper，a5paper，b5paper</li>
-<li>字号 10pt，11pt，12pt</li>
-</ul>
-<p>2.通过\usepackage引入支持文档编辑的包。常用的就是上面那四个。</p>
-<p>3.按照ctexart文档类的特性，摘要会紧接上文内容显示。可以使用\newpage命令把摘要或目录用独立页显示。</p>
-<p>4.文章具体内容放在每个小结层次内。</p>
-<p>5.参考文献</p>
-<ul>
-<li><code>\begin&#123;thebibliography&#125;&#123;标号位宽&#125;</code>中的“标号位宽”表示自动编号的最大位数。例如共有30条参考，这个标号位宽可以是30，99，ab等。</li>
-<li>每条参考格式：<code>\bibitem&#123;标签&#125; 作者 , 书名 , 出版社 , 年份</code>。标签是个名字，在文章正文中引用文献时会用到它。</li>
-<li>引用文献的命令：<code>cite&#123;标签&#125;</code>。</li>
-</ul>
-<h4 id="写书"><a href="#写书" class="headerlink" title="写书"></a>写书</h4><p>因为一本书的体量远远大于一篇论文，如果把所有文字放在一个文件里，管理起来会很困难。所以采用多文件的方式，有层次的存放各种类型的文档。比如，建立一个根目录book，在其下建立主文件（main.tex）和各章节子目录chapter1、chapter2…在每个章目录内建立章文件（chapter.tex）和picture、code目录，用来保存本章各种图片和源代码。</p>
-<p>一、书籍主文件框架（main.tex）</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[选项]&#123;ctexbook&#125;</span><br><span class="line"><span class="keyword">\title</span> &#123;文章标题&#125;</span><br><span class="line"><span class="keyword">\author</span> &#123;姓名&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%引入常用包，跟上面论文框架类似</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="keyword">\maketitle</span>                  <span class="comment">%显示标题姓名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/Foreword&#125;   <span class="comment">%插入前言</span></span><br><span class="line"><span class="keyword">\tableofcontents</span>            <span class="comment">%显示目录</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter1&#125;   <span class="comment">%引入章节，路径中文件名不带扩展名</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/chapter2&#125;</span><br><span class="line"><span class="keyword">\appendix</span>                   <span class="comment">%引入附录，此命令后，引入的章节以“附录X”编号</span></span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixA&#125;  </span><br><span class="line"><span class="keyword">\include</span>&#123;./path/appendixB&#125;</span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;plain&#125;   <span class="comment">%插入参考</span></span><br><span class="line"><span class="keyword">\bibliography</span>&#123;数据库文件名&#125;  <span class="comment">%不要加上扩展名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<p>1.通过<code>\include</code>引入子目录中的章节文件。</p>
-<p>2.另一种加入参考文献的方法</p>
-<ul>
-<li>在书末尾通过<code>\bibliographystyle</code>和<code>\bibliography</code>引入文献数据库（*.bib）。</li>
-<li>引用文献仍是通过<code>\cite&#123;标签&#125;</code>，不引用的文献不会显示。一个文献都不引用，编译报错。</li>
-<li>数据库文件（*.bib）的格式如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@BOOK&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  publisher &#x3D; &#123;出版社&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;, </span><br><span class="line">  volume &#x3D; &#123;第几卷&#125;,</span><br><span class="line">  edition &#x3D; &#123;第几版&#125;  %first、second、third</span><br><span class="line">&#125;</span><br><span class="line">@ARTICLE&#123;标签,</span><br><span class="line">  author &#x3D; &#123;作者&#125;,</span><br><span class="line">  title &#x3D; &#123;文献标题&#125;,</span><br><span class="line">  joural &#x3D; &#123;期刊名&#125;,</span><br><span class="line">  year &#x3D; &#123;XXXX&#125;,</span><br><span class="line">  number &#x3D; &#123;期刊号&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里列举了BOOK、ARTICLE的一些常用属性设置，当然还可以设置其他的属性。一个*.bib文件可以存放多个文献的信息。带bib数据库的文档需要多次编译。这种方式并不比之前的方法省事，通常都是从网上下载这种bib数据库文件直接引用。</p>
-</blockquote>
-<p>二、章节文件框架（chapter.tex）</p>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\chapter</span>&#123;章节名称&#125;</span><br><span class="line"><span class="keyword">\section</span>&#123;第一节&#125;</span><br><span class="line">  <span class="comment">%第一节内容</span></span><br><span class="line"><span class="keyword">\subsection</span>&#123;第一小节&#125;</span><br><span class="line">  <span class="comment">%第一小节内容</span></span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;第一小小节&#125;</span><br><span class="line">  <span class="comment">%第一小小节内容</span></span><br><span class="line"><span class="keyword">\section</span>&#123;第二节&#125;</span><br><span class="line">  <span class="comment">%第二小节内容</span></span><br><span class="line"><span class="keyword">\endinput</span>   <span class="comment">%显式的结束文本，后面的内容不会被编译</span></span><br></pre></td></tr></table></figure>
-<p>去掉章节编号：添加星即可<code>\chapter*&#123;&#125;</code>。同时，这个chapter也不会被编进目录中。</p>
-]]></content>
-      <categories>
-        <category>LaTex</category>
-      </categories>
-      <tags>
-        <tag>LaTex</tag>
       </tags>
   </entry>
   <entry>
@@ -1234,93 +1234,6 @@
       </tags>
   </entry>
   <entry>
-    <title>VC编程 文件</title>
-    <url>/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<p>文件是任何系统最基本的资源，通常作为程序输入输出的对象。对于MFC，最基本的操作文件类就是CFile，它提供了众多基本函数，比如文件读写、移动读写指针等。当然，还有其他的文件操作类，简化了一些操作，但基本的使用思路没什么不同。</p>
-<a id="more"></a>
-
-<h4 id="CFile基本操作"><a href="#CFile基本操作" class="headerlink" title="CFile基本操作"></a>CFile基本操作</h4><p><strong>一 创建</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile(    <span class="comment">//构造函数</span></span><br><span class="line">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span><br><span class="line">    UINT nOpenFlags);        <span class="comment">//访问选项</span></span><br></pre></td></tr></table></figure>
-<p>参数nOpenFlags可选择如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile::modeRead         <span class="comment">//只读属性</span></span><br><span class="line">CFile::modeWrite        <span class="comment">//只写属性</span></span><br><span class="line">CFile::modeReadWrite    <span class="comment">//读写访问</span></span><br><span class="line">CFile::modeCreate       <span class="comment">//如果文件不存在创建文件，如果存在则覆盖并设置文件为空</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>模式可以组合使用，通过运算符 | 。</p>
-</blockquote>
-<p>创建文件主要靠的是参数modeCreate，所以创建一个文件除了通过CFile的构造函数，还可以通过下面的Open函数实现。使用构造函数创建文件对象，直接就打开了实际的文件。</p>
-<p><strong>二 打开和关闭</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Open</span><span class="params">(      <span class="comment">//以nOpenFlags属性打开lpszFileName路径的文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nOpenFlags,         <span class="comment">//访问选项</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CFileException* pError = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Close</span><span class="params">()</span></span>;        <span class="comment">//关闭一个文件并删除对象。</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>参数lpszFileName可接受字符串常量或CString类型的变量。</p>
-</blockquote>
-<p>例：打开指定路径的文件</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CString CurrentPath; </span><br><span class="line">GetModuleFileName(<span class="literal">NULL</span>,CurrentPath.GetBufferSetLength(MAX_PATH+<span class="number">1</span>),MAX_PATH+<span class="number">1</span>);  <span class="comment">//获取当前程序的路径</span></span><br><span class="line"><span class="keyword">int</span> i = CurrentPath.ReverseFind(<span class="string">&#x27;\\&#x27;</span>);</span><br><span class="line">CurrentPath = CurrentPath.Left(i+<span class="number">1</span>);</span><br><span class="line">CurrentPath += <span class="string">&quot;log.dat&quot;</span>;    <span class="comment">//当前程序路径下的日志文件路径</span></span><br><span class="line"></span><br><span class="line">CFile f;</span><br><span class="line"><span class="keyword">if</span> (f.Open(CurrentPath,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//进行文件操作</span></span><br><span class="line">    f.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;文件打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>三 读写</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> UINT <span class="title">Read</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span>* lpBuf,        <span class="comment">//接收数据缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//读取的最大字节数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Write</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> <span class="keyword">void</span>* lpBuf,  <span class="comment">//包含待写入数据的缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//要从缓冲区传输的字节数</span></span><br></pre></td></tr></table></figure>
-<p>从这两个函数的缓冲区类型上看，MFC并没有对其进行严格的限制，通常可以作为缓冲区的参数类型如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">50</span>]        <span class="comment">//1.字符数组</span></span><br><span class="line">str.GetBuffer()   <span class="comment">//2.CString缓冲区</span></span><br></pre></td></tr></table></figure>
-<p>例：读取日志并根据用户名得到密码<br>我们假设待读取的文件内容为姓名和密码，如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">张三	m123ad242</span><br><span class="line">李四	acs003342</span><br><span class="line">王五	skdlfjs32</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：log.dat文件的字符格式应为GBK，否则获取中文会得到乱码。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line"><span class="keyword">char</span> a = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">CString Name = <span class="string">&quot;&quot;</span>;    <span class="comment">//收集姓名</span></span><br><span class="line">CString No = <span class="string">&quot;&quot;</span>;      <span class="comment">//收集编号</span></span><br><span class="line"><span class="keyword">while</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    f.Read(&amp;a,<span class="number">1</span>);<span class="comment">//获取本行第一个字符</span></span><br><span class="line">    <span class="keyword">if</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (a != <span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Name += a;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Name == <span class="string">&quot;李四&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                No += a;</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            Name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>文件读取指针是每调用一次Read，自动更新指针到下一个位置。</p>
-<p>例：在文件末尾写入信息</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line">CString name = <span class="string">&quot;张三&quot;</span>;</span><br><span class="line">CString str = name + <span class="string">&quot;下线&quot;</span> + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line">f.SeekToEnd();	<span class="comment">//移动文件指针到末尾</span></span><br><span class="line">f.Write(str,str.GetLength());</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>写入的字符格式也是GBK。</p>
-</blockquote>
-<p><strong>四 定位</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">Seek</span><span class="params">(    <span class="comment">//移动文件指针</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LONGLONG lOff,         <span class="comment">//移动的字节数，正值表示从前向后移动，负值则从后向前移动。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nFrom)</span></span>;           <span class="comment">//当前位置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SeekToBegin</span><span class="params">()</span></span>;        <span class="comment">//移动到文件开始</span></span><br><span class="line"><span class="function">ULONGLONG <span class="title">SeekToEnd</span><span class="params">()</span></span>;     <span class="comment">//移动到文件末尾</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetPosition</span><span class="params">()</span> <span class="keyword">const</span></span>;    <span class="comment">//获取当前的文件指针的位置</span></span><br></pre></td></tr></table></figure>
-<p>参数nFrom可以选择如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile::begin        <span class="comment">//从文件开始（从0计）</span></span><br><span class="line">CFile::current      <span class="comment">//从当前位置</span></span><br><span class="line">CFile::end          <span class="comment">//从文件末尾</span></span><br></pre></td></tr></table></figure>
-<p>Seek如果移动指针失败，则返回一个未定义值并抛出一个CFileException异常。</p>
-<p>例：定位到文件最后一个字符</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.Seek(<span class="number">-1</span>,CFile::end);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (CFileException* e)</span><br><span class="line">&#123;</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;当前文件空&quot;</span>);</span><br><span class="line">    flag = <span class="number">1</span>;    <span class="comment">//出现异常置位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>五 大小，改名、删除</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetLength</span><span class="params">()</span> <span class="keyword">const</span></span>;           <span class="comment">//返回文件的尺寸</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SetLength</span><span class="params">(ULONGLONG dwNewLen)</span></span>;    <span class="comment">//设置文件的尺寸。dwNewLen可以大于或小于文件尺寸。源文件会被放大或截断，放大部分用0x0填充。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Rename</span><span class="params">(      <span class="comment">//重命名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszOldName,        <span class="comment">//老路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszNewName,        <span class="comment">//新路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Remove</span><span class="params">(      <span class="comment">//移除文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,       <span class="comment">//路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Rename和Remove都是静态函数，可以直接调用，例如CFile::Remove。</p>
-</blockquote>
-<p><strong>六 属性</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">GetStatus</span><span class="params">(CFileStatus&amp; rStatus)</span> <span class="keyword">const</span></span>;    <span class="comment">//获得文件的状态</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> BOOL PASCAL <span class="title">GetStatus</span><span class="params">(        <span class="comment">//获得文件状态（静态版本）</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    CFileStatus&amp; rStatus,            <span class="comment">//用于接收文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">SetStatus</span><span class="params">(        <span class="comment">//设置文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> CFileStatus&amp; status,       <span class="comment">//通过提前填充CFileStatus对象来设置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>CFileStatus成员：</p>
-<ul>
-<li>CTime m_ctime 文件创建日期时间</li>
-<li>CTime m_mtime 文件最后修改日期时间</li>
-<li>CTime m_atime 文件最后访问日期时间</li>
-<li>ULONGLONG m_size 文件尺寸（字节）</li>
-<li>BYTE m_attribute 文件属性</li>
-<li>char m_szFullName[_MAX_PATH] 文件名</li>
-</ul>
-<p>m_attribute数据：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Attribute</span> &#123;</span></span><br><span class="line">    normal =    <span class="number">0x00</span>,</span><br><span class="line">    readOnly =  <span class="number">0x01</span>,</span><br><span class="line">    hidden =    <span class="number">0x02</span>,</span><br><span class="line">    system =    <span class="number">0x04</span>,</span><br><span class="line">    volume =    <span class="number">0x08</span>,</span><br><span class="line">    directory = <span class="number">0x10</span>,</span><br><span class="line">    archive =   <span class="number">0x20</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
-<p>例：获取文件大小和创建时间</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFileStatus status;</span><br><span class="line"><span class="keyword">if</span>(f.GetStatus(status))</span><br><span class="line">&#123;</span><br><span class="line">    m_Edit1.Format(<span class="string">&quot;%d&quot;</span>,status.m_size);</span><br><span class="line">    m_Edit2.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">        status.m_ctime.GetYear(),status.m_ctime.GetMonth(),status.m_ctime.GetDay(),</span><br><span class="line">        status.m_ctime.GetHour(),status.m_ctime.GetMinute(),status.m_ctime.GetSecond());</span><br><span class="line">    m_Edit3.Format(<span class="string">&quot;0x%x&quot;</span>,status.m_attribute);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例：设置文件属性为隐藏</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFileStatus t;</span><br><span class="line">t.m_size = <span class="number">0</span>;	</span><br><span class="line">t.m_attribute |= CFile::hidden;</span><br><span class="line">CFile::SetStatus(CurrentPath,t);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果CFileStatus对象中的某项被设置为0，那么这一项不会更新。</p>
-</blockquote>
-<h4 id="CStdioFile基本操作"><a href="#CStdioFile基本操作" class="headerlink" title="CStdioFile基本操作"></a>CStdioFile基本操作</h4><p>CStdioFile继承自CFile，提供了行读写函数。</p>
-<p><strong>一 读取一行</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> LPTSTR <span class="title">ReadString</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR lpsz,       <span class="comment">//指定一个字符缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nMax)</span></span>;        <span class="comment">//最大接收字符数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">ReadString</span><span class="params">(CString&amp; rString)</span></span>;    <span class="comment">//接收一个CString对象</span></span><br></pre></td></tr></table></figure>
-<p>通常，接收CString对象的版本更加实用。ReadString每次获取一行，但不获取每行末尾的\r\n，使用起来非常方便。读取正常的话，rString每次都能获取一行字符，如果到达文件末尾，rString会得到NULL，函数返回False。</p>
-<p>例：读取每行信息</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CStdioFile <span class="built_in">log</span>;</span><br><span class="line">CString Line, str;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">log</span>.Open(<span class="string">&quot;H:\\log.dat&quot;</span>,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.ReadString(Line);</span><br><span class="line">    str.Format(<span class="string">&quot;%d&quot;</span>,Line.GetLength());<span class="comment">//不包括\r\n</span></span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">log</span>.ReadString(Line))	<span class="comment">//抵达末尾，返回空</span></span><br><span class="line">        AfxMessageBox(Line);</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;抵达文件末尾&quot;</span>);</span><br><span class="line">    <span class="built_in">log</span>.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessage(<span class="string">&quot;log打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>二 写入一行</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">WriteString</span><span class="params">(LPCTSTR lpsz)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>WriteString没有什么特别之处，与CFile的Write类似，将lpsz缓冲区内的字符串直接写入文件，并没有在末尾自动添加\r\n这类东西。</p>
-<p>例：写入三行信息</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//log文件以modeWrite打开</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;张三\t123456\r\n&quot;</span>);    <span class="comment">//写入时同样不会添加\r\n</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;李四\t123456\r\n&quot;</span>);</span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;王五\t123456&quot;</span>);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>VC++</category>
-      </categories>
-      <tags>
-        <tag>VC++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VC编程 文件查找</title>
     <url>/2016/03/17/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<p>经过对文件操作（CFile）的系统学习后，觉得也应该再看看文件查找（CFindFile）的相关资料，现将学习过程记录如下。</p>
@@ -1802,39 +1715,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Hexo建立博客二 配置博客</title>
-    <url>/2017/10/05/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%BA%8C%20%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>Hexo默认使用landscape主题，我们可以在<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>下载其他主题。NexT主题界面简洁推荐使用，其官方主页为<a href="http://theme-next.iissnan.com/">http://theme-next.iissnan.com/</a>。</p>
-<a id="more"></a>
-
-<h4 id="Hexo全局设置"><a href="#Hexo全局设置" class="headerlink" title="Hexo全局设置"></a>Hexo全局设置</h4><p>打开Hexo全局配置文件_config.yml，按如下注释进行设置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Programmer&#39;s Speak           #站点名</span><br><span class="line">subtitle: 理论+实践&#x3D;真知+时间&#x3D;睿智    #副标题</span><br><span class="line">description: &#39;&#39;                     #对站点的描述，用于SEO</span><br><span class="line">keywords: Program                   #用于SEO</span><br><span class="line">author: Devastator                  #博主昵称</span><br><span class="line">language: zh-CN                     #博客语言</span><br><span class="line">timezone: Asia&#x2F;Shanghai             #时区</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: https:&#x2F;&#x2F;YourGithubName.github.io&#x2F;      #博客地址，与申请的GitHub一致</span><br><span class="line">root: &#x2F;</span><br><span class="line">permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line"># Directory                 目录设置，一般不修改</span><br><span class="line">source_dir: source          #源文件夹，存放文章</span><br><span class="line">public_dir: public          #公共文件夹，存放生成的静态文件</span><br><span class="line">tag_dir: tags               #标签文件夹，默认是tags。实际存放在source&#x2F;tags中。</span><br><span class="line">archive_dir: archives       #档案文件夹，默认是archives。</span><br><span class="line">category_dir: categories    #分类文件夹，默认是categories。实际存放在source&#x2F;categories中。</span><br><span class="line">code_dir: downloads&#x2F;code    #代码文件夹，默认是downloads&#x2F;code</span><br><span class="line">i18n_dir: :lang             #国际化文件夹，默认跟language相同</span><br><span class="line">skip_render:                #跳过指定文件的渲染</span><br><span class="line"></span><br><span class="line"># Writing                   文章布局、写作格式的定义，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Home page setting</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#39;&#39;</span><br><span class="line">  per_page: 10          #每页显示的Post数</span><br><span class="line">  order_by: -date       #Post的顺序（按日期从后向前排序）</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag        分类和标签，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Date &#x2F; Time format    日期、时间格式，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next            #博客主题，默认是landscape</span><br><span class="line"></span><br><span class="line"># Deployment           部署到Github</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: git@github.com:YourGithubName&#x2F;YourGithubName.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-<h4 id="NexT主题设置"><a href="#NexT主题设置" class="headerlink" title="NexT主题设置"></a>NexT主题设置</h4><p>从NexT的github下载，解压缩后改名为next，放入theme目录。按下面注释修改NexT配置文件themes\next\_config.yml：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes           选择样式</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line"># Dark Mode</span><br><span class="line">darkmode: false</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Site Information Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">favicon:</span><br><span class="line">  small: &#x2F;images&#x2F;robot_16px.png   #网站图标，存放于\next\source\images</span><br><span class="line">  medium: &#x2F;images&#x2F;robot_32px.png</span><br><span class="line">  apple_touch_icon: &#x2F;images&#x2F;apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: &#x2F;images&#x2F;logo.svg</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">menu:               # 去掉注释就可以显示，顺序可调整</span><br><span class="line">  home: &#x2F; || fa fa-home                  #首页</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th   #分类</span><br><span class="line">  about: &#x2F;about&#x2F; || fa fa-user           #关于</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags             #标签</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Sidebar Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;sidebar</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: &#x2F;images&#x2F;name.jpg     #头像，存放于\next\source\images</span><br><span class="line">  ......</span><br><span class="line"># Social Links              个人链接</span><br><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;name || fab fa-github</span><br><span class="line">  ......</span><br><span class="line"># Blog rolls                </span><br><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-globe</span><br><span class="line">  title: Recommend          #输入链接区域的标题</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: block</span><br><span class="line"></span><br><span class="line">links:                      #名：地址</span><br><span class="line">  Racket: https:&#x2F;&#x2F;www.racket-lang.org&#x2F;</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Footer Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;footer</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">footer:</span><br><span class="line">  since: 2017       #起始年</span><br><span class="line">  ......</span><br><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">  powered: false    #不显示“强力驱动”</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Post Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;posts</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Post meta display settings</span><br><span class="line">post_meta:          #文章标题内容</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true  #发表日期</span><br><span class="line">  updated_at:       #更新日期</span><br><span class="line">    enable: false</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true  #分类于</span><br><span class="line">  ......</span><br><span class="line"># Donate (Sponsor) settings</span><br><span class="line"># Front-matter variable (unsupport animation).</span><br><span class="line">reward_settings:</span><br><span class="line">  # If true, a donate button will be displayed in every article by default.</span><br><span class="line">  enable: true      #显示打赏按钮</span><br><span class="line">  animation: true</span><br><span class="line">  #comment: Buy me a coffee</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;wechat.png   #微信收款，存放于\next\source\images</span><br><span class="line">  alipay: &#x2F;images&#x2F;pay.jpg         #支付宝收款</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Misc Theme Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;miscellaneous</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # All available themes: https:&#x2F;&#x2F;theme-next.js.org&#x2F;highlight&#x2F;</span><br><span class="line">  theme:        #代码块高亮主题设置</span><br><span class="line">    light: atom-one-dark #railscasts</span><br><span class="line">    dark: tomorrow-night</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Third Party Plugins &amp; Services Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;third-party-services&#x2F;</span><br><span class="line"># More plugins: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;awesome-next</span><br><span class="line"># You may need to install the corresponding dependency packages</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 这一部分的设置在下一节说明</span><br></pre></td></tr></table></figure>
-<h4 id="第三方插件和服务"><a href="#第三方插件和服务" class="headerlink" title="第三方插件和服务"></a>第三方插件和服务</h4><p>NexT支持众多第三方插件，方便用户扩展功能。在上一节中的末尾部分，就是关于插件的设置。</p>
-<p>一、使用Latex数学公式</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">math:</span><br><span class="line">  # Default (false) will load mathjax &#x2F; katex script on demand.</span><br><span class="line">  # That is it only render those page which has &#96;mathjax: true&#96; in front-matter.</span><br><span class="line">  # If you set it to true, it will load mathjax &#x2F; katex srcipt EVERY PAGE.</span><br><span class="line">  every_page: false     #一般设置为false，我们只在需要时渲染数学公式</span><br><span class="line"></span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true        #开启功能</span><br><span class="line">    # Available values: none | ams | all</span><br><span class="line">    tags: none</span><br></pre></td></tr></table></figure>
-<p>按照上面设置后，每当需要在文章中使用Latex数学公式时，在文章标题中添加mathjax项：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章名</span><br><span class="line">date: 2017-9-30 11:15:36</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>二、不蒜子统计</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">busuanzi_count:           #将下面的三项设置为true即可</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: far fa-eye</span><br></pre></td></tr></table></figure>
-<p>设置后如果没反应，则进入next\layout\_third-party\analytics目录，打开busuanzi-counter.njk，修正其中的地址即可。</p>
-<p>三、添加搜索<br>在Next的配置文件中启用搜索：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true       #设置为true，即可启用</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br></pre></td></tr></table></figure>
-<p>进入Hexo根目录，右键打开Git Bash，键入<code>$ npm install hexo-generator-searchdb --save</code>安装搜索模块。然后，在Hexo的全局配置文件_config.yml中任意位置添加：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>通过如下命令可以看到效果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean    <span class="comment"># 用于清除缓存</span></span><br><span class="line">$ hexo generate <span class="comment"># 生成静态网页</span></span><br><span class="line">$ hexo server   <span class="comment"># 访问localhost:4000。</span></span><br></pre></td></tr></table></figure>
-<p>此时点击页面中的分类、关于、标签，没有任何反应。下一篇文章会说明如何添加这些内容。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Hexo建立博客三 发布文章</title>
     <url>/2017/10/08/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%B8%89%20%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<h4 id="实现分类、标签和关于链接"><a href="#实现分类、标签和关于链接" class="headerlink" title="实现分类、标签和关于链接"></a>实现分类、标签和关于链接</h4><p>进入Hexo目录，右键选择Git Bash，键入：</p>
@@ -1869,6 +1749,39 @@
 <p>打开浏览器，访问localhost:5000，根据实际情况对源文件进行修改。调整完毕可上传到Github：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>此时分类和标签页就会自动出现文章的索引。</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Hexo建立博客二 配置博客</title>
+    <url>/2017/10/05/%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E4%BA%8C%20%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>Hexo默认使用landscape主题，我们可以在<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>下载其他主题。NexT主题界面简洁推荐使用，其官方主页为<a href="http://theme-next.iissnan.com/">http://theme-next.iissnan.com/</a>。</p>
+<a id="more"></a>
+
+<h4 id="Hexo全局设置"><a href="#Hexo全局设置" class="headerlink" title="Hexo全局设置"></a>Hexo全局设置</h4><p>打开Hexo全局配置文件_config.yml，按如下注释进行设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Programmer&#39;s Speak           #站点名</span><br><span class="line">subtitle: 理论+实践&#x3D;真知+时间&#x3D;睿智    #副标题</span><br><span class="line">description: &#39;&#39;                     #对站点的描述，用于SEO</span><br><span class="line">keywords: Program                   #用于SEO</span><br><span class="line">author: Devastator                  #博主昵称</span><br><span class="line">language: zh-CN                     #博客语言</span><br><span class="line">timezone: Asia&#x2F;Shanghai             #时区</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: https:&#x2F;&#x2F;YourGithubName.github.io&#x2F;      #博客地址，与申请的GitHub一致</span><br><span class="line">root: &#x2F;</span><br><span class="line">permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line"># Directory                 目录设置，一般不修改</span><br><span class="line">source_dir: source          #源文件夹，存放文章</span><br><span class="line">public_dir: public          #公共文件夹，存放生成的静态文件</span><br><span class="line">tag_dir: tags               #标签文件夹，默认是tags。实际存放在source&#x2F;tags中。</span><br><span class="line">archive_dir: archives       #档案文件夹，默认是archives。</span><br><span class="line">category_dir: categories    #分类文件夹，默认是categories。实际存放在source&#x2F;categories中。</span><br><span class="line">code_dir: downloads&#x2F;code    #代码文件夹，默认是downloads&#x2F;code</span><br><span class="line">i18n_dir: :lang             #国际化文件夹，默认跟language相同</span><br><span class="line">skip_render:                #跳过指定文件的渲染</span><br><span class="line"></span><br><span class="line"># Writing                   文章布局、写作格式的定义，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Home page setting</span><br><span class="line">index_generator:</span><br><span class="line">  path: &#39;&#39;</span><br><span class="line">  per_page: 10          #每页显示的Post数</span><br><span class="line">  order_by: -date       #Post的顺序（按日期从后向前排序）</span><br><span class="line"></span><br><span class="line"># Category &amp; Tag        分类和标签，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Date &#x2F; Time format    日期、时间格式，一般不修改</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># Pagination</span><br><span class="line">## Set per_page to 0 to disable pagination</span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next            #博客主题，默认是landscape</span><br><span class="line"></span><br><span class="line"># Deployment           部署到Github</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: git@github.com:YourGithubName&#x2F;YourGithubName.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
+<h4 id="NexT主题设置"><a href="#NexT主题设置" class="headerlink" title="NexT主题设置"></a>NexT主题设置</h4><p>从NexT的github下载，解压缩后改名为next，放入theme目录。按下面注释修改NexT配置文件themes\next\_config.yml：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes           选择样式</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br><span class="line"></span><br><span class="line"># Dark Mode</span><br><span class="line">darkmode: false</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Site Information Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">favicon:</span><br><span class="line">  small: &#x2F;images&#x2F;robot_16px.png   #网站图标，存放于\next\source\images</span><br><span class="line">  medium: &#x2F;images&#x2F;robot_32px.png</span><br><span class="line">  apple_touch_icon: &#x2F;images&#x2F;apple-touch-icon-next.png</span><br><span class="line">  safari_pinned_tab: &#x2F;images&#x2F;logo.svg</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">menu:               # 去掉注释就可以显示，顺序可调整</span><br><span class="line">  home: &#x2F; || fa fa-home                  #首页</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th   #分类</span><br><span class="line">  about: &#x2F;about&#x2F; || fa fa-user           #关于</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags             #标签</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Sidebar Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;sidebar</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # Replace the default image and set the url here.</span><br><span class="line">  url: &#x2F;images&#x2F;name.jpg     #头像，存放于\next\source\images</span><br><span class="line">  ......</span><br><span class="line"># Social Links              个人链接</span><br><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;name || fab fa-github</span><br><span class="line">  ......</span><br><span class="line"># Blog rolls                </span><br><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-globe</span><br><span class="line">  title: Recommend          #输入链接区域的标题</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: block</span><br><span class="line"></span><br><span class="line">links:                      #名：地址</span><br><span class="line">  Racket: https:&#x2F;&#x2F;www.racket-lang.org&#x2F;</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Footer Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;footer</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">footer:</span><br><span class="line">  since: 2017       #起始年</span><br><span class="line">  ......</span><br><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">  powered: false    #不显示“强力驱动”</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Post Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;posts</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line"># Post meta display settings</span><br><span class="line">post_meta:          #文章标题内容</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true  #发表日期</span><br><span class="line">  updated_at:       #更新日期</span><br><span class="line">    enable: false</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true  #分类于</span><br><span class="line">  ......</span><br><span class="line"># Donate (Sponsor) settings</span><br><span class="line"># Front-matter variable (unsupport animation).</span><br><span class="line">reward_settings:</span><br><span class="line">  # If true, a donate button will be displayed in every article by default.</span><br><span class="line">  enable: true      #显示打赏按钮</span><br><span class="line">  animation: true</span><br><span class="line">  #comment: Buy me a coffee</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;wechat.png   #微信收款，存放于\next\source\images</span><br><span class="line">  alipay: &#x2F;images&#x2F;pay.jpg         #支付宝收款</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Misc Theme Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;theme-settings&#x2F;miscellaneous</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">  ......</span><br><span class="line">codeblock:</span><br><span class="line">  # Code Highlight theme</span><br><span class="line">  # All available themes: https:&#x2F;&#x2F;theme-next.js.org&#x2F;highlight&#x2F;</span><br><span class="line">  theme:        #代码块高亮主题设置</span><br><span class="line">    light: atom-one-dark #railscasts</span><br><span class="line">    dark: tomorrow-night</span><br><span class="line">  ......</span><br><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Third Party Plugins &amp; Services Settings</span><br><span class="line"># See: https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;third-party-services&#x2F;</span><br><span class="line"># More plugins: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;awesome-next</span><br><span class="line"># You may need to install the corresponding dependency packages</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 这一部分的设置在下一节说明</span><br></pre></td></tr></table></figure>
+<h4 id="第三方插件和服务"><a href="#第三方插件和服务" class="headerlink" title="第三方插件和服务"></a>第三方插件和服务</h4><p>NexT支持众多第三方插件，方便用户扩展功能。在上一节中的末尾部分，就是关于插件的设置。</p>
+<p>一、使用Latex数学公式</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">math:</span><br><span class="line">  # Default (false) will load mathjax &#x2F; katex script on demand.</span><br><span class="line">  # That is it only render those page which has &#96;mathjax: true&#96; in front-matter.</span><br><span class="line">  # If you set it to true, it will load mathjax &#x2F; katex srcipt EVERY PAGE.</span><br><span class="line">  every_page: false     #一般设置为false，我们只在需要时渲染数学公式</span><br><span class="line"></span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true        #开启功能</span><br><span class="line">    # Available values: none | ams | all</span><br><span class="line">    tags: none</span><br></pre></td></tr></table></figure>
+<p>按照上面设置后，每当需要在文章中使用Latex数学公式时，在文章标题中添加mathjax项：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章名</span><br><span class="line">date: 2017-9-30 11:15:36</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>二、不蒜子统计</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">busuanzi_count:           #将下面的三项设置为true即可</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: far fa-eye</span><br></pre></td></tr></table></figure>
+<p>设置后如果没反应，则进入next\layout\_third-party\analytics目录，打开busuanzi-counter.njk，修正其中的地址即可。</p>
+<p>三、添加搜索<br>在Next的配置文件中启用搜索：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true       #设置为true，即可启用</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br></pre></td></tr></table></figure>
+<p>进入Hexo根目录，右键打开Git Bash，键入<code>$ npm install hexo-generator-searchdb --save</code>安装搜索模块。然后，在Hexo的全局配置文件_config.yml中任意位置添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>通过如下命令可以看到效果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean    <span class="comment"># 用于清除缓存</span></span><br><span class="line">$ hexo generate <span class="comment"># 生成静态网页</span></span><br><span class="line">$ hexo server   <span class="comment"># 访问localhost:4000。</span></span><br></pre></td></tr></table></figure>
+<p>此时点击页面中的分类、关于、标签，没有任何反应。下一篇文章会说明如何添加这些内容。</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -1947,7 +1860,7 @@
   <entry>
     <title>各国近代银币</title>
     <url>/2023/05/16/%E5%90%84%E5%9B%BD%E8%BF%91%E4%BB%A3%E9%93%B6%E5%B8%81/</url>
-    <content><![CDATA[<p>小时候家里的古币就属<strong>乾隆通宝</strong>多，每次拿出来玩，我父亲看到后，都会说一句：“太多了，不值钱！”所以，我从小就觉得乾隆时期离现代很近，而且不值钱。</p>
+    <content><![CDATA[<p>小时候家里的古币就属<strong>乾隆通宝</strong>多，每次拿出来玩，我父亲看到后，都会说一句：“太多了，不值钱！”所以，从小我就觉得乾隆时期离现代很近，而且“盛世时期”的钱不值钱。</p>
 <blockquote>
 <p>清高宗爱新觉罗·弘历(1711年9月25日-1799年2月7日)</p>
 </blockquote>
@@ -2056,7 +1969,7 @@
 <li>1964奥运会100元：4.8g，0.6银，22.5mm，1964</li>
 <li>1964奥运会1000元：20g，0.925银，35mm，1964</li>
 </ol>
-<h4 id="美国-United-States-of-America"><a href="#美国-United-States-of-America" class="headerlink" title="美国(United States of America)"></a>美国(United States of America)</h4><p>1776年7月4日，通过《独立宣言》，美利坚合众国成立。作为一个全新的大国，虽有战争，但没有朝代更替，也没有巨幅的体制改革，综合国力和国土面积一直稳步上升，这可能就是没有国王或皇帝的好处吧。近代，所有故事中都有美国，但都不是主角，直至二战，美国大展身手，在世界历史上留下了极为光彩的一页。二战后，欧洲列强已成历史，美苏相继成为世界超级大国。冷战时期，美国为抑制苏联，成立北约，正式主导欧洲事务。1991年12月，苏联解体，至此世界没有哪个国家能够单独与其抗衡。</p>
+<h4 id="美国（United-States-of-America）"><a href="#美国（United-States-of-America）" class="headerlink" title="美国（United States of America）"></a>美国（United States of America）</h4><p>1776年7月4日，通过《独立宣言》，美利坚合众国成立。作为一个全新的大国，虽有战争，但没有朝代更替，也没有巨幅的体制改革，综合国力和国土面积一直稳步上升，这可能就是没有国王或皇帝的好处吧。近代，所有故事中都有美国，但都不是主角，直至二战，美国大展身手，在世界历史上留下了极为光彩的一页。二战后，欧洲列强已成历史，美苏相继成为世界超级大国。冷战时期，美国为抑制苏联，成立北约，正式主导欧洲事务。1991年12月，苏联解体，至此世界没有哪个国家能够单独与其抗衡。</p>
 <ol>
 <li>波浪头1元：26.96g，0.892银，39-40mm，1798-1804（分别有5分，1角，1/4元，半元，1元）</li>
 <li>自由帽半元：13.48g，0.892银，32.5mm，1807-1836（分别有5分，1角，1/4元，半元）</li>
@@ -3337,6 +3250,86 @@
       </tags>
   </entry>
   <entry>
+    <title>总结和展望（癸卯）</title>
+    <url>/2023/01/24/%E5%B9%B4%E5%88%9D%E5%B1%95%E6%9C%9B%EF%BC%88%E7%99%B8%E5%8D%AF%EF%BC%89/</url>
+    <content><![CDATA[<p>2021年，第一次写计划和总结，当时正值公司混改，各方面变化很大，心里有不少感触，所以下笔非常顺畅。2022年，总结和计划是分开写的，长篇大论了，写起来颇费心力。现在第三个年头了，感觉具体的计划真是没什么意义！年龄越大，越能感到命运之力，个体没有抗衡环境的力量，要想过的好点只能顺势而为。</p>
+<blockquote>
+<p>故道大，天大，地大，王亦大。—— 帛书《道德经》</p>
+</blockquote>
+<p>去年身心很累，工作上一直穷折腾到年底；生活上眼看有了一点起色，结果新的重担压下来了……国庆节和春节都没闲着，即使闲下来，也总是坐在椅子上发呆。心不静……什么事都做不好。</p>
+<a id="more"></a>
+
+<p>人心真是太小了，“真正”的事情装不下几个，能做的只能是尽量让心虚下来。然后呢？就是接受…适应…以后再遇到同样的事，可能也就坦然了。当然，如果遇到新的“大事”，照样还得如此一番。有些人就是在某个事情面前再也爬不起来了。</p>
+<p>人生就像修炼场，克服了七宗罪，战胜了人性，那就是神。所谓的克服，就是<strong>面对</strong>现实，靠与外力交互去掉自身多余的棱角，消除各种杂念，使自己变得更加纯粹坚定，最终知道自己存在于世的意义。真正的大道，不是去教堂或寺庙花钱、听课能够获得的，没经过世事的人悟不出道来，而内心软弱的人将迷失于探寻大道的路上。</p>
+<p>回顾过去一年，生活上出了两件事：一件算是爱情方面的吧，另一件就是父亲确诊癌症。爱情和亲情受到双重打击，瞬间感觉自己老了！其实，我也算是步入中年了，但一直生活的还算轻松，个人的一些爱好也能够满足。我一直对年龄没有什么概念，直至今年，一下子就压过来了，两鬓多出好多白发。</p>
+<p>一、广结善缘<br>没想到真的做到了，不过也才4个月零3天。起始于5月10日，结束于9月13日，好在是无疾而终，后面还能谈话见面。当她退还我照片的那一刻，真的是忍不住了，泪留不止……不过呢，但凡痛苦的事情都能让人进步：</p>
+<ol>
+<li>无论哪个领域，不要跟比你更有实践经验的人讲那方面的道理，没什么用，而且还可能自取其辱，如果没有受到惩罚说明对方仁慈；</li>
+<li>如果开始存在心结，后面会一直伴随，直到面对的那一天。真的很难说清，是开始就摊牌好，还是逐渐的暴露好；</li>
+<li>现今谈恋爱真的是件高成本的事情。成本不只源自于钱，而且钱也不能真正解决感情问题；</li>
+<li>过去能做到知根知底，现在人口随意流动，很难了解人的过往。现在未婚大龄青年不少，每个人的经历都深刻影响着这个人，与人深刻接触都像是在探索，甚至探险；</li>
+<li>当今社会，一个合格的配偶要具备三个健康：精神健康、身体健康、经济健康。这三项哪个有问题都是未来的隐患！疑神疑鬼、抑郁症、身体存在缺陷或残疾、背负大额债务，这些事情在生活中都是时时刻刻要面对的。</li>
+</ol>
+<p>二、父亲癌症<br>真是意料之外，但又在情理之中……人没病，不会死。老人得重病，基本上每个人都会经历，只不过反应不一样而已。通常是感情越亲密，心理上越难以接受。所幸，手术顺利，目前人躺在ICU里。作为家属能做的就是送个饭，以及续好费用。经费在燃烧啊……</p>
+<ol>
+<li>人世间真没有便宜可捡，总是要还的，只不过还的形式不同；</li>
+<li>你被什么保护，就被什么限制；</li>
+<li>老子不死，儿不大；</li>
+<li>一堆癌症治疗相关知识；</li>
+<li>门特和工会大病救助办理方法。 </li>
+</ol>
+<p>下面照例还是先说说国家大事。在这里写这些内容，不是说这些大事会受一个小老百姓影响，而是要通过这些现象理解当前的<strong>道</strong>，进而审视一下自己这一年的命运。</p>
+<ol>
+<li>1月14日-15日，太平洋岛国汤加的洪阿哈阿帕伊海底火山猛烈喷发并引发海啸，喷发威力超过任何一次核爆试验以及20世纪以来其他火山喷发，羽流高达57公里，为有记录以来最高。</li>
+<li>2月24日，俄罗斯-乌克兰战争爆发，从预期的闪电战变成了持久战，一方面是因为欧美在背后支持乌克兰，另一方面是俄罗斯没有国人想象的那么强大，武器老旧且民心背离。这场战争持续到年底，引发了欧美能源危机，各国通货膨胀严重，英法德民众都罢工上街游行了。</li>
+<li>3月16日，美国为应对历史最高通胀开始加息，全年加息7次，累计加息425个基点。</li>
+<li>7月6日，斯里兰卡总理正式宣布斯里兰卡破产。早在3月斯里兰卡就已经岌岌可危，因为经济问题没法解决进口纸张和笔墨，宣布整个斯里兰卡的学校考试无期限推迟，没钱进口煤炭加上关闭全国路灯，引发了数百名群众在总统府门前抗议。4月宣布进入紧急状态并实施宵禁，大规模暴乱迎面而来同时斯里兰卡政府立马关闭了全国社交平台，26名部长集体辞职！5月斯里兰卡总理宣布辞职，6月宣布粮食短缺，经济崩溃，7月份总统宣布国家破产。</li>
+<li>7月7日，英国首相约翰逊请辞，经历了2个月的竞选后，最终特拉斯于9月6日接任。但因其激进的减税政策被迫于10月下台。之后，苏纳克接班，成为英国历史上首位印度裔首相。</li>
+<li>7月8日，日本首相安倍晋三在奈良市街头发表演讲时遭枪击倒地，在送医时心肺功能停止。</li>
+<li>8月2日，美国国会众议长佩洛西不顾中方强烈反对和严正交涉，窜访中国台湾地区。外交部、国防部、中共中央台湾工作办公室、全国人大常委会发言人、全国政协外事委员会、等部门接连发声，称“中方对此坚决反对”，予以“严厉谴责”。</li>
+<li>9月8日，英国伊丽莎白二世驾崩，其子查尔斯继位为英国国王查尔斯三世。</li>
+<li>10月16日，中共二十大召开，习近平毫无意外的继续连任中共中央总书记。</li>
+<li>10月30日，巴西左翼领导人卢拉在大选中击败对手当选总统。此前，哥伦比亚左翼领导人佩特罗于6月当选该国历史上首位左翼总统。到年底，拉美地区主要人口大国巴西、墨西哥、哥伦比亚、阿根廷、委内瑞拉、智利都选举产生了左翼政府。</li>
+<li>12月7日，国务院发布新冠防疫最新十条防疫优化政策。社会就突然放开了，进入各种场所既不用行程码，也不用健康码，结果2周内，街上、公司比疫情管控时还少——都在家养病了。无论是否打疫苗，大多数人都中招了，而且买不到药。高龄老人不少离世。其实在年初，疫情就不断反复，但政策是能不封城就不封城。</li>
+<li>7月欧洲多地气温超40摄氏度以上，导致交通不便和用水短缺。3月至4月的“印巴热浪”，导致印度气温达到30年来最高值（逼近50摄氏度）。巴基斯坦的“世纪大洪水”造成1/3国土遭遇水患，1000万人流离失所。阿根廷、乌拉圭、巴拉圭和巴西等国也遭遇历史性热浪。澳大利亚西部的昂斯洛（Onslow）气温一度达50.7摄氏度。美国西南部也遭遇了破纪录的干旱灾害，个别州农作物减产，美国最大水库米德湖（Lake Mead）的水位降至1937年4月以来的最低点。</li>
+<li>中国互联网巨头纷纷离场。3月，马化腾、李彦宏、丁磊等互联网大佬因为届满卸任缺席两会。11月，2022世界互联网大会在浙江乌镇开幕，马云、马化腾、刘强东、李彦宏、雷军、张一鸣、黄铮、王兴都没参加。前有马云退休，海外购置豪宅，打高尔夫球，后有刘强东减持股票套现66亿。在国家机器的作用下，中国互联网时代落幕。</li>
+<li>2022年，中国人口负增长85万，经济继续低迷。</li>
+<li>国务院副总理刘鹤1月17日出席达沃斯世界经济论坛2023年年会并发表致辞。刘鹤指出，中国的金融体系总体稳健。我们针对房地产领域风险，着力稳定预期，提供合理流动性，放松过热时期的调控措施，积极扩大有效需求。未来中国房地产业稳定发展仍有足够的需求支撑。刘鹤再次强调，房地产业是中国国民经济的支柱产业。房地产相关股票涨了一波。</li>
+<li>春节，各地百姓自发放花放炮。</li>
+</ol>
+<p>从上面这些事件看来，得不出稳中向好的结论吧？《全球通史》这本书揭示了一个重要道理——即使在古代，全球的历史进程也是同步的。</p>
+<p>再来看看自己，对照年初计划，完成情况如下：</p>
+<ol>
+<li>全年没有时间做自己喜欢的事情，所以更谈不上自学什么技术了；</li>
+<li>从2021年下决心通过项目管理师考试，到今年彻底放弃了。其实5月的那次考试，准备的还算认真，但是由于疫情封控，被取消了。11月的那次考试正值父亲生病，没有报名参加。以后再也不会去考这个证书了。当初有这个想法是上一家公司领导忽悠的结果。当时我就挺反感各种管理学的，从中明白了什么叫做“<strong>为学者日溢</strong>”！作为一名技术人员，从心里反感这种模糊本质，创造问题的做法，所以未来不会从事这类工作。</li>
+<li>年初，股市跌的老惨了，直至今日都深套着，年底有一次亏点小钱逃跑的机会，但是由于判断失误，没跑。明白了一条规则：一只股票在企稳后，短时间内就开始拉涨停，最多三个停板，而后会一路向下。相反，企稳后每日一根小红线，整体图形就像上楼梯一样，才有可能是长期行情！</li>
+</ol>
+<p>综上，就是什么都没实现。对于2021年5条归纳，现今有如下感想：</p>
+<ol>
+<li>身心健康最重要！每个十年身体都会有较大程度的变化，要调整、要适应，尽量做到身心一致；</li>
+<li>目标仍旧不明，真的是还未参透存于世间的意义，只知道自己确实兴趣广泛，而且越来越不喜欢当打工仔；</li>
+<li>人只有在安逸稳定的时候，才有心思做自己喜欢的事情。只有做自己喜欢的事情，才会感到人生的意义；</li>
+<li>劳动收入只能活着，这一点毋容置疑。普通人要想财务自由，只能去冒险，胆子得大，如果发现有对的苗头，一定要尽全力；</li>
+<li>按照目前的发展趋势，家庭会占据我大部分精力，所以一定要将有限的精力用于自己喜欢的事情；</li>
+<li>环境在变，个人要看清自己的位置，顺势而为，而不是迎难而上。</li>
+</ol>
+<p>虽说计划对于普通人没什么用，但还是给自己提几条要求吧。</p>
+<ol>
+<li>早睡、吃好、心情舒畅；</li>
+<li>继续学习编程技术；</li>
+<li>学会渗透测试技术；</li>
+<li>换一份工作；</li>
+<li>完善投资体系，在股市上赚到一笔大钱。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习51单片机四 串口</title>
     <url>/2011/10/03/%E5%AD%A6%E4%B9%A051%E5%8D%95%E7%89%87%E6%9C%BA%E5%9B%9B%20%E4%B8%B2%E5%8F%A3/</url>
     <content><![CDATA[<p>单片机的通信一般是指单片机与计算机，或与单片机之间的信息交换，有并行和串行两种方式。并行通信控制简单、相对传输速度快，但长距离传送时成本高且收、发方的各位同时接收存在困难；串行通信是按位将数据逐个传送，其优点是线路少成本低，可以利用现成线路，但传送控制比较复杂。</p>
@@ -3590,86 +3583,6 @@
       </tags>
   </entry>
   <entry>
-    <title>总结和展望（癸卯）</title>
-    <url>/2023/01/24/%E5%B9%B4%E5%88%9D%E5%B1%95%E6%9C%9B%EF%BC%88%E7%99%B8%E5%8D%AF%EF%BC%89/</url>
-    <content><![CDATA[<p>2021年，第一次写计划和总结，当时正值公司混改，各方面变化很大，心里有不少感触，所以下笔非常顺畅。2022年，总结和计划是分开写的，长篇大论了，写起来颇费心力。现在第三个年头了，感觉具体的计划真是没什么意义！年龄越大，越能感到命运之力，个体没有抗衡环境的力量，要想过的好点只能顺势而为。</p>
-<blockquote>
-<p>故道大，天大，地大，王亦大。—— 帛书《道德经》</p>
-</blockquote>
-<p>去年身心很累，工作上一直穷折腾到年底；生活上眼看有了一点起色，结果新的重担压下来了……国庆节和春节都没闲着，即使闲下来，也总是坐在椅子上发呆。心不静……什么事都做不好。</p>
-<a id="more"></a>
-
-<p>人心真是太小了，“真正”的事情装不下几个，能做的只能是尽量让心虚下来。然后呢？就是接受…适应…以后再遇到同样的事，可能也就坦然了。当然，如果遇到新的“大事”，照样还得如此一番。有些人就是在某个事情面前再也爬不起来了。</p>
-<p>人生就像修炼场，克服了七宗罪，战胜了人性，那就是神。所谓的克服，就是<strong>面对</strong>现实，靠与外力交互去掉自身多余的棱角，消除各种杂念，使自己变得更加纯粹坚定，最终知道自己存在于世的意义。真正的大道，不是去教堂或寺庙花钱、听课能够获得的，没经过世事的人悟不出道来，而内心软弱的人将迷失于探寻大道的路上。</p>
-<p>回顾过去一年，生活上出了两件事：一件算是爱情方面的吧，另一件就是父亲确诊癌症。爱情和亲情受到双重打击，瞬间感觉自己老了！其实，我也算是步入中年了，但一直生活的还算轻松，个人的一些爱好也能够满足。我一直对年龄没有什么概念，直至今年，一下子就压过来了，两鬓多出好多白发。</p>
-<p>一、广结善缘<br>没想到真的做到了，不过也才4个月零3天。起始于5月10日，结束于9月13日，好在是无疾而终，后面还能谈话见面。当她退还我照片的那一刻，真的是忍不住了，泪留不止……不过呢，但凡痛苦的事情都能让人进步：</p>
-<ol>
-<li>无论哪个领域，不要跟比你更有实践经验的人讲那方面的道理，没什么用，而且还可能自取其辱，如果没有受到惩罚说明对方仁慈；</li>
-<li>如果开始存在心结，后面会一直伴随，直到面对的那一天。真的很难说清，是开始就摊牌好，还是逐渐的暴露好；</li>
-<li>现今谈恋爱真的是件高成本的事情。成本不只源自于钱，而且钱也不能真正解决感情问题；</li>
-<li>过去能做到知根知底，现在人口随意流动，很难了解人的过往。现在未婚大龄青年不少，每个人的经历都深刻影响着这个人，与人深刻接触都像是在探索，甚至探险；</li>
-<li>当今社会，一个合格的配偶要具备三个健康：精神健康、身体健康、经济健康。这三项哪个有问题都是未来的隐患！疑神疑鬼、抑郁症、身体存在缺陷或残疾、背负大额债务，这些事情在生活中都是时时刻刻要面对的。</li>
-</ol>
-<p>二、父亲癌症<br>真是意料之外，但又在情理之中……人没病，不会死。老人得重病，基本上每个人都会经历，只不过反应不一样而已。通常是感情越亲密，心理上越难以接受。所幸，手术顺利，目前人躺在ICU里。作为家属能做的就是送个饭，以及续好费用。经费在燃烧啊……</p>
-<ol>
-<li>人世间真没有便宜可捡，总是要还的，只不过还的形式不同；</li>
-<li>你被什么保护，就被什么限制；</li>
-<li>老子不死，儿不大；</li>
-<li>一堆癌症治疗相关知识；</li>
-<li>门特和工会大病救助办理方法。 </li>
-</ol>
-<p>下面照例还是先说说国家大事。在这里写这些内容，不是说这些大事会受一个小老百姓影响，而是要通过这些现象理解当前的<strong>道</strong>，进而审视一下自己这一年的命运。</p>
-<ol>
-<li>1月14日-15日，太平洋岛国汤加的洪阿哈阿帕伊海底火山猛烈喷发并引发海啸，喷发威力超过任何一次核爆试验以及20世纪以来其他火山喷发，羽流高达57公里，为有记录以来最高。</li>
-<li>2月24日，俄罗斯-乌克兰战争爆发，从预期的闪电战变成了持久战，一方面是因为欧美在背后支持乌克兰，另一方面是俄罗斯没有国人想象的那么强大，武器老旧且民心背离。这场战争持续到年底，引发了欧美能源危机，各国通货膨胀严重，英法德民众都罢工上街游行了。</li>
-<li>3月16日，美国为应对历史最高通胀开始加息，全年加息7次，累计加息425个基点。</li>
-<li>7月6日，斯里兰卡总理正式宣布斯里兰卡破产。早在3月斯里兰卡就已经岌岌可危，因为经济问题没法解决进口纸张和笔墨，宣布整个斯里兰卡的学校考试无期限推迟，没钱进口煤炭加上关闭全国路灯，引发了数百名群众在总统府门前抗议。4月宣布进入紧急状态并实施宵禁，大规模暴乱迎面而来同时斯里兰卡政府立马关闭了全国社交平台，26名部长集体辞职！5月斯里兰卡总理宣布辞职，6月宣布粮食短缺，经济崩溃，7月份总统宣布国家破产。</li>
-<li>7月7日，英国首相约翰逊请辞，经历了2个月的竞选后，最终特拉斯于9月6日接任。但因其激进的减税政策被迫于10月下台。之后，苏纳克接班，成为英国历史上首位印度裔首相。</li>
-<li>7月8日，日本首相安倍晋三在奈良市街头发表演讲时遭枪击倒地，在送医时心肺功能停止。</li>
-<li>8月2日，美国国会众议长佩洛西不顾中方强烈反对和严正交涉，窜访中国台湾地区。外交部、国防部、中共中央台湾工作办公室、全国人大常委会发言人、全国政协外事委员会、等部门接连发声，称“中方对此坚决反对”，予以“严厉谴责”。</li>
-<li>9月8日，英国伊丽莎白二世驾崩，其子查尔斯继位为英国国王查尔斯三世。</li>
-<li>10月16日，中共二十大召开，习近平毫无意外的继续连任中共中央总书记。</li>
-<li>10月30日，巴西左翼领导人卢拉在大选中击败对手当选总统。此前，哥伦比亚左翼领导人佩特罗于6月当选该国历史上首位左翼总统。到年底，拉美地区主要人口大国巴西、墨西哥、哥伦比亚、阿根廷、委内瑞拉、智利都选举产生了左翼政府。</li>
-<li>12月7日，国务院发布新冠防疫最新十条防疫优化政策。社会就突然放开了，进入各种场所既不用行程码，也不用健康码，结果2周内，街上、公司比疫情管控时还少——都在家养病了。无论是否打疫苗，大多数人都中招了，而且买不到药。高龄老人不少离世。其实在年初，疫情就不断反复，但政策是能不封城就不封城。</li>
-<li>7月欧洲多地气温超40摄氏度以上，导致交通不便和用水短缺。3月至4月的“印巴热浪”，导致印度气温达到30年来最高值（逼近50摄氏度）。巴基斯坦的“世纪大洪水”造成1/3国土遭遇水患，1000万人流离失所。阿根廷、乌拉圭、巴拉圭和巴西等国也遭遇历史性热浪。澳大利亚西部的昂斯洛（Onslow）气温一度达50.7摄氏度。美国西南部也遭遇了破纪录的干旱灾害，个别州农作物减产，美国最大水库米德湖（Lake Mead）的水位降至1937年4月以来的最低点。</li>
-<li>中国互联网巨头纷纷离场。3月，马化腾、李彦宏、丁磊等互联网大佬因为届满卸任缺席两会。11月，2022世界互联网大会在浙江乌镇开幕，马云、马化腾、刘强东、李彦宏、雷军、张一鸣、黄铮、王兴都没参加。前有马云退休，海外购置豪宅，打高尔夫球，后有刘强东减持股票套现66亿。在国家机器的作用下，中国互联网时代落幕。</li>
-<li>2022年，中国人口负增长85万，经济继续低迷。</li>
-<li>国务院副总理刘鹤1月17日出席达沃斯世界经济论坛2023年年会并发表致辞。刘鹤指出，中国的金融体系总体稳健。我们针对房地产领域风险，着力稳定预期，提供合理流动性，放松过热时期的调控措施，积极扩大有效需求。未来中国房地产业稳定发展仍有足够的需求支撑。刘鹤再次强调，房地产业是中国国民经济的支柱产业。房地产相关股票涨了一波。</li>
-<li>春节，各地百姓自发放花放炮。</li>
-</ol>
-<p>从上面这些事件看来，得不出稳中向好的结论吧？《全球通史》这本书揭示了一个重要道理——即使在古代，全球的历史进程也是同步的。</p>
-<p>再来看看自己，对照年初计划，完成情况如下：</p>
-<ol>
-<li>全年没有时间做自己喜欢的事情，所以更谈不上自学什么技术了；</li>
-<li>从2021年下决心通过项目管理师考试，到今年彻底放弃了。其实5月的那次考试，准备的还算认真，但是由于疫情封控，被取消了。11月的那次考试正值父亲生病，没有报名参加。以后再也不会去考这个证书了。当初有这个想法是上一家公司领导忽悠的结果。当时我就挺反感各种管理学的，从中明白了什么叫做“<strong>为学者日溢</strong>”！作为一名技术人员，从心里反感这种模糊本质，创造问题的做法，所以未来不会从事这类工作。</li>
-<li>年初，股市跌的老惨了，直至今日都深套着，年底有一次亏点小钱逃跑的机会，但是由于判断失误，没跑。明白了一条规则：一只股票在企稳后，短时间内就开始拉涨停，最多三个停板，而后会一路向下。相反，企稳后每日一根小红线，整体图形就像上楼梯一样，才有可能是长期行情！</li>
-</ol>
-<p>综上，就是什么都没实现。对于2021年5条归纳，现今有如下感想：</p>
-<ol>
-<li>身心健康最重要！每个十年身体都会有较大程度的变化，要调整、要适应，尽量做到身心一致；</li>
-<li>目标仍旧不明，真的是还未参透存于世间的意义，只知道自己确实兴趣广泛，而且越来越不喜欢当打工仔；</li>
-<li>人只有在安逸稳定的时候，才有心思做自己喜欢的事情。只有做自己喜欢的事情，才会感到人生的意义；</li>
-<li>劳动收入只能活着，这一点毋容置疑。普通人要想财务自由，只能去冒险，胆子得大，如果发现有对的苗头，一定要尽全力；</li>
-<li>按照目前的发展趋势，家庭会占据我大部分精力，所以一定要将有限的精力用于自己喜欢的事情；</li>
-<li>环境在变，个人要看清自己的位置，顺势而为，而不是迎难而上。</li>
-</ol>
-<p>虽说计划对于普通人没什么用，但还是给自己提几条要求吧。</p>
-<ol>
-<li>早睡、吃好、心情舒畅；</li>
-<li>继续学习编程技术；</li>
-<li>学会渗透测试技术；</li>
-<li>换一份工作；</li>
-<li>完善投资体系，在股市上赚到一笔大钱。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>房价上天的起点</title>
     <url>/2018/09/21/%E6%88%BF%E4%BB%B7%E4%B8%8A%E5%A4%A9%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
     <content><![CDATA[<p>下面这篇文章要是在2009年看到就好了。当然，看到了也不一定理解，理解了也不一定去做。不过现在看来，这篇文章也是颇具启发性。</p>
@@ -3708,6 +3621,93 @@
       </categories>
       <tags>
         <tag>BAT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VC编程 文件</title>
+    <url>/2016/03/15/VC%E7%BC%96%E7%A8%8B%20%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>文件是任何系统最基本的资源，通常作为程序输入输出的对象。对于MFC，最基本的操作文件类就是CFile，它提供了众多基本函数，比如文件读写、移动读写指针等。当然，还有其他的文件操作类，简化了一些操作，但基本的使用思路没什么不同。</p>
+<a id="more"></a>
+
+<h4 id="CFile基本操作"><a href="#CFile基本操作" class="headerlink" title="CFile基本操作"></a>CFile基本操作</h4><p><strong>一 创建</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile(    <span class="comment">//构造函数</span></span><br><span class="line">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span><br><span class="line">    UINT nOpenFlags);        <span class="comment">//访问选项</span></span><br></pre></td></tr></table></figure>
+<p>参数nOpenFlags可选择如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile::modeRead         <span class="comment">//只读属性</span></span><br><span class="line">CFile::modeWrite        <span class="comment">//只写属性</span></span><br><span class="line">CFile::modeReadWrite    <span class="comment">//读写访问</span></span><br><span class="line">CFile::modeCreate       <span class="comment">//如果文件不存在创建文件，如果存在则覆盖并设置文件为空</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模式可以组合使用，通过运算符 | 。</p>
+</blockquote>
+<p>创建文件主要靠的是参数modeCreate，所以创建一个文件除了通过CFile的构造函数，还可以通过下面的Open函数实现。使用构造函数创建文件对象，直接就打开了实际的文件。</p>
+<p><strong>二 打开和关闭</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">Open</span><span class="params">(      <span class="comment">//以nOpenFlags属性打开lpszFileName路径的文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,    <span class="comment">//文件路径</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nOpenFlags,         <span class="comment">//访问选项</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CFileException* pError = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Close</span><span class="params">()</span></span>;        <span class="comment">//关闭一个文件并删除对象。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参数lpszFileName可接受字符串常量或CString类型的变量。</p>
+</blockquote>
+<p>例：打开指定路径的文件</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CString CurrentPath; </span><br><span class="line">GetModuleFileName(<span class="literal">NULL</span>,CurrentPath.GetBufferSetLength(MAX_PATH+<span class="number">1</span>),MAX_PATH+<span class="number">1</span>);  <span class="comment">//获取当前程序的路径</span></span><br><span class="line"><span class="keyword">int</span> i = CurrentPath.ReverseFind(<span class="string">&#x27;\\&#x27;</span>);</span><br><span class="line">CurrentPath = CurrentPath.Left(i+<span class="number">1</span>);</span><br><span class="line">CurrentPath += <span class="string">&quot;log.dat&quot;</span>;    <span class="comment">//当前程序路径下的日志文件路径</span></span><br><span class="line"></span><br><span class="line">CFile f;</span><br><span class="line"><span class="keyword">if</span> (f.Open(CurrentPath,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//进行文件操作</span></span><br><span class="line">    f.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessageBox(<span class="string">&quot;文件打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>三 读写</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> UINT <span class="title">Read</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">void</span>* lpBuf,        <span class="comment">//接收数据缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//读取的最大字节数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Write</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> <span class="keyword">void</span>* lpBuf,  <span class="comment">//包含待写入数据的缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nCount)</span></span>;       <span class="comment">//要从缓冲区传输的字节数</span></span><br></pre></td></tr></table></figure>
+<p>从这两个函数的缓冲区类型上看，MFC并没有对其进行严格的限制，通常可以作为缓冲区的参数类型如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">50</span>]        <span class="comment">//1.字符数组</span></span><br><span class="line">str.GetBuffer()   <span class="comment">//2.CString缓冲区</span></span><br></pre></td></tr></table></figure>
+<p>例：读取日志并根据用户名得到密码<br>我们假设待读取的文件内容为姓名和密码，如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">张三	m123ad242</span><br><span class="line">李四	acs003342</span><br><span class="line">王五	skdlfjs32</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：log.dat文件的字符格式应为GBK，否则获取中文会得到乱码。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line"><span class="keyword">char</span> a = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">CString Name = <span class="string">&quot;&quot;</span>;    <span class="comment">//收集姓名</span></span><br><span class="line">CString No = <span class="string">&quot;&quot;</span>;      <span class="comment">//收集编号</span></span><br><span class="line"><span class="keyword">while</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    f.Read(&amp;a,<span class="number">1</span>);<span class="comment">//获取本行第一个字符</span></span><br><span class="line">    <span class="keyword">if</span> (a != <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (a != <span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Name += a;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Name == <span class="string">&quot;李四&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                No += a;</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (a != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">                f.Read(&amp;a,<span class="number">1</span>);</span><br><span class="line">            Name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文件读取指针是每调用一次Read，自动更新指针到下一个位置。</p>
+<p>例：在文件末尾写入信息</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//文件已open</span></span><br><span class="line">CString name = <span class="string">&quot;张三&quot;</span>;</span><br><span class="line">CString str = name + <span class="string">&quot;下线&quot;</span> + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line">f.SeekToEnd();	<span class="comment">//移动文件指针到末尾</span></span><br><span class="line">f.Write(str,str.GetLength());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>写入的字符格式也是GBK。</p>
+</blockquote>
+<p><strong>四 定位</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">Seek</span><span class="params">(    <span class="comment">//移动文件指针</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LONGLONG lOff,         <span class="comment">//移动的字节数，正值表示从前向后移动，负值则从后向前移动。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nFrom)</span></span>;           <span class="comment">//当前位置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SeekToBegin</span><span class="params">()</span></span>;        <span class="comment">//移动到文件开始</span></span><br><span class="line"><span class="function">ULONGLONG <span class="title">SeekToEnd</span><span class="params">()</span></span>;     <span class="comment">//移动到文件末尾</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetPosition</span><span class="params">()</span> <span class="keyword">const</span></span>;    <span class="comment">//获取当前的文件指针的位置</span></span><br></pre></td></tr></table></figure>
+<p>参数nFrom可以选择如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFile::begin        <span class="comment">//从文件开始（从0计）</span></span><br><span class="line">CFile::current      <span class="comment">//从当前位置</span></span><br><span class="line">CFile::end          <span class="comment">//从文件末尾</span></span><br></pre></td></tr></table></figure>
+<p>Seek如果移动指针失败，则返回一个未定义值并抛出一个CFileException异常。</p>
+<p>例：定位到文件最后一个字符</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.Seek(<span class="number">-1</span>,CFile::end);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (CFileException* e)</span><br><span class="line">&#123;</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;当前文件空&quot;</span>);</span><br><span class="line">    flag = <span class="number">1</span>;    <span class="comment">//出现异常置位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>五 大小，改名、删除</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> ULONGLONG <span class="title">GetLength</span><span class="params">()</span> <span class="keyword">const</span></span>;           <span class="comment">//返回文件的尺寸</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SetLength</span><span class="params">(ULONGLONG dwNewLen)</span></span>;    <span class="comment">//设置文件的尺寸。dwNewLen可以大于或小于文件尺寸。源文件会被放大或截断，放大部分用0x0填充。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Rename</span><span class="params">(      <span class="comment">//重命名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszOldName,        <span class="comment">//老路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszNewName,        <span class="comment">//新路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">Remove</span><span class="params">(      <span class="comment">//移除文件</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,       <span class="comment">//路径名</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Rename和Remove都是静态函数，可以直接调用，例如CFile::Remove。</p>
+</blockquote>
+<p><strong>六 属性</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">GetStatus</span><span class="params">(CFileStatus&amp; rStatus)</span> <span class="keyword">const</span></span>;    <span class="comment">//获得文件的状态</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> BOOL PASCAL <span class="title">GetStatus</span><span class="params">(        <span class="comment">//获得文件状态（静态版本）</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    CFileStatus&amp; rStatus,            <span class="comment">//用于接收文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> PASCAL <span class="title">SetStatus</span><span class="params">(        <span class="comment">//设置文件状态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    LPCTSTR lpszFileName,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">const</span> CFileStatus&amp; status,       <span class="comment">//通过提前填充CFileStatus对象来设置</span></span></span></span><br><span class="line"><span class="function"><span class="params">    CAtlTransactionManager* pTM = <span class="literal">NULL</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>CFileStatus成员：</p>
+<ul>
+<li>CTime m_ctime 文件创建日期时间</li>
+<li>CTime m_mtime 文件最后修改日期时间</li>
+<li>CTime m_atime 文件最后访问日期时间</li>
+<li>ULONGLONG m_size 文件尺寸（字节）</li>
+<li>BYTE m_attribute 文件属性</li>
+<li>char m_szFullName[_MAX_PATH] 文件名</li>
+</ul>
+<p>m_attribute数据：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Attribute</span> &#123;</span></span><br><span class="line">    normal =    <span class="number">0x00</span>,</span><br><span class="line">    readOnly =  <span class="number">0x01</span>,</span><br><span class="line">    hidden =    <span class="number">0x02</span>,</span><br><span class="line">    system =    <span class="number">0x04</span>,</span><br><span class="line">    volume =    <span class="number">0x08</span>,</span><br><span class="line">    directory = <span class="number">0x10</span>,</span><br><span class="line">    archive =   <span class="number">0x20</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>例：获取文件大小和创建时间</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFileStatus status;</span><br><span class="line"><span class="keyword">if</span>(f.GetStatus(status))</span><br><span class="line">&#123;</span><br><span class="line">    m_Edit1.Format(<span class="string">&quot;%d&quot;</span>,status.m_size);</span><br><span class="line">    m_Edit2.Format(<span class="string">&quot;%04d/%02d/%02d %02d:%02d:%02d&quot;</span>,</span><br><span class="line">        status.m_ctime.GetYear(),status.m_ctime.GetMonth(),status.m_ctime.GetDay(),</span><br><span class="line">        status.m_ctime.GetHour(),status.m_ctime.GetMinute(),status.m_ctime.GetSecond());</span><br><span class="line">    m_Edit3.Format(<span class="string">&quot;0x%x&quot;</span>,status.m_attribute);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例：设置文件属性为隐藏</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CFileStatus t;</span><br><span class="line">t.m_size = <span class="number">0</span>;	</span><br><span class="line">t.m_attribute |= CFile::hidden;</span><br><span class="line">CFile::SetStatus(CurrentPath,t);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果CFileStatus对象中的某项被设置为0，那么这一项不会更新。</p>
+</blockquote>
+<h4 id="CStdioFile基本操作"><a href="#CStdioFile基本操作" class="headerlink" title="CStdioFile基本操作"></a>CStdioFile基本操作</h4><p>CStdioFile继承自CFile，提供了行读写函数。</p>
+<p><strong>一 读取一行</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> LPTSTR <span class="title">ReadString</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    LPTSTR lpsz,       <span class="comment">//指定一个字符缓冲区</span></span></span></span><br><span class="line"><span class="function"><span class="params">    UINT nMax)</span></span>;        <span class="comment">//最大接收字符数</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> BOOL <span class="title">ReadString</span><span class="params">(CString&amp; rString)</span></span>;    <span class="comment">//接收一个CString对象</span></span><br></pre></td></tr></table></figure>
+<p>通常，接收CString对象的版本更加实用。ReadString每次获取一行，但不获取每行末尾的\r\n，使用起来非常方便。读取正常的话，rString每次都能获取一行字符，如果到达文件末尾，rString会得到NULL，函数返回False。</p>
+<p>例：读取每行信息</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">CStdioFile <span class="built_in">log</span>;</span><br><span class="line">CString Line, str;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">log</span>.Open(<span class="string">&quot;H:\\log.dat&quot;</span>,CFile::modeRead))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>.ReadString(Line);</span><br><span class="line">    str.Format(<span class="string">&quot;%d&quot;</span>,Line.GetLength());<span class="comment">//不包括\r\n</span></span><br><span class="line">    AfxMessageBox(str);</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">log</span>.ReadString(Line))	<span class="comment">//抵达末尾，返回空</span></span><br><span class="line">        AfxMessageBox(Line);</span><br><span class="line">    AfxMessageBox(<span class="string">&quot;抵达文件末尾&quot;</span>);</span><br><span class="line">    <span class="built_in">log</span>.Close();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    AfxMessage(<span class="string">&quot;log打开失败&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>二 写入一行</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">WriteString</span><span class="params">(LPCTSTR lpsz)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>WriteString没有什么特别之处，与CFile的Write类似，将lpsz缓冲区内的字符串直接写入文件，并没有在末尾自动添加\r\n这类东西。</p>
+<p>例：写入三行信息</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//log文件以modeWrite打开</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;张三\t123456\r\n&quot;</span>);    <span class="comment">//写入时同样不会添加\r\n</span></span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;李四\t123456\r\n&quot;</span>);</span><br><span class="line"><span class="built_in">log</span>.WriteString(<span class="string">&quot;王五\t123456&quot;</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>VC++</category>
+      </categories>
+      <tags>
+        <tag>VC++</tag>
       </tags>
   </entry>
   <entry>
@@ -4744,6 +4744,8 @@
     <content><![CDATA[<h4 id="利弗摩尔操盘术"><a href="#利弗摩尔操盘术" class="headerlink" title="利弗摩尔操盘术"></a>利弗摩尔操盘术</h4><p>必须有独立思考的习惯，一味跟风和从众，就会像常人一样庸碌。</p>
 <p>挣大钱要低调，利弗摩尔的家庭不幸就是样板。投机不适合愚蠢的人，不适合心理不健全的人。</p>
 <p>在投机生意中，从来没有什么新事物出现，其发展规律都是相同的。不要指望日复一日、周复一周地在市场里打滚，还能始终如一的获利。</p>
+<a id="more"></a>
+
 <p>只有远离市场，才能更加清晰地看透市场。</p>
 <p>尽力预测某则消息在一般投资大众心目中的心理效应，特别是其中那些与该消息有直接利害关系的人。要等市场变化已经验证了你的看法之后，才能在自己的判断上签字画押。</p>
 <p>如果大势已经形成，并已经产生了一段时间了，新闻恐怕对市场产生不了一丝一毫的影响，此时投机者必须完全凭个人看法，参考市场在相似条件下的历史演变过程。</p>
@@ -4907,21 +4909,174 @@
 <li>不要着手操作，即制造或交易一种物品，除非可靠的计算表明其很可能产生相当好的收益。特别是远离很少收益和很大损失的冒险；</li>
 <li>利用你的知识、经验和勇气。如果你知道你的判断是正确的，按照它行动，即使其他人可能怀疑或有不同意见。</li>
 </ol>
-<h4 id="索罗斯语录"><a href="#索罗斯语录" class="headerlink" title="索罗斯语录"></a>索罗斯语录</h4><p>我把金融市场当成我认识世界，了解世界的一个窗口。</p>
-<p>世界经济史是一部基于假象和谎言的连续剧。要获得财富，做法就是认清其假象，投入其中，然后在假象被公众认识之前退出游戏。</p>
-<p>要想获得成功，必须要有充足的自由时间。</p>
-<p>赚钱要靠正常价值的东西出现折扣，及押注意外事件。（这个适合非牛市时期的市场）</p>
-<p>判断对错并不重要，重要的在于正确时获取了多大利润，错误时亏损了多少。</p>
-<p>当有机会获利时，千万不要畏缩不前。当你对一笔交易有把握时，给对方致命一击，即做对还不够，要尽可能多地获取。</p>
-<p>重要的不是你的判断是错还是对，而是在你正确的时候要最大限度地发挥出你的力量来!</p>
-<p>炒作就像动物世界的森林法则，专门攻击弱者，这种做法往往能够百发百中。</p>
-<p>人们认为我不会出错，这完全是一种误解。我坦率他说，对任何事情，我和其他人犯同样多的错误。不过，我的超人之处在于我能认识自己的错误。这便是成功的秘密。我的洞察力关键是在于，认识到了人类思想内在的错误。</p>
-<p>不知道未来会发生什么不可怕，可怕的是不知道如果发生什么该如何应对。</p>
-<p>如果一个月剩余1000元，其中200元黄金积存，300元基金定投，500元保险规划。一年下来正常人认为只是存了1.2万，但其实这样的配置下，黄金可以抵抗通货膨胀，基金可以享受资本增值，保险可以为自己和家人留一条退路。如果你觉得不可思议，那是因为你没有真正地坚持十年。</p>
-<p>我不愿意花很多时间和股票市场的人们在一起，我觉得他们讨厌，和知识分子在一起比和商人在一起感觉要舒服得多。</p>
-<p>我必须改变人们对我的看法，因为我不想仅仅是一名富翁，我有东西要说，我想让政府听到我的声音。</p>
-<p>永远不要孤注一掷。</p>
-<p>我生来一贫如洗。但决不能死时仍旧贫困潦倒。</p>
+]]></content>
+      <categories>
+        <category>Economy</category>
+      </categories>
+      <tags>
+        <tag>stock</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>股票书籍阅读笔记三</title>
+    <url>/2019/01/13/%E8%82%A1%E7%A5%A8%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E4%B8%89/</url>
+    <content><![CDATA[<h4 id="投资中最简单的事"><a href="#投资中最简单的事" class="headerlink" title="投资中最简单的事"></a>投资中最简单的事</h4><p>中国线上之所以比美国成功是因为中国线下零售业的分散和低效（租金）。但中国银行业要集中的多（都是国家的），网络银行要想颠覆中国银行难度很大。</p>
+<p>成长是未来的，难预测；门槛是即成的，易把握。</p>
+<a id="more"></a>
+
+<p>一、选好生意。手游就是烂生意，因为门槛低，重复性差，不可能给出高估值，主要的钱都被平台商赚走了。人们只看到手机用户是个巨大的市场，却忽视了这其实是个竞争无比的行业。</p>
+<p>行业集中度持续提高的行业，有门槛，有先发优势。</p>
+<p>二、这门生意的现金流状况如何。电影业是个现金流很差，不确定性很高的行业。相反，一所别墅的价格利润就顶的上一部电影。（现今房地产链条雷声阵阵，国家也就只能横盘拖延）</p>
+<p>好公司的两个标准：它做的事，别人做不了；它做的事，可以重复做。</p>
+<p>三、竞争格局，要有不可比拟的价值，竞争优势在哪。寡头垄断行业的利润增长，往往不断超出预期，而市场集中度低的行业常常陷入恶性竞争和价格战的泥潭，所以投资制造业更应关注工程机械、核心汽配。（垄断又被国家盯上的风险）</p>
+<p>分析技术变化快的行业时，不看市场占有率，要看是否适应最新的杀手级应用的潮流。</p>
+<p>做投资研究的是不变的法则：经济规律、人性、行业特质、商业模式，而不是去猜测易变的市场情绪。</p>
+<p>如果小股票的成长性普遍好于大股票，那么大多数行业的集中度就会越来越低。但事实是，热门行业最后的结果还是集中度越来越高。</p>
+<p>一支下跌的股票是否值得逆向投资：</p>
+<ol>
+<li>估值是否够低，是否已经过度反映了坏消息；</li>
+<li>看遭遇的问题是否是短期问题，是否是可解决问题；</li>
+<li>看股价暴跌本身是否会导致基本面的进一步恶化。</li>
+</ol>
+<p>有色、煤炭之类最好跟着趋势走，钢铁等夕阳行业有可能是陷阱，计算机、通讯、电子等技术变化快的行业也不适合越跌越买，食品和医药可以逆向投资（当时政府没有集采），可以在食品和药品安全事故下跌时购买，特别是那些没有直接卷入安全事故的龙头企业。</p>
+<p>看是个股问题还是行业问题，看有无替代品，企业是否有扎实的根基。把选股的范围限制在低估值的大盘蓝筹里。</p>
+<p>最一致的时候，就是最危险的时候。趋势的初期和末期，都是真理在少数人手里。</p>
+<p>逆向投资的短板就是经常买早了或卖早了，要有耐心和耐力。</p>
+<p>便宜是硬道理。每次上涨以后，好像乐观的观点和乐观的人就多了一些；每次下跌以后，悲观的观点和悲观的人就多了一些。</p>
+<p>影响股票涨跌只有两点，一个是估值，一个是流动性。估值决定了股票能够上涨的空间，但流动性变现到市场推力需要时间。</p>
+<p>流动性收紧，很多东西的价格就会撑不住，因此所有价格本质上都是一种货币现象，钱多了东西上涨，钱少了东西下跌。（中国只要报出通胀下降，就会想放钱）</p>
+<p>股市从长期来看都没有增值，中国10年没涨，日本20年跌了80%。所以价值投资不是当长期股东，而是挑便宜货，耐心等待，高点卖出。</p>
+<p>买的便宜就不用担心卖不出去。如果你买的特别贵，将来卖出时，就必须找一个比你更大的傻瓜。这个世界的特点是傻瓜越来越少，骗子越来越多。</p>
+<p>行业自由竞争时，不好挣钱，经历多年破产之后、兼并之后，剩下的寡头就可稳定挣钱了，定价权握在他们手里。</p>
+<p>钢铁和化工就没有定价权，因为受石油和矿业价格的影响。</p>
+<p>买股票先选行业，定价权的来源基本上来自垄断、品牌、技术专利，要么是资源矿产，一定要在有积累的行业。有的行业因为技术变化太快而难有积累，电子、科技、媒体和通信技术，更新换代太快。空调比较持续，电视就不持续。电视技术老是变，可口可乐一个配方，一二百年不变。</p>
+<p>通胀环境下，买资源类股票，比如石油，更好的答案是有定价权的公司。通胀时可以提价，把压力转给下游；通胀回落时不用降价：食品饮料、工程机械、核心汽配、白色家电。</p>
+<p>有些公司服务姿态很低，很辛苦却赚不到钱，原因是竞争太激烈。巴菲特说，找那种傻子都能管理的公司。</p>
+<p>大家都意识到有风险时，风险就不大了（很难精确定位）。同样的事物，风险一旦爆发，之后的风险反而小很多。真正的危机都是在来不及提防的情况下，突然爆发的。</p>
+<p>永久性亏钱，一种是市盈率的压缩，另一种是在历史性高点买入。</p>
+<p>（中国股市不适合短线操作，因为横盘的时候多，在这种环境下买突破属于找死；更不适合长线操作，因为中国牛短熊长，从长期看一直在3000点晃悠。另外，国家建立股市就是为了融资，当长期投资者，就是当韭菜，稳步支持金钱流向少数权贵。综上，要想在中国A股长期活下去，就只能玩个波段。）</p>
+<p>在季报公布出来后，成长股很容易低于预期。中国小股票骗子的比远高于欧洲。</p>
+<p>买便宜货不一定赚钱，但赚钱的概率较大，买便宜货往往先被套，最终赚钱。</p>
+<p>行业里人多，日子难过。国企的垄断是国家给的，但定价权受政策限制，垄断就没意义了。下游是分散的客户，公司的议价权更大。</p>
+<p>行业里人突然多了，就会有“创新”，结果也改变不了多少，最后加速了自己的灭亡。行业竞争太激烈，谁都赚不到钱。</p>
+<p>政府支持的新兴行业增加了供应，增加了竞争，最后就是产能过剩和恶性竞争，还会形成腐败和地方保护主义。政府的基因和创新的基因往往格格不入。</p>
+<p>同质化产品赚不到钱，白酒是差异化的产品。差异化的第一个标志是品牌，能够请客送礼的品牌更好，有回头客。</p>
+<p>大订单今年有，明年就没有了。如果一提价就影响需求，那么也不具有定价权，销售半径小的产品竞争力强。</p>
+<p>在行业内技术变化太快的行业里，先发优势就很难看到（很容易被仿造）。</p>
+<p>绝对的好没有意义，一定要和别人比较。买一个真正好的公司，好的行业，永远都不会太迟。</p>
+<p>电影行业太不稳定，好片之后接着可能就是烂片。手游也是如此，愤怒的小鸟和植物大战僵尸最后都把公司卖了。</p>
+<p>高端消费品，品牌；低端消费品：渠道；中间品：成本；制造业：规模。</p>
+<p>择时难度太大。低估值时高仓位，高估值时低仓位，从长期来说都有超额收益。</p>
+<p>公募基金平均仓位达到88%以上时，一般就是市场阶段性见顶的信号。历史见底信号，降准降息，成交量极度萎缩，社保入市，高管增持，强周期股跌时抗跌，涨时领涨，机构仓位历史低点，新股停发。</p>
+<p>小公司靠英雄人物，大公司靠机制。</p>
+<p>在胜负已分的行业中，投资行业龙头。玩股票要站在人少的一边。</p>
+<p>小公司的高成长性大多只体现在新兴行业或技术变化快的行业里。</p>
+<p>价值陷阱：持续恶化的基本面会使股票越跌越贵。</p>
+<ol>
+<li>被技术进步淘汰的；</li>
+<li>赢家通吃行业里的小公司；</li>
+<li>夕阳行业，重资产；</li>
+<li>景气顶点的周期股；</li>
+<li>有会计欺诈的公司。</li>
+</ol>
+<p>成长陷阱：估值过高，无利润增长，成长性破产。</p>
+<p>各类价值陷阱的共性是利润的不可持续性，各类成长陷阱的共性是成长的不可持续性。</p>
+<p>互联网时代，品牌的优势比渠道更重要。有安全边际的公司通常具有以下几个特点：</p>
+<ol>
+<li>东方不亮西方亮，给点阳光就灿烂；</li>
+<li>估值低到足以反映大多数可能的坏情况；</li>
+<li>价值易估，不具有反身性，可越跌越买。</li>
+</ol>
+<p>卖出的三个理由：</p>
+<ol>
+<li>基本面变坏；</li>
+<li>价格达到目标价；</li>
+<li>有更好的标的。</li>
+</ol>
+<p>公司的内在价值应该是相对容易确定的，巴菲特投资日常消费品。</p>
+<p>有些板块只适用于趋势投资，比如矿业。有色金属行业周期性强，且波动性大。</p>
+<p>有些公司永股票抵押，然后贷款，股票下跌影响基本面。</p>
+<p>严格的遵守价值投资，往往容易错过牛市下半场，抄底容易抄在熊市中期。</p>
+<p>别兜售你不相信的东西，别为你不敬佩的人工作，别和你不喜欢的人共事。——芒格</p>
+<p>价值投资的人讲究物有所值，所以生活往往节俭。</p>
+<p>股市是政策与经济的博弈，最后胜出的一般是政策。政策底领先于市场底，市场底领先于经济底。对政策影响最大的两个经济指标：就业和通胀。</p>
+<p>股市见底回升的速度和力度，取决于货币流入市场的速度和力度。</p>
+<p>好行业赚钱不辛苦，坏行业辛苦不赚钱。复杂点说就是行业门槛、行业集中度、行业对上下游的定价权。</p>
+<p>最难的是把握时机。有周期性，就意味着可预测性。投资周期性股票，一定要在炮火中买进，烟花中卖出。</p>
+<p>熊市见底时，经济仍然低速，但货币政策宽松，利率不断降低，常常是财务杠杆高的企业先见底，某些高负债的竞争对手已经出局，剩余企业的市场份额得到提高。然后，经济开始复苏，利率稳定于低位，此时板块常常是运营杠杆高的行业领涨。接着经济繁荣，利润快速增长，但股价涨幅更大，估值扩大代替基本面改善，推动股价，此时估值杠杆高，有想象空间的股票往往领涨。</p>
+<p>熊牛替换时，不要太在意盈利增长的确定性，而应该关注股票对各种正在改善的外部因素的弹性。所谓改善，并不一定是正增长，也可以是下降的速度放慢，或者下降的速度好于预期。</p>
+<p>高运营杠杆股（水泥、汽车、房地产）在降准后，会松口气。运营杠杆高的行业，许多是低盈利，高波动，没有定价权的烂行业。</p>
+<p>大宗商品由美元计价，中国放钱不会改变什么。</p>
+<p>最怕的是那些初跌跑不快，深跌又熬不住的人。急卖会砸出阶段性低点。</p>
+<p>弱势中，利好消息常被当作出货机会；强势中，利空消息被当作补仓机会。当市场对坏消息不敏感，对好消息敏感时，表明市场的人气在恢复，也表明悲观预期已经充分反映在低估值中了。</p>
+<p>当前中国的竞争力正在迅速削弱，主要是国际经济贸易的市场份额是靠低成本获得，放松与收紧货币，政策腾挪空间越来越小。</p>
+<p>滞胀倾向可被成为中国经济新常态——成本更高，通胀压力更大，经济内生潜力更低。</p>
+<p>A股大多数公司的资源优势和技术优势是靠不住的，因为他们并没有真正的资源和真正的技术。</p>
+<p>在这种低增长，高通胀常态下，靠成本优势的企业会发现，周转成本越来越高，靠规模优势的企业有风险。能否在需求不足的情况下，把升高的成本转嫁给下游客户，这就要看企业是否有真正的定价权了。</p>
+<p>低增长，高通胀的新常态对成长型企业是不利的。</p>
+<p>政府鼓励的行业很容易竞争过度和产能过剩；政府压制的行业反而供给有限，竞争有序，企业龙头反而更好过。</p>
+<p>低估值，有定价权的蓝筹股，就是我们新常态下的投资方向。</p>
+<p>中国目前的创新有两种：一种以创新的方式耍流氓，一种以耍流氓的方式创新。</p>
+<p>许多成长股一旦有一个季度业绩低于预期，之后数个季度业绩低于预期的概率就会大大增加。</p>
+<p>对冲掉的是风险，真正的对冲基金不选时。对冲基金首先强调风险控制，而风险控制的实现离不开组合管理。中国的对冲经理都是精选个股者。</p>
+<p>有两股力量不容忽视，一个是中国政府，另一个是美国人民。最后拉动美国复苏的还是消费，兜底中国经济的还是政府投资。</p>
+<p>桥水达里奥认为，去杠杆的方式有3种：</p>
+<ol>
+<li>债务人通过节制消费还债；</li>
+<li>债权人通过债务重组放弃部分债权或者延长还款期；</li>
+<li>定量宽松和印钞。</li>
+</ol>
+<p>1和2会通缩，3会通胀。三者取得平衡，经济会温和复苏，美国就是这么干的。</p>
+<p>最一致的时候最危险，越是一致集体预测区间就越小。现实世界千变万化，区间越小，实际值落在区间外的概率越大。</p>
+<p>最能代表美国竞争力的就是像可口可乐、宝洁那样的消费品公司和像高盛那样的金融巨头。日本、韩国这样以制造业起家的国家，历史上很多牛股就出在机械、家电、汽车等能代表其国家竞争力的行业，如丰田、三星等。</p>
+<p>能代表中国参与世界竞争的行业应具备如下特点：本土市场巨大；横向已形成国内寡头垄断；纵向已实现产业链整合；相比国际竞争对手具有显著的规模和性价比优势。</p>
+<p>国家政策应有意识地支持中国的民营寡头成长为世界寡头，只有这样才能带动广告、法律、咨询、设计等高端生产性服务业的发展，才能跨越中等收入国家陷阱。（华为）</p>
+<p>发挥自有优势，而不是好大喜功的超前发展新兴行业。</p>
+<p>前一年正确的做法，在下一年可能是不合适宜的。</p>
+<p>市场的极端价格常常是最大的傻瓜决定的，所以股市总是上涨时超涨，下跌时超跌。人们经常低估了傻瓜的程度。</p>
+<p>逆市场而动，但懂得自我保护，抄底时注意安全边际，避开价值陷阱，远离反身性，精挑细选低估值、高品质的股票，然后分期加仓。</p>
+<p>人性的弱点是总喜欢把短期的事情长期化。</p>
+<p>短期是心在动，中期是政策在动，长期是基本面决定的。</p>
+<p>中国消费的增长离不开银行业的增长。</p>
+<h4 id="投资中不简单的事"><a href="#投资中不简单的事" class="headerlink" title="投资中不简单的事"></a>投资中不简单的事</h4><ol>
+<li>看行业的商业模式；</li>
+<li>看行业的竞争格局；</li>
+<li>看行业的空间；</li>
+<li>看行业的门槛。</li>
+</ol>
+<p>避开夕阳行业，百舸争流的行业。行业门槛：资源独占、牌照限制、技术优势、品牌优势。</p>
+<p>公司维度：是否越大越强。销售规模发展到一定程度后，就超出了管理半径，可复制性就不强了。<br>管理维度：能力和诚信度</p>
+<p>聚焦在那种看的懂，看的明白，模式简单又容易挣钱的行业。</p>
+<p>价值投资的根本出发点，看投资回报的来源是哪里——企业持续创造价值，投资人去分享收益。</p>
+<p>长期持有是结果，不是目的，当公司高估之后，投资人可能面临损失。把更多的精力投入到创造社会价值增量的行业和公司上面。如果企业长期创造价值的能力是持续贬损的，这个低估反而是一个长期的陷阱。</p>
+<p>从供需角度出发，挖掘未被满足的强需求。人们的吃、穿、用、住、行，环境和健康。（都是民生，此书2018年出版，此时各公募基金展露头角，相应板块抱团上涨，特别是医药、白酒领域。）</p>
+<p>未来哪些行业可能做大，可以通过国际对比来做初步判断。（相反，经济下行也是同步的）</p>
+<p>在股市里，时间是最不值钱的。（A股确实如此，万年3000点）</p>
+<p>在确立主仓前，与很多股票建立连接，反复试错，反复开仓，来调整自己的状态。</p>
+<p>在经济变化的主航道上投资。</p>
+<p>创业者推动创新，并建立好的组织和商业模式，为客户和投资者创造价值。</p>
+<ol>
+<li>拥有高增长，低资本投入，强网络效应和经济规模护城河的是高资本回报率的生意，如垄断的互联网公司是超一流的生意。</li>
+<li>拥有中等增长，低资本投入，强护城河的是中高等回报率的生意，如白酒。</li>
+<li>拥有中等增长，高资本投入，中等护城河的是中等回报率的生意，如银行。</li>
+<li>没有护城河，导致低资本回报率的生意，是差的生意。</li>
+</ol>
+<p>最好的生意有年化30%以上的收益，一流的生意有年化20%以上的收益，中偏上的生意有年化15%以上的收益，差的生意在10%以下。无论护城河丧失，还是增长放缓，都降低回报率。</p>
+<p>投资于具有伟大创新和强大护城河的公司。</p>
+<p>创新是以已有，但没用过的技术，再创造新的产品和生意，与现有生也环境结合，创造出10倍不同以往的体验和效率。真假创新：</p>
+<ol>
+<li>产品或服务体验是否完全不同；</li>
+<li>效率是否完全不同。</li>
+</ol>
+<p>价值实现首要经得起时间检验。</p>
+<ol>
+<li>便宜是硬道理，要有足够的安全边际；</li>
+<li>找行业格局相对清晰，相对容易研究的行业；</li>
+<li>商业模式，行业属性研究透，要对行业有洞察力；</li>
+<li>逆向思维和独立思考。</li>
+</ol>
+<p>散户有天然的信息劣势，所以适合在消费品、医药和零售业投资。</p>
+<p>始终用超高仓位进行集中的逆向投资，用好的价格买入好的企业，这本身就是最好的风险控制。</p>
 <h4 id="投资最重要的事"><a href="#投资最重要的事" class="headerlink" title="投资最重要的事"></a>投资最重要的事</h4><ol>
 <li>最重要的不是趋势而是周期；</li>
 <li>最重要的不是追求高风险高收益而是追求低风险高收益；</li>
@@ -4944,6 +5099,235 @@
 <li>买进的绝佳机会出现在资产持有者被迫卖出的时候，在经济危机中，这样的人比比皆是；</li>
 <li>我们有两类预言家：无知的和不知道自己无知的。</li>
 </ol>
+<p>如果一项资产鲜为人知，追随者不多，那么它可能就不会得到有效的定价；如果一项资产是争议性的或未被社会认同，那么它可能就不会有效定价。</p>
+<p>市场价格往往是错误的，因为获得信息的途径以及对信息的分析不完善，所以市场价格往往远高于或低于内在价值。找出未被完全有效定价的市场或资产，如果市场是有效的，那么就赚不到钱。内在价值是低卖高卖的基本出发点。</p>
+<p>价值投资强调的是有形因素，重视资产和现金流，首要目标是确定公司的当前价值，并在价格足够低时买进公司证券。</p>
+<p>成长型投资者赌的是未来可能实现，也可能无法实现的公司业绩，而价值投资主要建立在分析公司当前价值的基础上。</p>
+<p>成长的概念是被纳入到价值计算当中的。</p>
+<ol>
+<li>准确判断企业的价值；</li>
+<li>坚定的持有。</li>
+</ol>
+<p>估价正确却不坚定持有，用处不大；股价错误却坚定持有，后果更糟。这句话表明恰到好处是多么困难。</p>
+<p>对利润的追求必须建立在更加有形的东西之上，最佳选择就是基本面所反映出来的内在价值。</p>
+<p>当价值投资者买进定价过低的资产，不停的向下摊平并且分析正确的时候，就能获得最大收益。</p>
+<p>建立基本面-价值-价格之间的健康关系是成功投资的核心，必须以合理的价格买进，成为强制卖家是世界上最悲惨的事。</p>
+<p>确定价值的关键是熟练的财务分析，而理解价格、价值及其前景的关键，则主要依赖对其他投资者思维的洞察。</p>
+<p>基本面价值只是决定证券价格的因素之一，你还要设法让心理和技术为你所用。</p>
+<p>某种东西价格上涨时，人们的喜爱程度本应下降。从真实价值出发的投资方法最可靠。问题是价值的增长性难以准确预测。</p>
+<p>风险意味着可能发生的事件多于确定发生的事件。靠更高风险的投资来获得更高的收益是绝不可能的。</p>
+<p>价格过高意味着低收益、高风险。</p>
+<p>概率与结果之间存在巨大的差异，可能的事情没有发生，向来如此。</p>
+]]></content>
+      <categories>
+        <category>Economy</category>
+      </categories>
+      <tags>
+        <tag>stock</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>股票书籍阅读笔记二</title>
+    <url>/2016/06/01/%E8%82%A1%E7%A5%A8%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E4%BA%8C/</url>
+    <content><![CDATA[<h4 id="短线交易大师"><a href="#短线交易大师" class="headerlink" title="短线交易大师"></a>短线交易大师</h4><p>交易的对象不是股票而是人。把市场看作是人更可能达到精通交易的境界。这样能更好的理解突然价格波动背后的原因。真正的大师从来不会忘记，每一次交易的另一面，都有人在做相反的事。就是找到一个傻子，一个完全不知道手中商品价值的人，这是成功的真正含义，带着这思想的人，将有更深的洞察力。</p>
+<p>交易大师的角色是，买入被压制的人手里的股票，减轻这些人的负担；在他们变得贪婪时，卖给他们来满足其急切的心情。在某种意义上，大师就是减轻痛苦和满足贪欲的人。专业人士出售希望，新手购买希望。</p>
+<a id="more"></a>
+
+<p>85%交易活动在性质上是一种心理活动。想赚大钱是新手的标志。迅速摆脱伤害的方式证明交易者的老练和技巧。</p>
+<p>如果头脑没有严格的准备好的话，交易技术只起很小的作用，正确的交易就是正确的思考。在股市获胜有三种主要因素：头脑、方法和资金。</p>
+<p>最好的交易者是简单派。信息越少越好，太多的信息刺激想象，而想象是不好的。</p>
+<p>给出6-8个月建议的专家比较扯蛋，因为这个时间足够修正出另一个6-8个月的建议。</p>
+<p>技术上的基本规则不起作用时，证明肯定有大事发生。</p>
+<p>每一只股票的走势都是由三种情绪所驱动：贪婪、不确定和恐惧。一只股票的多数参与者被贪婪所驱动时会上涨。相反当一只股票稳步向下时，参与者正在经历恐惧和痛苦。横盘意味着犹豫，没有确定的方向。</p>
+<p>图表是钱的足迹，比什么业内报表更真实，数字和报告不会使股票涨跌，只有钱可以。图表是一幅活得地图，逐笔构建了参与者目前的心理状态。</p>
+<p>企业的基本面对于短线交易是没有帮助的，集中注意力在唯一有价值的事情上——股票的走势，其余事情都是无价值的。</p>
+<p>精明的交易者不会因外部的小道消息而改变计划。</p>
+<p>当分析的周期变长时，精确性就会迅速减弱。长线参与者总是会被伤的更狠。</p>
+<ol>
+<li>当你怀疑的时候最好出局；</li>
+<li>永远可以再次进入市场；</li>
+<li>清盘时同时清空大脑；</li>
+<li>有时候市场青睐胆小者；</li>
+<li>在一支下跌20%的股票上，损失5%是一个胜利；</li>
+<li>离场观望可以保证你继续参加下一天的交易。</li>
+</ol>
+<p>在错误的时间买入正确的股票可能连续亏损；在正确的时间买入错误的股票可能发大财。由此能够能出一个基本原理：只有一种力量能够让股票上涨——买盘大于卖盘。知道何时买盘开始超过大盘就能抓住快速上涨的股票。有利的图表和不利的基本面意味着可以在多数人之前入市。</p>
+<p>股票价格在华尔街的基本面数字变动之前发生变动。</p>
+<p>对确定性的寻找是一个沉重的负担，是一个永远不可能停止的徒劳活动。</p>
+<p>人们相信如果获得了确定性，就会带来头脑的清醒和平静，但是头脑的清醒和平静只有在意识到确定性不可达到的时候才能获得。我们所有能做的唯一的事就是获得一些工具和技术，帮助我们估算明天将会发生什么的几率。</p>
+<p>股票只能做三件事情中的一件：上涨，下跌，横盘。无论什么时候，我们发现自己在找原因，那么就说明已经遇到麻烦了。一只股票正在做什么远比为什么这么做重要。</p>
+<p>当你想问原因时，就要豪不犹豫的减仓一半，如果还不能有效阻止问“为什么”的话，就把剩下的一半也卖掉。完全出局就可以找到原因了。</p>
+<p>入市是短线交易的基础，怎样买入一只股票几乎占了交易成功的85%，卖出一只正确买入的股票要容易的多。</p>
+<p>不是市场的现实决定了我们的结果，而是我们对市场现实的解释和反应决定了我们的结果。</p>
+<p>真相在投资界无关紧要，对真相的态度才有意义。我们赌的是人们如何看待这些股票，他们的感觉和情绪最终推动了股票。我们买的不是公司，不是基本面，是人们对潜在股票的观点。正面的预测会使股票在报告出来前上涨，负面的预测会使股票在报告出来前下跌。</p>
+<p>市场在性质上是先行的，市场对将要发生什么做出反应，而不是已经发生的事做出反应。</p>
+<p>正确的事总不是容易做的，错误的事总是伴随着一种诱人的轻松。</p>
+<p>市场很少会回报普通人很长时间，当平庸先生或女士感到他们已经打开了局面，游戏就开始改变了。我们所参与的整个金融体系不是要回报大多数人的。</p>
+<p>无知是无知者的敌人，但是其他人的无知却是那些有知识的人的力量，是那些既有知识，又懂得怎样思考得人取之不尽的财富源泉。</p>
+<p>最大化今天所拥有的知识，把已经学会的交易技术列个清单，然后尽力去用它，此时你才有权利要求更多。</p>
+<p>受到过去损失的污染：</p>
+<ol>
+<li>长时间的犹豫，其实是隐藏的想要确定的愿望；</li>
+<li>害怕扣动扳机，其实只不过是想知道得更多；</li>
+<li>过快得获利了结；</li>
+<li>没有止损。</li>
+</ol>
+<p>不受结果影响是很重要的，把自己从痛苦和高兴的循环中解放出来。</p>
+<p>从过分失望到过分乐观的大范围的波动从没有停止过，也永远不会停止。正是这种波动产生了宏观或微观的时间框架中的机会。</p>
+<p>股市是唯一靠自己的地方，我很高兴命运掌握在自己手里，而不是其他什么人。如果失败了，是因为我自己，如果成功了，我就不亚于一个神。市场是一个解放者。</p>
+<p>希望是一个危险的东西，它在一个人最不该坐等的时候助长了安逸和自满。他们总是受那些靠出售希望谋生的人支配。</p>
+<p>人类就是不会从成功中学会更多，只有失败会照亮我们的道路，为我们指明方向。记下每一笔失败的交易，编码、日期、买入点位、卖出点位、买卖理由。一旦积累了5次以上的损失，再回头看，寻找它们的共同之处。一旦找到了它，就毫不留情的消灭它。</p>
+<p>我们因为逆境而更聪明，太早的成功破坏了我们对正确事物的认识。</p>
+<p>在任何领域里的伟大都存在于一个人坚持到所有障碍都克服之后的能力。</p>
+<p>不可能完全消灭损失，我们力所能及的是控制损失。</p>
+<p>只有专业人士在开始交易前就有什么时候离场的打算。永远不要没有设定止损就开始一笔交易。不要向下调整止损。</p>
+<p>每一次交易者坚持了他们的计划。他们的自律就会更强，决心也会更大。</p>
+<p>如果我们希望成为成功的交易者，就不得不习惯于一些好的东西是以小包装到来的。</p>
+<p>你不可能通过站在那里防卫而在这个世界上立住脚，而是通过出击和让自己受到更多的锤炼。</p>
+<p>一个错误是以一个时间周期买入，在另一种时间周期卖出。（买错了，就从投机者变成投资者了）</p>
+<p>已经重仓持有了的专业人士，利用新手的抢购来卸载他们沉重仓位中的全部或者部分。</p>
+<p>连续的盈利通常会降低一个人的警惕性。最大的失败会紧随最大的成功而来。这是因为市场环境可能已经变了。连续获利之后将筹码减少一半。</p>
+<p>不要否认正在出现的事实，无论有什么理论在支撑着你。</p>
+<p>保护自己最有价值的东西——初始资本。</p>
+<p>不要把低价股作为主要目标，除了没有坚持止损，就属这个问题最严重了。因为有限的本金，选择在低价区域交易，大错！10美元的股票上涨2美元，就是涨幅20%，这很罕见，不过低价股风险相对较小。</p>
+<p>在交易界，才能的提高是与多样化的减少相伴随的。</p>
+<p>从容退出市场，错过的钱比损失钱好。</p>
+<p>一天中的开始时段和结束时段总是给交易者提供最好的交易机会。</p>
+<p>想卖的人都离去了，剩下的自然就是想要买的人。</p>
+<p>“专家”的言论总是错的。在市场里容易做的总是错的。</p>
+<p>短线交易者不想大量的资金冻结在徘徊的股票中。如果股票没有表现出足够的力量，强度和韧性，我们就不要考虑它。</p>
+<p>低买高卖的方法对于<strong>日交易</strong>者是错误的。</p>
+<ol>
+<li>不要越低越买；</li>
+<li>时间多样化可以最小化风险（慢慢建仓，慢慢清仓，手里总有资金）；</li>
+<li>牛市赚钱不是本事；</li>
+</ol>
+<p>交易大师会在上涨途中卖出，而交易新手则会先等到麻烦出现，再在下跌途中卖出。</p>
+<h4 id="短线交易大师——交易技术"><a href="#短线交易大师——交易技术" class="headerlink" title="短线交易大师——交易技术"></a>短线交易大师——交易技术</h4><p>屈服于市场，及时承认错误。作者推荐只看k线。</p>
+<p>收盘价大于开盘价意味着牛方赢得了这个阶段，相反则熊方占据优势，平局是买卖均等，k线就是一条横线。</p>
+<p>小阴阳线之后的改变比正常线更有说服力。上影线表明职业卖方正在卖出，下影线表明职业买方正在买入便宜的股票。</p>
+<p>市场不喜欢缺口，因此会出现回补。缺口经常作为支撑或阻力位。在几根阴线之后，出现向上的缺口是专业的；几根阳线之后出现向上的缺口式业余的。</p>
+<p>上涨之后出现向下的缺口是专业的；下跌之后出现向下的缺口是业余的。</p>
+<p>阻力被突破就变成了支撑，支撑被突破就变成了阻力。低风险的买入机会通常出现在支撑区，相反在阻力位卖出没有问题。</p>
+<p>如果一只股票回抽40%以下，可以认为主方向仍旧很强，60%意味着僵持。100%向下的回抽，之后会有一个50%~60%的反弹。</p>
+<p>经过一个强势上涨或下跌之后的天量，表明短线价格反转不远了。当量超过了过去10天平均量的2倍时，就被认为是天量。在高点出现天量必逃。</p>
+<p>移动平均线MA，作者使用20日MA用于短线投机。MA在下方可作为不错的支撑。</p>
+<p>3-5根连续日阴线，会急剧反弹。3-5根阴线使股票摆脱了不坚定者。在第一天反升后，超过前一天最高价时买入。相反，经历了3-5根阳线后，在第一天下跌到前一天最低点时卖出。</p>
+<p>向上的动力是由加入买入行列的做市商数量增加，卖出行列的做市商数量减少来表示的。</p>
+<p>价差较大，小资金参与者控制这只股票会有更大风险。</p>
+<p>当庄家不再买入时，股票开始经历停顿。</p>
+<p>关键点买入（在当前中国市场，此方法得调整）</p>
+<ol>
+<li>要求一支股票最近创了一个比前一次上涨的高点更高的新高（8条日线内的高点）；</li>
+<li>3根或更多的连续阴线。连续的意思是每根绿线首尾相连。然后出现反弹，超过最后一根阴线的高点；</li>
+<li>当股票高于前一根阴线高点的1/16到1/8之间时买入。</li>
+</ol>
+<p>满足了前2个条件，但在第3个条件时出现缺口，要谨慎，这一般是要接盘侠。</p>
+<p>交易大师经常在一根小阳线处买入，在阻力位卖出。买入日内底部横盘的突破是一个低风险的策略。</p>
+<p>一旦跳空高开，必须观察满30分钟，买入时看是否创出新高。在30分钟后创出新高的股票，在一天内都会很强。</p>
+<p>日内交易（T0）。交易日的后半部分为交易大师提供了一个最好的获取稳健超短线收益的机会。在下午2:15之后交易，用5分钟线图：</p>
+<ol>
+<li>股票必须在这一天上涨；</li>
+<li>必须在开盘价或在其上交易；</li>
+<li>必须形成一个震荡区，至少持续1.5小时；</li>
+<li>当高于高价1/16时买入，并设置止损；</li>
+<li>当股票涨高时，逐步卖出。</li>
+</ol>
+<p>止损：1.前一根线的最低点；2.整个横向区域的低点；3.盈利后看，调整止损到买入点。当股票上涨后，交易者简单的重复，把止损点提高到当日最低点的1/16，当接近你的期望价位，将止损提高到当日最低点的1/8。</p>
+<p>如果一支股票在5天内，既没有到达到获利目标，也没有止损出局，卖掉它，时间就是金钱。</p>
+<p>真正精明的交易者在股票到达顶点之前很久就想离开，最好的交易者几乎从来不在一个点位卖掉他们所有的存货。</p>
+<p>卖出</p>
+<ol>
+<li>当开盘时，股票跳空上涨一半或更多时，应该卖出全部。他们使股票跳空向上就是为了卖出；</li>
+<li>如果在一天的最后30分钟里，股票处于当天的最低点或者接近最低点，应该卖出全部；</li>
+<li>如果经过一天的大幅上涨，但股价跌到了开盘价以下，卖出全部；</li>
+<li>如果股价跳空低开，然后30分钟过去，继续向下，应该卖出全部。</li>
+</ol>
+<p>危险信号</p>
+<ol>
+<li>在最后2小时损失了大部分盈利；</li>
+<li>股票开始涨的很好，最后收盘在最低价；</li>
+<li>跳空高开，最后收盘在前一交易日最高价之下；</li>
+<li>股票在产生前一次下跌的相同价格区域内挣扎。</li>
+</ol>
+<p>交易种类</p>
+<ol>
+<li>隔夜交易：下午入市，等明天高开或跳空卖出一半或全部；</li>
+<li>波段交易：在一个支撑位买入，期望1-4元的价差，通常持有2-5天，使用日线、周线、15分钟线操作。</li>
+</ol>
+<h4 id="量价交易"><a href="#量价交易" class="headerlink" title="量价交易"></a>量价交易</h4><p>不管你是预测半小时的波动，还是预测未来2-3周的趋势，这些都不重要。短期波动或长期趋势都由价格、成交量、活跃度、支撑位以及阻力位反映。</p>
+<p>道氏理论的一条基本原则是成交量可以确定价格变化的趋势。如果一支股票的价格波动伴随着很低的成交量，那不好确定它的方向；如果伴随着很高或逐渐增大的成交量，那么这是一种有效的变动。</p>
+<p>道氏理论包含3个阶段，1.吸筹阶段；2.公众参与阶段，是趋势的跟踪阶段；3.派筹阶段。</p>
+<p>威科夫认为股票价格由经济学中最基本的供求关系决定，总结了三条定律：</p>
+<ol>
+<li>供求关系：需求大于供给，价格会上升；</li>
+<li>因果关系：小规模成交量将引起小范围的价格波动，相反就会是大的价格波动；</li>
+<li>投入产出定律：任何一个行为都有力度相等方向相反的作用力。价格的变动对应成交量的变动，两者应保持着一种和谐统一的状态。</li>
+</ol>
+<p>庄家的存在不是阴谋论，而是一个事实。</p>
+<ol>
+<li>作为商人，期望以零售价售出批发价购入的股票；</li>
+<li>为了利用更多的金融资源，专业人士必须使股票价格下降，从而洗出投资者，获得足够多的筹码；</li>
+<li>股价上涨应当拥有足够的吸引力来吸引公众的注意，以便出售持续增多的存货；</li>
+<li>最活跃的股票，需要更长时间的派筹。</li>
+</ol>
+<p>成交量揭示交易行为，反映价格变化背后的真实情况，检验价格变动的真实性。</p>
+<p>在被操纵的市场中，成交量可以解释价格变动背后的真相。在未被操纵的市场中，成交量真实反映市场情绪。K线只反映价格，没有揭示出价格行为的强度。</p>
+<p>做市商就是批发商，他们在政府的监管与许可下为人们想交易的股票制造市场。他们的优势是可以根据存货状况制定相应的价格。他们会抓住任意一段新闻，无论其是否与股票相关，以此来影响价格。</p>
+<p>成交量揭示主要操作者的进入与退出。成交量的大小是相对的。</p>
+<p>时间因素：持续了一个长时间后，参与者兴致自然会大大降低。</p>
+<p>过去大家都会去交易所交易，能从现场看到交易席位的多少，交易者的情绪。换句话说，就是过去能够看到成交量，这些市场气味使得价格行为有了活生生的概念。</p>
+<p>要做的就是寻找量价的相互确认或异常，同时对比历史成交量来判断当前成交量的大小。</p>
+<p>金融市场向上或向下不会嘎然而止又迅速启动。市场常常拥有动量，即使预示反转，趋势也会继续一段时间。</p>
+<p>当价格突破整理区间，伴随着适当的成交量，常常是一个强烈的信号。</p>
+<p>价格产生较大变化时，我们应该能够看到高于平均水平的成交量；相反，价格变化较小，成交量低确认了这个行为。当一根长阳线对应很短的成交量，就要找原因了，可能是做市商拉高股价测试市场的情绪。</p>
+<p>有价无量是为了引诱交易者进入一个不利的位置。有量无价说明市场开始趋于弱势，这种情况多出现于顶部或底部。</p>
+<p>价格上升，应该伴随着成交量的放大，这种上涨时有效的，受到市场情绪和专业人士的支撑。相反，市场向更低点运动，成交量也在逐渐放大。无论上涨还是下跌都需要动力。</p>
+<p>价格高涨，成交量很小说明做市商将价格定的很高，却不参与拉高市场的行动。</p>
+<p>业内人士通过新闻把散户震出市场，要想不让股票上涨，只有分多次来完成吸筹。任何消息都为操纵市场提供完美的借口。业内人士操作的是交易者的情绪。</p>
+<p>派筹的过程是平稳上涨，成交量平均，这一过程往往伴随着利好消息。业内人士很注意，不能卖出的太过分了，因此价格处于一个狭窄的区间内。</p>
+<p>测试：在推高价格时，受到新一轮卖盘的冲击，使得市场下落至更低点位，所以要进行试盘。要发起一轮销售，不仅要正确对其定价，还要求市场可以接纳这些商品，或者说市场已经做好准备。</p>
+<p>一旦完成吸筹，他们先让价格跌回原先有大量卖盘的价格空间，以确保所有卖盘已在吸筹阶段被吸收。如果成交量很低，相当于说只剩下非常少的卖方，这被称为“低成交量”测试。如果出现高成交量，这就需要将价格快速打到更低的价格，以洗出更多的卖方。</p>
+<p>需求测试：在派筹阶段尾声，业内人士将价格调高，如果不存在需求，价格会在接近开盘价收盘，并且成交量很低。如果测试失败，需要继续调高价格，直到出现低成交量。</p>
+<p>业内人士在下跌反弹时，通常采用平缓的手法，如果突然将市场推高，许多投资者认为错过了行动的时机，而拒绝参与后面的派发。</p>
+<p>吸筹和派筹的周期存在于所有时间跨度。</p>
+<p>派筹时，不会一次性抛出全部筹码，这就是底部和顶部分散于多个点的原因。</p>
+<ol>
+<li>影线的长度一直是关注的首要因素；</li>
+<li>朝着收盘价方向的市场情绪是强势的；</li>
+<li>短实体意味着市场情绪较弱，反之较强；</li>
+<li>同一个k线，在不同的环境下，意义完全不同；</li>
+<li>用成交量验证价格。</li>
+</ol>
+<p>长长的上影线说明弱势，卖方战胜了买方，不意味着立刻反转，只预示着潜在的弱势，结合成交量能看出弱势的程度。</p>
+<p>如果连续出现多个同一k线形态，说明市场情绪浓烈，伴随着成交量放大加以验证。</p>
+<p>长长的下影线说明短期的强势，表示跌势暂停。如果在底部说明局内人买入。单根不足以说明情况。</p>
+<p>十字线表示不明确，表示两种情绪势均力敌。</p>
+<p>如果价格随着新闻变动，但没有相应的成交量验证，那么这就是异常。一根大阴阳线，对应小的成交量；小阴阳线，对应大的成交量，都是异常。</p>
+<p>放量止跌，市场需要两三个阶段（连着几根阴线）才能刹住车。放量止涨，由于局内人出货，市场遭受一定的卖压。</p>
+<p>市场横盘占了大部分时间的70%。</p>
+<p>在牛市顶部入场的人是情绪化的，害怕入场，又害怕错过赚钱机会。在高位买进的买家是弱势的，在低位买进的买家是强势的。</p>
+<p>在支撑和阻力位，人们的心态导致了上下的振荡。在这个价格区间集中了大量的强势或弱势的交易者。由于这个区间有大量的买方和卖方，我预测市场会暂时停止，并检验这些区域的支撑或阻力。</p>
+<p>市场在一个较窄的价格区间振荡的越久，接下来市场走势离开这一区间后运行的程度就越剧烈。</p>
+<p>我们要看的是价格突破时的交易量。因为在阻力区套住了很多交易者，需要很大的交易量才能造成突破。如果是较小的交易量就要小心了，这被称为伪突破。</p>
+<p>收盘价要明显突破价格的天花板，交易量放大，才算突破，可能会伴随着回落，但成交量一定要小。</p>
+<p>支撑和阻力是建立在横盘整理的基础上的，要想突破需要很大的交易量，这是对交易者的保障。支撑和阻力位是趋势产生、发展的源头，它们还是趋势反转改变方向的位置。</p>
+<p>如果上升趋势中，没有造成突破，那么市场就处于极度弱势。</p>
+<p>时间跨度越长，价格振荡的意义就越重要。</p>
+<p>指数趋势比个股趋势更能揭示信息且更有价值。——查尔斯.道</p>
+<p>系统性风险影响指数中的所于个股。</p>
+<p>如果是上升趋势，回落时应该伴随着成交量减小，并且低位支点高于之前的支点。</p>
+<p>价格振荡阶段开启价格运动过程，成交量确认和支持价格运动过程，支点标识出价格运动的路线。</p>
+<p>通过筹码分布能直观的看到某日某个价格对应的成交量是多少。能揭示出买卖集中的区域，这就是支撑，阻力位置。</p>
+<p>跳空高开伴随着低成交量，前方就是阻力位了。</p>
+<p>看盘时，结合多个时间框架的图表。短周期是长期趋势产生的原因，长周期是短线需要参考的趋势。</p>
+<p>价格上涨，成交量下降说明只是暂时的反弹，而不是趋势的反转；同样，反弹之前没有放量止跌，那就说明买方在这个位置没有进入市场。价格回调伴随着成交量下降，说明只是小级别的回调，而不是趋势反转。</p>
+<p>如果价格连续十天上涨，按照我们的量价理论，必须看到10个不断增大的成交量柱。显然持续放大的成交量是不现实的，所以出现异常要特别注意。</p>
+<p>一根大阳线，收盘价没比前一天高多少，极低的成交量，典型的多头陷阱。</p>
+<p>每个市场都是这样，沿着一个趋势运动一会儿，在盘整期巩固，再继续之前的趋势或完全相反。</p>
+<p>30分钟线比15分钟更能直观地发现市场走弱的信号。如果30分钟是向上的，我们就可以在15分钟图的上升趋势中买入，这样交易的风险很小，因为我们在顺大势交易。如果买入与更长时间跨度相反，那么就是在买短暂的反弹，风险很大。当然，短时间跨度出现了问题，这会传导入更长时间跨度的图中。</p>
+<p>弱势，每次反弹都会形成不断降低的高点；强势，每根K线的低点在不断抬升。</p>
+<p>价格震荡区间在收缩，收缩的越久，向上或向下越有力。</p>
 ]]></content>
       <categories>
         <category>Economy</category>
