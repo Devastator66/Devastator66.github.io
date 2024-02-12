@@ -23,17 +23,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"devastator66.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。 当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位">
+<meta name="description" content="一直以来，总想尝试一下Linux系统，之前选用Debain，在VMware上安装过几次，每次安装后就没有下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台笔记本闲置，放着不用有些浪费，所以就想在真实计算机上装个试用，看看能不能作为主力机使用。这次选择Ubuntu，版本为20.04。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="真正使用Linux">
 <meta property="og:url" content="https://devastator66.github.io/2021/08/28/%E7%9C%9F%E6%AD%A3%E4%BD%BF%E7%94%A8Linux/index.html">
 <meta property="og:site_name" content="Programmer&#39;s Speak">
-<meta property="og:description" content="之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。 当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位">
+<meta property="og:description" content="一直以来，总想尝试一下Linux系统，之前选用Debain，在VMware上安装过几次，每次安装后就没有下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台笔记本闲置，放着不用有些浪费，所以就想在真实计算机上装个试用，看看能不能作为主力机使用。这次选择Ubuntu，版本为20.04。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/09/23/3lvBmYENLI9MkD1.png">
 <meta property="og:image" content="https://i.loli.net/2021/10/03/NC4qTMt3Gbn8gzL.png">
 <meta property="article:published_time" content="2021-08-28T08:52:18.000Z">
-<meta property="article:modified_time" content="2021-12-13T14:18:31.916Z">
+<meta property="article:modified_time" content="2024-02-12T09:13:49.872Z">
 <meta property="article:author" content="Devastator">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -325,25 +325,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>之前总想尝试一下Linux，选用Debain发行版，在VMware上安装过几次，基本上安装后就没下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台老旧笔记本闲置，扔掉可惜不如换个系统发挥余热。</p>
-<p>当前Ubuntu最新版本为21.04，我那台老爷机肯定跑不动，首先CPU就不支持64位，而且内存只有2G。通过上网查询，最后选择Ubuntu 16.04LTS(Xenial Xerus)的32位版本，光盘镜像为ubuntu-16.04.6-desktop-i386.iso。</p>
+        <p>一直以来，总想尝试一下Linux系统，之前选用Debain，在VMware上安装过几次，每次安装后就没有下文了。这次所谓的“真正”使用也不是因为工作需要，只不过有一台笔记本闲置，放着不用有些浪费，所以就想在真实计算机上装个试用，看看能不能作为主力机使用。这次选择Ubuntu，版本为20.04。</p>
 <a id="more"></a>
 
-<p>Ubuntu相对于Debain对中文支持较好，安装过程跟Windows差不多，基本上能做到无人值守。如果是在虚拟机上安装系统，还需要安装VMware Tools，步骤如下：</p>
+<p>Ubuntu安装过程跟Windows差不多，基本上能做到无人值守。如果是在虚拟机上安装系统，还需要安装VMware Tools，步骤如下：</p>
 <ol>
 <li>点击VMware菜单“虚拟机-&gt;安装VMware Tools”。虚拟机会自动以光盘形式将VMware Tools加载到ubuntu。</li>
 <li>双击光盘内tar.gz压缩包，将vwware-tools-distrib提取到家目录。按压CTRL+ALT+T打开终端，<code>cd vwware-tools-distrib</code>进入目录后<code>sudo ./vmware-install.pl</code>。</li>
-<li>如果提示找不到命令，则键入：</li>
+<li>如果提示找不到命令，则键入：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">chmod +x vmware-install.pl <span class="comment">#设置文件权限为可执行</span></span><br><span class="line">sudo ./vmware-install.pl   <span class="comment">#安装完成后，键入su - username返回普通用户</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">chmod +x vmware-install.pl <span class="comment">#设置文件权限为可执行</span></span><br><span class="line">sudo ./vmware-install.pl   <span class="comment">#安装完成后，键入su - username返回普通用户</span></span><br></pre></td></tr></table></figure>
 <h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><p>在操作系统安装过程中，没有设置root密码。Ubuntu默认root密码是随机的，每次开机都会有一个新的root密码。如果想要设置一个固定的root密码，按下Ctrl+Alt+T调出终端，键入<code>sudo passwd root</code>，然后输入当前用户的密码，终端会提示输入root密码。修改成功后测试，键入<code>su root</code>，再输入刚设置的密码即可看到#。</p>
-<p>Ubuntu的“系统设置”（齿轮图标）汇总了全部基本功能，下面介绍一些设置：</p>
+<p>Ubuntu的“系统设置”（齿轮图标）汇总了全部基本配置选项，例如下面一些设置：</p>
 <ol>
 <li>亮度和锁屏：设置无操作关闭屏幕时间，唤醒后是否需要输入密码。</li>
 <li>外观：设置桌面壁纸，启动器是否隐藏，窗口菜单位置。</li>
 <li>软件和更新：可以关闭自动更新。</li>
 </ol>
 <p>如果想要将启动器移到屏幕下方，在终端键入<code>gsettings set com.canonical.Unity.Launcher launcher-position Bottom</code>。如果想要还原到左侧，同样输入上述命令，须将末尾的bottom替换为left。</p>
+<p>设置终端命令行透明效果<br>打开终端，点击右上角的“三横“图标，配置文件首选项-&gt;未命名，在“文本”属性页可以设置窗口大小和字体。在“颜色”属性页，去掉“Use transparency from…”前面的勾，勾选”Use transparent background”，然后可以拖动滑块，调整透明度。</p>
+<p>隐藏回收站和用户文件夹图标<br>安装工具：<code>sudo apt install gnome-tweaks</code>。然后在终端输入<code>gnome-tweaks</code>打开程序，扩展-&gt;Desktop lcons中设置。</p>
 <p>Ubuntu没有宋体、微软雅黑等字体，安装方法如下：</p>
 <ol>
 <li>在Windows系统下，从C:\Windows\Fonts目录将所需的字体复制出来，或者从网上下载字体。</li>
@@ -352,7 +354,11 @@
 <li>修改字体文件的权限，使得一般用户可以访问<code>sudo chmod -R 755 myfonts</code>。</li>
 <li>建立字体缓存，在终端键入<code>sudo mkfontscale</code>和<code>sudo mkfontdir</code>。以后每当需要新字体，只需将字体文件放入myfonts目录，再次运行这个两个命令。</li>
 </ol>
-<p>我的设置就这么多，其他方面都默认了。无论安装的是哪个发行版本，总归是Linux系统——以黑屏命令行为基础，在其上运行个桌面程序。从本质上Linux就不是为了好看或用户体验而生的，后天再怎么美化也不会有根本上的改变。所以，我觉得还是不要花费力气勉强Linux做它不擅长的事情，就怕一顿折腾，没好看多少，影响了系统性能。当前，Linux各大发行版所需系统配置可不比Windows低。</p>
+<p>解决网页视频不能显示问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install flashplugin-installer</span><br><span class="line">sudo apt install browser-plugin-freshplayer-pepperflash</span><br></pre></td></tr></table></figure>
+<p>重启浏览器即可。</p>
+<p>添加默认播放器解码：<code>sudo apt install ubuntu-restricted-extras</code>。</p>
+<p>我的设置就这么多，其他方面都默认了。无论安装的是哪个发行版本，总归是Linux系统——以黑屏命令行为基础，在其上运行个桌面程序。从本质上Linux就不是为了好看或用户体验而生的，后天再怎么美化也不会有根本上的改变。所以，我觉得还是不要花费力气勉强Linux做它不擅长的事情，就怕一顿折腾，没好看多少，影响了系统性能。当前，Linux各大发行版已经不再有32位版本，所需配置可不比Windows低。</p>
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>Linux以/为根目录，其下的目录分别有不同的用途：</p>
 <ul>
 <li>bin   存放基本命令程序</li>
@@ -421,22 +427,34 @@
 <li>chown 改变拥有者，-r递归改变，例如：<code>chown 账户名 filename</code></li>
 <li>chmod 改变权限，-r递归改变，数字方式：<code>chmod 777 filename</code>；符号方式：u用户、g群组、o其他、a全部，+添加、-除去、=设定，例如：<code>chmod u=rwx,go=rx filename</code></li>
 </ul>
-<h4 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h4><p>安装Ubuntu软件中心里的软件很容易，就跟在手机商城中安装软件一样，自动下载自动安装。但是目前软件中心里只有一些传统Linux生态的软件，例如Emacs、VLC播放器等。如果想要正常办公，仍旧需要单独下载安装包。</p>
-<p>选择32位版本的Linux系统给安装软件带来了一些麻烦，必须选择名字只带有x86的安装包，x86_64的往往不行。安装软件通常需要root权限，所以在“安装命令”前添加sudo。</p>
-<p>通常的软件安装路径为/usr、/usr/local/、/opt，尽量不要安装到家目录下。如果软件安装后，当前目录带有锁头标志，会给将来安装插件带来麻烦，可以通过<code>sudo chmod -R 777 dirname</code>命令添加权限。</p>
-<p>一、Foxit Reader<br>直接到官方网站<a target="_blank" rel="noopener" href="https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts">https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts</a>下载32位Linux版本的run包。安装这种包很容易，直接双击即可。如果软件厂商都这样做，使用Linux的人应该更多。</p>
-<p>二、DrRacket</p>
+<h4 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h4><p>安装Ubuntu软件中心里的软件很容易，就像在手机商城中安装软件一样，自动下载自动安装。但是目前软件中心里只有一些传统Linux生态的软件，例如Emacs、VLC播放器等。如果想要正常办公，仍旧需要单独下载安装包。安装软件通常需要root权限，所以在“安装命令”前添加sudo。</p>
+<p>一般软件的安装路径为/usr、/usr/local/、/opt，尽量不要安装到家目录下。如果软件安装后，当前目录带有锁头标志，会给将来安装插件带来麻烦，可以通过<code>sudo chmod -R 777 dirname</code>命令添加权限。</p>
+<p>一、Foxit Reader<br>直接到官方网站<a target="_blank" rel="noopener" href="https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts">https://www.foxitsoftware.cn/pdf-reader/?agent=foxit&amp;MD=syts</a>下载64位Linux版本的run包。安装这种包很容易，直接双击即可。如果软件厂商都这样做，使用Linux的人应该更多。</p>
+<p>二、有道翻译</p>
 <ol>
-<li>在官方网站<a target="_blank" rel="noopener" href="https://download.racket-lang.org/all-versions.html">https://download.racket-lang.org/all-versions.html</a>下载7.3版本，racket-7.3-i386-linux.sh是支持32位Linux的最后版本。</li>
-<li>在终端键入<code>sudo sh /home/cracker/下载/racket-7.3-i386-linux.sh</code>。选择no，路径默认即可。</li>
-<li>在终端进入racket目录，执行drracket即可打开程序。</li>
+<li>从官方网站<a target="_blank" rel="noopener" href="http://cidian.youdao.com/multi.html">http://cidian.youdao.com/multi.html</a>下载Ubuntu(amd64版)，是个deb包。</li>
+<li>在终端中键入<code>sudo dpkg -i deb路径</code>，可能会报dpkg加锁，使用如下命令解决：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock  <span class="comment">#rm后可加-rf</span></span><br></pre></td></tr></table></figure></li>
+<li>重启后再次键入<code>sudo dpkg -i deb路径</code>，会报缺少依赖包，紧跟安装命令键入<code>sudo apt-get install -f -y</code>，系统会根据依赖关系树自动安装依赖包。</li>
+<li>通过搜索找到有道词典，启动程序后点击左下角图标进行设置。</li>
 </ol>
-<p>三、Anconda3</p>
+<p>三、DrRacket</p>
 <ol>
-<li>在<a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a>下载Anaconda3-5.3.0-Linux-x86.sh（527M，2018-09-27）。</li>
-<li>打开终端，键入<code>sudo sh /home/cracker/下载/Anaconda3-5.3.0-Linux-x86.sh</code>回车，阅读许可后yes，默认安装路径为<code>/home/cracker/anaconda3</code>回车，程序开始安装。完成后，安装环境变量yes，安装VSCode时no。</li>
-<li>安装过程中已经添加了环境变量。在终端键入<code>python</code>进行测试，如果显示版本为2.7（ubuntu16.04再带python2.7），说明系统尚未识别，键入<code>source ~/.bashrc</code>更新环境变量即可。Anaconda3-5.3.0自带的python版本为3.7.0。</li>
-<li>在终端中输入<code>ipython notebook</code>，启动Jupyter notebook，首页显示的是HOME目录。</li>
+<li>添加官方源：<code>sudo add-apt-repository ppa:plt/racket</code></li>
+<li>安装Racket：<code>sudo apt update &amp;&amp; sudo apt-get install racket</code></li>
+<li>卸载Racket：<code>sudo apt-get install ppa-purge &amp;&amp; sudo ppa-purge ppa:plt/racket</code></li>
+<li>运行DrRacket：通过快捷方式，或者键入命令<code>drracket</code></li>
+</ol>
+<p>四、JDK<br>很多软件都需要JDK，从JAVA10开始就没有32位版本的JDK了，这里安装JDK11，步骤如下：</p>
+<ol>
+<li>在终端中键入<code>javac</code>，查看需要安装的软件名。这里安装JDK11，键入命令<code>sudo apt install openjdk-11-jdk-headless</code>，输入密码，y继续。</li>
+<li>安装完成后，键入<code>javac --version</code>测试结果。无需手动配置环境变量，因为openjdk-11-jdk会自动配置。</li>
+</ol>
+<p>五、Anconda3</p>
+<ol>
+<li>在<a target="_blank" rel="noopener" href="https://www.anaconda.com/download">https://www.anaconda.com/download</a>下载当前最新版本。</li>
+<li>打开终端，键入<code>sh ~/下载/Anaconda3.sh</code>回车，阅读许可后yes，默认安装路径为<code>~/anaconda3</code>回车，程序开始安装（注意：不要使用sudo，否则默认路径会在/root下）。然后安装环境变量yes，安装VSCode选no。</li>
+<li>在终端键入<code>python</code>进行测试，如果显示的版本太早，说明系统尚未识别，键入<code>source ~/.bashrc</code>更新环境变量。（手动添加环境变量：<code>cd ~/</code>，<code>gedit .bashrc</code>，在最后一行添加<code>export PATH=&quot;/home/username-platform/anaconda3/bin:$PATH&quot;</code>）</li>
+<li>打开终端，在提示符前会看到(bash)，输入<code>ipython notebook</code>或<code>jupyter notebook</code>，启动Jupyter notebook，首页显示的是HOME目录。</li>
 <li>选择路径新建文件，编写代码后Shift+Enter执行，点击软盘图标保存文件，回到首页点击右上角Quit按钮退出程序。</li>
 </ol>
 <p>安装python插件：</p>
@@ -445,43 +463,29 @@
 <li>安装pyecharts，在终端键入<code>pip install pyecharts</code>，会报<code>twisted 18.7.0 requires PyHamcrest&gt;=1.9.0, which is not installed.</code>错误，键入命令<code>pip install PyHamcrest</code>即可解决。</li>
 <li>安装Flask，在终端键入<code>pip install Flask</code>。</li>
 </ol>
-<p>四、JDK9<br>安装pycharm之前，需要安装JDK，从JAVA10开始就没有32位版本的JDK了，所以只能安装JDK9，步骤如下：</p>
+<p>六、Pycharm</p>
 <ol>
-<li>在终端中键入<code>javac</code>，查看需要安装的软件名，这里安装JDK9，键入命令<code>sudo apt install openjdk-9-jdk-headless</code>，输入y继续。</li>
-<li>安装完成后，需要添加环境变量，在终端中键入<code>sudo gedit /etc/profile</code>。在文件开头的注释后代码前输入：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-9-openjdk-i386 <span class="comment">#文件安装路径，会在安装过程中显示</span></span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></li>
-<li>在终端键入<code>source /etc/profile</code>让修改的文件生效，键入<code>javac</code>测试结果。</li>
-</ol>
-<p>五、Pycharm</p>
-<ol>
-<li>在<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/other.html">https://www.jetbrains.com/pycharm/download/other.html</a>下载2019.1带有anaconda插件的版本。2020以后的版本需要JAVA11，所以无法安装。</li>
-<li>将下载的压缩包解压到/opt目录，键入<code>sudo sh /opt/pycharm-anaconda-2019.1.4/bin/pytcharm.sh</code>启动程序。</li>
+<li>在<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/other.html">https://www.jetbrains.com/pycharm/download/other.html</a>下载2020.1带有anaconda插件的版本。2020以后的版本需要JAVA11。</li>
+<li>将下载的压缩包解压到主目录，键入<code>sudo sh pycharm2020.1/bin/pytcharm.sh</code>启动程序。</li>
 <li>专业版需要激活，当前不太好破解。</li>
-<li>设置python解释器，选择/anaconda3/bin/python3.7（蓝色问号图标）。</li>
-<li>关闭自动更新，点击菜单File-&gt;Settings，在左侧树状目录中选择System Settings-&gt;Updates，去掉勾选。</li>
-</ol>
-<p>六、有道翻译</p>
-<ol>
-<li>从官方网站<a target="_blank" rel="noopener" href="http://cidian.youdao.com/index-linux.html">http://cidian.youdao.com/index-linux.html</a>下载32位程序，是个deb包。</li>
-<li>在终端中键入<code>sudo dpkg -i deb路径</code>，可能会报dpkg加锁，使用如下命令解决：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock  <span class="comment">#rm后可加-rf</span></span><br></pre></td></tr></table></figure></li>
-<li>重启后再次键入<code>sudo dpkg -i deb路径</code>，会报缺少依赖包，紧跟安装命令键入<code>sudo apt-get -f install</code>，系统会根据依赖关系树自动安装依赖包。</li>
-<li>通过搜索找到有道词典，启动程序后点击左下角图标进行设置。</li>
+<li>设置python解释器，选择/anaconda3/bin/python3.x（蓝色问号图标）。</li>
+<li>关闭自动更新：点击菜单File-&gt;Settings，在左侧树状目录中选择System Settings-&gt;Updates，去掉勾选。</li>
 </ol>
 <p>七、QT Creator</p>
 <ol>
 <li>在官方网站注册账户，安装程序时要用。</li>
-<li>从官方网站<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/">https://download.qt.io/archive/qt/</a>下载Linux32位安装包qt-linux-opensource-5.1.0-x86-offline.run。</li>
-<li>直接运行不了上述.run安装包，在终端中键入<code>sudo chmod +x qt-opensource-linux-5.1.0-x86-offline.run</code>，双击run进入向导。选择安装路径到/opt，一直下一步即可。</li>
+<li>从官方网站<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/">https://download.qt.io/archive/qt/</a>下载Linux32位安装包qt-linux-opensource-5.1.0-x86_64-offline.run。</li>
+<li>直接运行不了上述.run安装包，在终端中键入<code>sudo chmod +x qt-linux-opensource-5.1.0-x86_64-offline.run</code>，双击run进入向导。选择安装路径，一直下一步即可。</li>
 </ol>
 <p>打开程序会报Help插件错误，因为QT帮助是采用流媒体方式加载的，尝试安装流媒体库文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgstreamer0.10-dev</span><br><span class="line">sudo apt-get install libgstreamer-plugins-base0.10-dev</span><br></pre></td></tr></table></figure>
-<p>新建一个默认gui程序，会报cannot find -lGL错误，在终端中键入<code>sudo apt-get install libqt4-dev</code>即可解决。</p>
+<p>如果无法找到上述安装包，键入<code>sudo gedit /etc/apt/sources.list</code>，在文件末尾添加：<code>deb http://archive.ubuntu.com/ubuntu/ trusty main universe restricted multiverse</code>，更新源<code>sudo apt-get update</code>，然后再次安装。</p>
+<p>新建一个默认gui程序，可能会报cannot find -lGL错误，在终端中键入<code>sudo apt-get install libqt4-dev</code>即可解决。</p>
 <p>八、安装VScode</p>
 <ol>
-<li>在终端键入<code>sudo apt-get install ubuntu-make</code>安装umake工具。</li>
-<li>安装VScode在终端键入<code>umake ide visual-studio-code</code>。</li>
-<li>在终端家目录下键入<code>cd ./.local/share/umake/ide/visual-studio-code/bin/</code>进入目录，运行<code>code</code>。</li>
-<li>设置字体为Ubuntu Mono，字号为18。安装chinese插件。</li>
-<li>卸载程序在终端键入<code>umake ide visual-studio-code  --remove</code>。</li>
+<li>在官网<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>下载deb安装包。</li>
+<li>在终端键入<code>sudo dpkg -i deb路径</code>或者双击deb包安装软件。安装完成后，键入<code>code</code>运行。</li>
+<li>设置字体为Ubuntu Mono，字号为26。安装chinese插件。</li>
 </ol>
 <p>九、TexLive</p>
 <ol>
@@ -493,14 +497,13 @@
 </ol>
 <p>十、Arduino</p>
 <ol>
-<li>从官方网站<a target="_blank" rel="noopener" href="https://www.arduino.cc/en/donate/">https://www.arduino.cc/en/donate/</a>下载Linux32位安装包arduino-1.8.15-linux32.tar.xz。</li>
-<li>将其解压到合适的目录，这个目录就是Arduino程序的目录。</li>
-<li>在终端键入<code>sudo sh 路径/install.sh</code>安装。</li>
+<li>打开终端键入<code>sudo apt-get install arduino</code>。</li>
+<li>搜索arduino，添加到收藏夹快捷方式。</li>
 </ol>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>很多Linux书籍一上来就介绍一堆发展史，然后就是一堆命令，这是非常不符合实际使用情况的。对于一个刚接触某个操作系统的普通使用者，面对的实际问题是：如何安装操作系统、如何安装驱动、如何进行一些必要设置、如何安装常用软件。这一系列问题才是入门真正需要的知识。</p>
-<p>我觉得正确的学习方法是：就像最开始接触Windows系统时那样，直接使用即可，遇到问题上网查基本都能自行解决。随着使用时间的增加，知识和经验就积累起来了，完全没必要先学完某本书再去使用。我估计所有学会Linux的人，没有一个是学完某本书再去使用的。</p>
+<p>我觉得正确的学习方法是：就像最开始接触Windows系统那样，直接使用即可，遇到问题上网查基本都能自行解决。随着使用时间的增加，知识和经验就积累起来了，完全没必要先学完某本书再去使用。我估计所有学会Linux的人，没有一个是学完某本书再去使用的。</p>
 <p>Ubuntu在安装系统和安装驱动这两点上做的比较好，基本上做到无人值守，并且自带各种驱动，无需用户费神。系统设置与智能手机类似，只要认识文字就能操作。安装软件还是有点麻烦的，但这不是Linux的错，其实Linux的软件安装机制挺好，只不过各大软硬件厂商不怎么配合。</p>
-<p>我觉的Linux未来会朝着Android、MacOS方向走，当然我知道它们都源自于Linux，但是随着技术发展，社会环境更加接受那种设计理念。Linux不应该只局限于曾经的“哲学”，况且那些所谓的“哲学”大部分只是一些设计思想而已，被硬生生拔高到哲学层面的东西还有毒。</p>
+<p>我觉得Linux未来会朝着Android、MacOS方向走，当然我知道它们都源自于Linux，但是随着技术发展，社会环境更加接受那种设计理念。Linux不应该只局限于曾经的“哲学”，况且那些所谓的“哲学”大部分只是一些设计思想而已，被硬生生拔高到哲学层面的东西还有毒。</p>
 <blockquote>
 <p>试想一个修理工要去修理水管，有一把看似奇异的管钳子可供选择，传说只有“天才”才能使用它，并且得先学一本大典。试问，当前社会有几个人还有那个闲心折腾，毕竟目标在于把“水管”修好，况且会修水管也不是什么了不起的事。</p>
 </blockquote>
@@ -589,7 +592,7 @@
 
 <div class="copyright">
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
